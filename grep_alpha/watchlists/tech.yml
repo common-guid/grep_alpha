@@ -1,0 +1,23 @@
+name: Tech
+updated: "2026-03-21"
+tickers:
+  - symbol: AAPL
+    status: watching
+    target_entry: 210.00
+    thesis: "Solid consumer electronics and services growth."
+    tags: mobile,hardware
+  - symbol: MSFT
+    status: watching
+    target_entry: 420.00
+    thesis: "Cloud dominance and AI integration."
+    tags: cloud,software,ai
+  - symbol: NET
+    status: watching
+    target_entry: null
+    thesis: "Increase network connectivity."
+    tags: networking,infrastructure,cdn
+  - symbol: UI
+    status: watching
+    target_entry: null
+    thesis: "Increase network connectivity."
+    tags: user-experience,interface,digital-products

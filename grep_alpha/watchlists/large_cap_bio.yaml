@@ -1,0 +1,73 @@
+name: "large cap bio"
+updated: "2026-06-05"
+tickers:
+  - symbol: ABBV
+    status: watching
+    target_entry: null
+    thesis: "AbbVie has successfully managed the Humira patent cliff through the rapid scaling of Skyrizi and Rinvoq, which are projected to exceed Humira's peak sales. The integration of ImmunoGen provides a leading position in the high-growth Antibody-Drug Conjugate (ADC) market, ensuring top-tier margin profile and dividend growth."
+    tags: immunology, oncology
+  - symbol: MRK
+    status: watching
+    target_entry: null
+    thesis: "Keytruda remains the dominant oncology asset globally, and Merck's strategic expansion into cardiovascular and immunology via the Acceleron and Prometheus acquisitions provides a clear path for revenue replacement post-2028. High R&D efficiency and strong cash flow generation support significant outperformance relative to the broader pharma index."
+    tags: oncology, immunology
+  - symbol: AMGN
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: immunology
+  - symbol: ABT
+    status: watching
+    target_entry: null
+    thesis: "Abbott's diversified model provides a unique hedge within healthcare. The FreeStyle Libre system continues to dominate the Continuous Glucose Monitoring (CGM) market, while a recovery in elective surgical procedures is driving double-digit growth in its high-margin Medical Devices segment, providing a superior risk-adjusted return profile."
+    tags: specialty_care
+  - symbol: GILD
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: immunology, oncology
+  - symbol: PFE
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: immunology
+  - symbol: BMY
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: oncology
+  - symbol: VRTX
+    status: watching
+    target_entry: null
+    thesis: "Vertex holds a functional monopoly in the Cystic Fibrosis market, providing a massive cash cushion to fund its pivot into gene editing (Casgevy) and non-opioid pain management (VX-548). The pipeline is highly derisked compared to peers, with significant catalysts in multi-billion dollar markets where no competition currently exists."
+    tags: specialty_care
+  - symbol: GSK
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: immunology
+  - symbol: REGN
+    status: watching
+    target_entry: null
+    thesis: "Regeneron's Dupixent is a generational asset in immunology with multi-indication growth potential that continues to outperform analyst estimates. Furthermore, the successful defense of its Eylea franchise via the high-dose 8mg formulation has maintained its ophthalmology leadership and high barriers to entry against biosimilars."
+    tags: immunology, specialty_care
+  - symbol: TAK
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: specialty_care
+  - symbol: TEVA
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: specialty_care
+  - symbol: BIIB
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: specialty_care
+  - symbol: MDGL
+    status: watching
+    target_entry: null
+    thesis: "Madrigal holds a multi-year first-mover advantage with Rezdiffra, the first and only FDA-approved treatment for NASH/MASH with fibrosis. Given the estimated 15 million eligible patients in the US alone and a lack of immediate approved competition, Madrigal is positioned for a parabolic revenue ramp as physician adoption scales."
+    tags: specialty_care

@@ -1,0 +1,32 @@
+Ticker symbol	Date	Thesis
+CIEN	05/29/2026	The stock shows strong relative strength but is extended from moving averages; watch for support at the 21-day line or the $500 level.
+CRWD	05/29/2026	Currently too extended to buy after a 20% jump from a consolidation breakout; needs a pause or for the 21-day line to catch up.
+AVGO	05/29/2026	Potentially actionable within the buy zone of its cup base breakout (414.61 buy point), provided it clears recent highs.
+CRDO	05/29/2026	Technically near a buy range following a v-shaped cup-with-handle breakout, though it remains highly volatile ahead of earnings.
+VEEV	05/29/2026	Currently in a downtrend with a declining relative strength line; requires significant technical repair work.
+PANW	05/29/2026	Extended beyond its buy zone after a recent breakout; requires a pause or a pull back to provide a safer entry point.
+RBRK	05/29/2026	The analyst prefers to see the stock set up a new base above its 200-day moving average due to its history of volatile earnings.
+FIVE	05/29/2026	Currently testing its 50-day line; a clear move over the 10-week line could signal a buy opportunity on earnings.
+DG	05/29/2026	Stock is in a downtrend and needs significant technical repair work to become a viable play.
+ORCL	05/29/2026	Struggling below its 200-day moving average and vulnerable to negative AI sentiment; other cloud players are preferred.
+MRVL	05/22/2026	Currently extended after doubling from its 95.05 buy point; investors should wait for a 21-day line test or a new base.
+DELL	05/22/2026	Extended from its 50-day line; requires a consolidation for a couple of weeks to create a safe entry point.
+COST	05/22/2026	Technically in a buy zone after moving from the 50-day line, though valuation is high and relative strength is sluggish.
+SNPS	05/22/2026	Currently in a buy zone following a cup-with-handle base; it may be best to wait for earnings confirmation.
+ELBT	05/22/2026	Needs to regain the 50-day line and move above the 900 level to improve its technical setup.
+MDB	05/22/2026	Testing the 200-day line; clearing the recent high could serve as an early entry point despite overhead resistance.
+GEV	05/22/2026	Identified as a key stock to watch as the market bounce extends and the Dow hits highs.
+CDNS	05/22/2026	Identified as a stock in focus during the Friday session analysis.
+AA	05/22/2026	Highlighted as a key stock to watch following Friday's market action.
+IREN	05/26/2026	One of the primary stocks in focus during a flat market session led by the Dow.
+VRT	05/26/2026	Monitored as a key stock to watch following Tuesday's trading action.
+WMB	05/21/2026	Analyzed as a blue chip stock to watch as the segment leads the session.
+EXTR	05/21/2026	Identified as a small cap leader in focus during Thursday's market action.
+ORA	05/21/2026	One of the key stocks to watch during the Thursday market session.cls
+cbrs    05/29/2026
+adi     05/29/2026
+aapl    05/29/2026
+nvmi    05/29/2026
+smtc    05/29/2026
+ntap    05/29/2026
+umac    05/29/2026

@@ -1,0 +1,484 @@
+name: IBD_weekly
+updated: '2026-06-05'
+tickers:
+- symbol: COST
+  status: watching
+  target_entry: null
+  thesis: The stock is showing resilience by holding up relatively well despite a
+    plunging market and falling indexes. [06/05/2026] Technically in a buy zone after
+    moving from the 50-day line, though valuation is high and relative strength is
+    sluggish.
+  tags: consumer_retail
+- symbol: ENSG
+  status: watching
+  target_entry: null
+  thesis: The stock is maintaining its strength and holding firm during significant
+    market volatility and index declines.
+  tags: healthcare_biotech
+- symbol: JNJ
+  status: watching
+  target_entry: null
+  thesis: The stock is noted as one of the few names holding up while the broader
+    market plunges and major indexes fail to sustain rallies.
+  tags: healthcare_biotech
+- symbol: SNDK
+  status: watching
+  target_entry: null
+  thesis: Shares plunged 11% in a potential failed breakout following reports that
+    a new Google compression algorithm may reduce AI memory needs.
+  tags: semiconductors
+- symbol: VRT
+  status: watching
+  target_entry: null
+  thesis: The stock fell 8.6% and broke below its 21-day moving average in an "expectation
+    breaker" move after failing to hold its recent shelf breakout. [06/05/2026] Monitored
+    as a key stock to watch following Tuesday's trading action.
+  tags: infrastructure_industrials
+- symbol: EQIX
+  status: watching
+  target_entry: null
+  thesis: This data center REIT is showing relative strength by holding its 21-day
+    line as its relative strength line hits new highs.
+  tags: infrastructure_industrials
+- symbol: CAT
+  status: watching
+  target_entry: null
+  thesis: The stock was a primary focus during a mixed session characterized by bouncing
+    oil prices and fluctuating yields. Caterpillar was monitored as a key stock to
+    watch as markets fell due to concerns regarding Iran. Caterpillar was highlighted
+    as a key stock to watch during Wednesday's market action.
+  tags: infrastructure_industrials
+- symbol: NET
+  status: watching
+  target_entry: null
+  thesis: The stock was analyzed as a market leader during a session defined by volatile
+    yield movements.
+  tags: software_internet
+- symbol: CW
+  status: watching
+  target_entry: null
+  thesis: The stock was highlighted as a key name to watch while major indexes struggled
+    to overcome overhead resistance levels.
+  tags: aerospace_space
+- symbol: RSI
+  status: watching
+  target_entry: null
+  thesis: The stock jumped 5% after breaking out of a double bottom, benefiting from
+    potential regulatory moves against prediction market competitors.
+  tags: consumer_retail
+- symbol: NXT
+  status: watching
+  target_entry: null
+  thesis: The solar stock is forming a potential handle or flat base characterized
+    by a very strong relative strength line.
+  tags: energy_utilities
+- symbol: BTU
+  status: watching
+  target_entry: null
+  thesis: The stock faded after a breakout attempt, serving as a warning regarding
+    the risks of trading hot commodity areas in a news-driven market.
+  tags: energy_utilities
+- symbol: POWL
+  status: watching
+  target_entry: null
+  thesis: Bullish. The analyst identifies this as the best-looking chart available,
+    noting a 26% weekly gain and a cup-with-handle breakout that needs to hold above
+    the gap-up level.
+  tags: infrastructure_industrials
+- symbol: SMH
+  status: watching
+  target_entry: null
+  thesis: Bullish. The semiconductor sector is viewed as a leading group following
+    an 11.4% weekly gain, signaling positive momentum for the broader market.
+  tags: semiconductors
+- symbol: EWZ
+  status: watching
+  target_entry: null
+  thesis: Bullish. The stock is clearing trendlines and showing strength; the analyst
+    recommends using the low of the gap-up day as a stop-out level.
+  tags: diversified_etfs
+- symbol: FIX
+  status: watching
+  target_entry: null
+  thesis: Bullish. The stock is leading the market with a strong relative strength
+    line, though the analyst notes it is currently stalling near the 1600 level.
+  tags: infrastructure_industrials
+- symbol: PWR
+  status: watching
+  target_entry: null
+  thesis: Bullish. The stock showed a positive upside reversal at the 50-day moving
+    average and is forming a flat base in spirit.
+  tags: infrastructure_industrials
+- symbol: VXUS
+  status: watching
+  target_entry: null
+  thesis: Neutral/Bullish. The analyst maintains a small position as it builds the
+    right side of a cup, though it must remain above the 50-day moving average.
+  tags: diversified_etfs
+- symbol: XLU
+  status: watching
+  target_entry: null
+  thesis: Bearish/Neutral. The analyst views the relative weakness in utilities as
+    a positive for the broader market, as utility strength typically signals market
+    fear.
+  tags: energy_utilities
+- symbol: FSLY
+  status: watching
+  target_entry: null
+  thesis: Bearish. The analyst liquidated the position after the stock plummeted 20%
+    and failed to find support at the 21-day moving average.
+  tags: software_internet
+- symbol: IGV
+  status: watching
+  target_entry: null
+  thesis: Bearish. Software is described as 'damaged goods' after failing to bounce
+    with the market, leaving the sector stuck in a downtrend.
+  tags: software_internet
+- symbol: HLT
+  status: watching
+  target_entry: null
+  thesis: Bullish sentiment; identified as a focus stock during a period where bulls
+    are dominating the market.
+  tags: consumer_retail
+- symbol: VICR
+  status: watching
+  target_entry: null
+  thesis: Bullish sentiment; categorized as a key stock in focus as the market's winning
+    streak continues.
+  tags: semiconductors
+- symbol: GLW
+  status: watching
+  target_entry: null
+  thesis: Bullish sentiment; featured as a focus stock as the Nasdaq and S&P 500 reached
+    record highs. Corning was highlighted as a key stock to watch during Friday's
+    market action. Corning was in focus as stocks hit new highs following positive
+    earnings reports.
+  tags: infrastructure_industrials, software_internet
+- symbol: JBHT
+  status: watching
+  target_entry: null
+  thesis: Bullish sentiment; identified as a key stock to watch during a market session
+    where major indexes extended runs to records.
+  tags: transportation_logistics
+- symbol: FDX
+  status: watching
+  target_entry: null
+  thesis: Bullish sentiment; listed as a focus ticker amid a bullish market environment
+    with record index levels.
+  tags: transportation_logistics
+- symbol: AVGO
+  status: watching
+  target_entry: null
+  thesis: Bullish sentiment; analyzed as a focus stock as the Nasdaq and S&P 500 jumped
+    to record highs. [06/05/2026] Potentially actionable within the buy zone of its
+    cup base breakout (414.61 buy point), provided it clears recent highs.
+  tags: semiconductors, software_internet
+- symbol: ADI
+  status: watching
+  target_entry: null
+  thesis: Bullish sentiment; highlighted as a key ticker in focus during a strong
+    market rally to record levels.
+  tags: semiconductors
+- symbol: ANET
+  status: watching
+  target_entry: null
+  thesis: Bullish sentiment; discussed as a primary stock to watch as major indexes
+    achieved record high status.
+  tags: software_internet
+- symbol: GRMN
+  status: watching
+  target_entry: null
+  thesis: Bullish sentiment; highlighted as a stock in focus after indexes shook off
+    early weakness.
+  tags: consumer_retail
+- symbol: WWD
+  status: watching
+  target_entry: null
+  thesis: Bullish sentiment; discussed as a key stock to watch following a market
+    recovery from early session lows.
+  tags: aerospace_space, infrastructure_industrials
+- symbol: VIK
+  status: watching
+  target_entry: null
+  thesis: Bullish sentiment; noted as a focus ticker as indexes displayed resilience
+    against early weakness. Viking was analyzed as a key stock of interest during
+    Thursday's record-setting market session.
+  tags: consumer_retail
+- symbol: GOOGL
+  status: watching
+  target_entry: null
+  thesis: Alphabet was analyzed as a stock in focus during a session where the market
+    reacted to geopolitical tensions in the Middle East.
+  tags: software_internet
+- symbol: AGX
+  status: watching
+  target_entry: null
+  thesis: Argan was identified as a key stock to watch on a day where the market declined
+    following a bullish win streak.
+  tags: infrastructure_industrials
+- symbol: FIVE
+  status: watching
+  target_entry: null
+  thesis: Five Below was analyzed as a stock of interest and highlighted alongside
+    other key performers during Monday's session. [06/05/2026] Currently testing its
+    50-day line; a clear move over the 10-week line could signal a buy opportunity
+    on earnings.
+  tags: consumer_retail
+- symbol: EME
+  status: watching
+  target_entry: null
+  thesis: Emcor was a featured stock for discussion during the walkthrough of the
+    day's market action.
+  tags: infrastructure_industrials
+- symbol: XPO
+  status: watching
+  target_entry: null
+  thesis: XPO was noted as a key ticker for market participants during a Tuesday session
+    where stocks declined.
+  tags: transportation_logistics
+- symbol: TSM
+  status: watching
+  target_entry: null
+  thesis: TSMC was in focus as the Nasdaq reached a new high following the extension
+    of the Iran ceasefire.
+  tags: semiconductors
+- symbol: QCOM
+  status: watching
+  target_entry: null
+  thesis: Qualcomm was discussed as a key stock to watch during Wednesday's bullish
+    market action.
+  tags: semiconductors
+- symbol: AXSM
+  status: watching
+  target_entry: null
+  thesis: Axsome Therapeutics was highlighted as a notable stock to watch as market
+    indexes reached new heights.
+  tags: healthcare_biotech
+- symbol: FIGS
+  status: watching
+  target_entry: null
+  thesis: Figs was in focus during a session where stocks declined due to fears of
+    escalation in Iran.
+  tags: consumer_retail
+- symbol: WAB
+  status: watching
+  target_entry: null
+  thesis: Wabtec was analyzed as a key stock to watch during Thursday's market action
+    amid geopolitical concerns.
+  tags: transportation_logistics, infrastructure_industrials
+- symbol: MRX
+  status: watching
+  target_entry: null
+  thesis: Marex was featured as a stock in focus as the hosts reviewed the day's market
+    pullback.
+  tags: financials
+- symbol: NVDA
+  status: watching
+  target_entry: null
+  thesis: Nvidia was a primary focus as the power trend strengthened and chip stocks
+    experienced a surge.
+  tags: semiconductors, software_internet
+- symbol: MU
+  status: watching
+  target_entry: null
+  thesis: Micron was in focus as part of a significant rally within the semiconductor
+    sector.
+  tags: semiconductors
+- symbol: PRIM
+  status: watching
+  target_entry: null
+  thesis: Primoris was analyzed as a key stock to watch during Monday's mixed market
+    action.
+  tags: infrastructure_industrials
+- symbol: RKLB
+  status: watching
+  target_entry: null
+  thesis: Rocket Lab was a featured ticker for discussion during the walkthrough of
+    the day's stock movements.
+  tags: aerospace_space
+- symbol: CLS
+  status: watching
+  target_entry: null
+  thesis: Celestica was in focus as tech stocks declined following developments related
+    to OpenAI.
+  tags: infrastructure_industrials, software_internet
+- symbol: BEN
+  status: watching
+  target_entry: null
+  thesis: Franklin Resources was analyzed as a key ticker to watch during Tuesday's
+    market decline.
+  tags: financials
+- symbol: STNG
+  status: watching
+  target_entry: null
+  thesis: Scorpio Tankers was discussed in focus as the hosts reviewed the day's market
+    performance.
+  tags: transportation_logistics
+- symbol: TER
+  status: watching
+  target_entry: null
+  thesis: Teradyne was in focus as tech stocks outperformed after the Fed held interest
+    rates steady.
+  tags: semiconductors, infrastructure_industrials
+- symbol: GVA
+  status: watching
+  target_entry: null
+  thesis: Granite Construction was featured as a stock to watch as earnings driven
+    momentum pushed the market to new heights.
+  tags: infrastructure_industrials
+- symbol: ROKU
+  status: watching
+  target_entry: null
+  thesis: Roku was analyzed as a key stock to watch during Friday's solid market session.
+  tags: consumer_retail, software_internet
+- symbol: BTSG
+  status: watching
+  target_entry: null
+  thesis: Bitdeer Technologies Group was featured for discussion as the market rally
+    showed continued strength.
+  tags: software_internet
+- symbol: CIEN
+  status: watching
+  target_entry: null
+  thesis: The stock shows strong relative strength but is extended from moving averages;
+    watch for support at the 21-day line or the $500 level.
+  tags: software_internet, infrastructure_industrials
+- symbol: CRWD
+  status: watching
+  target_entry: null
+  thesis: Currently too extended to buy after a 20% jump from a consolidation breakout;
+    needs a pause or for the 21-day line to catch up.
+  tags: software_internet
+- symbol: CRDO
+  status: watching
+  target_entry: null
+  thesis: Technically near a buy range following a v-shaped cup-with-handle breakout,
+    though it remains highly volatile ahead of earnings.
+  tags: semiconductors
+- symbol: VEEV
+  status: watching
+  target_entry: null
+  thesis: Currently in a downtrend with a declining relative strength line; requires
+    significant technical repair work.
+  tags: software_internet, healthcare_biotech
+- symbol: PANW
+  status: watching
+  target_entry: null
+  thesis: Extended beyond its buy zone after a recent breakout; requires a pause or
+    a pull back to provide a safer entry point.
+  tags: software_internet
+- symbol: RBRK
+  status: watching
+  target_entry: null
+  thesis: The analyst prefers to see the stock set up a new base above its 200-day
+    moving average due to its history of volatile earnings.
+  tags: software_internet
+- symbol: DG
+  status: watching
+  target_entry: null
+  thesis: Stock is in a downtrend and needs significant technical repair work to become
+    a viable play.
+  tags: consumer_retail
+- symbol: ORCL
+  status: watching
+  target_entry: null
+  thesis: Struggling below its 200-day moving average and vulnerable to negative AI
+    sentiment; other cloud players are preferred.
+  tags: software_internet
+- symbol: MRVL
+  status: watching
+  target_entry: null
+  thesis: Currently extended after doubling from its 95.05 buy point; investors should
+    wait for a 21-day line test or a new base.
+  tags: semiconductors
+- symbol: DELL
+  status: watching
+  target_entry: null
+  thesis: Extended from its 50-day line; requires a consolidation for a couple of
+    weeks to create a safe entry point.
+  tags: infrastructure_industrials, software_internet
+- symbol: SNPS
+  status: watching
+  target_entry: null
+  thesis: Currently in a buy zone following a cup-with-handle base; it may be best
+    to wait for earnings confirmation.
+  tags: semiconductors, software_internet
+- symbol: ELBT
+  status: watching
+  target_entry: null
+  thesis: Needs to regain the 50-day line and move above the 900 level to improve
+    its technical setup.
+  tags: aerospace_space, infrastructure_industrials
+- symbol: MDB
+  status: watching
+  target_entry: null
+  thesis: Testing the 200-day line; clearing the recent high could serve as an early
+    entry point despite overhead resistance.
+  tags: software_internet
+- symbol: GEV
+  status: watching
+  target_entry: null
+  thesis: Identified as a key stock to watch as the market bounce extends and the
+    Dow hits highs.
+  tags: energy_utilities, infrastructure_industrials
+- symbol: CDNS
+  status: watching
+  target_entry: null
+  thesis: Identified as a stock in focus during the Friday session analysis.
+  tags: semiconductors, software_internet
+- symbol: AA
+  status: watching
+  target_entry: null
+  thesis: Highlighted as a key stock to watch following Friday's market action.
+  tags: infrastructure_industrials
+- symbol: IREN
+  status: watching
+  target_entry: null
+  thesis: One of the primary stocks in focus during a flat market session led by the
+    Dow.
+  tags: software_internet, infrastructure_industrials
+- symbol: WMB
+  status: watching
+  target_entry: null
+  thesis: Analyzed as a blue chip stock to watch as the segment leads the session.
+  tags: energy_utilities, infrastructure_industrials
+- symbol: EXTR
+  status: watching
+  target_entry: null
+  thesis: Identified as a small cap leader in focus during Thursday's market action.
+  tags: software_internet, infrastructure_industrials
+- symbol: ORA
+  status: watching
+  target_entry: null
+  thesis: One of the key stocks to watch during the Thursday market session.cls
+  tags: energy_utilities
+- symbol: CBRS
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: software_internet
+- symbol: AAPL
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: consumer_retail, software_internet
+- symbol: NVMI
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: semiconductors
+- symbol: SMTC
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: semiconductors
+- symbol: NTAP
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: infrastructure_industrials, software_internet
+- symbol: UMAC
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: financials

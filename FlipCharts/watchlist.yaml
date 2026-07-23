@@ -1,0 +1,825 @@
+- symbol: AAOI
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Network, Fiber_optics
+- symbol: AAPL
+  status: core_holding
+  target_entry: 170.0
+  thesis: Consistent cash flow generator. Massive share buybacks and premium consumer
+    tech ecosystem. Solid consumer electronics and services growth. Solid services
+    growth, awaiting hardware supercycle.
+  tags: Big_Tech, Software, AI_Adjacent
+- symbol: ABBV
+  status: watching
+  target_entry: null
+  thesis: AbbVie has successfully managed the Humira patent cliff through the rapid
+    scaling of Skyrizi and Rinvoq, which are projected to exceed Humira's peak sales.
+    The integration of ImmunoGen provides a leading position in the high-growth Antibody-Drug
+    Conjugate (ADC) market, ensuring top-tier margin profile and dividend growth.
+  tags: Pharma, Bio
+- symbol: ABT
+  status: watching
+  target_entry: null
+  thesis: Abbott's diversified model provides a unique hedge within healthcare. The
+    FreeStyle Libre system continues to dominate the Continuous Glucose Monitoring
+    (CGM) market, while a recovery in elective surgical procedures is driving double-digit
+    growth in its high-margin Medical Devices segment, providing a superior risk-adjusted
+    return profile.
+  tags: MedTech
+- symbol: ADI
+  status: watching
+  target_entry: null
+  thesis: Bullish sentiment; highlighted as a key ticker in focus during a strong
+    market rally to record levels.
+  tags: Semi-IDM
+- symbol: AERG
+  status: watching
+  target_entry: 12.0
+  thesis: Specializes in directed energy and laser technology. High growth potential
+    in aerospace defense segments.
+  tags: Aero
+- symbol: AGX
+  status: watching
+  target_entry: null
+  thesis: Argan was identified as a key stock to watch on a day where the market declined
+    following a bullish win streak.
+  tags: Power
+- symbol: AMGN
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Bio
+- symbol: ANET
+  status: watching
+  target_entry: null
+  thesis: Bullish sentiment; discussed as a primary stock to watch as major indexes
+    achieved record high status.
+  tags: Network, AI_Adjacent
+- symbol: aph
+  status: watching
+  target_entry: null
+  thesis: Amphenol is the primary beneficiary of the physical layer requirements in
+    AI data centers. The massive shift toward accelerated computing requires an order-of-magnitude
+    increase in high-speed interconnects and specialized cabling, where APH holds
+    dominant market share and superior pricing power compared to commodity hardware
+    providers.
+  tags: Network, Fiber_optics, AI_Adjacent
+- symbol: ASTS
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Space, Network
+- symbol: ATRO
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Aero
+- symbol: AVAV
+  status: watching
+  target_entry: null
+  thesis: AeroVironment is the undisputed leader in tactical loitering munitions (Switchblade)
+    and small UAS, which have become the defining technologies of modern attrition
+    warfare. The company's recent record-breaking contract wins and the massive shift
+    in NATO doctrine toward small, attritable drones provide a multi-year growth runway
+    with high operating leverage.
+  tags: Aero
+- symbol: AVGO
+  status: watching
+  target_entry: null
+  thesis: Bullish sentiment; analyzed as a focus stock as the Nasdaq and S&P 500 jumped
+    to record highs.
+  tags: Semi-Fabless, Software, Big_Tech, AI_Adjacent
+- symbol: AXSM
+  status: watching
+  target_entry: null
+  thesis: Axsome Therapeutics was highlighted as a notable stock to watch as market
+    indexes reached new heights.
+  tags: Bio, Pharma
+- symbol: BEN
+  status: watching
+  target_entry: null
+  thesis: Franklin Resources was analyzed as a key ticker to watch during Tuesday's
+    market decline.
+  tags: ''
+- symbol: BIIB
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Bio
+- symbol: BMY
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Pharma, Bio
+- symbol: BTCUSDT
+  status: watching
+  target_entry: 60000.0
+  thesis: Digital gold and primary store of value in the cryptocurrency ecosystem.
+  tags: ''
+- symbol: BTSG
+  status: watching
+  target_entry: null
+  thesis: Bitdeer Technologies Group was featured for discussion as the market rally
+    showed continued strength.
+  tags: AI_Adjacent, Power
+- symbol: BTU
+  status: watching
+  target_entry: null
+  thesis: The stock faded after a breakout attempt, serving as a warning regarding
+    the risks of trading hot commodity areas in a news-driven market.
+  tags: Metals, Power
+- symbol: CACI
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Software, Network
+- symbol: CAT
+  status: watching
+  target_entry: null
+  thesis: The stock was a primary focus during a mixed session characterized by bouncing
+    oil prices and fluctuating yields. Caterpillar was monitored as a key stock to
+    watch as markets fell due to concerns regarding Iran. Caterpillar was highlighted
+    as a key stock to watch during Wednesday's market action.
+  tags: Power
+- symbol: cava
+  status: watching
+  target_entry: null
+  thesis: CAVA is replicating the Chipotle playbook with superior unit economics and
+    a massive untapped total addressable market in the Mediterranean fast-casual space.
+    High average unit volumes (AUVs) and a robust digital engagement strategy provide
+    a clear path to sustained earnings outperformance as they scale toward 1,000+
+    locations.
+  tags: ''
+- symbol: CCJ
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Power
+- symbol: CIEN
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Network, Fiber_optics
+- symbol: CLS
+  status: watching
+  target_entry: null
+  thesis: Celestica was in focus as tech stocks declined following developments related
+    to OpenAI.
+  tags: Network, AI_Adjacent
+- symbol: COHR
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Network, Fiber_optics
+- symbol: COST
+  status: watching
+  target_entry: null
+  thesis: The stock is showing resilience by holding up relatively well despite a
+    plunging market and falling indexes.
+  tags: ''
+- symbol: CRDO
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Semi-Fabless, Network
+- symbol: CW
+  status: watching
+  target_entry: null
+  thesis: The stock was highlighted as a key name to watch while major indexes struggled
+    to overcome overhead resistance levels.
+  tags: Aero, Power
+- symbol: DPRO
+  status: watching
+  target_entry: null
+  thesis: Commercial drone solutions and hardware. Expanding enterprise deliveries.
+  tags: Aero
+- symbol: ecg
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: ''
+- symbol: EME
+  status: watching
+  target_entry: null
+  thesis: Emcor was a featured stock for discussion during the walkthrough of the
+    day's market action.
+  tags: Power
+- symbol: EMR
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Power
+- symbol: ENSG
+  status: watching
+  target_entry: null
+  thesis: The stock is maintaining its strength and holding firm during significant
+    market volatility and index declines.
+  tags: ''
+- symbol: EQIX
+  status: watching
+  target_entry: null
+  thesis: This data center REIT is showing relative strength by holding its 21-day
+    line as its relative strength line hits new highs.
+  tags: Network, AI_Adjacent
+- symbol: ese
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Aero
+- symbol: ESLT
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Aero
+- symbol: ETHUSDT
+  status: watching
+  target_entry: 3000.0
+  thesis: Primary smart contract platform with strong developer network effects.
+  tags: ''
+- symbol: ETN
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Power
+- symbol: EWZ
+  status: watching
+  target_entry: null
+  thesis: Bullish. The stock is clearing trendlines and showing strength; the analyst
+    recommends using the low of the gap-up day as a stop-out level.
+  tags: ''
+- symbol: FCX
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Metals
+- symbol: FDX
+  status: watching
+  target_entry: null
+  thesis: Bullish sentiment; listed as a focus ticker amid a bullish market environment
+    with record index levels.
+  tags: ''
+- symbol: FIGS
+  status: watching
+  target_entry: null
+  thesis: Figs was in focus during a session where stocks declined due to fears of
+    escalation in Iran.
+  tags: ''
+- symbol: FIVE
+  status: watching
+  target_entry: null
+  thesis: Five Below was analyzed as a stock of interest and highlighted alongside
+    other key performers during Monday's session.
+  tags: ''
+- symbol: FIX
+  status: watching
+  target_entry: null
+  thesis: Bullish. The stock is leading the market with a strong relative strength
+    line, though the analyst notes it is currently stalling near the 1600 level.
+  tags: Power
+- symbol: FLY
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Space, Aero
+- symbol: FN
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Fiber_optics, Network
+- symbol: fps
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: ''
+- symbol: FSLY
+  status: watching
+  target_entry: null
+  thesis: Bearish. The analyst liquidated the position after the stock plummeted 20%
+    and failed to find support at the 21-day moving average.
+  tags: Software, Network
+- symbol: GD
+  status: watching
+  target_entry: null
+  thesis: General Dynamics is the sole beneficiary of an unprecedented U.S. Navy submarine
+    construction cycle, anchored by the Columbia-class and Virginia-class programs.
+    Coupled with a rebound in Gulfstream deliveries (G700/G800), GD is entering a
+    period of significant free cash flow inflection that justifies a premium valuation
+    relative to diversified peers.
+  tags: Aero
+- symbol: GEV
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Power
+- symbol: GILD
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Bio, Pharma
+- symbol: glng
+  status: watching
+  target_entry: null
+  thesis: Golar LNG is a unique leader in Floating Liquefied Natural Gas (FLNG) technology,
+    offering significantly lower Capex and faster time-to-market than onshore facilities.
+    With global demand for flexible LNG supply increasing and high-margin contracts
+    for their floating assets, GLNG is poised for a significant free cash flow inflection
+    as they expand their fleet.
+  tags: Power
+- symbol: GLW
+  status: watching
+  target_entry: null
+  thesis: Bullish sentiment; featured as a focus stock as the Nasdaq and S&P 500 reached
+    record highs. Corning was highlighted as a key stock to watch during Friday's
+    market action. Corning was in focus as stocks hit new highs following positive
+    earnings reports.
+  tags: Fiber_optics, Network
+- symbol: GOOGL
+  status: core_holding
+  target_entry: 135.0
+  thesis: Undisputed leader in search, digital advertising, and cutting-edge Gemini
+    AI research. Alphabet was analyzed as a stock in focus during a session where
+    the market reacted to geopolitical tensions in the Middle East. Alphabet was in
+    focus during a mixed market session following significant news or performance.
+    Alphabet was featured as a leading tech performer following the Fed's decision
+    to hold interest rates steady. Alphabet was in focus as the stock market rally
+    continued to gain steam.
+  tags: Big_Tech, Software, AI_Adjacent
+- symbol: GRMN
+  status: watching
+  target_entry: null
+  thesis: Bullish sentiment; highlighted as a stock in focus after indexes shook off
+    early weakness.
+  tags: Aero
+- symbol: GSK
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Pharma, Bio
+- symbol: GVA
+  status: watching
+  target_entry: null
+  thesis: Granite Construction was featured as a stock to watch as earnings driven
+    momentum pushed the market to new heights.
+  tags: ''
+- symbol: HEI
+  status: watching
+  target_entry: null
+  thesis: HEICO's Flight Support Group represents the highest-quality business in
+    aerospace, benefiting from the 'Parts Manufacturer Approval' (PMA) model that
+    offers airlines 30%+ savings vs. OEMs. As airlines extend the life of older fleets,
+    HEI captures outsized share in the aftermarket, resulting in consistent double-digit
+    organic growth and superior ROIC.
+  tags: Aero
+- symbol: HII
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Aero, Power
+- symbol: HLT
+  status: watching
+  target_entry: null
+  thesis: Bullish sentiment; identified as a focus stock during a period where bulls
+    are dominating the market.
+  tags: Hospitality
+- symbol: HNRG
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Power
+- symbol: HWM
+  status: watching
+  target_entry: null
+  thesis: Howmet operates as a mission-critical bottleneck in the aerospace engine
+    supply chain. As a near-monopolist in advanced turbine blades and specialized
+    fasteners, HWM possesses immense pricing power. The shift toward next-gen engines
+    (LEAP/GTF) requires higher-value components per shipset, driving structural margin
+    expansion that the market consistently underestimates.
+  tags: Aero
+- symbol: IGV
+  status: watching
+  target_entry: null
+  thesis: Bearish. Software is described as 'damaged goods' after failing to bounce
+    with the market, leaving the sector stuck in a downtrend.
+  tags: Software
+- symbol: ITA
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Aero
+- symbol: JBHT
+  status: watching
+  target_entry: null
+  thesis: Bullish sentiment; identified as a key stock to watch during a market session
+    where major indexes extended runs to records.
+  tags: ''
+- symbol: JBL
+  status: watching
+  target_entry: 240.0
+  thesis: Jabil shows leadership with a relative strength line at new highs and is
+    finding strong support at its 50-day and 10-week moving averages.
+  tags: Network, AI_Adjacent
+- symbol: jcap
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: ''
+- symbol: JCI
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Power
+- symbol: JNJ
+  status: watching
+  target_entry: null
+  thesis: The stock is noted as one of the few names holding up while the broader
+    market plunges and major indexes fail to sustain rallies.
+  tags: Pharma, MedTech
+- symbol: KRMN
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Aero
+- symbol: KTOS
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Aero, Space, Network
+- symbol: lb
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: ''
+- symbol: LDOS
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Software, Network
+- symbol: LHX
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Network, Aero
+- symbol: LITE
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Fiber_optics, Network
+- symbol: LMT
+  status: watching
+  target_entry: null
+  thesis: "Lockheed Martin maintains a dominant position as the prime contractor for\
+    \ the F-35, the world's largest defense program, ensuring multi-decade revenue\
+    \ visibility. The firm's pivot toward '21st Century Security'\u2014integrating\
+    \ AI and JADC2 across platforms\u2014and its massive backlog in HIMARS and PAC-3\
+    \ systems position it for significant earnings growth in a high-threat geopolitical\
+    \ environment."
+  tags: Aero, Space
+- symbol: LRCX
+  status: watching
+  target_entry: 275.0
+  thesis: Lam Research showed an outside day upside reversal through its 50-day moving
+    average and is testing its 10-week moving average with a healthy relative strength
+    line.
+  tags: Semi-IDM
+- symbol: MBLY
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Software, AI_Adjacent
+- symbol: MDGL
+  status: watching
+  target_entry: null
+  thesis: Madrigal holds a multi-year first-mover advantage with Rezdiffra, the first
+    and only FDA-approved treatment for NASH/MASH with fibrosis. Given the estimated
+    15 million eligible patients in the US alone and a lack of immediate approved
+    competition, Madrigal is positioned for a parabolic revenue ramp as physician
+    adoption scales.
+  tags: Bio, Pharma
+- symbol: mirm
+  status: watching
+  target_entry: null
+  thesis: Mirum Pharmaceuticals has established a dominant niche in rare pediatric
+    liver diseases with Livmarli. Their expansion into adult indications and the acquisition
+    of additional bile acid assets provides a diversified revenue base and a path
+    to profitability that is under-appreciated relative to its clinical success.
+  tags: Bio, Pharma
+- symbol: MOD
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Power
+- symbol: MRK
+  status: watching
+  target_entry: null
+  thesis: Keytruda remains the dominant oncology asset globally, and Merck's strategic
+    expansion into cardiovascular and immunology via the Acceleron and Prometheus
+    acquisitions provides a clear path for revenue replacement post-2028. High R&D
+    efficiency and strong cash flow generation support significant outperformance
+    relative to the broader pharma index.
+  tags: Pharma, Bio
+- symbol: MRX
+  status: watching
+  target_entry: null
+  thesis: Marex was featured as a stock in focus as the hosts reviewed the day's market
+    pullback.
+  tags: ''
+- symbol: MSFT
+  status: core_holding
+  target_entry: null
+  thesis: Dominant enterprise SaaS, cloud infrastructure (Azure), and leader in AI
+    integration. Cloud dominance and AI integration.
+  tags: Big_Tech, Software, AI_Adjacent
+- symbol: MU
+  status: watching
+  target_entry: null
+  thesis: Micron was in focus as part of a significant rally within the semiconductor
+    sector.
+  tags: Memory, Semi-IDM
+- symbol: NET
+  status: watching
+  target_entry: null
+  thesis: Increase network connectivity. The stock was analyzed as a market leader
+    during a session defined by volatile yield movements.
+  tags: Software, Network
+- symbol: NNE
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Power
+- symbol: NOC
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Aero, Space
+- symbol: NVDA
+  status: watching
+  target_entry: 850.0
+  thesis: Global AI compute leader with deep hardware moat in GPUs and networking
+    silicon. Nvidia was a primary focus as the power trend strengthened and chip stocks
+    experienced a surge.
+  tags: Semi-Fabless, Big_Tech, AI_Adjacent
+- symbol: nvmi
+  status: watching
+  target_entry: null
+  thesis: Nova Ltd is a critical bottleneck provider in the semiconductor manufacturing
+    process, specifically for Gate-All-Around (GAA) and advanced 3D packaging. As
+    the industry moves toward sub-2nm nodes, Nova's in-line metrology tools become
+    indispensable for yield management, ensuring structural growth over the broader
+    fab equipment sector.
+  tags: Semi-Fabless
+- symbol: NXT
+  status: watching
+  target_entry: null
+  thesis: The solar stock is forming a potential handle or flat base characterized
+    by a very strong relative strength line.
+  tags: Power
+- symbol: OC
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: ''
+- symbol: OKLO
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Power
+- symbol: ONDS
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Network, Aero
+- symbol: PFE
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Pharma, Bio
+- symbol: POWL
+  status: watching
+  target_entry: null
+  thesis: Bullish. The analyst identifies this as the best-looking chart available,
+    noting a 26% weekly gain and a cup-with-handle breakout that needs to hold above
+    the gap-up level. Bullish sentiment; highlighted as a key name to watch during
+    a dominating bull win streak.
+  tags: Power
+- symbol: PRIM
+  status: watching
+  target_entry: null
+  thesis: Primoris was analyzed as a key stock to watch during Monday's mixed market
+    action.
+  tags: Power
+- symbol: PWR
+  status: watching
+  target_entry: null
+  thesis: Bullish. The stock showed a positive upside reversal at the 50-day moving
+    average and is forming a flat base in spirit. Quanta Services is the 'picks and
+    shovels' play for the massive U.S. grid modernization and data center power crunch.
+    With unparalleled scale in high-voltage transmission and a leading position in
+    renewable energy interconnection, PWR is perfectly positioned to capture the multi-billion
+    dollar capital expenditure cycle required to support AI and electrification.
+  tags: Power
+- symbol: QCOM
+  status: watching
+  target_entry: null
+  thesis: Qualcomm was discussed as a key stock to watch during Wednesday's bullish
+    market action.
+  tags: Semi-Fabless, Network
+- symbol: RCAT
+  status: watching
+  target_entry: 3.5
+  thesis: Leading provider of sUAS drones for defense and tactical imaging. Strong
+    organic revenue growth and expanding government contracts.
+  tags: Aero
+- symbol: REGN
+  status: watching
+  target_entry: null
+  thesis: Regeneron's Dupixent is a generational asset in immunology with multi-indication
+    growth potential that continues to outperform analyst estimates. Furthermore,
+    the successful defense of its Eylea franchise via the high-dose 8mg formulation
+    has maintained its ophthalmology leadership and high barriers to entry against
+    biosimilars.
+  tags: Bio
+- symbol: RKLB
+  status: watching
+  target_entry: null
+  thesis: "Rocket Lab was a featured ticker for discussion during the walkthrough\
+    \ of the day's stock movements. Rocket Lab has successfully transitioned from\
+    \ a high-risk launch startup to a vertically integrated space systems leader.\
+    \ With a record backlog in its high-margin Space Systems division and the development\
+    \ of the Neutron rocket\u2014designed to break the current medium-launch monopoly\u2014\
+    RKLB is the premier equity vehicle for the commercialization of space. Rocket\
+    \ Lab has successfully evolved from a small-launch provider to a diversified space\
+    \ systems powerhouse. The rapid scaling of its high-margin Space Systems segment\
+    \ (now ~70% of revenue) and the development of the Neutron rocket position it\
+    \ as the only viable western alternative to SpaceX for large-scale constellation\
+    \ deployment."
+  tags: Space, Aero
+- symbol: ROKU
+  status: watching
+  target_entry: null
+  thesis: Roku was analyzed as a key stock to watch during Friday's solid market session.
+  tags: Software
+- symbol: RSI
+  status: watching
+  target_entry: null
+  thesis: The stock jumped 5% after breaking out of a double bottom, benefiting from
+    potential regulatory moves against prediction market competitors.
+  tags: Software
+- symbol: RTX
+  status: watching
+  target_entry: null
+  thesis: RTX benefits from the dual tailwinds of a historic commercial aerospace
+    recovery (Collins/Pratt) and a record $190B+ backlog in defense. The Collins Aerospace
+    segment provides superior margin expansion potential as widebody production rates
+    normalize, while the Raytheon segment remains the primary beneficiary of global
+    missile defense restocking.
+  tags: Aero
+- symbol: SAIC
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Software
+- symbol: SKYT
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Semi-IDM
+- symbol: SMH
+  status: watching
+  target_entry: null
+  thesis: Bullish. The semiconductor sector is viewed as a leading group following
+    an 11.4% weekly gain, signaling positive momentum for the broader market.
+  tags: Semi-IDM, Semi-Fabless
+- symbol: SNDK
+  status: watching
+  target_entry: null
+  thesis: Shares plunged 11% in a potential failed breakout following reports that
+    a new Google compression algorithm may reduce AI memory needs.
+  tags: Memory
+- symbol: SOLUSDT
+  status: watching
+  target_entry: 120.0
+  thesis: High-performance monolithic L1 blockchain with growing retail and DeFi volume.
+  tags: ''
+- symbol: STNG
+  status: watching
+  target_entry: null
+  thesis: Scorpio Tankers was discussed in focus as the hosts reviewed the day's market
+    performance.
+  tags: ''
+- symbol: STRL
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: ''
+- symbol: TAK
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Pharma, Bio
+- symbol: TER
+  status: watching
+  target_entry: null
+  thesis: Teradyne was in focus as tech stocks outperformed after the Fed held interest
+    rates steady.
+  tags: Semi-Fabless
+- symbol: TEVA
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Pharma, Bio
+- symbol: TSLA
+  status: watching
+  target_entry: 180.0
+  thesis: EV and robotics manufacturer. Potential autonomous driving and FSD tailwinds.
+  tags: Power, AI_Adjacent
+- symbol: TSM
+  status: watching
+  target_entry: null
+  thesis: TSMC was in focus as the Nasdaq reached a new high following the extension
+    of the Iran ceasefire.
+  tags: Semi-IDM
+- symbol: TT
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Power
+- symbol: TXT
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Aero
+- symbol: UI
+  status: watching
+  target_entry: null
+  thesis: Increase network connectivity.
+  tags: Network
+- symbol: VIAV
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Network
+- symbol: VICR
+  status: watching
+  target_entry: null
+  thesis: Bullish sentiment; categorized as a key stock in focus as the market's winning
+    streak continues.
+  tags: Power
+- symbol: VIK
+  status: watching
+  target_entry: null
+  thesis: Bullish sentiment; noted as a focus ticker as indexes displayed resilience
+    against early weakness. Viking was analyzed as a key stock of interest during
+    Thursday's record-setting market session.
+  tags: Hospitality
+- symbol: VRT
+  status: watching
+  target_entry: null
+  thesis: The stock fell 8.6% and broke below its 21-day moving average in an "expectation
+    breaker" move after failing to hold its recent shelf breakout.
+  tags: Power
+- symbol: VRTX
+  status: watching
+  target_entry: null
+  thesis: Vertex holds a functional monopoly in the Cystic Fibrosis market, providing
+    a massive cash cushion to fund its pivot into gene editing (Casgevy) and non-opioid
+    pain management (VX-548). The pipeline is highly derisked compared to peers, with
+    significant catalysts in multi-billion dollar markets where no competition currently
+    exists.
+  tags: Bio, Pharma
+- symbol: VST
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Power
+- symbol: VXUS
+  status: watching
+  target_entry: null
+  thesis: Neutral/Bullish. The analyst maintains a small position as it builds the
+    right side of a cup, though it must remain above the 50-day moving average.
+  tags: ''
+- symbol: WAB
+  status: watching
+  target_entry: null
+  thesis: Wabtec was analyzed as a key stock to watch during Thursday's market action
+    amid geopolitical concerns.
+  tags: ''
+- symbol: WWD
+  status: watching
+  target_entry: null
+  thesis: Bullish sentiment; discussed as a key stock to watch following a market
+    recovery from early session lows.
+  tags: Aero, Power
+- symbol: XLU
+  status: watching
+  target_entry: null
+  thesis: Bearish/Neutral. The analyst views the relative weakness in utilities as
+    a positive for the broader market, as utility strength typically signals market
+    fear.
+  tags: Power
+- symbol: XPO
+  status: watching
+  target_entry: null
+  thesis: XPO was noted as a key ticker for market participants during a Tuesday session
+    where stocks declined.
+  tags: ''

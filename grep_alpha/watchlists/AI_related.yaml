@@ -1,0 +1,163 @@
+name: AI Related
+updated: "2026-03-22"
+tickers:
+  - symbol: STRL
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: data_center, infrastructure
+  - symbol: PRIM
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: data_center, infrastructure
+  - symbol: MU
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: ai, hardware
+  - symbol: SNDK
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: ai, hardware
+  - symbol: GEV
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: ai, energy
+  - symbol: ETN
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: data_center, infrastructure
+  - symbol: VRT
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: data_center, infrastructure
+  - symbol: FCX
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: data_center, infrastructure
+  - symbol: JCI
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: data_center, infrastructure
+  - symbol: EMR
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: data_center, infrastructure
+  - symbol: PWR
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: ai, energy
+  - symbol: VST
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: ai, energy
+  - symbol: CCJ
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: ai, energy
+  - symbol: FIX
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: data_center, infrastructure
+  - symbol: LITE
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: ai, hardware
+  - symbol: CLS
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: ai, hardware
+  - symbol: JBL
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: ai, hardware
+  - symbol: CRDO
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: ai, hardware
+  - symbol: MOD
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: data_center, infrastructure
+  - symbol: OKLO
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: ai, energy
+  - symbol: OC
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: data_center, infrastructure
+  - symbol: SKYT
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: ai, hardware
+  - symbol: NNE
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: ai, energy
+  - symbol: HNRG
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: ai, energy
+  - symbol: GLW
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: data_center, infrastructure
+  - symbol: CIEN
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: data_center, infrastructure
+  - symbol: VIAV
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: data_center, infrastructure
+  - symbol: TT
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: data_center, infrastructure
+  - symbol: EME
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: data_center, infrastructure
+  - symbol: COHR
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: ai, hardware
+  - symbol: FN
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: ai, hardware
+  - symbol: AAOI
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: ai, hardware

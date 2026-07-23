@@ -1,0 +1,138 @@
+name: "defense tech"
+updated: "2026-06-05"
+tickers:
+  - symbol: RTX
+    status: watching
+    target_entry: null
+    thesis: "RTX benefits from the dual tailwinds of a historic commercial aerospace recovery (Collins/Pratt) and a record $190B+ backlog in defense. The Collins Aerospace segment provides superior margin expansion potential as widebody production rates normalize, while the Raytheon segment remains the primary beneficiary of global missile defense restocking."
+    tags: defense, aero
+  - symbol: LMT
+    status: watching
+    target_entry: null
+    thesis: "Lockheed Martin maintains a dominant position as the prime contractor for the F-35, the world's largest defense program, ensuring multi-decade revenue visibility. The firm's pivot toward '21st Century Security'—integrating AI and JADC2 across platforms—and its massive backlog in HIMARS and PAC-3 systems position it for significant earnings growth in a high-threat geopolitical environment."
+    tags: defense, aero, space
+  - symbol: HWM
+    status: watching
+    target_entry: null
+    thesis: "Howmet operates as a mission-critical bottleneck in the aerospace engine supply chain. As a near-monopolist in advanced turbine blades and specialized fasteners, HWM possesses immense pricing power. The shift toward next-gen engines (LEAP/GTF) requires higher-value components per shipset, driving structural margin expansion that the market consistently underestimates."
+    tags: aero, defense
+  - symbol: NOC
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: defense, aero, space, drones
+  - symbol: GD
+    status: watching
+    target_entry: null
+    thesis: "General Dynamics is the sole beneficiary of an unprecedented U.S. Navy submarine construction cycle, anchored by the Columbia-class and Virginia-class programs. Coupled with a rebound in Gulfstream deliveries (G700/G800), GD is entering a period of significant free cash flow inflection that justifies a premium valuation relative to diversified peers."
+    tags: defense, aero
+  - symbol: LHX
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: defense, aero, space
+  - symbol: HEI
+    status: watching
+    target_entry: null
+    thesis: "HEICO's Flight Support Group represents the highest-quality business in aerospace, benefiting from the 'Parts Manufacturer Approval' (PMA) model that offers airlines 30%+ savings vs. OEMs. As airlines extend the life of older fleets, HEI captures outsized share in the aftermarket, resulting in consistent double-digit organic growth and superior ROIC."
+    tags: aero, defense
+  - symbol: RKLB
+    status: watching
+    target_entry: null
+    thesis: "Rocket Lab has successfully evolved from a small-launch provider to a diversified space systems powerhouse. The rapid scaling of its high-margin Space Systems segment (now ~70% of revenue) and the development of the Neutron rocket position it as the only viable western alternative to SpaceX for large-scale constellation deployment."
+    tags: space, defense
+  - symbol: ESLT
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: defense, drones, aero
+  - symbol: CW
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: defense, aero
+  - symbol: ASTS
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: space
+  - symbol: LDOS
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: defense, space
+  - symbol: HII
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: defense, drones
+  - symbol: TXT
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: aero, defense, drones
+  - symbol: ITA
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: defense, aero, space, drones
+  - symbol: KTOS
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: defense, drones, space
+  - symbol: CACI
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: defense
+  - symbol: AVAV
+    status: watching
+    target_entry: null
+    thesis: "AeroVironment is the undisputed leader in tactical loitering munitions (Switchblade) and small UAS, which have become the defining technologies of modern attrition warfare. The company's recent record-breaking contract wins and the massive shift in NATO doctrine toward small, attritable drones provide a multi-year growth runway with high operating leverage."
+    tags: defense, drones, space
+  - symbol: KRMN
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: aero, defense
+  - symbol: MBLY
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: drones
+  - symbol: ONDS
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: drones
+  - symbol: SAIC
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: defense
+  - symbol: FLY
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: space, aero, defense
+  - symbol: ATRO
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: aero, defense
+  - symbol: RCAT
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: drones, defense
+  - symbol: AERG
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: defense
+  - symbol: DPRO
+    status: watching
+    target_entry: null
+    thesis: ""
+    tags: drones, defense

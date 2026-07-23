@@ -1,0 +1,8 @@
+name: "Template Name"
+updated: "2026-03-22"
+tickers:
+  - symbol: TICKER
+    status: watching
+    target_entry: null
+    thesis: "Enter your trading thesis here."
+    tags: tag1, tag2

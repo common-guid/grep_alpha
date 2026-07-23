@@ -1,0 +1,6 @@
+typer
+pyyaml
+pandas
+alpaca-trade-api
+streamlit
+plotly

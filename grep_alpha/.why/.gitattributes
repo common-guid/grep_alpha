@@ -1,0 +1,2 @@
+# Use union merge for .why files: both sides' entries are kept
+*.md merge=union

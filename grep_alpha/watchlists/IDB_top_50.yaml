@@ -1,0 +1,90 @@
+name: ibd top 50
+updated: '2026-06-05'
+tickers:
+- symbol: cava
+  status: watching
+  target_entry: null
+  thesis: CAVA is replicating the Chipotle playbook with superior unit economics and
+    a massive untapped total addressable market in the Mediterranean fast-casual space.
+    High average unit volumes (AUVs) and a robust digital engagement strategy provide
+    a clear path to sustained earnings outperformance as they scale toward 1,000+
+    locations.
+  tags: consumer_retail
+- symbol: fps
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: financials
+- symbol: mirm
+  status: watching
+  target_entry: null
+  thesis: Mirum Pharmaceuticals has established a dominant niche in rare pediatric
+    liver diseases with Livmarli. Their expansion into adult indications and the acquisition
+    of additional bile acid assets provides a diversified revenue base and a path
+    to profitability that is under-appreciated relative to its clinical success.
+  tags: healthcare_biotech
+- symbol: nvmi
+  status: watching
+  target_entry: null
+  thesis: Nova Ltd is a critical bottleneck provider in the semiconductor manufacturing
+    process, specifically for Gate-All-Around (GAA) and advanced 3D packaging. As
+    the industry moves toward sub-2nm nodes, Nova's in-line metrology tools become
+    indispensable for yield management, ensuring structural growth over the broader
+    fab equipment sector.
+  tags: semiconductors
+- symbol: rklb
+  status: watching
+  target_entry: null
+  thesis: "Rocket Lab has successfully transitioned from a high-risk launch startup\
+    \ to a vertically integrated space systems leader. With a record backlog in its\
+    \ high-margin Space Systems division and the development of the Neutron rocket\u2014\
+    designed to break the current medium-launch monopoly\u2014RKLB is the premier\
+    \ equity vehicle for the commercialization of space."
+  tags: aerospace_space
+- symbol: aph
+  status: watching
+  target_entry: null
+  thesis: Amphenol is the primary beneficiary of the physical layer requirements in
+    AI data centers. The massive shift toward accelerated computing requires an order-of-magnitude
+    increase in high-speed interconnects and specialized cabling, where APH holds
+    dominant market share and superior pricing power compared to commodity hardware
+    providers.
+  tags: infrastructure_industrials
+- symbol: pwr
+  status: watching
+  target_entry: null
+  thesis: Quanta Services is the 'picks and shovels' play for the massive U.S. grid
+    modernization and data center power crunch. With unparalleled scale in high-voltage
+    transmission and a leading position in renewable energy interconnection, PWR is
+    perfectly positioned to capture the multi-billion dollar capital expenditure cycle
+    required to support AI and electrification.
+  tags: infrastructure_industrials
+- symbol: jcap
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: financials
+- symbol: lb
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: consumer_retail
+- symbol: ecg
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: healthcare_biotech
+- symbol: ese
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: aerospace_space, infrastructure_industrials
+- symbol: glng
+  status: watching
+  target_entry: null
+  thesis: Golar LNG is a unique leader in Floating Liquefied Natural Gas (FLNG) technology,
+    offering significantly lower Capex and faster time-to-market than onshore facilities.
+    With global demand for flexible LNG supply increasing and high-margin contracts
+    for their floating assets, GLNG is poised for a significant free cash flow inflection
+    as they expand their fleet.
+  tags: energy_utilities, transportation_logistics

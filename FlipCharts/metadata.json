@@ -1,0 +1,6 @@
+{
+  "name": "ChartGrid Pro",
+  "description": "Multi-chart candlestick reviewer with support for Alpha Vantage and Alpaca APIs, featuring a responsive 3x3 grid and lazy loading.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}

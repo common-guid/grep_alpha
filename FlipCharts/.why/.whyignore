@@ -1,0 +1,7 @@
+# Files/patterns to exclude from git-why trace capture
+# Uses gitignore-style patterns, relative to repo root
+#
+# Examples:
+# generated/
+# *.gen.py
+# *.min.js

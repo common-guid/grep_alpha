@@ -1,0 +1,15 @@
+paths:
+  # Where the CLI looks for your watchlists
+  watchlists_dir: "watchlists/"
+  # Where the SQLite database lives
+  database_file: "data/momentum.db"
+
+defaults:
+  # The default index to compare against in your Streamlit charts
+  benchmark_ticker: "SPY" 
+  # The default lookback periods (in days) for your Flip-Charts
+  lookback_periods: [90, 365] 
+
+charting:
+  # Aesthetic preferences for the Streamlit UI
+  theme: "dark"

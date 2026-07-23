@@ -1,0 +1,16 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: watchlist_monitor_app
+    ports:
+      - "3000:8000"
+    volumes:
+      - ./data.db:/app/data.db
+      - ./grep_alpha/watchlists:/app/grep_alpha/watchlists
+    environment:
+      - APCA_API_KEY_ID=${APCA_API_KEY_ID}
+      - APCA_API_SECRET_KEY=${APCA_API_SECRET_KEY}
+      - APCA_API_BASE_URL=${APCA_API_BASE_URL:-https://paper-api.alpaca.markets}
+    restart: unless-stopped

@@ -1,0 +1,39 @@
+# Database
+data.db
+*.db
+*.sqlite
+*.sqlite3
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+venv/
+.venv/
+env/
+
+# Node & Build
+node_modules/
+build/
+dist/
+coverage/
+
+# Logs & Environment
+*.log
+.env*
+!.env.example
+
+# OS / IDE
+.DS_Store
+.vscode/
+.idea/
+
+# Antigravity & Pipeline Runtime
+.antigravitycli/
+scratch/
+.backups/
+test_env/
+
