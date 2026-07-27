@@ -1,8 +1,19 @@
 import typer
 import os
 import subprocess
-from src.yaml_manager import YAMLManager
-from src.data_fetcher import sync_tickers
+import sys
+_current_dir = os.path.dirname(os.path.abspath(__file__))
+_grep_alpha_dir = os.path.dirname(_current_dir)
+if _grep_alpha_dir not in sys.path:
+    sys.path.insert(0, _grep_alpha_dir)
+
+try:
+    from src.yaml_manager import YAMLManager
+    from src.data_fetcher import sync_tickers
+except ImportError:
+    from grep_alpha.src.yaml_manager import YAMLManager
+    from grep_alpha.src.data_fetcher import sync_tickers
+
 from typing import Optional
 
 app = typer.Typer(help="CLI Momentum & Watchlist Tracker")
@@ -61,14 +72,22 @@ def update_note(
         typer.echo(f"Error updating note: {e}", err=True)
 
 @watch_app.command("sync")
-def sync():
+def sync(
+    force: bool = typer.Option(False, "--force", "-f", help="Force sync bypassing active 24-hour rate limit cooldown")
+):
     """Fetch missing daily data from Alpaca for all tickers."""
     try:
         typer.echo("Starting sync...")
-        sync_tickers()
-        typer.echo("Sync complete.")
+        res = sync_tickers(force=force)
+        if isinstance(res, dict) and res.get("status") == "cooldown_active":
+            typer.echo(f"Sync paused: {res.get('message')}", err=True)
+        elif isinstance(res, dict) and res.get("status") == "rate_limit_tripped":
+            typer.echo(f"Circuit breaker tripped: {res.get('message')}", err=True)
+        else:
+            typer.echo("Sync complete.")
     except Exception as e:
         typer.echo(f"Sync failed: {e}", err=True)
+
 
 @watch_app.command("review")
 def review(

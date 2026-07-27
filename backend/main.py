@@ -263,32 +263,45 @@ def get_sector_momentum(
 
 # --- Data Pipeline Sync Endpoints ---
 
-def run_sync_task():
+def run_sync_task(force: bool = False):
     global sync_state
     sync_state["is_running"] = True
     sync_state["last_log"] = "Sync started..."
     try:
-        data_fetcher.sync_tickers()
+        res = data_fetcher.sync_tickers(force=force)
         sync_state["last_synced"] = datetime.now().isoformat()
-        sync_state["last_log"] = "Sync completed successfully."
+        if isinstance(res, dict) and res.get("status") == "cooldown_active":
+            sync_state["last_log"] = f"Sync paused: {res.get('message')}"
+        elif isinstance(res, dict) and res.get("status") == "rate_limit_tripped":
+            sync_state["last_log"] = f"Circuit breaker tripped: {res.get('message')}"
+        else:
+            sync_state["last_log"] = "Sync completed successfully."
     except Exception as e:
         sync_state["last_log"] = f"Sync error: {str(e)}"
     finally:
         sync_state["is_running"] = False
 
 @app.post("/api/sync")
-def trigger_sync(background_tasks: BackgroundTasks):
+def trigger_sync(background_tasks: BackgroundTasks, force: bool = Query(False, description="Bypass active 24-hour rate limit cooldown")):
     """Trigger background Alpaca EOD market data ingestion into SQLite."""
     global sync_state
     if sync_state["is_running"]:
         return {"status": "already_running", "message": "Market data sync is currently in progress."}
     
-    background_tasks.add_task(run_sync_task)
+    cooldown = database.get_rate_limit_cooldown_status()
+    if cooldown["active"] and not force:
+        return {
+            "status": "cooldown_active",
+            "message": f"Market data sync is paused due to an active 24-hour rate limit cooldown until {cooldown['locked_until']}.",
+            "cooldown": cooldown
+        }
+    
+    background_tasks.add_task(run_sync_task, force=force)
     return {"status": "started", "message": "Market data sync task triggered."}
 
 @app.get("/api/status")
 def get_system_status():
-    """Get system health, cache metrics, and market data sync state."""
+    """Get system health, cache metrics, market data sync state, and 24-hour rate limit cooldown lock."""
     conn = database.get_connection()
     cursor = conn.cursor()
     cursor.execute("SELECT COUNT(DISTINCT ticker), COUNT(*), MAX(date) FROM daily_prices")
@@ -299,8 +312,11 @@ def get_system_status():
     total_records = row[1] if row else 0
     max_date = row[2] if row else None
 
+    cooldown = database.get_rate_limit_cooldown_status()
+
     return {
         "sync": sync_state,
+        "cooldown": cooldown,
         "database": {
             "path": database.DB_PATH,
             "unique_tickers": unique_tickers,
@@ -308,6 +324,7 @@ def get_system_status():
             "latest_date": max_date
         }
     }
+
 
 # --- Static File Serving for Production React SPA ---
 

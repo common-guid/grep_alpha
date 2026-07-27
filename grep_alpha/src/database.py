@@ -11,7 +11,7 @@ def get_connection():
     return sqlite3.connect(DB_PATH)
 
 def init_db():
-    """Initializes the database and creates the daily_prices table."""
+    """Initializes the database and creates necessary tables."""
     with get_connection() as conn:
         cursor = conn.cursor()
         cursor.execute("""
@@ -26,6 +26,69 @@ def init_db():
                 PRIMARY KEY (date, ticker)
             )
         """)
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS system_locks (
+                lock_name TEXT PRIMARY KEY,
+                locked_until TEXT NOT NULL,
+                reason TEXT,
+                created_at TEXT NOT NULL
+            )
+        """)
+        conn.commit()
+
+from datetime import datetime, timedelta
+
+def set_rate_limit_cooldown(hours: float = 24.0, reason: str = "API Rate Limit Hit") -> str:
+    """Set a persistent rate-limit cooldown lock for the specified duration (in hours)."""
+    init_db()
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        now = datetime.utcnow()
+        locked_until_dt = now + timedelta(hours=hours)
+        locked_until_str = locked_until_dt.isoformat()
+        cursor.execute("""
+            INSERT OR REPLACE INTO system_locks (lock_name, locked_until, reason, created_at)
+            VALUES ('rate_limit_cooldown', ?, ?, ?)
+        """, (locked_until_str, reason, now.isoformat()))
+        conn.commit()
+    return locked_until_str
+
+def get_rate_limit_cooldown_status() -> dict:
+    """Check if 24-hour rate limit cooldown is active."""
+    init_db()
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT locked_until, reason, created_at FROM system_locks WHERE lock_name = 'rate_limit_cooldown'")
+        row = cursor.fetchone()
+        
+    if not row:
+        return {"active": False, "locked_until": None, "reason": None, "remaining_seconds": 0, "remaining_hours": 0.0}
+    
+    locked_until_str, reason, created_at = row
+    try:
+        locked_until_dt = datetime.fromisoformat(locked_until_str)
+        now = datetime.utcnow()
+        if now < locked_until_dt:
+            remaining_seconds = int((locked_until_dt - now).total_seconds())
+            return {
+                "active": True,
+                "locked_until": locked_until_str,
+                "reason": reason,
+                "created_at": created_at,
+                "remaining_seconds": remaining_seconds,
+                "remaining_hours": round(remaining_seconds / 3600.0, 1)
+            }
+    except Exception:
+        pass
+        
+    return {"active": False, "locked_until": None, "reason": None, "remaining_seconds": 0, "remaining_hours": 0.0}
+
+def clear_rate_limit_cooldown():
+    """Clear any active rate-limit cooldown lock."""
+    init_db()
+    with get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute("DELETE FROM system_locks WHERE lock_name = 'rate_limit_cooldown'")
         conn.commit()
 
 def get_last_updated_date(ticker: str) -> Optional[str]:
@@ -67,3 +130,4 @@ def insert_daily_prices(data: List[Tuple]):
             data
         )
         conn.commit()
+

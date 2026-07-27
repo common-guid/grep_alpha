@@ -7,9 +7,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useServices } from '../context/ServiceContext';
 import { CandlestickData } from '../lib/charts/IChartAdapter';
-import { Maximize2, RefreshCw, AlertCircle, Info, FileText } from 'lucide-react';
+import { Maximize2, RefreshCw, AlertCircle, Info, FileText, AlertTriangle } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
+import { checkStaleness } from '../lib/utils/staleness';
 import { TickerInfoModal } from './TickerInfoModal';
 import { NotesModal } from './NotesModal';
 import { ExpandedChartModal } from './ExpandedChartModal';
@@ -65,7 +66,9 @@ export const ChartCard: React.FC<ChartCardProps> = ({ symbol, timeframe }) => {
     }
   }, [inView, data, settings.theme]);
 
-  const latestPrice = data.length > 0 ? data[data.length - 1].close : null;
+  const latestCandle = data.length > 0 ? data[data.length - 1] : undefined;
+  const staleness = checkStaleness(latestCandle?.time);
+  const latestPrice = latestCandle ? latestCandle.close : null;
   const prevPrice = data.length > 1 ? data[data.length - 2].close : null;
   const change = latestPrice && prevPrice ? latestPrice - prevPrice : 0;
   const changePct = prevPrice ? (change / prevPrice) * 100 : 0;
@@ -97,7 +100,17 @@ export const ChartCard: React.FC<ChartCardProps> = ({ symbol, timeframe }) => {
                         {itemDetails.status.replace('_', ' ')}
                     </span>
                 )}
+                {staleness.isStale && (
+                    <span 
+                        className="px-1.5 py-0.2 text-[8px] font-bold rounded bg-amber-500/15 text-amber-400 border border-amber-500/30 flex items-center gap-1 shrink-0 cursor-help"
+                        title={`Market data last updated on ${staleness.lastDateStr} (${staleness.calendarDaysDiff} calendar days / ${staleness.tradingDaysMissing} trading days ago). Sync required.`}
+                    >
+                        <AlertTriangle size={10} className="text-amber-400 shrink-0" />
+                        <span>Stale ({staleness.calendarDaysDiff}d)</span>
+                    </span>
+                )}
             </div>
+
             <div className="flex items-center gap-2 flex-wrap">
                 {latestPrice && (
                     <span className={cn(

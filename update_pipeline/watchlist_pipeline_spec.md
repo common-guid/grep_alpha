@@ -22,7 +22,7 @@ The pipeline will automatically:
 ### 2.2 Credentials & API Keys
 * **Antigravity CLI / Subagent Access:** Uses native Antigravity agent execution. No external API keys are strictly required for standard runs.
 * *(Optional)* **Gemini API Key (`GEMINI_API_KEY`):** Supported fallback if executed as a standalone script outside Antigravity.
-* *(Optional)* **YouTube Data API Key (`YOUTUBE_API_KEY`):** Optional; YouTube RSS feed (`https://www.youtube.com/feeds/videos.xml?channel_id=...`) acts as default zero-key channel scraper.
+* *(Clarification)* **YouTube Data API Key (`YOUTUBE_API_KEY`):** Not required for downloading transcripts. YouTube Data API v3's `captions.download` endpoint requires OAuth2 channel owner authentication and returns `403 Forbidden` for third-party videos. The pipeline uses public caption scraping endpoints (and RSS feeds for channel scans), making an API key unnecessary.
 
 ---
 
@@ -31,7 +31,7 @@ The pipeline will automatically:
 ```mermaid
 flowchart TD
     A[Master CLI: update_watchlist.py] --> B[Ingestion: fetch_transcripts.py]
-    B -->|Fetch Video Captions| C[YouTube API / RSS / Transcript API]
+    B -->|3-Tier Extraction| C[YouTube Captions / yt-dlp / Gemini S2T]
     C -->|Aggregated Raw Transcripts| D[Scratch Buffer: transcripts_weekly.txt]
     D --> E[Extractor: run_agent_extraction.py]
     E -->|Loads Rules| F[Taxonomy: available-tags.md]
@@ -50,9 +50,16 @@ flowchart TD
 ### 4.1 Ingestion Module (`scripts/fetch_transcripts.py`)
 * **Input Modes:**
   - Explicit URLs: `--urls "https://www.youtube.com/watch?v=..."`
-  - Automatic Weekly Scan: `--auto-ibd` (fetches videos uploaded in the past 7 days from the IBD channel).
+  - Automatic Weekly Scan: `--auto-ibd` (fetches videos uploaded in the past 7 days from the IBD channel via RSS feed `https://www.youtube.com/feeds/videos.xml?channel_id=...`).
+* **3-Tier Transcript Fallback Architecture:**
+  1. **Tier 1 (Primary): `youtube-transcript-api`**  
+     Scrapes public `timedtext` caption endpoints directly embedded in YouTube player responses without needing API keys or authentication.
+  2. **Tier 2 (Secondary Scraper): `yt-dlp --write-auto-sub`**  
+     Used if YouTube updates its player web layout or applies bot detection to direct web scraper requests.
+  3. **Tier 3 (Tertiary Fallback / No Captions): Audio Download + Gemini Multimodal Speech-to-Text**  
+     Downloads the audio stream (`yt-dlp -f ba`) and passes the audio directly into Gemini / Antigravity Agent native audio understanding for direct transcription and ticker extraction.
 * **Processing:**
-  - Extracts transcript chunks per video ID.
+  - Extracts transcript chunks per video ID across available tiers.
   - Combines text into a formatted block with video metadata (Title, Date, Video ID).
 * **Output:** Saves to `scratch/transcripts_weekly.txt`.
 
@@ -60,7 +67,7 @@ flowchart TD
 * **Prompt Specification:**
   - System prompt enforces strict YAML/JSON return structure.
   - Formulates thesis **only** if institutional-grade thesis criteria are met in transcript context or verified knowledge; defaults to `""` otherwise.
-  - Assigns minimum 2 tags per ticker cross-referenced against [available-tags.md](file:///home/guid/projects/watchlist_monitor/available-tags.md).
+  - Assigns minimum 2 tags per ticker cross-referenced against [available-tags.md](file:///home/guid/projects/grep_alpha/available-tags.md).
 * **Schema Definition:**
   ```yaml
   name: "ibd top 50"
@@ -85,10 +92,10 @@ flowchart TD
 
 ### 4.4 Target Application Integrations
 * **grep_alpha Watchlist Format:**
-  - Target Path: [grep_alpha/watchlists/IDB_top_50.yaml](file:///home/guid/projects/watchlist_monitor/grep_alpha/watchlists/IDB_top_50.yaml)
+  - Target Path: [grep_alpha/watchlists/IDB_top_50.yaml](file:///home/guid/projects/grep_alpha/watchlists/IDB_top_50.yaml)
   - Layout: Object with `name`, `updated`, and list of `tickers`.
 * **FlipCharts Watchlist Format:**
-  - Target Path: [FlipCharts/watchlist.yaml](file:///home/guid/projects/watchlist_monitor/FlipCharts/watchlist.yaml)
+  - Target Path: [FlipCharts/watchlist.yaml](file:///home/guid/projects/grep_alpha/FlipCharts/watchlist.yaml)
   - Layout: Direct list of ticker objects.
 
 ---

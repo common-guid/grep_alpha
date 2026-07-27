@@ -30,29 +30,50 @@ def get_unique_tickers() -> Set[str]:
             all_tickers.add(entry["symbol"].upper())
     return all_tickers
 
-def sync_tickers():
-    """Sync missing daily data from Alpaca to the local SQLite database."""
+import time
+try:
+    from src import database
+    from src.yaml_manager import YAMLManager
+except ImportError:
+    from grep_alpha.src import database
+    from grep_alpha.src.yaml_manager import YAMLManager
+
+
+def sync_tickers(force: bool = False) -> dict:
+    """Sync missing daily data from Alpaca to the local SQLite database.
+    Enforces a persistent 24-hour rate-limit circuit breaker cooldown if 429 is encountered.
+    """
     database.init_db()
+    
+    # Check 24-hour rate limit cooldown lock
+    cooldown = database.get_rate_limit_cooldown_status()
+    if cooldown["active"] and not force:
+        msg = f"[PAUSED] API rate-limit cooldown active until {cooldown['locked_until']} ({cooldown['remaining_hours']}h remaining). Sync skipped."
+        print(msg)
+        return {"status": "cooldown_active", "message": msg, "cooldown": cooldown}
+
+    if force and cooldown["active"]:
+        print("[FORCE] Bypassing active rate limit cooldown lock...")
+        database.clear_rate_limit_cooldown()
+
     tickers = get_unique_tickers()
     if not tickers:
         print("No tickers found in watchlists.")
-        return
+        return {"status": "success", "synced": 0}
 
     api = get_alpaca_client()
-    # EOD data is best fetched for "yesterday" (or even 2 days ago to be safe on weekends/holidays)
-    # to avoid "recent SIP data" errors on Free Tier.
-    # On Sunday March 22, "yesterday" is Saturday March 21 (no data), 2 days ago is Friday March 20.
     today = datetime.now().date()
     end_date = today - timedelta(days=2) 
+    
+    synced_count = 0
+    failed_tickers = []
     
     for ticker in tickers:
         last_date_str = database.get_last_updated_date(ticker)
         
         if last_date_str:
-            # Start from the day after the last date
             start_date = datetime.strptime(last_date_str, "%Y-%m-%d").date() + timedelta(days=1)
         else:
-            # If no data, default to 1 year ago (as a reasonable default)
             start_date = today - timedelta(days=365)
         
         if start_date > end_date:
@@ -62,9 +83,9 @@ def sync_tickers():
         print(f"Fetching data for {ticker} from {start_date} to {end_date}...")
         
         try:
-            # Fetch bars
-            # For Free accounts, 'iex' is required for recent data (15 min delay).
-            # Even for Paid accounts, 'iex' is often safer for automated historical fetches.
+            # Respect API limits with a small inter-request delay
+            time.sleep(0.3)
+            
             bars = api.get_bars(
                 ticker, 
                 TimeFrame.Day, 
@@ -78,8 +99,6 @@ def sync_tickers():
                 print(f"No new data found for {ticker}.")
                 continue
             
-            # Prepare data for insertion
-            # The index of the dataframe is the timestamp
             db_data = []
             for timestamp, row in bars.iterrows():
                 date_str = timestamp.date().isoformat()
@@ -94,14 +113,35 @@ def sync_tickers():
                 ))
             
             database.insert_daily_prices(db_data)
+            synced_count += 1
             print(f"Inserted {len(db_data)} records for {ticker}.")
             
         except Exception as e:
-            print(f"Error fetching data for {ticker}: {e}")
+            err_msg = str(e).lower()
+            if "429" in err_msg or "too many requests" in err_msg or "rate limit" in err_msg:
+                reason_str = f"Rate limit tripped on {ticker}: {str(e)}"
+                locked_until = database.set_rate_limit_cooldown(hours=24.0, reason=reason_str)
+                msg = f"[CIRCUIT BREAKER] Hit API rate limit on {ticker}! 24-hour cooldown activated until {locked_until}. Terminating sync loop."
+                print(msg)
+                return {
+                    "status": "rate_limit_tripped",
+                    "message": msg,
+                    "ticker": ticker,
+                    "locked_until": locked_until
+                }
+            else:
+                print(f"Error fetching data for {ticker}: {e}")
+                failed_tickers.append({"ticker": ticker, "error": str(e)})
+
+    return {
+        "status": "success",
+        "synced": synced_count,
+        "failed_tickers": failed_tickers
+    }
 
 if __name__ == "__main__":
-    # For manual testing if credentials are set
     try:
         sync_tickers()
     except Exception as e:
         print(f"Sync failed: {e}")
+

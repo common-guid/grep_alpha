@@ -1,6 +1,6 @@
 # Phased Implementation Plan: Watchlist Automation Pipeline
 
-This document details the step-by-step implementation plan for executing the [System Specification](file:///home/guid/projects/watchlist_monitor/update_pipeline/watchlist_pipeline_spec.md).
+This document details the step-by-step implementation plan for executing the [System Specification](file:///home/guid/projects/grep_alpha/update_pipeline/watchlist_pipeline_spec.md).
 
 ---
 
@@ -44,7 +44,7 @@ gantt
 * **Tasks:**
   - Parse YouTube video IDs from URLs (`watch?v=...`, `youtu.be/...`).
   - Implement IBD channel RSS feed parser (`https://www.youtube.com/feeds/videos.xml?user=investorsbusinessdaily` or `channel_id=UC...`) to filter videos from the last 7 days.
-  - Extract transcript segments and aggregate text formatted by video.
+  - Extract transcript segments using 3-tier fallback (`youtube-transcript-api` -> `yt-dlp` -> Gemini audio S2T).
 * **Verification Command:**
   ```bash
   python3 scripts/fetch_transcripts.py --url "https://www.youtube.com/watch?v=dQw4w9WgXcQ" --test
@@ -55,7 +55,7 @@ gantt
 ### Phase 3: Antigravity Subagent Orchestration Module
 * **Objective:** Implement `scripts/run_agent_extraction.py` to process aggregated transcript text into structured JSON/YAML ticker data.
 * **Tasks:**
-  - Load tag taxonomy from [available-tags.md](file:///home/guid/projects/watchlist_monitor/available-tags.md).
+  - Load tag taxonomy from [available-tags.md](file:///home/guid/projects/grep_alpha/available-tags.md).
   - Construct prompt enforcing ticker extraction, thesis criteria, and minimum 2 tag mappings.
   - Connect with Antigravity subagent runtime / CLI.
   - Add schema validator to ensure returned JSON/YAML strictly adheres to ticker schema.
@@ -70,9 +70,9 @@ gantt
 * **Objective:** Implement `scripts/merge_watchlists.py` to update watchlists safely.
 * **Tasks:**
   - Build automatic backup handler saving existing files to `.backups/YYYY-MM-DD_HHMMSS/`.
-  - Implement deep merge logic for [FlipCharts/watchlist.yaml](file:///home/guid/projects/watchlist_monitor/FlipCharts/watchlist.yaml):
+  - Implement deep merge logic for [FlipCharts/watchlist.yaml](file:///home/guid/projects/grep_alpha/FlipCharts/watchlist.yaml):
     * Preserve existing ticker `status` (e.g. `core_holding`), custom `target_entry`, and custom `thesis`.
-  - Implement merge logic for [grep_alpha/watchlists/IDB_top_50.yaml](file:///home/guid/projects/watchlist_monitor/grep_alpha/watchlists/IDB_top_50.yaml).
+  - Implement merge logic for [grep_alpha/watchlists/IDB_top_50.yaml](file:///home/guid/projects/grep_alpha/watchlists/IDB_top_50.yaml).
   - Update top-level `updated: "YYYY-MM-DD"` date stamp.
 * **Verification Command:**
   ```bash

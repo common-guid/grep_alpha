@@ -4,11 +4,12 @@
  */
 
 import React, { useEffect, useRef, useState } from 'react';
-import { X, Settings, Download, Share2, MousePointer2, Pencil, Type, Ruler } from 'lucide-react';
+import { X, Settings, Download, Share2, MousePointer2, Pencil, Type, Ruler, AlertTriangle } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useServices } from '../context/ServiceContext';
 import { CandlestickData } from '../lib/charts/IChartAdapter';
 import { cn } from '../lib/utils';
+import { checkStaleness } from '../lib/utils/staleness';
 
 interface ExpandedChartModalProps {
   symbol: string;
@@ -31,6 +32,9 @@ export const ExpandedChartModal: React.FC<ExpandedChartModalProps> = ({
   const [timeframe, setTimeframe] = useState(initialTimeframe);
   const [loading, setLoading] = useState(false);
   const [showVolume, setShowVolume] = useState(true);
+
+  const latestCandle = data.length > 0 ? data[data.length - 1] : undefined;
+  const staleness = checkStaleness(latestCandle?.time);
 
   const fetchFullData = async (newTf: string) => {
     setLoading(true);
@@ -83,9 +87,21 @@ export const ExpandedChartModal: React.FC<ExpandedChartModalProps> = ({
         <div className="flex items-center justify-between px-6 py-3 border-b border-[#242733] bg-[#1c202d]">
           <div className="flex items-center gap-6">
              <div className="flex flex-col">
-                <h2 className="text-xl font-bold text-white leading-none">{symbol}</h2>
+                <div className="flex items-center gap-2">
+                  <h2 className="text-xl font-bold text-white leading-none">{symbol}</h2>
+                  {staleness.isStale && (
+                    <span 
+                        className="px-2 py-0.5 text-[9px] font-bold rounded bg-amber-500/15 text-amber-400 border border-amber-500/30 flex items-center gap-1 shrink-0 cursor-help"
+                        title={`Market data last updated on ${staleness.lastDateStr} (${staleness.calendarDaysDiff} days ago).`}
+                    >
+                        <AlertTriangle size={11} className="text-amber-400" />
+                        <span>Data Stale ({staleness.calendarDaysDiff}d)</span>
+                    </span>
+                  )}
+                </div>
                 <span className="text-[10px] text-gray-500 font-mono mt-1 uppercase tracking-widest italic">Full Analysis Mode</span>
              </div>
+
 
              <div className="h-8 w-px bg-[#242733]" />
 
