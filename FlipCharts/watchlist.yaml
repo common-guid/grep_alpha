@@ -9,7 +9,7 @@
   thesis: Consistent cash flow generator. Massive share buybacks and premium consumer
     tech ecosystem. Solid consumer electronics and services growth. Solid services
     growth, awaiting hardware supercycle.
-  tags: Big_Tech, Software, AI_Adjacent
+  tags: Big_Tech, Software, AI_Adjacent, Consumer_Electronics
 - symbol: ABBV
   status: watching
   target_entry: null
@@ -166,7 +166,7 @@
   target_entry: null
   thesis: Celestica was in focus as tech stocks declined following developments related
     to OpenAI.
-  tags: Network, AI_Adjacent
+  tags: Network, AI_Adjacent, Electronics_Manufacturing, Hardware
 - symbol: COHR
   status: watching
   target_entry: null
@@ -333,7 +333,7 @@
     record highs. Corning was highlighted as a key stock to watch during Friday's
     market action. Corning was in focus as stocks hit new highs following positive
     earnings reports.
-  tags: Fiber_optics, Network
+  tags: Fiber_optics, Network, Manufacturing, Materials
 - symbol: GOOGL
   status: core_holding
   target_entry: 135.0
@@ -405,8 +405,10 @@
 - symbol: ITA
   status: watching
   target_entry: null
-  thesis: ''
-  tags: Aero
+  thesis: The iShares U.S. Aerospace & Defense ETF had a nice move this week, with
+    earnings from legacy stocks like LMT helping to prop up the group, despite previous
+    underperformance from large-cap names.
+  tags: Aero, ETF, Defense
 - symbol: JBHT
   status: watching
   target_entry: null
@@ -474,14 +476,14 @@
     \ AI and JADC2 across platforms\u2014and its massive backlog in HIMARS and PAC-3\
     \ systems position it for significant earnings growth in a high-threat geopolitical\
     \ environment."
-  tags: Aero, Space
+  tags: Aero, Space, Defense
 - symbol: LRCX
   status: watching
   target_entry: 275.0
   thesis: Lam Research showed an outside day upside reversal through its 50-day moving
     average and is testing its 10-week moving average with a healthy relative strength
     line.
-  tags: Semi-IDM
+  tags: Semi-IDM, Hardware, Manufacturing
 - symbol: MBLY
   status: watching
   target_entry: null
@@ -535,7 +537,7 @@
   target_entry: null
   thesis: Micron was in focus as part of a significant rally within the semiconductor
     sector.
-  tags: Memory, Semi-IDM
+  tags: Memory, Semi-IDM, Hardware
 - symbol: NET
   status: watching
   target_entry: null
@@ -551,7 +553,7 @@
   status: watching
   target_entry: null
   thesis: ''
-  tags: Aero, Space
+  tags: Aero, Space, Defense
 - symbol: NVDA
   status: watching
   target_entry: 850.0
@@ -689,7 +691,7 @@
   target_entry: null
   thesis: Bullish. The semiconductor sector is viewed as a leading group following
     an 11.4% weekly gain, signaling positive momentum for the broader market.
-  tags: Semi-IDM, Semi-Fabless
+  tags: Semi-IDM, Semi-Fabless, ETF
 - symbol: SNDK
   status: watching
   target_entry: null
@@ -732,7 +734,7 @@
   status: watching
   target_entry: 180.0
   thesis: EV and robotics manufacturer. Potential autonomous driving and FSD tailwinds.
-  tags: Power, AI_Adjacent
+  tags: Power, AI_Adjacent, Auto, Robotics
 - symbol: TSM
   status: watching
   target_entry: null
@@ -771,7 +773,7 @@
   thesis: Bullish sentiment; noted as a focus ticker as indexes displayed resilience
     against early weakness. Viking was analyzed as a key stock of interest during
     Thursday's record-setting market session.
-  tags: Hospitality
+  tags: Hospitality, Travel, Cruise_Line
 - symbol: VRT
   status: watching
   target_entry: null
@@ -809,7 +811,7 @@
   target_entry: null
   thesis: Bullish sentiment; discussed as a key stock to watch following a market
     recovery from early session lows.
-  tags: Aero, Power
+  tags: Aero, Power, Industrial, Manufacturing
 - symbol: XLU
   status: watching
   target_entry: null
@@ -823,3 +825,287 @@
   thesis: XPO was noted as a key ticker for market participants during a Tuesday session
     where stocks declined.
   tags: ''
+- symbol: AAL
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Aero, Travel, Airline
+- symbol: AMAT
+  status: watching
+  target_entry: null
+  thesis: Applied Materials is showing strength in the chip equipment sector, holding
+    above its 50-day line and appearing to be in base-building mode. The company is
+    projected for big-time growth in 2026-2027 as a key equipment supplier to the
+    growing memory and storage industries. Its recent pullback to the 10-week line
+    saw quiet volume, indicating support and making it a name to watch.
+  tags: Semi-IDM, Hardware, Manufacturing
+- symbol: AMP
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Financial, Investment_Services
+- symbol: ARCB
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Transportation, Logistics
+- symbol: ARM
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Semi-Fabless, Software, AI_Adjacent
+- symbol: ASML
+  status: watching
+  target_entry: null
+  thesis: ASML Holding is holding up nicely with three tight closes, demonstrating
+    strength in the chip equipment sector, similar to Applied Materials.
+  tags: Semi-IDM, Hardware, Manufacturing
+- symbol: BA
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Aero, Manufacturing
+- symbol: BE
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Power, Energy, Clean_Energy
+- symbol: CR
+  status: watching
+  target_entry: null
+  thesis: Crane Company is showing orderly action amid market chop, forming a four-weeks-tight
+    pattern and moving out with a 3% gain. It's holding above its 21-day moving average,
+    unlike many stocks, and is exposed to improving aerospace defense industries,
+    making it an actionable name to watch (though earnings are upcoming).
+  tags: Industrial, Manufacturing
+- symbol: CSX
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Transportation, Rail
+- symbol: CVX
+  status: watching
+  target_entry: null
+  thesis: Chevron is also in an uptrend, nearing its $198 level, mirroring Exxon Mobil's
+    performance. While its moves are less pronounced due to natural gas exposure,
+    it's part of a strong energy sector run, though investors are cautioned about
+    direct oil price volatility.
+  tags: Oil_Gas, Energy
+- symbol: DAL
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Aero, Travel, Airline
+- symbol: DIA
+  status: watching
+  target_entry: null
+  thesis: The SPDR Dow Jones Industrial Average ETF Trust (DIA) is outperforming,
+    serving as a defensive option for managers who need market exposure but are not
+    feeling overly aggressive, reflecting a shift towards more stable, blue-chip investments.
+  tags: ETF, Blue_Chip, Equity, Defensive
+- symbol: EAT
+  status: watching
+  target_entry: null
+  thesis: Brinker International is in new high territory, up 4.5% with a steady uptrend
+    since mid-May. The stock is trending nicely above its 21-day moving average, with
+    an improving relative strength line and a strong RS rating of 85 (up from 58).
+    It has robust IBD ratings (EPS 91, Composite 94, A/D A) and shows consistent double-digit
+    annual EPS growth estimates (20% for 2026/2027), making it a closely watched name
+    in the restaurant space.
+  tags: Hospitality, Restaurant, Retail
+- symbol: FTNT
+  status: watching
+  target_entry: null
+  thesis: Fortinet has been on a monster tear since a 20% gap-up breakout in May,
+    establishing itself as a strong leader in cybersecurity software. While it recently
+    broke below its 21-day line, a bounce off the 10-week line or old shelf could
+    present a buying opportunity, especially given its position in the strongest area
+    of software amidst concerns about shifting tech spending.
+  tags: Software, Cybersecurity, Network
+- symbol: HOOD
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Financial, Fintech, Brokerage
+- symbol: HP
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Oil_Gas_Services, Energy
+- symbol: HQY
+  status: watching
+  target_entry: null
+  thesis: HealthEquity is breaking out with a 4.7% gain, showing improved relative
+    strength (RS rating 62, 3-month RS 79, up from 36). It boasts strong fundamentals
+    with a Composite Rating of 94, EPS Rating of 96, and Accumulation/Distribution
+    Rating of A. The stock is making another attempt to cross and hold above the 100
+    level, with today's action providing a strong start.
+  tags: Financial, Healthcare, Software
+- symbol: INTC
+  status: watching
+  target_entry: null
+  thesis: Intel's stock is up 9% after hours following its earnings report, indicating
+    investor approval. The company is undergoing a significant reinvention with a
+    new CEO, presenting an exciting growth story, though it still needs to conquer
+    its 50-day moving average.
+  tags: Semi-IDM, Hardware
+- symbol: ITB
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: ETF, Homebuilding, Construction
+- symbol: IWM
+  status: watching
+  target_entry: null
+  thesis: The iShares Russell 2000 ETF is notable for holding its 50-day moving average
+    line, benefiting from a recent pullback in the 10-year Treasury yield, which helps
+    the small-cap index.
+  tags: ETF, Small_Cap, Equity
+- symbol: KIE
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: ETF, Financial, Insurance
+- symbol: KRE
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: ETF, Financial, Banking
+- symbol: LUMN
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Network, Fiber_optics
+- symbol: MA
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Financial, Payments, Fintech
+- symbol: MAGS
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: ETF, Big_Tech, AI_Adjacent
+- symbol: META
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Big_Tech, Social_Media, AI_Adjacent
+- symbol: MXL
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Semi-Fabless, Network, Hardware
+- symbol: NSC
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Transportation, Rail
+- symbol: QQQE
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: ETF, Tech, Equity
+- symbol: RJF
+  status: watching
+  target_entry: null
+  thesis: Raymond James Financial is breaking out of a cup with handle pattern, up
+    2.5%. While its overall relative strength is 57, it has significantly improved
+    from 33 four weeks ago, with a 3-month RS of 80, indicating positive momentum.
+    The company has strong IBD ratings (Composite 94, EPS 89, A/D A+) and is benefiting
+    from a rotation of money out of tech and into the improving financial sector.
+  tags: Financial, Investment_Services
+- symbol: RSP
+  status: watching
+  target_entry: null
+  thesis: The Invesco S&P 500 Equal Weight ETF is performing well, almost at highs,
+    supported at its 21-day moving average line, and has not even tested its 50-day
+    line, indicating that the average S&P 500 stock is holding up despite weakness
+    in market leaders.
+  tags: ETF, Equity
+- symbol: SCHD
+  status: watching
+  target_entry: null
+  thesis: The Schwab U.S. Dividend Equity ETF (SCHD) has recently popped above its
+    63-day moving average, outperforming the S&P 500 since July 16th. This indicates
+    an internal shift in the market towards more defensive positioning, as investors
+    seek stability in dividend-paying stocks.
+  tags: ETF, Dividend, Equity, Defensive
+- symbol: SHOP
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: E_commerce, Software
+- symbol: SMCI
+  status: watching
+  target_entry: null
+  thesis: Super Micro Computer is showing signs of rebound, holding at its 21-day
+    line and technically in a buy zone, despite recent pullback action.
+  tags: Hardware, AI_Adjacent, Server
+- symbol: SQ
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Fintech, Software, Payments
+- symbol: STX
+  status: watching
+  target_entry: null
+  thesis: Seagate Technology is showing encouraging signs heading into earnings, having
+    retaken its 21-day and 50-day moving averages after a strong run in memory chip
+    stocks. There's potential for further upside post-earnings, possibly forming a
+    new base or handle.
+  tags: Memory, Tech, Hardware
+- symbol: TD
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Financial, Banking
+- symbol: UAL
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Aero, Travel, Airline
+- symbol: UNP
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Transportation, Rail
+- symbol: V
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Financial, Payments, Fintech
+- symbol: WDC
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Memory, Tech, Hardware
+- symbol: WERN
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Transportation, Logistics
+- symbol: XLF
+  status: watching
+  target_entry: null
+  thesis: The Financial Select Sector SPDR Fund is seeing increased interest, with
+    money rotating out of tech and into financial areas, which have been holding up
+    better.
+  tags: ETF, Financial
+- symbol: XLP
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: ETF, Consumer_Staples, Defensive
+- symbol: XLRE
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: ETF, Real_Estate
+- symbol: XOM
+  status: watching
+  target_entry: null
+  thesis: Exxon Mobil is in a nice uptrend, approaching recent highs around $163.
+    Its performance is closely tied to oil prices, and it remains on an uptrend, making
+    it a watch for those tracking energy commodities.
+  tags: Oil_Gas, Energy
