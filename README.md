@@ -329,44 +329,58 @@ python grep_alpha/src/cli.py watch review defense_tech
 
 ## 🤖 Automated Update Pipeline (`update_pipeline`)
 
-The **Update Pipeline** automates the ingestion of video transcripts (e.g., Investor's Business Daily / Stock Market Today YouTube channels) and converts video notes into structured watchlist additions.
+The **Update Pipeline** automates the ingestion of YouTube market commentary videos (e.g., Investor's Business Daily / Stock Market Today) and converts video transcripts into structured, tagged YAML watchlist entries without manual copy-pasting.
 
-### Pipeline Architecture & Specification
+> 📖 **Full Pipeline Documentation**: See [update_pipeline/README.md](file:///home/guid/projects/grep_alpha/update_pipeline/README.md) for dedicated usage guides and [update_pipeline/watchlist_pipeline_spec.md](file:///home/guid/projects/grep_alpha/update_pipeline/watchlist_pipeline_spec.md) for technical specifications.
+
+### Pipeline Architecture & Ingestion Flow
 
 ```mermaid
 flowchart LR
-    A[YouTube RSS / URLs] --> B[fetch_transcripts.py]
-    B --> C[transcripts_weekly.txt]
-    C --> D[run_agent_extraction.py]
+    A[YouTube RSS / URLs] --> B[scripts/fetch_transcripts.py]
+    B -->|3-Tier Fallback| C[scratch/transcripts_weekly.txt]
+    C --> D[scripts/run_agent_extraction.py]
     E[available-tags.md] --> D
-    D --> F[LLM Subagent Extraction]
-    F --> G[merge_watchlists.py]
+    D --> F[Gemini Agent Extraction]
+    F --> G[scripts/merge_watchlists.py]
     G --> H[Create .backups/ Snapshot]
     G --> I[Merge to FlipCharts & grep_alpha YAMLs]
 ```
 
-### Ingestion & AI Agent Note Extraction
+### Quick Execution Guide
 
-1. **Transcript Fetching (`scripts/fetch_transcripts.py`)**:
-   - Supports explicit video URLs (`--urls "https://youtube.com/watch?v=..."`) or automatic 7-day channel scans (`--auto-ibd`).
-   - Aggregates video captions without downloading audio or video files.
-2. **AI Extraction (`scripts/run_agent_extraction.py`)**:
-   - Sends transcript text to an Antigravity AI Agent prompt.
-   - Enforces strict JSON/YAML schema output.
-   - Requires institutional-grade investment thesis verification before populating the thesis field.
+Run the pipeline from the project root using the `./update_watchlist.py` CLI wrapper:
 
-### Smart Merge Engine & Conflict Policy
+```bash
+# 1. Automatically fetch & process past 7 days of IBD Stock Market Today videos:
+python3 update_watchlist.py --auto-ibd
 
-The merge module (`scripts/merge_watchlists.py`) guarantees zero clobbering of user customizations:
+# 2. Process specific YouTube video URLs:
+python3 update_watchlist.py --urls "https://www.youtube.com/watch?v=VIDEO1,https://www.youtube.com/watch?v=VIDEO2"
 
-- 📸 **Automatic Backups**: Always copies existing YAML files to `.backups/YYYY-MM-DD_HHMMSS/` before modifying files.
-- 🛡️ **Preserves User State**: If a ticker already exists in a watchlist, its user-defined `status` (e.g. `core_holding`), custom `target_entry`, and custom `thesis` are preserved.
-- ➕ **Appends New Tickers**: New tickers are added with default `status: watching`.
-- 🏷️ **Tag Union**: Merges new tags with existing tags without removing user tags.
+# 3. Dry-run test (simulates end-to-end execution without modifying watchlists):
+python3 update_watchlist.py --auto-ibd --dry-run
+```
+
+### Key Modules & Capabilities
+
+1. **3-Tier Transcript Ingestion (`scripts/fetch_transcripts.py`)**:
+   - **Tier 1 (Primary)**: Keyless public caption extraction via `youtube-transcript-api`.
+   - **Tier 2 (Secondary)**: Subtitle parsing via `yt-dlp`.
+   - **Tier 3 (Channel Scraper)**: Direct web page video ID scraper fallback for RSS rate limits or 404s.
+2. **AI Extraction Agent (`scripts/run_agent_extraction.py`)**:
+   - Sends aggregated transcripts to Gemini API / Antigravity Agent.
+   - Enforces strict YAML schema output (`symbol`, `status`, `target_entry`, `tags`, `thesis`).
+   - Requires institutional-grade data verification before populating the `thesis` field.
+3. **Smart Merge Engine (`scripts/merge_watchlists.py`)**:
+   - 📸 **Automatic Backups**: Always copies existing YAML files to `.backups/YYYY-MM-DD_HHMMSS/` prior to modification.
+   - 🛡️ **Preserves User State**: Retains user-assigned `status` (e.g. `core_holding`), custom `target_entry` prices, and manually written theses.
+   - 🏷️ **Tag Union**: Appends new tags while preserving existing user-assigned tags.
+   - 🔄 **Dual Synchronization**: Simultaneously updates both [FlipCharts/watchlist.yaml](file:///home/guid/projects/grep_alpha/FlipCharts/watchlist.yaml) and [grep_alpha/watchlists/IDB_top_50.yaml](file:///home/guid/projects/grep_alpha/watchlists/IDB_top_50.yaml).
 
 ### Taxonomy Tagging Rules
 
-The AI Agent maps tags strictly against `available-tags.md`:
+The AI Agent maps tags strictly against [available-tags.md](file:///home/guid/projects/grep_alpha/available-tags.md):
 
 | Tag Category | Description / Scope |
 | :--- | :--- |
