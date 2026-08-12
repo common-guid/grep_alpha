@@ -1,6 +1,8 @@
 typer
 pyyaml
 pandas
+yfinance>=0.2.38
 alpaca-trade-api
 streamlit
 plotly
+

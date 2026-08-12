@@ -1,5 +1,5 @@
 name: ibd top 50
-updated: '2026-06-05'
+updated: '2026-08-12'
 tickers:
 - symbol: cava
   status: watching
@@ -32,7 +32,7 @@ tickers:
     indispensable for yield management, ensuring structural growth over the broader
     fab equipment sector.
   tags: semiconductors
-- symbol: rklb
+- symbol: RKLB
   status: watching
   target_entry: null
   thesis: "Rocket Lab has successfully transitioned from a high-risk launch startup\
@@ -40,7 +40,7 @@ tickers:
     \ high-margin Space Systems division and the development of the Neutron rocket\u2014\
     designed to break the current medium-launch monopoly\u2014RKLB is the premier\
     \ equity vehicle for the commercialization of space."
-  tags: aerospace_space
+  tags: aerospace_space, Space, Aero, Technology
 - symbol: aph
   status: watching
   target_entry: null
@@ -88,3 +88,495 @@ tickers:
     for their floating assets, GLNG is poised for a significant free cash flow inflection
     as they expand their fleet.
   tags: energy_utilities, transportation_logistics
+- symbol: AFRM
+  status: watching
+  target_entry: null
+  thesis: A 'buy now pay later' company that dropped 22% after hours on earnings,
+    indicating that high expectations were not met despite its popularity across demographics.
+  tags: Fintech, Financial, E-commerce
+- symbol: AMAT
+  status: watching
+  target_entry: null
+  thesis: A chip gear firm with a strong year but recent pullback, reporting Q3 earnings
+    at a key crossroads. Management has cited high visibility into 2027, but strong
+    guidance is needed to impress investors given high expectations.
+  tags: Semi-IDM, Manufacturing, AI_Adjacent
+- symbol: AMZN
+  status: watching
+  target_entry: null
+  thesis: Stock of the day with a high handle and a double bottom breakout on earnings,
+    showing triple-digit growth. Setting up a potential new entry or add-on, despite
+    a long-term sideways to slightly lower RS line.
+  tags: Big_Tech, E-commerce, Cloud_Computing, AI_Adjacent
+- symbol: APP
+  status: watching
+  target_entry: null
+  thesis: Experienced a nasty earnings downdraft, contributing to broader carnage
+    in software earnings reports.
+  tags: Software, Advertising, Mobile_Gaming
+- symbol: ATRO
+  status: watching
+  target_entry: null
+  thesis: Making a decent move with a pseudo handle formation, showing strong earnings
+    acceleration and a group comeback, making it an attractive watch.
+  tags: Aero, Defense, Manufacturing
+- symbol: BA
+  status: watching
+  target_entry: null
+  thesis: A Dow component experiencing weakness, down 3% today, likely due to profit-taking
+    after multiple up days.
+  tags: Aero, Manufacturing, Industrial
+- symbol: BLLN
+  status: watching
+  target_entry: null
+  thesis: Experienced a significant drop on earnings, highlighting the risk of holding
+    through earnings even with a cushion.
+  tags: Unknown_Industry, Earnings_Risk, Volatile
+- symbol: BROS
+  status: watching
+  target_entry: null
+  thesis: Experienced a significant 'blow up' after a failed trade attempt.
+  tags: Hospitality, Restaurants
+- symbol: BUG
+  status: watching
+  target_entry: null
+  thesis: Looking significantly better, indicating a strong recovery in the cybersecurity
+    software sector.
+  tags: ETF, Cybersecurity, Software
+- symbol: CAKE
+  status: watching
+  target_entry: null
+  thesis: Showed strong action and was a missed opportunity on June 5th, but was extended
+    by the time the market recovered from a clobbering.
+  tags: Hospitality, Restaurants
+- symbol: CIBR
+  status: watching
+  target_entry: null
+  thesis: Looking significantly better, indicating a strong recovery in the cybersecurity
+    software sector.
+  tags: ETF, Cybersecurity, Software
+- symbol: COHR
+  status: watching
+  target_entry: null
+  thesis: Experienced a huge run (42-44% last week) but gave back 14% today, making
+    it risky ahead of earnings. High ATR and significant effort to get up there suggest
+    caution.
+  tags: Fiber_optics, AI_Adjacent, Technology
+- symbol: CRDO
+  status: watching
+  target_entry: null
+  thesis: Operating in the optical space, with a focus on copper getting into optical,
+    making it an interesting AI-adjacent stock at key levels.
+  tags: Semi-Fabless, Network, Fiber_optics
+- symbol: CRM
+  status: watching
+  target_entry: null
+  thesis: A Dow component experiencing weakness, down 3% today, likely due to profit-taking
+    after multiple up days.
+  tags: Software, Cloud_Computing, Big_Tech
+- symbol: CRWE
+  status: watching
+  target_entry: null
+  thesis: A 'lagard' in the Neoclouds space, showing an 8-10% gain after earnings,
+    potentially signaling a turnaround for aggressive traders, but has significant
+    overhead resistance.
+  tags: Cloud_Computing, AI_Adjacent, Data_Centers
+- symbol: CSCO
+  status: watching
+  target_entry: null
+  thesis: A networking and cybersecurity company right at a key round number (120)
+    ahead of earnings. With a tame ATR of 3.5%, it could be a potential buy area if
+    it decisively breaks above these levels on earnings.
+  tags: Network, Cybersecurity, Software
+- symbol: DAVE
+  status: watching
+  target_entry: null
+  thesis: A fintech app that experienced a 15% down day on earnings, but managed to
+    hold above its 50-day line, unlike some peers.
+  tags: Fintech, Financial, Mobile_Banking
+- symbol: DELL
+  status: watching
+  target_entry: null
+  thesis: Exhibits a high tight flag pattern but has been choppy, leading to multiple
+    failed breakout attempts due to tight stops. Recent Microsoft update caused unexpected
+    shutdowns for Dell computers.
+  tags: Technology, Hardware, Computers
+- symbol: EAT
+  status: watching
+  target_entry: null
+  thesis: Breaking out of a double bottom with strong relative strength and at new
+    highs, despite slowed growth. Revamped Chili's led to enormous same-store sales
+    growth previously.
+  tags: Hospitality, Restaurants
+- symbol: FCX
+  status: watching
+  target_entry: null
+  thesis: Copper is coming back strong, with FCX up 11% for the week and back above
+    its 10-week line. Pausing after a gap-up, potentially forming a handle for a new
+    entry.
+  tags: Metals, Mining, Commodities
+- symbol: FFIV
+  status: watching
+  target_entry: null
+  thesis: Looking good in the software sector, indicating strength in its group.
+  tags: Software, Network, Cybersecurity
+- symbol: GDX
+  status: watching
+  target_entry: null
+  thesis: Up 21% for the week, indicating a strong rally in gold miners, potentially
+    breaking a downtrend in gold.
+  tags: Metals, Mining, Gold
+- symbol: GDXJ
+  status: watching
+  target_entry: null
+  thesis: A way to play the strong rally in gold, alongside GDX.
+  tags: Metals, Mining, Gold
+- symbol: GEO
+  status: watching
+  target_entry: null
+  thesis: Attempted breakout with strong price outperformance (blue dot RS line) and
+    triple-digit earnings growth. Operates in the private prison and immigration detention
+    space with government contracts, showing tight base action (7 weeks tight) and
+    finding support at the 10-week/50-day line.
+  tags: Government_Services, Security, Private_Prisons
+- symbol: GH
+  status: watching
+  target_entry: null
+  thesis: Gapped up strongly on earnings and broke above recent resistance, signaling
+    a potential entry. Bounced off the 10-week moving average, but fundamentals are
+    currently rough, making it a pattern-driven trade.
+  tags: MedTech, Bio, Healthcare
+- symbol: GOOGL
+  status: watching
+  target_entry: null
+  thesis: Part of the Magnificent 7, but had a weak week, returning to its 50-day
+    moving average, potentially due to news related to departing scientists.
+  tags: Big_Tech, Software, AI_Adjacent, Advertising
+- symbol: GS
+  status: watching
+  target_entry: null
+  thesis: A Dow component having a rough day, giving up its 50-day moving average,
+    indicating broad-based weakness in blue chips.
+  tags: Financial, Banking
+- symbol: HACK
+  status: watching
+  target_entry: null
+  thesis: Looking significantly better, indicating a strong recovery in the cybersecurity
+    software sector.
+  tags: ETF, Cybersecurity, Software
+- symbol: HON
+  status: watching
+  target_entry: null
+  thesis: A Dow component experiencing weakness, down 3% today, likely due to profit-taking
+    after multiple up days.
+  tags: Industrial, Manufacturing, Aerospace
+- symbol: IBB
+  status: watching
+  target_entry: null
+  thesis: Looking strong, indicating a positive trend in the biotechnology sector.
+  tags: ETF, Bio, Healthcare
+- symbol: IGV
+  status: watching
+  target_entry: null
+  thesis: Uptrend clearly intact, well above the 10-day line, indicating continued
+    money rotation into the software sector.
+  tags: ETF, Software, Technology
+- symbol: INSW
+  status: watching
+  target_entry: null
+  thesis: Recently broke out of a double bottom, but its performance is heavily influenced
+    by geopolitics and shipping rates, making it susceptible to sudden swings.
+  tags: Shipping, Oil, Transportation
+- symbol: ITA
+  status: watching
+  target_entry: null
+  thesis: Doing pretty well with many aerospace firms around buy points, but its RS
+    line still needs work.
+  tags: ETF, Aero, Defense
+- symbol: IWM
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: ETF, Broad_Market, Small_Cap
+- symbol: JD
+  status: watching
+  target_entry: null
+  thesis: A China e-commerce name that appears to be at a new low with no prior uptrend.
+    Lacks the growth of peers and international e-commerce firms are struggling, placing
+    it low on the radar.
+  tags: E-commerce, China, Technology
+- symbol: JETS
+  status: watching
+  target_entry: null
+  thesis: Down 3.4% due to rising oil prices and geopolitical risks, requiring careful
+    risk management and quick entries/exits.
+  tags: ETF, Aero, Hospitality, Travel
+- symbol: LFST
+  status: watching
+  target_entry: null
+  thesis: A midcap company in the mental health services space (in-person and telehealth)
+    that just turned profitable last year. Reported triple-digit earnings growth and
+    nice topline growth, with a positive relative strength line.
+  tags: Hospitality, Healthcare, Mental_Health
+- symbol: LGND
+  status: watching
+  target_entry: null
+  thesis: A profitable biotech that broke out in early June and had an orderly pullback,
+    bouncing off its 10-week line. It funds biotech companies and collects royalties,
+    showing a very solid record of consistent growth.
+  tags: Bio, Pharma, Healthcare
+- symbol: LIIT
+  status: watching
+  target_entry: null
+  thesis: Beat views and guided above expectations for the next quarter, but with
+    an average true range of almost 11%, it's expected to be a significant mover on
+    earnings.
+  tags: Software, Technology, High_Growth
+- symbol: LITE
+  status: watching
+  target_entry: null
+  thesis: An optical name in the AI infrastructure space, expected to report triple-digit
+    growth (237% EPS, 105% revenue). At key levels with a 10% ATR, it could be actionable
+    after earnings, but also carries significant risk.
+  tags: Fiber_optics, AI_Adjacent, Technology
+- symbol: LLY
+  status: watching
+  target_entry: null
+  thesis: Despite strong potential and a compelling story, the stock has been difficult
+    to trade with tight stops. Not considered a direct AI play, but AI is used in
+    the medical space.
+  tags: Pharma, Bio, Healthcare
+- symbol: LQDA
+  status: watching
+  target_entry: null
+  thesis: A profitable biotech leader that had a great breakout on its last earnings
+    report with triple-digit bottom-line growth, showing strong expansion between
+    its RS line and moving averages.
+  tags: Bio, Pharma, Healthcare
+- symbol: META
+  status: watching
+  target_entry: null
+  thesis: Part of the Magnificent 7, but struggling, remaining below both its 50-day
+    and 200-day moving averages.
+  tags: Big_Tech, Social_Media, AI_Adjacent
+- symbol: MGN
+  status: watching
+  target_entry: null
+  thesis: A low-priced stock (10 cents) that significantly skewed NASDAQ trading volume,
+    making traditional volume-based follow-through day analysis difficult.
+  tags: Penny_Stock, Micro_Cap, Distorted_Volume
+- symbol: MSFT
+  status: watching
+  target_entry: null
+  thesis: Kicking into high gear in the software space, moving decisively above its
+    200-day moving average and continuing to climb.
+  tags: Big_Tech, Software, Cloud_Computing, AI_Adjacent
+- symbol: MU
+  status: watching
+  target_entry: null
+  thesis: Held up better than peers but still 30% off highs. Exhibiting spectacular
+    numbers, but the chart is damaged and needs time to recover.
+  tags: Memory, Semi-IDM, AI_Adjacent, Technology
+- symbol: NBIS
+  status: watching
+  target_entry: null
+  thesis: A high ATR stock that experienced a clear rejection at its 50-day moving
+    average, indicating continued struggle despite the market's 'go mode'.
+  tags: Cloud_Computing, AI_Adjacent, Data_Centers
+- symbol: NET
+  status: watching
+  target_entry: null
+  thesis: A longtime leader in enterprise software and content delivery networks,
+    showing strong growth and execution. Popped 15% after hours on earnings, holding
+    support at short-term moving averages.
+  tags: Software, Network, Cybersecurity, Cloud_Computing
+- symbol: NVDA
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Semi-IDM, AI_Adjacent, Big_Tech, Technology
+- symbol: NVT
+  status: watching
+  target_entry: null
+  thesis: Similar to TSM but is above its 50-day moving average. Exhibited strong
+    growth and gapped up on earnings, holding its gains reasonably well despite broader
+    AI stock sell-offs.
+  tags: Electrical_Equipment, Industrial, Technology
+- symbol: QQQ
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: ETF, Broad_Market, Technology
+- symbol: QQQE
+  status: watching
+  target_entry: null
+  thesis: Reflects positive breadth in the market, despite mega-cap weakness.
+  tags: ETF, Broad_Market, Technology
+- symbol: RSP
+  status: watching
+  target_entry: null
+  thesis: Making new highs and outperforming, indicating broader market strength beyond
+    just mega-caps.
+  tags: ETF, Broad_Market
+- symbol: SECO
+  status: watching
+  target_entry: null
+  thesis: A big player in copper, showing similar strong action to FCX, benefiting
+    from the robust copper market.
+  tags: Metals, Industrial, Manufacturing
+- symbol: SITM
+  status: watching
+  target_entry: null
+  thesis: An emerging leader in precision timing solutions for data centers, showing
+    huge growth (400% earnings, triple-digit revenue) and a 27% gap up on earnings,
+    retaking its 50-day moving average. It's a niche market with a strong growth trajectory.
+  tags: Semi-IDM, AI_Adjacent, Technology
+- symbol: SMCI
+  status: watching
+  target_entry: null
+  thesis: Popping on preliminary results, but has a history of legal and accounting
+    issues, including evading export rules, making it a high-risk play despite positive
+    AI sector results. Competes with Dell and HPE.
+  tags: Hardware, Servers, AI_Adjacent
+- symbol: SMH
+  status: watching
+  target_entry: null
+  thesis: Down 2.3% and stuck below its 50-day moving average, presenting potential
+    shorting opportunities or requiring a decisive move above key levels for longs.
+  tags: ETF, Semi-IDM, AI_Adjacent, Technology
+- symbol: SNDK
+  status: watching
+  target_entry: null
+  thesis: Despite blowing out earnings with a 13,434% YOY rise and strong EPS, the
+    stock is 46% off its highs with a broken chart. Historically cyclical, it needs
+    time to build a new base.
+  tags: Memory, Semi-Fabless, AI_Adjacent, Technology
+- symbol: SOXL
+  status: watching
+  target_entry: null
+  thesis: A triple-leveraged semiconductor ETF that was hard to beat during a strong
+    run, but carries high risk with a 16 ATR, leading to a hard removal from the portfolio.
+  tags: ETF, Leveraged_ETF, Semi-IDM, AI_Adjacent
+- symbol: SPHR
+  status: watching
+  target_entry: null
+  thesis: Exhibiting a strong uptrend with multiple bounces off the 10-week moving
+    average, suggesting a legitimate base in the making. Despite fundamental concerns
+    about spending, the chart pattern is attractive for short-term trades.
+  tags: Entertainment, Hospitality
+- symbol: SPY
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: ETF, Broad_Market
+- symbol: SZZL
+  status: watching
+  target_entry: null
+  thesis: A 'buy now pay later' company that dropped 22% after hours on earnings,
+    indicating that high expectations were not met despite its popularity across demographics.
+  tags: Fintech, Financial, E-commerce
+- symbol: TEAM
+  status: watching
+  target_entry: null
+  thesis: An enterprise software company that was a lagard in the AI-fueled software
+    downturn, but its fundamentals remained strong. Forming a bottoming base and gained
+    25% after hours on earnings, gapping above its 200-day moving average.
+  tags: Software, Cloud_Computing, Enterprise_Software
+- symbol: TNA
+  status: watching
+  target_entry: null
+  thesis: Used as a broad-based, leveraged ETF position (3x Russell 2000) to provide
+    stability and exposure to a potential market uptrend.
+  tags: ETF, Leveraged_ETF, Small_Cap, Broad_Market
+- symbol: TPR
+  status: watching
+  target_entry: null
+  thesis: Recently broke out of a cup with handle base, showing solid growth and a
+    non-extreme ATR. The relative strength line is picking up, suggesting it may be
+    ready to move after pausing for several months.
+  tags: Retail, Apparel, Luxury_Goods
+- symbol: TQQQ
+  status: watching
+  target_entry: null
+  thesis: Used as a broad-based, leveraged ETF position (3x NASDAQ 100) to provide
+    stability and exposure to a potential market uptrend.
+  tags: ETF, Leveraged_ETF, Broad_Market, Technology
+- symbol: TSLA
+  status: watching
+  target_entry: null
+  thesis: Part of the Magnificent 7, but currently not looking strong.
+  tags: Big_Tech, EV, Automotive
+- symbol: TSM
+  status: watching
+  target_entry: null
+  thesis: Stuck under a flat 50-day moving average, reflecting uncertainty in AI stocks.
+    Direction is not clear, but its ATR is not extreme compared to other AI names.
+  tags: Semi-IDM, AI_Adjacent, Technology
+- symbol: TWLO
+  status: watching
+  target_entry: null
+  thesis: Broke out on earnings, showing nice action and a history of big gap-ups.
+    Positioned in AI communication, its relative strength line is now leading, indicating
+    a shift in market favor.
+  tags: Software, Network, AI_Adjacent
+- symbol: UPRO
+  status: watching
+  target_entry: null
+  thesis: Used as a broad-based, leveraged ETF position (3x S&P 500) to provide stability
+    and exposure to a potential market uptrend, with a relatively low ATR of 3.27%.
+  tags: ETF, Leveraged_ETF, Broad_Market
+- symbol: USO
+  status: watching
+  target_entry: null
+  thesis: Rose slightly, but crude oil prices remain a key factor influencing market
+    direction, with potential for significant market impact if prices reach $100 or
+    fall to $60.
+  tags: ETF, Oil, Energy
+- symbol: VLO
+  status: watching
+  target_entry: null
+  thesis: Looks good and was bought, but is highly susceptible to geopolitical headlines
+    and crude oil price volatility.
+  tags: Energy, Oil, Refining
+- symbol: VOO
+  status: watching
+  target_entry: null
+  thesis: Cleared a new high with clear power, indicating a confirmed uptrend after
+    months of choppy action.
+  tags: ETF, Broad_Market
+- symbol: WDC
+  status: watching
+  target_entry: null
+  thesis: Gapped down on earnings, reflecting a tough tone for memory stocks, but
+    is now off its lows.
+  tags: Memory, Storage, Technology
+- symbol: XBI
+  status: watching
+  target_entry: null
+  thesis: Looking strong and more spread out than IBB, indicating a positive trend
+    in the biotechnology sector.
+  tags: ETF, Bio, Healthcare
+- symbol: XLE
+  status: watching
+  target_entry: null
+  thesis: Sizable move up almost 5% and looks technically actionable, but carries
+    significant headline risk due to geopolitics and oil price volatility.
+  tags: ETF, Energy, Oil
+- symbol: XLK
+  status: watching
+  target_entry: null
+  thesis: Looking pretty good, reflecting strength in the technology sector, particularly
+    from leading software and Magnificent 7 stocks.
+  tags: ETF, Technology, Broad_Market
+- symbol: XLV
+  status: watching
+  target_entry: null
+  thesis: Tends to be on the more defensive side, but medical stocks are showing up
+    in screens.
+  tags: ETF, Healthcare
+- symbol: XOP
+  status: watching
+  target_entry: null
+  thesis: Experiencing a very strong move, driven by rising Iran fears and geopolitical
+    tensions.
+  tags: ETF, Energy, Oil

@@ -75,10 +75,11 @@ def update_note(
 def sync(
     force: bool = typer.Option(False, "--force", "-f", help="Force sync bypassing active 24-hour rate limit cooldown")
 ):
-    """Fetch missing daily data from Alpaca for all tickers."""
+    """Fetch missing daily data via yfinance (no API key required) for all tickers."""
     try:
-        typer.echo("Starting sync...")
+        typer.echo("Starting sync via yfinance...")
         res = sync_tickers(force=force)
+
         if isinstance(res, dict) and res.get("status") == "cooldown_active":
             typer.echo(f"Sync paused: {res.get('message')}", err=True)
         elif isinstance(res, dict) and res.get("status") == "rate_limit_tripped":

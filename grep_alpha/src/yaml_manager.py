@@ -3,10 +3,24 @@ import os
 from typing import List, Dict, Any, Optional
 
 class YAMLManager:
-    def __init__(self, watchlists_dir: str = "watchlists"):
+    def __init__(self, watchlists_dir: Optional[str] = None):
+        if watchlists_dir is None:
+            if os.path.exists("watchlists") and any(f.endswith((".yml", ".yaml")) for f in os.listdir("watchlists")):
+                watchlists_dir = "watchlists"
+            elif os.path.exists("grep_alpha/watchlists") and any(f.endswith((".yml", ".yaml")) for f in os.listdir("grep_alpha/watchlists")):
+                watchlists_dir = "grep_alpha/watchlists"
+            else:
+                _src_dir = os.path.dirname(os.path.abspath(__file__))
+                _pkg_dir = os.path.dirname(_src_dir)
+                _candidate = os.path.join(_pkg_dir, "watchlists")
+                if os.path.exists(_candidate):
+                    watchlists_dir = _candidate
+                else:
+                    watchlists_dir = "watchlists"
         self.watchlists_dir = watchlists_dir
         if not os.path.exists(self.watchlists_dir):
             os.makedirs(self.watchlists_dir)
+
 
     def _get_path(self, category: str) -> str:
         # Check for both .yml and .yaml
