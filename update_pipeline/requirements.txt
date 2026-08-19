@@ -1,0 +1,4 @@
+youtube-transcript-api>=0.6.0
+pyyaml>=6.0
+requests>=2.31.0
+yt-dlp>=2024.0.0
