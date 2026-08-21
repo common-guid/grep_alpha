@@ -138,7 +138,7 @@ export default defineConfig(({mode}) => {
               fs.appendFileSync(path.resolve(__dirname, 'middleware.log'), `Incoming: ${req.method} ${req.url}\n`);
             } catch (e) {}
 
-            if (req.url === '/watchlist.yaml') {
+            if (req.url === '/watchlist.yaml' || req.url === '/api/watchlist') {
               try {
                 const watchlistPath = path.resolve(__dirname, 'watchlist.yaml');
                 if (fs.existsSync(watchlistPath)) {
@@ -151,11 +151,52 @@ export default defineConfig(({mode}) => {
               }
             }
 
+            if (req.url && req.url.startsWith('/api/watchlist/save') && req.method === 'POST') {
+              try {
+                let body = '';
+                req.on('data', (chunk) => {
+                  body += chunk.toString();
+                });
+                req.on('end', () => {
+                  try {
+                    const parsed = JSON.parse(body);
+                    const yamlContent = parsed.yaml;
+                    if (yamlContent) {
+                      const watchlistPath = path.resolve(__dirname, 'watchlist.yaml');
+                      // Create backup
+                      const backupDir = path.resolve(__dirname, '..', '.backups');
+                      if (!fs.existsSync(backupDir)) fs.mkdirSync(backupDir, { recursive: true });
+                      const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+                      fs.writeFileSync(path.join(backupDir, `watchlist_${timestamp}.yaml`), fs.readFileSync(watchlistPath, 'utf-8'));
+                      
+                      // Write new watchlist.yaml
+                      fs.writeFileSync(watchlistPath, yamlContent, 'utf-8');
+                      res.setHeader('Content-Type', 'application/json');
+                      res.end(JSON.stringify({ status: 'success', message: 'Watchlist saved successfully' }));
+                      return;
+                    }
+                  } catch (parseErr: any) {
+                    res.statusCode = 400;
+                    res.setHeader('Content-Type', 'application/json');
+                    res.end(JSON.stringify({ error: parseErr.message }));
+                    return;
+                  }
+                });
+                return;
+              } catch (err: any) {
+                res.statusCode = 500;
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify({ error: err.message }));
+                return;
+              }
+            }
+
             if (req.url && req.url.startsWith('/api/prices')) {
               try {
                 const urlObj = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
                 const symbol = urlObj.searchParams.get('symbol');
                 const timeframe = urlObj.searchParams.get('timeframe') || '3M';
+
 
                 if (!symbol) {
                   res.statusCode = 400;

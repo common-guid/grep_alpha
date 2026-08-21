@@ -91,10 +91,38 @@ function parseProperty(line: string, item: Partial<WatchlistItem>) {
       item.thesis = val;
       break;
     case 'tags':
-      // Split by comma and clean up individual tags
-      item.tags = val.split(',')
-        .map(t => t.trim())
+      item.tags = val
+        .split(',')
+        .map((t) => t.trim())
         .filter(Boolean);
       break;
   }
 }
+
+export function dumpWatchlistYaml(items: WatchlistItem[]): string {
+  let yaml = '';
+  for (const item of items) {
+    yaml += `- symbol: ${item.symbol.toUpperCase()}\n`;
+    yaml += `  status: ${item.status || 'watching'}\n`;
+    yaml += `  target_entry: ${item.target_entry !== null && item.target_entry !== undefined ? item.target_entry : 'null'}\n`;
+    
+    // Safely format thesis (single-line or multiline)
+    if (!item.thesis) {
+      yaml += `  thesis: ''\n`;
+    } else if (item.thesis.includes('\n') || item.thesis.includes(':') || item.thesis.includes('"') || item.thesis.includes("'")) {
+      // Escape and format as clean quoted string
+      yaml += `  thesis: ${JSON.stringify(item.thesis)}\n`;
+    } else {
+      yaml += `  thesis: ${item.thesis}\n`;
+    }
+
+    const tagsStr = Array.isArray(item.tags)
+      ? item.tags.join(', ')
+      : typeof item.tags === 'string'
+      ? item.tags
+      : '';
+    yaml += `  tags: ${tagsStr}\n`;
+  }
+  return yaml;
+}
+

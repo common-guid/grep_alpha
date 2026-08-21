@@ -6,7 +6,7 @@ import { AlphaVantageApiClient, AlpacaApiClient } from '../lib/api/ApiClient';
 import { DatabaseApiClient } from '../lib/api/DatabaseApiClient';
 import { IChartAdapter } from '../lib/charts/IChartAdapter';
 import { LightweightChartsAdapter } from '../lib/charts/LightweightChartsAdapter';
-import { parseWatchlistYaml, WatchlistItem } from '../lib/utils/watchlistParser';
+import { parseWatchlistYaml, dumpWatchlistYaml, WatchlistItem } from '../lib/utils/watchlistParser';
 
 export interface DerivedWatchlist {
   id: string;
@@ -22,6 +22,10 @@ interface Services {
   watchlistItems: WatchlistItem[];
   watchlists: DerivedWatchlist[];
   refreshWatchlists: () => Promise<void>;
+  saveWatchlist: (items: WatchlistItem[]) => Promise<void>;
+  addTicker: (item: WatchlistItem) => Promise<void>;
+  updateTicker: (symbol: string, updates: Partial<WatchlistItem>) => Promise<void>;
+  removeTicker: (symbol: string) => Promise<void>;
   updateSettings: (settings: UserSettings) => Promise<void>;
   getNotes: (symbol: string) => Promise<string>;
   saveNotes: (symbol: string, notes: string) => Promise<void>;
@@ -47,6 +51,65 @@ export const ServiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
     } catch (err) {
       console.error('Error loading watchlist.yaml:', err);
     }
+  };
+
+  const saveWatchlist = async (items: WatchlistItem[]) => {
+    try {
+      setWatchlistItems(items);
+      const yamlContent = dumpWatchlistYaml(items);
+      
+      // Save directly via backend or Vite middleware endpoint
+      await fetch('/api/watchlist/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ yaml: yamlContent, items }),
+      }).catch((err) => {
+        console.warn('API save failed, using local state:', err);
+      });
+    } catch (err) {
+      console.error('Error saving watchlist:', err);
+    }
+  };
+
+  const addTicker = async (newItem: WatchlistItem) => {
+    const sym = newItem.symbol.toUpperCase().trim();
+    const existingIdx = watchlistItems.findIndex((i) => i.symbol.toUpperCase() === sym);
+    let updated: WatchlistItem[];
+
+    if (existingIdx >= 0) {
+      // Merge with existing ticker
+      const existing = watchlistItems[existingIdx];
+      const mergedTags = Array.from(new Set([...existing.tags, ...newItem.tags]));
+      const mergedItem: WatchlistItem = {
+        ...existing,
+        ...newItem,
+        symbol: sym,
+        tags: mergedTags,
+      };
+      updated = [...watchlistItems];
+      updated[existingIdx] = mergedItem;
+    } else {
+      updated = [...watchlistItems, { ...newItem, symbol: sym }];
+    }
+
+    await saveWatchlist(updated);
+  };
+
+  const updateTicker = async (symbol: string, updates: Partial<WatchlistItem>) => {
+    const sym = symbol.toUpperCase().trim();
+    const updated = watchlistItems.map((item) => {
+      if (item.symbol.toUpperCase() === sym) {
+        return { ...item, ...updates, symbol: sym };
+      }
+      return item;
+    });
+    await saveWatchlist(updated);
+  };
+
+  const removeTicker = async (symbol: string) => {
+    const sym = symbol.toUpperCase().trim();
+    const updated = watchlistItems.filter((item) => item.symbol.toUpperCase() !== sym);
+    await saveWatchlist(updated);
   };
 
   useEffect(() => {
@@ -79,36 +142,56 @@ export const ServiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
     await storage.saveNotes(symbol, notes);
   };
 
-  // Derive watchlists dynamically from tags in watchlistItems
+  // Derive watchlists dynamically from tags in watchlistItems, with 'all' at the top
   const watchlists = useMemo<DerivedWatchlist[]>(() => {
     const tagMap = new Map<string, string[]>();
     
+    // Add All Symbols list
+    const allSymbols = watchlistItems.map((i) => i.symbol);
+    tagMap.set('all', allSymbols);
+
     for (const item of watchlistItems) {
       const tags = item.tags.length > 0 ? item.tags : ['uncategorized'];
       for (const tag of tags) {
-        if (!tagMap.has(tag)) {
-          tagMap.set(tag, []);
+        const cleanTag = tag.trim();
+        if (!cleanTag) continue;
+        const normKey = cleanTag.toLowerCase();
+        if (!tagMap.has(normKey)) {
+          tagMap.set(normKey, []);
         }
-        const list = tagMap.get(tag)!;
+        const list = tagMap.get(normKey)!;
         if (!list.includes(item.symbol)) {
           list.push(item.symbol);
         }
       }
     }
 
-    return Array.from(tagMap.entries()).map(([tag, symbols]) => {
-      // Clean up display name
-      const displayName = tag
-        .split(/[_-]/)
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(' ');
-      
-      return {
-        id: tag,
-        name: displayName,
-        symbols
-      };
-    }).sort((a, b) => a.name.localeCompare(b.name));
+    const result: DerivedWatchlist[] = [];
+    for (const [tagKey, symbols] of tagMap.entries()) {
+      if (tagKey === 'all') {
+        result.push({
+          id: 'all',
+          name: 'All Symbols',
+          symbols,
+        });
+      } else {
+        const displayName = tagKey
+          .split(/[_-]/)
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(' ');
+        result.push({
+          id: tagKey,
+          name: displayName,
+          symbols,
+        });
+      }
+    }
+
+    return result.sort((a, b) => {
+      if (a.id === 'all') return -1;
+      if (b.id === 'all') return 1;
+      return a.name.localeCompare(b.name);
+    });
   }, [watchlistItems]);
 
   if (!settings || !api) return <div className="bg-[#0b0e14] h-screen w-screen flex items-center justify-center text-white">Loading...</div>;
@@ -122,6 +205,10 @@ export const ServiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
       watchlistItems,
       watchlists,
       refreshWatchlists,
+      saveWatchlist,
+      addTicker,
+      updateTicker,
+      removeTicker,
       updateSettings,
       getNotes,
       saveNotes,
@@ -130,6 +217,7 @@ export const ServiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
     </ServiceContext.Provider>
   );
 };
+
 
 export const useServices = () => {
   const context = useContext(ServiceContext);

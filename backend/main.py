@@ -77,28 +77,109 @@ sync_state = {
 
 # --- Watchlist API Endpoints ---
 
+# Path to master FlipCharts watchlist.yaml
+FLIPCHARTS_WATCHLIST_PATH = os.path.join(WORKSPACE_ROOT, "FlipCharts", "watchlist.yaml")
+BACKUPS_DIR = os.path.join(WORKSPACE_ROOT, "update_pipeline", ".backups")
+
+
+def get_flipcharts_watchlist_items() -> List[Dict[str, Any]]:
+    """Load and parse FlipCharts/watchlist.yaml into a list of ticker objects."""
+    if not os.path.exists(FLIPCHARTS_WATCHLIST_PATH):
+        return []
+    try:
+        import yaml
+        with open(FLIPCHARTS_WATCHLIST_PATH, "r", encoding="utf-8") as f:
+            data = yaml.safe_load(f) or []
+            return data if isinstance(data, list) else []
+    except Exception:
+        return []
+
+
+class WatchlistSavePayload(BaseModel):
+    yaml: str
+    items: Optional[List[Dict[str, Any]]] = None
+
+
+@app.post("/api/watchlist/save")
+def save_master_watchlist(payload: WatchlistSavePayload):
+    """Persist master watchlist directly to FlipCharts/watchlist.yaml with a timestamped backup."""
+    try:
+        os.makedirs(os.path.dirname(FLIPCHARTS_WATCHLIST_PATH), exist_ok=True)
+        os.makedirs(BACKUPS_DIR, exist_ok=True)
+        
+        # Create timestamped backup if existing file exists
+        if os.path.exists(FLIPCHARTS_WATCHLIST_PATH):
+            timestamp = datetime.now().strftime("%Y-%m-%d_%H%M%S")
+            backup_file = os.path.join(BACKUPS_DIR, f"watchlist_{timestamp}.yaml")
+            try:
+                import shutil
+                shutil.copy2(FLIPCHARTS_WATCHLIST_PATH, backup_file)
+            except Exception:
+                pass
+
+        with open(FLIPCHARTS_WATCHLIST_PATH, "w", encoding="utf-8") as f:
+            f.write(payload.yaml)
+
+        return {"status": "success", "message": "Watchlist saved successfully"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @app.get("/api/watchlists")
 def get_watchlists():
-    """List all watchlist categories and their symbol counts."""
+    """List all watchlist categories (including tags from FlipCharts/watchlist.yaml) and their symbol counts."""
     categories = yaml_manager.list_watchlists()
     result = []
+    seen_ids = set()
+
     for cat in categories:
         try:
             wdata = yaml_manager.get_watchlist(cat)
             tickers = wdata.get("tickers", [])
+            seen_ids.add(cat.lower())
             result.append({
                 "id": cat,
                 "name": wdata.get("name", cat.replace("_", " ").title()),
                 "symbol_count": len(tickers),
                 "symbols": [t["symbol"] for t in tickers if isinstance(t, dict) and "symbol" in t]
             })
-        except Exception as e:
+        except Exception:
             continue
+
+    # Also include tag-based categories from FlipCharts/watchlist.yaml
+    master_items = get_flipcharts_watchlist_items()
+    tag_map: Dict[str, List[str]] = {}
+    for item in master_items:
+        sym = item.get("symbol", "")
+        tags = item.get("tags", [])
+        if isinstance(tags, str):
+            tags = [t.strip() for t in tags.split(",") if t.strip()]
+        for t in tags:
+            tag_key = t.strip().lower()
+            if not tag_key:
+                continue
+            if tag_key not in tag_map:
+                tag_map[tag_key] = []
+            if sym and sym not in tag_map[tag_key]:
+                tag_map[tag_key].append(sym)
+
+    for tag_key, syms in tag_map.items():
+        if tag_key not in seen_ids:
+            seen_ids.add(tag_key)
+            result.append({
+                "id": tag_key,
+                "name": tag_key.replace("_", " ").title(),
+                "symbol_count": len(syms),
+                "symbols": syms
+            })
+
     return result
+
 
 @app.get("/api/watchlists/{category}")
 def get_watchlist_detail(category: str):
-    """Retrieve full detail for a specific watchlist category."""
+    """Retrieve full detail for a specific watchlist category or tag."""
+    # 1. Try file-based categories in grep_alpha/watchlists/
     try:
         data = yaml_manager.get_watchlist(category)
         return {
@@ -107,7 +188,42 @@ def get_watchlist_detail(category: str):
             "tickers": data.get("tickers", [])
         }
     except FileNotFoundError:
-        raise HTTPException(status_code=404, detail=f"Watchlist '{category}' not found.")
+        pass
+
+    # 2. Try tag matching from FlipCharts/watchlist.yaml
+    master_items = get_flipcharts_watchlist_items()
+    if category.lower() == "all":
+        return {
+            "id": "all",
+            "name": "All Symbols",
+            "tickers": master_items
+        }
+
+    target_tag = category.lower().replace("_", "").replace("-", "")
+    matching_tickers = []
+    for item in master_items:
+        tags = item.get("tags", [])
+        if isinstance(tags, str):
+            tags = [t.strip() for t in tags.split(",") if t.strip()]
+        for t in tags:
+            norm_tag = t.lower().replace("_", "").replace("-", "")
+            if norm_tag == target_tag or t.lower() == category.lower():
+                matching_tickers.append(item)
+                break
+
+    if matching_tickers:
+        return {
+            "id": category,
+            "name": category.replace("_", " ").title(),
+            "tickers": matching_tickers
+        }
+
+    return {
+        "id": category,
+        "name": category.replace("_", " ").title(),
+        "tickers": []
+    }
+
 
 @app.post("/api/watchlists/{category}/tickers")
 def add_ticker(category: str, item: TickerCreate):
@@ -119,7 +235,6 @@ def add_ticker(category: str, item: TickerCreate):
             thesis=item.thesis or "",
             status=item.status or "watching"
         )
-        # If target_entry or tags were specified, update them
         if item.target_entry is not None or item.tags:
             wdata = yaml_manager.get_watchlist(category)
             for t in wdata.get("tickers", []):
@@ -134,6 +249,7 @@ def add_ticker(category: str, item: TickerCreate):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+
 @app.delete("/api/watchlists/{category}/tickers/{symbol}")
 def remove_ticker(category: str, symbol: str):
     """Remove a ticker from a watchlist category."""
@@ -142,6 +258,7 @@ def remove_ticker(category: str, symbol: str):
         return {"message": f"Removed {symbol.upper()} from {category}"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
 
 @app.patch("/api/watchlists/{category}/tickers/{symbol}")
 def update_ticker(category: str, symbol: str, item: TickerUpdate):
@@ -169,6 +286,7 @@ def update_ticker(category: str, symbol: str, item: TickerUpdate):
         raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
 
 
 # --- Market Data & Indicators Endpoint ---
@@ -241,8 +359,29 @@ def get_sector_momentum(
 ):
     """Calculate Price-Weighted and Equal-Weighted Base 100 indices for a watchlist category."""
     try:
-        wdata = yaml_manager.get_watchlist(category)
-        tickers = [t["symbol"] for t in wdata.get("tickers", []) if isinstance(t, dict) and "symbol" in t]
+        tickers = []
+        try:
+            wdata = yaml_manager.get_watchlist(category)
+            tickers = [t["symbol"] for t in wdata.get("tickers", []) if isinstance(t, dict) and "symbol" in t]
+        except FileNotFoundError:
+            # Fallback to tag lookup in master watchlist.yaml
+            master_items = get_flipcharts_watchlist_items()
+            if category.lower() == "all":
+                tickers = [item.get("symbol") for item in master_items if item.get("symbol")]
+            else:
+                target_tag = category.lower().replace("_", "").replace("-", "")
+                for item in master_items:
+                    sym = item.get("symbol")
+                    tags = item.get("tags", [])
+                    if isinstance(tags, str):
+                        tags = [t.strip() for t in tags.split(",") if t.strip()]
+                    for t in tags:
+                        norm_tag = t.lower().replace("_", "").replace("-", "")
+                        if norm_tag == target_tag or t.lower() == category.lower():
+                            if sym:
+                                tickers.append(sym)
+                            break
+
         if not tickers:
             return {"date": [], "price_weighted": [], "equal_weighted": []}
         
@@ -255,10 +394,9 @@ def get_sector_momentum(
             "price_weighted": idx_df['Price-Weighted'].round(2).tolist(),
             "equal_weighted": idx_df['Equal-Weighted'].round(2).tolist()
         }
-    except FileNotFoundError:
-        raise HTTPException(status_code=404, detail=f"Watchlist category '{category}' not found.")
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
 
 
 # --- Data Pipeline Sync Endpoints ---
