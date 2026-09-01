@@ -568,7 +568,7 @@
   thesis: Global AI compute leader with deep hardware moat in GPUs and networking
     silicon. Nvidia was a primary focus as the power trend strengthened and chip stocks
     experienced a surge.
-  tags: Semi-Fabless, Big_Tech, AI_Adjacent, Semi-IDM, Technology, Graphics_Processing
+  tags: Semi-Fabless, Big_Tech, AI_Adjacent, Semi-IDM, Technology
 - symbol: nvmi
   status: watching
   target_entry: null
@@ -934,8 +934,8 @@
 - symbol: HOOD
   status: watching
   target_entry: null
-  thesis: Flashed buy signals, indicating a data-driven investment opportunity.
-  tags: Financial, Fintech, Brokerage, Financial_Services
+  thesis: ''
+  tags: Financial, Fintech, Brokerage
 - symbol: HP
   status: watching
   target_entry: null
@@ -1200,7 +1200,7 @@
   thesis: Exhibits a high tight flag pattern but has been choppy, leading to multiple
     failed breakout attempts due to tight stops. Recent Microsoft update caused unexpected
     shutdowns for Dell computers.
-  tags: Technology, Hardware, Computers, Enterprise_Technology, AI_Adjacent
+  tags: Technology, Hardware, Computers
 - symbol: FFIV
   status: watching
   target_entry: null
@@ -1402,7 +1402,7 @@
   thesis: Broke out on earnings, showing nice action and a history of big gap-ups.
     Positioned in AI communication, its relative strength line is now leading, indicating
     a shift in market favor.
-  tags: Software, Network, AI_Adjacent, Communications
+  tags: Software, Network, AI_Adjacent
 - symbol: UPRO
   status: watching
   target_entry: null
@@ -1458,56 +1458,3 @@
   thesis: Experiencing a very strong move, driven by rising Iran fears and geopolitical
     tensions.
   tags: ETF, Energy, Oil
-- symbol: DT
-  status: watching
-  target_entry: null
-  thesis: ''
-  tags: Software, Cloud_Computing, Observability
-- symbol: EW
-  status: watching
-  target_entry: null
-  thesis: ''
-  tags: MedTech, Bio, Healthcare
-- symbol: EXEL
-  status: watching
-  target_entry: null
-  thesis: ''
-  tags: Bio, Pharma, Oncology
-- symbol: FROG
-  status: watching
-  target_entry: null
-  thesis: Tech earnings are fueling a bullish gain for Nasdaq, implying positive sentiment
-    and potential outperformance.
-  tags: Software, DevOps, Cloud_Computing
-- symbol: IBKR
-  status: watching
-  target_entry: null
-  thesis: Flashed buy signals, indicating a data-driven investment opportunity.
-  tags: Financial_Services, Fintech
-- symbol: PANW
-  status: watching
-  target_entry: null
-  thesis: Reporting earnings with AI profitability in the spotlight, suggesting potential
-    positive performance related to AI.
-  tags: Software, Network, Cybersecurity, AI_Adjacent
-- symbol: PLTR
-  status: watching
-  target_entry: null
-  thesis: ''
-  tags: Software, AI_Adjacent, Data_Analytics
-- symbol: SNOW
-  status: watching
-  target_entry: null
-  thesis: Reporting earnings with AI profitability in the spotlight, suggesting potential
-    positive performance related to AI.
-  tags: Software, Cloud_Computing, Data_Warehousing, AI_Adjacent
-- symbol: UBS
-  status: watching
-  target_entry: null
-  thesis: ''
-  tags: Financial_Services, Banking
-- symbol: ZETA
-  status: watching
-  target_entry: null
-  thesis: ''
-  tags: Software, Marketing_Technology, AI_Adjacent
