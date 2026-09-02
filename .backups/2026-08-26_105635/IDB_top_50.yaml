@@ -1,5 +1,5 @@
 name: ibd top 50
-updated: '2026-08-26'
+updated: '2026-08-12'
 tickers:
 - symbol: cava
   status: watching
@@ -393,8 +393,8 @@ tickers:
 - symbol: NVDA
   status: watching
   target_entry: null
-  thesis: GPU demand strong
-  tags: Semi-IDM, AI_Adjacent, Big_Tech, Technology, Semi-Fabless
+  thesis: ''
+  tags: Semi-IDM, AI_Adjacent, Big_Tech, Technology
 - symbol: NVT
   status: watching
   target_entry: null
@@ -580,8 +580,3 @@ tickers:
   thesis: Experiencing a very strong move, driven by rising Iran fears and geopolitical
     tensions.
   tags: ETF, Energy, Oil
-- symbol: AAPL
-  status: watching
-  target_entry: null
-  thesis: Strong services revenue
-  tags: Big_Tech, Hardware
