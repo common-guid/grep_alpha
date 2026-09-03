@@ -3,7 +3,7 @@ from src.yaml_manager import YAMLManager
 
 class TestDefenseTechTags(unittest.TestCase):
     def setUp(self):
-        self.manager = YAMLManager("watchlists")
+        self.manager = YAMLManager("grep_alpha/watchlists")
 
     def test_defense_tech_tags_consolidated(self):
         """Verify that all tickers in defense_tech.yaml have one or more tags from the consolidated set."""

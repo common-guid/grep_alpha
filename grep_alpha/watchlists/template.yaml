@@ -1,8 +1,9 @@
-name: "Template Name"
-updated: "2026-03-22"
+name: Template Name
+updated: '2026-03-22'
 tickers:
-  - symbol: TICKER
-    status: watching
-    target_entry: null
-    thesis: "Enter your trading thesis here."
-    tags: tag1, tag2
+- symbol: TICKER
+  status: watching
+  target_entry: null
+  thesis: 2026-09-03:Enter your trading thesis here.
+  tags: tag1, tag2
+  date: '2026-09-03'

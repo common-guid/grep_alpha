@@ -76,20 +76,38 @@ def merge_ticker_entry(existing_ticker: dict, extracted_ticker: dict) -> dict:
     status = existing_ticker.get("status", extracted_ticker.get("status", "watching"))
     target_entry = existing_ticker.get("target_entry", extracted_ticker.get("target_entry", None))
 
-    # Keep existing non-empty thesis, otherwise take newly extracted thesis
+    today = datetime.date.today().strftime("%Y-%m-%d")
+
+    # Merge thesis
     existing_thesis = str(existing_ticker.get("thesis", "")).strip()
     new_thesis = str(extracted_ticker.get("thesis", "")).strip()
-    final_thesis = existing_thesis if existing_thesis else new_thesis
+
+    final_thesis = existing_thesis
+    if new_thesis:
+        formatted_new_thesis = f"{today}:{new_thesis}"
+        if new_thesis not in existing_thesis:
+            if existing_thesis:
+                final_thesis = f"{existing_thesis}\n{formatted_new_thesis}"
+            else:
+                final_thesis = formatted_new_thesis
 
     # Merge tags
     final_tags = normalize_tags(existing_ticker.get("tags", ""), extracted_ticker.get("tags", ""))
+
+    date_val = existing_ticker.get("date", today)
+    if (status != existing_ticker.get("status") or
+        target_entry != existing_ticker.get("target_entry") or
+        final_thesis != existing_thesis or
+        final_tags != existing_ticker.get("tags", "")):
+        date_val = today
 
     return {
         "symbol": symbol,
         "status": status,
         "target_entry": target_entry,
         "thesis": final_thesis,
-        "tags": final_tags
+        "tags": final_tags,
+        "date": date_val
     }
 
 
@@ -120,15 +138,19 @@ def merge_flipcharts_watchlist(existing_data: list, extracted_data: dict) -> lis
             processed_symbols.add(sym)
 
     # Append completely new extracted tickers
+    today = datetime.date.today().strftime("%Y-%m-%d")
     for ext in new_tickers_dict:
         sym = ext.get("symbol", "").upper()
         if sym and sym not in processed_symbols:
+            thesis = str(ext.get("thesis", "")).strip()
+            formatted_thesis = f"{today}:{thesis}" if thesis else ""
             merged_list.append({
                 "symbol": sym,
                 "status": "watching",
                 "target_entry": None,
-                "thesis": str(ext.get("thesis", "")).strip(),
-                "tags": str(ext.get("tags", "")).strip()
+                "thesis": formatted_thesis,
+                "tags": str(ext.get("tags", "")).strip(),
+                "date": today
             })
             processed_symbols.add(sym)
 
@@ -166,13 +188,15 @@ def main():
 
     if args.test_merge:
         print("Running merge logic self-tests...")
-        existing = {"symbol": "AAPL", "status": "core_holding", "target_entry": 170.0, "thesis": "My custom thesis", "tags": "Big_Tech"}
+        today = datetime.date.today().strftime("%Y-%m-%d")
+        existing = {"symbol": "AAPL", "status": "core_holding", "target_entry": 170.0, "thesis": f"{today}:My custom thesis", "tags": "Big_Tech", "date": today}
         extracted = {"symbol": "AAPL", "status": "watching", "target_entry": None, "thesis": "New extracted thesis", "tags": "Software, AI_Adjacent"}
         merged = merge_ticker_entry(existing, extracted)
         assert merged["status"] == "core_holding", f"Status clobbered! {merged}"
         assert merged["target_entry"] == 170.0, f"Target entry clobbered! {merged}"
-        assert merged["thesis"] == "My custom thesis", f"Thesis clobbered! {merged}"
+        assert merged["thesis"] == f"{today}:My custom thesis\n{today}:New extracted thesis", f"Thesis not merged correctly! {merged}"
         assert "Big_Tech" in merged["tags"] and "Software" in merged["tags"], f"Tags missing! {merged}"
+        assert merged["date"] == today, f"Date not updated! {merged}"
         print("Merge logic self-test PASSED!")
         sys.exit(0)
 

@@ -1,18 +1,30 @@
 name: Tech
-updated: "2026-03-20"
+updated: '2026-03-20'
 tickers:
-  - symbol: AAPL
-    status: holding
-    target_entry: 205.00
-    thesis: "Solid services growth, awaiting hardware supercycle."
-    tags: mobile,hardware
-  - symbol: LRCX
-    status: watching
-    target_entry: 275.00
-    thesis: "Lam Research showed an outside day upside reversal through its 50-day moving average and is testing its 10-week moving average with a healthy relative strength line."
-    tags: semiconductor,equipment,production
-  - symbol: JBL
-    status: watching
-    target_entry: 240.00
-    thesis: "Jabil shows leadership with a relative strength line at new highs and is finding strong support at its 50-day and 10-week moving averages."
-    tags: contract_engineer,semiconductor
+- symbol: AAPL
+  status: holding
+  target_entry: 205.0
+  thesis: 2026-09-03:Solid services growth, awaiting hardware supercycle.
+  tags: mobile,hardware
+  date: '2026-09-03'
+- symbol: LRCX
+  status: watching
+  target_entry: 275.0
+  thesis: 2026-09-03:Lam Research showed an outside day upside reversal through its
+    50-day moving average and is testing its 10-week moving average with a healthy
+    relative strength line.
+  tags: semiconductor,equipment,production
+  date: '2026-09-03'
+- symbol: JBL
+  status: watching
+  target_entry: 240.0
+  thesis: 2026-09-03:Jabil shows leadership with a relative strength line at new highs
+    and is finding strong support at its 50-day and 10-week moving averages.
+  tags: contract_engineer,semiconductor
+  date: '2026-09-03'
+- symbol: JULES
+  status: watching
+  thesis: '2026-09-03:Looks good
+
+    2026-09-03:Still looks good'
+  date: '2026-09-03'
