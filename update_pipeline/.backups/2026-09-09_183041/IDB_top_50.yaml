@@ -1,5 +1,5 @@
 name: ibd top 50
-updated: '2026-09-09'
+updated: '2026-09-01'
 tickers:
 - symbol: cava
   status: watching
@@ -200,7 +200,7 @@ tickers:
   thesis: Exhibits a high tight flag pattern but has been choppy, leading to multiple
     failed breakout attempts due to tight stops. Recent Microsoft update caused unexpected
     shutdowns for Dell computers.
-  tags: Technology, Hardware, Computers, Enterprise_Technology, AI_Adjacent, Enterprise_Computing
+  tags: Technology, Hardware, Computers, Enterprise_Technology, AI_Adjacent
 - symbol: EAT
   status: watching
   target_entry: null
@@ -549,7 +549,7 @@ tickers:
   target_entry: null
   thesis: Gapped down on earnings, reflecting a tough tone for memory stocks, but
     is now off its lows.
-  tags: Memory, Storage, Technology, Hardware
+  tags: Memory, Storage, Technology
 - symbol: XBI
   status: watching
   target_entry: null
@@ -611,7 +611,7 @@ tickers:
   status: watching
   target_entry: null
   thesis: Flashed buy signals, indicating a data-driven investment opportunity.
-  tags: Financial_Services, Fintech, Software
+  tags: Financial_Services, Fintech
 - symbol: IBKR
   status: watching
   target_entry: null
@@ -649,28 +649,3 @@ tickers:
   target_entry: null
   thesis: Strong services revenue
   tags: Big_Tech, Hardware
-- symbol: AMD
-  status: watching
-  target_entry: null
-  thesis: Leading among AI stocks in a down session, indicating relative strength.
-  tags: Semi-IDM, AI_Adjacent, Technology
-- symbol: HXSCL
-  status: watching
-  target_entry: null
-  thesis: ''
-  tags: Memory, Semi-IDM, Technology
-- symbol: MGNI
-  status: watching
-  target_entry: null
-  thesis: ''
-  tags: Software, AdTech, Technology
-- symbol: MRX
-  status: watching
-  target_entry: null
-  thesis: ''
-  tags: Financial_Services, Brokerage, Commodities
-- symbol: TVTX
-  status: watching
-  target_entry: null
-  thesis: ''
-  tags: Bio, Pharma, AI_Adjacent

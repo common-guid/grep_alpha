@@ -533,7 +533,7 @@
   target_entry: null
   thesis: Marex was featured as a stock in focus as the hosts reviewed the day's market
     pullback.
-  tags: Financial_Services, Brokerage, Commodities
+  tags: ''
 - symbol: MSFT
   status: core_holding
   target_entry: null
@@ -935,7 +935,7 @@
   status: watching
   target_entry: null
   thesis: Flashed buy signals, indicating a data-driven investment opportunity.
-  tags: Financial, Fintech, Brokerage, Financial_Services, Software
+  tags: Financial, Fintech, Brokerage, Financial_Services
 - symbol: HP
   status: watching
   target_entry: null
@@ -1200,7 +1200,7 @@
   thesis: Exhibits a high tight flag pattern but has been choppy, leading to multiple
     failed breakout attempts due to tight stops. Recent Microsoft update caused unexpected
     shutdowns for Dell computers.
-  tags: Technology, Hardware, Computers, Enterprise_Technology, AI_Adjacent, Enterprise_Computing
+  tags: Technology, Hardware, Computers, Enterprise_Technology, AI_Adjacent
 - symbol: FFIV
   status: watching
   target_entry: null
@@ -1511,23 +1511,3 @@
   target_entry: null
   thesis: ''
   tags: Software, Marketing_Technology, AI_Adjacent
-- symbol: AMD
-  status: watching
-  target_entry: null
-  thesis: Leading among AI stocks in a down session, indicating relative strength.
-  tags: Semi-IDM, AI_Adjacent, Technology
-- symbol: HXSCL
-  status: watching
-  target_entry: null
-  thesis: ''
-  tags: Memory, Semi-IDM, Technology
-- symbol: MGNI
-  status: watching
-  target_entry: null
-  thesis: ''
-  tags: Software, AdTech, Technology
-- symbol: TVTX
-  status: watching
-  target_entry: null
-  thesis: ''
-  tags: Bio, Pharma, AI_Adjacent
