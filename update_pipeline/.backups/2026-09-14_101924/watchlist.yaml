@@ -48,10 +48,8 @@
 - symbol: AMGN
   status: watching
   target_entry: null
-  thesis: Big decliner (down >10%) in sympathy with Novartis due to bad news about
-    an experimental heart drug; Amgen has a very similar drug about to give a phase
-    three trial reading, likely to give similar poor readout.
-  tags: Bio, Pharma, Healthcare
+  thesis: ''
+  tags: Bio
 - symbol: ANET
   status: watching
   target_entry: null
@@ -145,7 +143,7 @@
     watch as markets fell due to concerns regarding Iran. Caterpillar was highlighted
     as a key stock to watch during Wednesday's market action.
   tags: Power
-- symbol: CAVA
+- symbol: cava
   status: watching
   target_entry: null
   thesis: CAVA is replicating the Chipotle playbook with superior unit economics and
@@ -153,7 +151,7 @@
     High average unit volumes (AUVs) and a robust digital engagement strategy provide
     a clear path to sustained earnings outperformance as they scale toward 1,000+
     locations.
-  tags: Hospitality, Restaurant, Consumer_Discretionary
+  tags: ''
 - symbol: CCJ
   status: watching
   target_entry: null
@@ -305,7 +303,7 @@
   target_entry: null
   thesis: Bearish. The analyst liquidated the position after the stock plummeted 20%
     and failed to find support at the 21-day moving average.
-  tags: Software, Network, Cloud
+  tags: Software, Network
 - symbol: GD
   status: watching
   target_entry: null
@@ -362,9 +360,8 @@
 - symbol: GSK
   status: watching
   target_entry: null
-  thesis: Part of big pharma names expected to generate trillions in free cash flow,
-    driving M&A in biotech.
-  tags: Pharma, Bio, Healthcare
+  thesis: ''
+  tags: Pharma, Bio
 - symbol: GVA
   status: watching
   target_entry: null
@@ -530,7 +527,7 @@
     acquisitions provides a clear path for revenue replacement post-2028. High R&D
     efficiency and strong cash flow generation support significant outperformance
     relative to the broader pharma index.
-  tags: Pharma, Bio, Healthcare
+  tags: Pharma, Bio
 - symbol: MRX
   status: watching
   target_entry: null
@@ -605,9 +602,8 @@
 - symbol: PFE
   status: watching
   target_entry: null
-  thesis: Part of big pharma names expected to generate trillions in free cash flow,
-    driving M&A in biotech.
-  tags: Pharma, Bio, Healthcare
+  thesis: ''
+  tags: Pharma, Bio
 - symbol: POWL
   status: watching
   target_entry: null
@@ -652,7 +648,7 @@
     the successful defense of its Eylea franchise via the high-dose 8mg formulation
     has maintained its ophthalmology leadership and high barriers to entry against
     biosimilars.
-  tags: Bio, Pharma, Healthcare
+  tags: Bio
 - symbol: RKLB
   status: watching
   target_entry: null
@@ -752,7 +748,7 @@
   target_entry: null
   thesis: TSMC was in focus as the Nasdaq reached a new high following the extension
     of the Iran ceasefire.
-  tags: Semi-IDM, AI_Adjacent, Technology, Semi-Fabless
+  tags: Semi-IDM, AI_Adjacent, Technology
 - symbol: TT
   status: watching
   target_entry: null
@@ -881,9 +877,8 @@
 - symbol: BE
   status: watching
   target_entry: null
-  thesis: Up 9.6%, featured on IBD Live, part of pockets of AI space lighting back
-    up.
-  tags: Power, Energy, Clean_Energy, Technology
+  thesis: ''
+  tags: Power, Energy, Clean_Energy
 - symbol: CR
   status: watching
   target_entry: null
@@ -962,7 +957,7 @@
     investor approval. The company is undergoing a significant reinvention with a
     new CEO, presenting an exciting growth story, though it still needs to conquer
     its 50-day moving average.
-  tags: Semi-IDM, Hardware, Technology
+  tags: Semi-IDM, Hardware
 - symbol: ITB
   status: watching
   target_entry: null
@@ -974,7 +969,7 @@
   thesis: The iShares Russell 2000 ETF is notable for holding its 50-day moving average
     line, benefiting from a recent pullback in the 10-year Treasury yield, which helps
     the small-cap index.
-  tags: ETF, Small_Cap, Equity, Broad_Market, Index_Fund
+  tags: ETF, Small_Cap, Equity, Broad_Market
 - symbol: KIE
   status: watching
   target_entry: null
@@ -1037,7 +1032,7 @@
     supported at its 21-day moving average line, and has not even tested its 50-day
     line, indicating that the average S&P 500 stock is holding up despite weakness
     in market leaders.
-  tags: ETF, Equity, Broad_Market, Index_Fund
+  tags: ETF, Equity, Broad_Market
 - symbol: SCHD
   status: watching
   target_entry: null
@@ -1137,7 +1132,7 @@
   thesis: Stock of the day with a high handle and a double bottom breakout on earnings,
     showing triple-digit growth. Setting up a potential new entry or add-on, despite
     a long-term sideways to slightly lower RS line.
-  tags: Big_Tech, E-commerce, Cloud_Computing, AI_Adjacent, Cloud
+  tags: Big_Tech, E-commerce, Cloud_Computing, AI_Adjacent
 - symbol: APP
   status: watching
   target_entry: null
@@ -1178,7 +1173,7 @@
   target_entry: null
   thesis: A Dow component experiencing weakness, down 3% today, likely due to profit-taking
     after multiple up days.
-  tags: Software, Cloud_Computing, Big_Tech, Cloud
+  tags: Software, Cloud_Computing, Big_Tech
 - symbol: CRWE
   status: watching
   target_entry: null
@@ -1192,7 +1187,7 @@
   thesis: A networking and cybersecurity company right at a key round number (120)
     ahead of earnings. With a tame ATR of 3.5%, it could be a potential buy area if
     it decisively breaks above these levels on earnings.
-  tags: Network, Cybersecurity, Software, Big_Tech
+  tags: Network, Cybersecurity, Software
 - symbol: DAVE
   status: watching
   target_entry: null
@@ -1325,7 +1320,7 @@
   target_entry: null
   thesis: A high ATR stock that experienced a clear rejection at its 50-day moving
     average, indicating continued struggle despite the market's 'go mode'.
-  tags: Cloud_Computing, AI_Adjacent, Data_Centers, Cloud, Network
+  tags: Cloud_Computing, AI_Adjacent, Data_Centers
 - symbol: NVT
   status: watching
   target_entry: null
@@ -1438,7 +1433,7 @@
   target_entry: null
   thesis: Looking strong and more spread out than IBB, indicating a positive trend
     in the biotechnology sector.
-  tags: ETF, Bio, Healthcare, Pharma
+  tags: ETF, Bio, Healthcare
 - symbol: XLE
   status: watching
   target_entry: null
@@ -1450,7 +1445,7 @@
   target_entry: null
   thesis: Looking pretty good, reflecting strength in the technology sector, particularly
     from leading software and Magnificent 7 stocks.
-  tags: ETF, Technology, Broad_Market, Sector_Fund
+  tags: ETF, Technology, Broad_Market
 - symbol: XLV
   status: watching
   target_entry: null
@@ -1505,7 +1500,7 @@
   target_entry: null
   thesis: Reporting earnings with AI profitability in the spotlight, suggesting potential
     positive performance related to AI.
-  tags: Software, Cloud_Computing, Data_Warehousing, AI_Adjacent, Cloud
+  tags: Software, Cloud_Computing, Data_Warehousing, AI_Adjacent
 - symbol: UBS
   status: watching
   target_entry: null
@@ -1520,7 +1515,7 @@
   status: watching
   target_entry: null
   thesis: Leading among AI stocks in a down session, indicating relative strength.
-  tags: Semi-IDM, AI_Adjacent, Technology, Semi-Fabless
+  tags: Semi-IDM, AI_Adjacent, Technology
 - symbol: HXSCL
   status: watching
   target_entry: null
@@ -1529,90 +1524,10 @@
 - symbol: MGNI
   status: watching
   target_entry: null
-  thesis: Sell-side advertising platform for online content creators, gapped up on
-    strong earnings a few weeks ago, consolidating sideways near 21-day/10-week moving
-    average for 5-6 weeks; nice base setup, strong growth trajectory, mid-cap, good
-    fund sponsorship.
-  tags: Software, AdTech, Technology, Advertising
+  thesis: ''
+  tags: Software, AdTech, Technology
 - symbol: TVTX
   status: watching
   target_entry: null
-  thesis: Outstanding company, main approved drug Filspari (kidney treatment) meant
-    to preserve kidney function; on verge of profitability (first profit expected
-    in fiscal 2027); strong technicals, gap up on earnings, nice reversal at 21-day
-    line, bucked trend of lagging healthcare stocks, mainstay in IBD 50, strong relative
-    strength.
-  tags: Bio, Pharma, AI_Adjacent, Healthcare
-- symbol: DRAM
-  status: watching
-  target_entry: null
-  thesis: Tried to pop over recent high but came in and gave back some gains.
-  tags: ETF, Memory, Technology
-- symbol: HCA
-  status: watching
-  target_entry: null
-  thesis: Good outperformance among hospital stocks, but outperforming underneath
-    its 200-day moving average.
-  tags: Hospitality, Healthcare
-- symbol: KNSA
-  status: watching
-  target_entry: null
-  thesis: Profitable biotech, soared 30% on earnings after raising full-year revenue
-    outlook; main drug Arcalyst (licensed from Regeneron) treats cardiovascular inflammatory
-    disease and is being looked at for other indications; nice tight action in a new
-    base, upside reversal off 21-day line, strong fundamentals and fund sponsorship.
-  tags: Bio, Pharma, Healthcare
-- symbol: MRNA
-  status: watching
-  target_entry: null
   thesis: ''
-  tags: Bio, Pharma, Healthcare
-- symbol: MRVL
-  status: watching
-  target_entry: null
-  thesis: Outperformed the Nasdaq today, basically flat/unchanged, but chip stocks
-    are still a tough area.
-  tags: Semi-Fabless, Network, AI_Adjacent
-- symbol: NVS
-  status: watching
-  target_entry: null
-  thesis: Had bad news about an experimental cardiovascular drug that did very poorly
-    in a late-stage trial, lowering bad cholesterol but not cardiovascular event risk;
-    caused sympathy drop in Amgen.
-  tags: Pharma, Bio, Healthcare
-- symbol: PTON
-  status: watching
-  target_entry: null
-  thesis: ''
-  tags: Fitness, Consumer_Discretionary
-- symbol: QLYS
-  status: watching
-  target_entry: null
-  thesis: Strong performing stock, gapped up after earnings, gentle pullback in light
-    volume to 10-week/50-day moving average, finding support; watch for firming up
-    and progress off these lines for a buying opportunity.
-  tags: Software, Cybersecurity, Technology
-- symbol: SDC
-  status: watching
-  target_entry: null
-  thesis: Exemplifies strong fundamentals (13,434% earnings growth, $39.25 EPS) but
-    technical action shows significant correction (down 50% from highs), indicating
-    digestion after a massive run-up.
-  tags: Memory, Semi-IDM, Technology
-- symbol: SKHYX
-  status: watching
-  target_entry: null
-  thesis: Made a nice move today, but gave back some gains.
-  tags: Memory, Semi-IDM, AI_Adjacent
-- symbol: SPACEX
-  status: watching
-  target_entry: null
-  thesis: Longer-term play, working on an IPO base, with unusual options activity
-    (put writing for 2027/2028) indicating institutional willingness to buy on dips;
-    expected to go higher in the next 6-12 months and 3-5 years.
-  tags: Space, Technology, AI_Adjacent
-- symbol: UHS
-  status: watching
-  target_entry: null
-  thesis: Another great performer in the S&P 500, but out of position.
-  tags: Hospitality, Healthcare
+  tags: Bio, Pharma, AI_Adjacent
