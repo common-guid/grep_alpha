@@ -1,5 +1,6 @@
 import yaml
 import os
+import datetime
 from typing import List, Dict, Any, Optional
 
 class YAMLManager:
@@ -24,16 +25,16 @@ class YAMLManager:
 
     def _get_path(self, category: str) -> str:
         # Check for both .yml and .yaml
-        yml_path = os.path.join(self.watchlists_dir, f"{category}.yml")
         yaml_path = os.path.join(self.watchlists_dir, f"{category}.yaml")
+        yml_path = os.path.join(self.watchlists_dir, f"{category}.yml")
         
-        if os.path.exists(yml_path):
-            return yml_path
         if os.path.exists(yaml_path):
             return yaml_path
+        if os.path.exists(yml_path):
+            return yml_path
         
-        # Default to .yml for new files
-        return yml_path
+        # Default to .yaml for new files
+        return yaml_path
 
     def list_watchlists(self) -> List[str]:
         """Returns a list of all watchlist category names (filenames without .yml or .yaml)."""
@@ -71,10 +72,14 @@ class YAMLManager:
             if item["symbol"].upper() == ticker.upper():
                 return  # Ticker already exists
         
+        today = datetime.date.today().strftime("%Y-%m-%d")
+        formatted_thesis = f"{today}:{thesis}" if thesis else ""
+
         new_entry = {
             "symbol": ticker.upper(),
             "status": status,
-            "thesis": thesis
+            "thesis": formatted_thesis,
+            "date": today
         }
         data["tickers"].append(new_entry)
         self.save_watchlist(category, data)
@@ -88,13 +93,37 @@ class YAMLManager:
         if len(data["tickers"]) < original_count:
             self.save_watchlist(category, data)
 
+    def update_ticker_status(self, category: str, ticker: str, status: str):
+        """Updates the status for a specific ticker in a watchlist."""
+        data = self.get_watchlist(category)
+        updated = False
+        today = datetime.date.today().strftime("%Y-%m-%d")
+        for item in data["tickers"]:
+            if item["symbol"].upper() == ticker.upper():
+                item["status"] = status
+                item["date"] = today
+                updated = True
+                break
+
+        if updated:
+            self.save_watchlist(category, data)
+
     def update_thesis(self, category: str, ticker: str, thesis: str):
         """Updates the thesis for a specific ticker in a watchlist."""
         data = self.get_watchlist(category)
         updated = False
+        today = datetime.date.today().strftime("%Y-%m-%d")
         for item in data["tickers"]:
             if item["symbol"].upper() == ticker.upper():
-                item["thesis"] = thesis
+                existing_thesis = item.get("thesis", "")
+                new_thesis_entry = f"{today}:{thesis}"
+
+                if existing_thesis:
+                    item["thesis"] = f"{existing_thesis}\n{new_thesis_entry}"
+                else:
+                    item["thesis"] = new_thesis_entry
+
+                item["date"] = today
                 updated = True
                 break
         

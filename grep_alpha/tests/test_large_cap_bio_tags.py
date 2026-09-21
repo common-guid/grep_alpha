@@ -3,7 +3,7 @@ from src.yaml_manager import YAMLManager
 
 class TestLargeCapBioTags(unittest.TestCase):
     def setUp(self):
-        self.manager = YAMLManager("watchlists")
+        self.manager = YAMLManager("grep_alpha/watchlists")
 
     def test_large_cap_bio_tags_consolidated(self):
         """Verify that all tickers in large_cap_bio.yaml have tags from the consolidated set."""

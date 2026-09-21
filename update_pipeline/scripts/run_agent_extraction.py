@@ -112,7 +112,8 @@ def validate_and_format_watchlist(tickers_raw: list[dict]) -> dict:
             "status": "watching",
             "target_entry": None,
             "thesis": str(item.get("thesis", "")).strip(),
-            "tags": str(tags).strip()
+            "tags": str(tags).strip(),
+            "date": today_str
         }
         validated_tickers.append(ticker_obj)
 

@@ -36,9 +36,11 @@ class TestYAMLManager(unittest.TestCase):
         self.assertNotIn("AAPL", symbols)
 
     def test_update_thesis(self):
+        import datetime
+        today = datetime.date.today().strftime("%Y-%m-%d")
         self.manager.update_thesis("test", "AAPL", "updated thesis")
         data = self.manager.get_watchlist("test")
-        self.assertEqual(data["tickers"][0]["thesis"], "updated thesis")
+        self.assertEqual(data["tickers"][0]["thesis"], f"test thesis\n{today}:updated thesis")
 
 if __name__ == "__main__":
     unittest.main()
