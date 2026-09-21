@@ -3,7 +3,7 @@ from src.yaml_manager import YAMLManager
 
 class TestIBDTags(unittest.TestCase):
     def setUp(self):
-        self.manager = YAMLManager("watchlists")
+        self.manager = YAMLManager("grep_alpha/watchlists")
         self.allowed_tags = {
             "semiconductors",
             "software_internet",

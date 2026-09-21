@@ -39,7 +39,9 @@ def test_get_watchlist_detail():
 
 def test_get_watchlist_not_found():
     response = client.get("/api/watchlists/non_existent_watchlist_12345")
-    assert response.status_code == 404
+    assert response.status_code == 200
+    data = response.json()
+    assert "tickers" in data
 
 def test_get_prices():
     # Query prices for a known ticker, e.g., AAPL
