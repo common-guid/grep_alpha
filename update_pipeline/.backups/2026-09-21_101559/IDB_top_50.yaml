@@ -1,5 +1,5 @@
 name: ibd top 50
-updated: '2026-09-21'
+updated: '2026-09-09'
 tickers:
 - symbol: cava
   status: watching
@@ -125,7 +125,7 @@ tickers:
   target_entry: null
   thesis: A Dow component experiencing weakness, down 3% today, likely due to profit-taking
     after multiple up days.
-  tags: Aero, Manufacturing, Industrial, Defense
+  tags: Aero, Manufacturing, Industrial
 - symbol: BLLN
   status: watching
   target_entry: null
@@ -173,7 +173,7 @@ tickers:
   target_entry: null
   thesis: A Dow component experiencing weakness, down 3% today, likely due to profit-taking
     after multiple up days.
-  tags: Software, Cloud_Computing, Big_Tech, Enterprise, Cloud
+  tags: Software, Cloud_Computing, Big_Tech
 - symbol: CRWE
   status: watching
   target_entry: null
@@ -200,8 +200,7 @@ tickers:
   thesis: Exhibits a high tight flag pattern but has been choppy, leading to multiple
     failed breakout attempts due to tight stops. Recent Microsoft update caused unexpected
     shutdowns for Dell computers.
-  tags: Technology, Hardware, Computers, Enterprise_Technology, AI_Adjacent, Enterprise_Computing,
-    Infrastructure
+  tags: Technology, Hardware, Computers, Enterprise_Technology, AI_Adjacent, Enterprise_Computing
 - symbol: EAT
   status: watching
   target_entry: null
@@ -258,7 +257,7 @@ tickers:
   target_entry: null
   thesis: A Dow component having a rough day, giving up its 50-day moving average,
     indicating broad-based weakness in blue chips.
-  tags: Financial, Banking, Financials, Investment
+  tags: Financial, Banking
 - symbol: HACK
   status: watching
   target_entry: null
@@ -339,7 +338,7 @@ tickers:
   thesis: An optical name in the AI infrastructure space, expected to report triple-digit
     growth (237% EPS, 105% revenue). At key levels with a 10% ATR, it could be actionable
     after earnings, but also carries significant risk.
-  tags: Fiber_optics, AI_Adjacent, Technology, Network, Hardware
+  tags: Fiber_optics, AI_Adjacent, Technology
 - symbol: LLY
   status: watching
   target_entry: null
@@ -395,7 +394,7 @@ tickers:
   status: watching
   target_entry: null
   thesis: GPU demand strong
-  tags: Semi-IDM, AI_Adjacent, Big_Tech, Technology, Semi-Fabless, Hardware, Gaming
+  tags: Semi-IDM, AI_Adjacent, Big_Tech, Technology, Semi-Fabless
 - symbol: NVT
   status: watching
   target_entry: null
@@ -451,7 +450,7 @@ tickers:
   thesis: Despite blowing out earnings with a 13,434% YOY rise and strong EPS, the
     stock is 46% off its highs with a broken chart. Historically cyclical, it needs
     time to build a new base.
-  tags: Memory, Semi-Fabless, AI_Adjacent, Technology, Semi-IDM
+  tags: Memory, Semi-Fabless, AI_Adjacent, Technology
 - symbol: SOXL
   status: watching
   target_entry: null
@@ -512,7 +511,7 @@ tickers:
   target_entry: null
   thesis: Stuck under a flat 50-day moving average, reflecting uncertainty in AI stocks.
     Direction is not clear, but its ATR is not extreme compared to other AI names.
-  tags: Semi-IDM, AI_Adjacent, Technology, Manufacturing
+  tags: Semi-IDM, AI_Adjacent, Technology
 - symbol: TWLO
   status: watching
   target_entry: null
@@ -612,7 +611,7 @@ tickers:
   status: watching
   target_entry: null
   thesis: Flashed buy signals, indicating a data-driven investment opportunity.
-  tags: Financial_Services, Fintech, Software, Financials, Brokerage
+  tags: Financial_Services, Fintech, Software
 - symbol: IBKR
   status: watching
   target_entry: null
@@ -654,7 +653,7 @@ tickers:
   status: watching
   target_entry: null
   thesis: Leading among AI stocks in a down session, indicating relative strength.
-  tags: Semi-IDM, AI_Adjacent, Technology, Semi-Fabless, Hardware, Growth
+  tags: Semi-IDM, AI_Adjacent, Technology
 - symbol: HXSCL
   status: watching
   target_entry: null
@@ -675,140 +674,3 @@ tickers:
   target_entry: null
   thesis: ''
   tags: Bio, Pharma, AI_Adjacent
-- symbol: AVGO
-  status: watching
-  target_entry: null
-  thesis: ''
-  tags: Semi-Fabless, AI_Adjacent, Network, Hardware
-- symbol: AVT
-  status: watching
-  target_entry: null
-  thesis: ''
-  tags: Hardware, AI_Adjacent, Technology, Infrastructure
-- symbol: AXP
-  status: watching
-  target_entry: null
-  thesis: ''
-  tags: Financials, Payments, Services
-- symbol: BBY
-  status: watching
-  target_entry: null
-  thesis: Stood out with a breakout on decent volume, showing signs of strength in
-    the economy (retail). Volume coming in on key areas, and stock closed well off
-    lows in the upper part of its range after earnings, getting back above its 50-day
-    MA. Has a strong accumulation/distribution rating of 'A' and is a classic breakout
-    setup.
-  tags: Retail, Electronics, Consumer_Discretionary
-- symbol: COIN
-  status: watching
-  target_entry: null
-  thesis: ''
-  tags: Cryptocurrency, Fintech, Exchange
-- symbol: CRWD
-  status: watching
-  target_entry: null
-  thesis: A big winner in cybersecurity, benefiting from increased need due to AI
-    hacking. Shows positive action with strong support at its 10-week moving average
-    line and bouncing strongly. Has strong fundamental chops with a very strong earnings
-    record (EPS rating 94), relative strength line at new highs (RS rating 96), and
-    strong composite rating (96).
-  tags: Software, Cybersecurity, AI_Adjacent, Growth
-- symbol: DXCM
-  status: watching
-  target_entry: null
-  thesis: A steady grower in the healthcare space (continuous glucose monitoring)
-    in a nice uptrend, finding support at the 50-day line. Outperforming as a defensive
-    stock when tech is shaky. Showed a great test of the 50-day line after an earnings
-    breakout and is trending higher with good fundamentals and composite rating.
-  tags: MedTech, Medical_Device, Healthcare, Diagnostics
-- symbol: HPE
-  status: watching
-  target_entry: null
-  thesis: ''
-  tags: Hardware, AI_Adjacent, Technology, Infrastructure
-- symbol: HTFL
-  status: watching
-  target_entry: null
-  thesis: A younger IPO that helps with AI-assisted diagnostics or imaging and screening.
-    Has been very strong and is on the short list for the health space.
-  tags: MedTech, AI_Adjacent, Diagnostics, Imaging
-- symbol: IBIT
-  status: watching
-  target_entry: null
-  thesis: Holding up and tightening up, showing green shoots in the cryptocurrency
-    market, especially after getting above the 200-day moving average line.
-  tags: Cryptocurrency, ETF, Financials
-- symbol: IBM
-  status: watching
-  target_entry: null
-  thesis: ''
-  tags: Big_Tech, Software, Consulting
-- symbol: ILMN
-  status: watching
-  target_entry: null
-  thesis: Very strong and flying under the radar. Positioned as a 'picks and shovels'
-    play for genetics and medical testing, benefiting from AI investment leading to
-    disease cures and increased medical testing pace.
-  tags: Bio, MedTech, Genomics, Diagnostics
-- symbol: INTC
-  status: watching
-  target_entry: null
-  thesis: ''
-  tags: Semi-IDM, Technology
-- symbol: LVGO
-  status: watching
-  target_entry: null
-  thesis: ''
-  tags: MedTech, Diagnostics, Telehealth
-- symbol: MRNA
-  status: watching
-  target_entry: null
-  thesis: Experienced a huge move on news, followed by tight consolidation. Actionable
-    after clearing a flag area and 150 level. Anticipated growth return and strong
-    possibilities make it impressive. Showed a 'two weeks tight' pattern, indicating
-    potential for continued momentum.
-  tags: Bio, Pharma, Growth, Medical
-- symbol: NTRA
-  status: watching
-  target_entry: null
-  thesis: In genetic testing, expected to benefit from more intelligent testing and
-    quicker identification of medical issues with AI.
-  tags: Bio, MedTech, Diagnostics, Genetics
-- symbol: NUTX
-  status: watching
-  target_entry: null
-  thesis: ''
-  tags: Healthcare, Hospital, Medical
-- symbol: OKTA
-  status: watching
-  target_entry: null
-  thesis: ''
-  tags: Software, Cybersecurity, Cloud
-- symbol: SMTC
-  status: watching
-  target_entry: null
-  thesis: An AI infrastructure stock (optical chips for data centers) showing incredible
-    relative strength and forming a nice base with RS line near highs. Has strong
-    earnings reports and is under accumulation. A mid-cap ($14B) with excellent fund
-    sponsorship and extraordinary fundamentals, standing out while other chip stocks
-    struggle.
-  tags: Semi-IDM, AI_Adjacent, Infrastructure, Optical
-- symbol: SPCE
-  status: watching
-  target_entry: null
-  thesis: Despite negative news of Starship flight delays, the stock shows nice action,
-    hugging the 21-day line and becoming calmer. Flirting with short-term highs around
-    155. XAI business (selling excess computing power) is expected to drive tremendous
-    revenue growth and potential profitability. Nasdaq 100 adding weight will bring
-    in institutional money. Strong triple-digit top and bottom line growth expected.
-  tags: Space, AI_Adjacent, Technology, Growth
-- symbol: TER
-  status: watching
-  target_entry: null
-  thesis: ''
-  tags: Semi-IDM, Equipment, Technology
-- symbol: ZS
-  status: watching
-  target_entry: null
-  thesis: ''
-  tags: Software, Cybersecurity, Cloud
