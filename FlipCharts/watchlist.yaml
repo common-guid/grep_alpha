@@ -56,8 +56,10 @@
 - symbol: AMGN
   status: watching
   target_entry: null
-  thesis: ''
-  tags: Bio
+  thesis: Big decliner (down >10%) in sympathy with Novartis due to bad news about
+    an experimental heart drug; Amgen has a very similar drug about to give a phase
+    three trial reading, likely to give similar poor readout.
+  tags: Bio, Pharma, Healthcare
   date: '2026-09-03'
 - symbol: ANET
   status: watching
