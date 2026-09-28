@@ -68,7 +68,7 @@
     indexes achieved record high status.
   tags: Network, AI_Adjacent
   date: '2026-09-03'
-- symbol: APH
+- symbol: aph
   status: watching
   target_entry: null
   thesis: 2026-09-03:Amphenol is the primary beneficiary of the physical layer requirements
@@ -76,8 +76,8 @@
     order-of-magnitude increase in high-speed interconnects and specialized cabling,
     where APH holds dominant market share and superior pricing power compared to commodity
     hardware providers.
-  tags: Network, Fiber_optics, AI_Adjacent, Industrial, Electronics, Components
-  date: '2026-09-28'
+  tags: Network, Fiber_optics, AI_Adjacent
+  date: '2026-09-03'
 - symbol: ASTS
   status: watching
   target_entry: null
@@ -126,8 +126,8 @@
   status: watching
   target_entry: null
   thesis: ''
-  tags: Bio, Pharma, Biotechnology
-  date: '2026-09-28'
+  tags: Bio
+  date: '2026-09-03'
 - symbol: BMY
   status: watching
   target_entry: null
@@ -626,7 +626,7 @@
   target_entry: null
   thesis: 2026-09-03:Marex was featured as a stock in focus as the hosts reviewed
     the day's market pullback.
-  tags: Financial_Services, Brokerage, Commodities
+  tags: 'Financial_Services, Brokerage, Commodities'
   date: '2026-09-03'
 - symbol: MSFT
   status: core_holding
@@ -647,8 +647,8 @@
   target_entry: null
   thesis: 2026-09-03:Increase network connectivity. The stock was analyzed as a market
     leader during a session defined by volatile yield movements.
-  tags: Software, Network, Cybersecurity, Cloud_Computing, Cloud
-  date: '2026-09-28'
+  tags: Software, Network, Cybersecurity, Cloud_Computing
+  date: '2026-09-03'
 - symbol: NNE
   status: watching
   target_entry: null
@@ -878,8 +878,8 @@
   target_entry: null
   thesis: 2026-09-03:TSMC was in focus as the Nasdaq reached a new high following
     the extension of the Iran ceasefire.
-  tags: Semi-IDM, AI_Adjacent, Technology, Semi-Fabless, Manufacturing
-  date: '2026-09-28'
+  tags: Semi-IDM, AI_Adjacent, Technology
+  date: '2026-09-03'
 - symbol: TT
   status: watching
   target_entry: null
@@ -1031,8 +1031,8 @@
   status: watching
   target_entry: null
   thesis: ''
-  tags: Power, Energy, Clean_Energy, Fuel_Cells
-  date: '2026-09-28'
+  tags: Power, Energy, Clean_Energy
+  date: '2026-09-03'
 - symbol: CR
   status: watching
   target_entry: null
@@ -1226,8 +1226,8 @@
   status: watching
   target_entry: null
   thesis: ''
-  tags: E_commerce, Software, E-commerce, Cloud
-  date: '2026-09-28'
+  tags: E_commerce, Software
+  date: '2026-09-03'
 - symbol: SMCI
   status: watching
   target_entry: null
@@ -1778,15 +1778,3 @@
   thesis: ''
   tags: Software, Marketing_Technology, AI_Adjacent
   date: '2026-09-03'
-- symbol: NTAP
-  status: watching
-  target_entry: null
-  thesis: ''
-  tags: Software, Data_Storage, Cloud
-  date: '2026-09-28'
-- symbol: XP
-  status: watching
-  target_entry: null
-  thesis: ''
-  tags: Financial_Services, Fintech, Brokerage
-  date: '2026-09-28'
