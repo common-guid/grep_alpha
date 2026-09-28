@@ -10,11 +10,11 @@ To optimize data usage and avoid hitting third-party rate limits, FlipCharts is 
 
 * **Interactive Candlestick Charts**: Built using TradingView's lightweight and high-performance `lightweight-charts` library.
 * **Tag-Based Filtering**: Dynamically parses your watchlist and groups symbols by tags for fast sidebar filtering.
-* **Shared SQLite Caching**:
-  * Exposes an `/api/prices` endpoint via Vite's development server.
-  * Queries `data.db` at the workspace root using Node.js's built-in `node:sqlite` module.
-  * Prevents duplicate external API calls for synced tickers.
-* **Robust Fallback Strategy**: Falls back automatically to Alpaca Market Data V2, Alpha Vantage, or realistic mock data if the database doesn't contain the requested ticker's data or timeframe.
+* **Shared SQLite Caching & On-Demand Ingestion**:
+  * In production / Docker, queries `/api/prices` powered by FastAPI, with automatic on-demand Yahoo Finance (`yfinance`) ingestion and caching for missing symbols.
+  * In local Vite dev mode, queries `data.db` at the workspace root using Node.js's built-in `node:sqlite` module.
+  * Eliminates redundant network calls for locally stored historical data.
+* **Robust Client Fallback**: Client-side fallback to Alpaca Market Data V2, Alpha Vantage, or realistic mock data if the database doesn't contain the requested ticker's data or timeframe.
 * **Pencil Notes/Thesis Editor**: Display and edit investment theses per ticker, saved locally.
 * **Aggregate Watchlist Stats**: Provides dynamic performance indicators across your entire watchlist.
 
@@ -71,8 +71,10 @@ Define your watchlist in `watchlist.yaml` in the root of the `FlipCharts` direct
   tags: sUAS_drones, tactical_imaging, defense
 ```
 
-### 2. External API Fallbacks
-If a ticker's data is not present in the local SQLite database, FlipCharts will request live pricing. You can configure your credentials:
+### 2. External API Fallbacks (Optional)
+When running behind the backend server (FastAPI / Docker), missing ticker data is automatically retrieved keylessly via `yfinance` on demand and saved to SQLite (`data.db`).
+
+If running standalone Vite dev mode without the Python backend or wanting direct client-side external fallbacks, you can optionally configure credentials:
 * **Via Environment Variables**: Set the credentials in a `.env` or `.env.local` file:
   ```env
   VITE_ALPACA_KEY_ID=your_alpaca_key_id
@@ -109,11 +111,13 @@ FlipCharts/
 ```mermaid
 graph TD
     UI[FlipCharts UI] -->|fetchStockData| DB_Client[DatabaseApiClient]
-    DB_Client -->|HTTP GET /api/prices| Vite[Vite Dev Server Middlewares]
-    Vite -->|node:sqlite| SQLite[(Shared data.db in Root)]
-    SQLite -->|Return rows| Vite
-    Vite -->|Return JSON| DB_Client
+    DB_Client -->|HTTP GET /api/prices| Server[FastAPI Backend or Vite Dev Server]
+    Server -->|Query SQLite / data.db| SQLite[(Shared data.db)]
+    SQLite -->|Data Found| Server
+    Server -->|Return JSON| DB_Client
+    Server -.->|Symbol Missing in FastAPI| YF[yfinance Keyless Ingestion]
+    YF -.->|Insert new rows| SQLite
     DB_Client -->|Data exists| UI
-    DB_Client -->|Empty / Error| Fallback[Alpaca/AlphaVantage/Mock Client]
+    DB_Client -->|Empty / Error| Fallback[Client Fallback: Alpaca/AlphaVantage/Mock]
     Fallback -->|Fetch live/mock data| UI
 ```

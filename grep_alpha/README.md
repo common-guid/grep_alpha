@@ -5,7 +5,7 @@ A hybrid CLI/Web application designed for swing traders and momentum investors. 
 ## 🚀 Features
 
 *   **Terminal-First Management:** Add, remove, and annotate tickers across thematic watchlists (YAML-based) without leaving your terminal.
-*   **Automated Data Pipeline:** Fetch historical EOD pricing data via Alpaca API and cache it in a local SQLite database for instant loading.
+*   **Automated Data Pipeline:** Fetch historical EOD pricing data keylessly via Yahoo Finance (`yfinance`) or Alpaca API and cache it in a local SQLite database for instant loading.
 *   **Sector Momentum Analysis:** Automatically calculate **Price-Weighted** and **Equal-Weighted** indices (Base 100) for every watchlist to identify sector-wide strength.
 *   **High-Res "Flip-Charts":** A streamlined Streamlit UI designed for rapid visual review of interactive Plotly candlestick charts.
 *   **Contextual Notes:** Your trading thesis for each ticker is displayed directly beneath its chart for informed decision-making.
@@ -16,7 +16,7 @@ A hybrid CLI/Web application designed for swing traders and momentum investors. 
 
 ### 1. Prerequisites
 *   Python 3.10+
-*   An Alpaca Markets account (Free "Paper Trading" keys work perfectly).
+*   Optional: Alpaca Markets account if configuring Alpaca as fallback provider (Free "Paper Trading" keys work perfectly).
 
 ### 2. Setup
 Clone the repository and install dependencies:
@@ -25,10 +25,11 @@ Clone the repository and install dependencies:
 pip install -r requirements.txt
 ```
 
-### 3. Environment Configuration
-Create a `.env` file or export the following variables:
+### 3. Environment Configuration (Optional)
+Data fetching defaults to keyless Yahoo Finance. If using Alpaca, create a `.env` file or export the following variables:
 
 ```bash
+export DATA_PROVIDER="yfinance" # or "alpaca"
 export APCA_API_KEY_ID="your_key_id"
 export APCA_API_SECRET_KEY="your_secret_key"
 export APCA_API_BASE_URL="https://paper-api.alpaca.markets"

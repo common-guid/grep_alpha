@@ -71,3 +71,6 @@ Added interactive sidebar controls to toggle 10-day EMA, 50-day SMA, and 200-day
 ## Watchlist IBD_weekly deduplication | 2026-06-06
 Reviewed `watchlists/IBD_weekly.yaml` and consolidated duplicate entries (such as `CAT`, `GLW`, and `VIK`) by merging their theses and unique tags into single, unique entries.
 
+## Migration: Keyless yfinance Data Ingestion & On-Demand Caching | 2026-09-28
+Migrated primary historical market data provider to Yahoo Finance (`yfinance`) with optional Alpaca fallback. Resolved "key not found" chart rendering issues across FlipCharts. Enabled automatic on-demand ingestion in FastAPI (`backend/main.py`) for uncached tickers. Enhanced SQLite concurrency with 30s busy timeout, WAL pragma, and connection pooling. Mounted `FlipCharts/watchlist.yaml` in Docker Compose. Synchronized 260 tickers (84,936 rows) up to 2026-09-27. Aligned root `README.md`, `FlipCharts/README.md`, and `grep_alpha/README.md`.
+

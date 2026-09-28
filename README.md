@@ -62,8 +62,8 @@ A high-performance, hybrid trading intelligence platform and automated pipeline 
 flowchart TD
     subgraph Data Sources
         YOUTUBE[YouTube Captions / IBD Channel]
-        ALPACA[Alpaca Market Data API V2]
-        ALPHA[Alpha Vantage API / Mock Data]
+        YFINANCE[Yahoo Finance / yfinance - Keyless]
+        ALPACA[Alpaca Market Data API - Optional Fallback]
     end
 
     subgraph Automation Pipeline
@@ -101,17 +101,17 @@ flowchart TD
     SMARTMERGE --> WATCHLISTS_DIR
     SMARTMERGE --> FLIP_WATCHLIST
 
-    ALPACA --> FETCHER
+    YFINANCE --> FETCHER
+    ALPACA -.->|Optional| FETCHER
     FETCHER --> SQLITE_DB
 
     WATCHLISTS_DIR <--> FASTAPI
     FLIP_WATCHLIST <--> FASTAPI
     SQLITE_DB <--> FASTAPI
     ANALYTICS <--> FASTAPI
+    FASTAPI -.->|On-Demand Fetch| FETCHER
 
     FASTAPI --> REACT_SPA
-    SQLITE_DB <--> REACT_SPA
-    ALPHA --> REACT_SPA
 
     CLI <--> WATCHLISTS_DIR
     CLI <--> FETCHER
@@ -128,6 +128,7 @@ grep_alpha/
 ├── docker-compose.yml                # Docker compose orchestration (Ports 3000 -> 8000, volume mounts)
 ├── available-tags.md                 # Taxonomy of approved sector/industry tags for AI extraction
 ├── data.db                           # Shared SQLite database containing daily historical price tables
+├── update_watchlist.py               # Root CLI shortcut for automated watchlist update pipeline
 │
 ├── backend/                          # FastAPI Backend API Gateway
 │   └── main.py                       # REST endpoints for watchlists, price indicators, sector momentum, & sync
@@ -141,14 +142,14 @@ grep_alpha/
 │   │   ├── components/               # React UI components (ChartCard, SectorMomentumChart, WatchlistStats, etc.)
 │   │   ├── context/                  # ServiceContext managing watchlists and API clients
 │   │   └── lib/
-│   │       ├── api/                  # ApiClient, DatabaseApiClient, and Alpaca/AlphaVantage fallbacks
+│   │       ├── api/                  # DatabaseApiClient (primary SQLite & on-demand backend yfinance integration)
 │   │       ├── charts/               # Lightweight-charts rendering logic & indicators
 │   │       └── utils/                # YAML parsing and metadata utilities
 │   └── dist/                         # Production static assets built by Vite
 │
 ├── grep_alpha/                       # Core Python Module & CLI Environment
 │   ├── config.yaml                   # Application configuration file
-│   ├── requirements.txt              # Python dependencies (fastapi, pandas, pandas_ta, alpaca-py, typer, streamlit)
+│   ├── requirements.txt              # Python dependencies (typer, pyyaml, pandas, yfinance, alpaca-trade-api, streamlit)
 │   ├── watchlists/                   # Category watchlists stored in YAML format
 │   │   ├── AI_related.yaml
 │   │   ├── defense_tech.yaml
@@ -157,14 +158,15 @@ grep_alpha/
 │   │   └── large_cap_bio.yaml
 │   ├── src/
 │   │   ├── cli.py                    # Typer CLI application (`watch add`, `watch rm`, `watch sync`, etc.)
-│   │   ├── database.py               # SQLite schema initialization and row querying
-│   │   ├── data_fetcher.py           # Alpaca API historical EOD data fetcher & delta synchronizer
+│   │   ├── database.py               # SQLite schema initialization, connection timeouts, and row querying
+│   │   ├── data_fetcher.py           # yfinance historical EOD data fetcher & delta synchronizer (with Alpaca fallback)
 │   │   ├── analytics.py              # Base 100 Price-Weighted & Equal-Weighted index math & ATR
 │   │   ├── yaml_manager.py           # CRUD operations for watchlists directory
 │   │   └── app.py                    # Legacy Streamlit visual dashboard
-│   └── tests/                        # Comprehensive pytest test suite for analytics, DB, and API logic
+│   └── tests/                        # Test suite for analytics, DB, and yfinance/Alpaca parity
 │
 └── update_pipeline/                  # Automated Watchlist Ingestion & AI Agent Pipeline
+    ├── update_watchlist.py           # Master CLI orchestrator for pipeline execution
     ├── update_pipeline.md            # Phased roadmap and implementation blueprint
     └── watchlist_pipeline_spec.md    # Full technical specification for YouTube transcript extraction & merging
 ```
@@ -177,20 +179,23 @@ grep_alpha/
 
 - **Python**: Version `3.10` or higher (`3.11+` recommended).
 - **Node.js**: Version `22.5.0` or higher (required for native `node:sqlite` module support in Vite dev mode).
-- **Alpaca Markets Account**: Free Paper Trading API credentials work seamlessly.
+- **Market Data**: Primary daily OHLCV market data is powered keylessly by **Yahoo Finance (`yfinance`)** — no API keys required.
 
-### 1. Environment Configuration
+### 1. Environment Configuration (Optional)
 
-Create a `.env` file in the root directory (or export variables in your shell):
+Market data ingestion runs keylessly out of the box. If using Alpaca as a fallback provider or running the automated AI update pipeline, configure `.env`:
 
 ```bash
-# Alpaca Market Data Credentials
+# Data Provider selection (defaults to yfinance)
+export DATA_PROVIDER="yfinance"
+
+# Optional: Alpaca Fallback Credentials
 export APCA_API_KEY_ID="your_alpaca_key_id"
 export APCA_API_SECRET_KEY="your_alpaca_secret_key"
 export APCA_API_BASE_URL="https://paper-api.alpaca.markets"
 
-# Optional: External Fallback API Key
-export VITE_ALPHA_VANTAGE_KEY="your_alpha_vantage_key"
+# Optional: Gemini API Key for YouTube Transcript AI Extraction Pipeline
+export GEMINI_API_KEY="your_gemini_api_key"
 ```
 
 ### 2. Local Python Backend & CLI Setup
@@ -256,8 +261,8 @@ npm run dev
 ### Interactive Candlesticks & Technical Indicators
 - **High-Resolution Canvas**: Powered by `lightweight-charts`. Supports zooming, panning, and precise timestamp inspection.
 - **Overlay Indicators**:
-  - **10 EMA** (Exponential Moving Average, yellow line): Short-term momentum tracking.
-  - **50 SMA** (Simple Moving Average, blue line): Intermediate institutional trend support.
+  - **10 EMA** (Exponential Moving Average, cyan line): Short-term momentum tracking.
+  - **50 SMA** (Simple Moving Average, amber line): Intermediate institutional trend support.
   - **200 SMA** (Simple Moving Average, red line): Major long-term market trendline.
   - **14 ATR** (Average True Range): Displayed in chart statistics for position sizing and stop-loss calculation.
 - **Timeframe Selector**: Toggle instantly between `1D`, `1W`, `3M`, `6M`, and `1Y` lookbacks.
@@ -274,10 +279,10 @@ npm run dev
 - Every chart card displays the associated thesis, status (`watching`, `core_holding`, `trimmed`), target entry price, and tags.
 - Edit theses directly inside the UI; changes are saved via the backend API back to the underlying YAML files.
 
-### Data Caching & Fallback Strategy
+### Data Caching & Ingestion Strategy
 1. **Primary**: Queries the local `/api/prices` endpoint powered by SQLite (`data.db`).
-2. **Secondary Fallback**: If data is missing or incomplete, transparently queries Alpaca Data V2 or Alpha Vantage.
-3. **Mock Fallback**: Generates simulated geometric Brownian motion price series for offline testing if no API keys are provided.
+2. **On-Demand Auto-Ingestion**: If a requested ticker has no records in SQLite, the backend automatically downloads daily OHLCV bars via `yfinance` keylessly on the fly, stores them in `data.db`, and serves the chart immediately.
+3. **Full Watchlist Batch Sync**: Sync all tickers across watchlists on demand via the **Market Sync** tab in the UI or via the CLI (`watch sync`). Optional Alpaca fallback is supported if configured.
 
 ---
 
@@ -311,10 +316,14 @@ python grep_alpha/src/cli.py watch --help
 
 ### Market Data Sync
 
-Perform incremental delta synchronization to pull missing daily OHLCV prices from Alpaca into `data.db`:
+Perform incremental delta synchronization to pull missing daily OHLCV prices into `data.db` (defaults to keyless `yfinance`, supports `--force` to bypass rate-limit cooldown):
 
 ```bash
+# Standard sync via yfinance
 python grep_alpha/src/cli.py watch sync
+
+# Force sync (bypasses active 24-hour rate limit cooldown lock)
+python grep_alpha/src/cli.py watch sync --force
 ```
 
 ### Legacy Streamlit Review
@@ -432,21 +441,21 @@ Run the entire application stack in a single production container using Docker &
 
 ### Build and Run with Docker Compose
 
-```bash
-# Set your Alpaca environment variables
-export APCA_API_KEY_ID="your_key_id"
-export APCA_API_SECRET_KEY="your_secret_key"
+Market data is fetched keylessly via `yfinance`. To build and start the service:
 
+```bash
 # Build image and start service in detached mode
 docker compose up -d --build
 ```
 
-Access the unified application at **[http://localhost:3000](http://localhost:3000)**.
+Access the unified application at **[http://localhost:3000](http://localhost:3000)** (or `http://<HOST_IP>:3000`).
 
 ### Trigger Sync inside Container
 
+You can trigger a batch delta sync inside the container anytime:
+
 ```bash
-docker compose exec app python grep_alpha/src/cli.py watch sync
+docker compose exec app python -m grep_alpha.src.cli watch sync --force
 ```
 
 ---
