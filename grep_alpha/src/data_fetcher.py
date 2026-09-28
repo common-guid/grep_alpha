@@ -45,6 +45,30 @@ def get_unique_tickers() -> Set[str]:
         watchlist = manager.get_watchlist(cat)
         for entry in watchlist.get("tickers", []):
             all_tickers.add(entry["symbol"].upper())
+
+    # Also include tickers from master FlipCharts watchlist.yaml if present
+    _src_dir = os.path.dirname(os.path.abspath(__file__))
+    _ws_root = os.path.dirname(os.path.dirname(_src_dir))
+    candidates = [
+        os.path.join(_ws_root, "FlipCharts", "watchlist.yaml"),
+        os.path.join(_ws_root, "FlipCharts", "dist", "watchlist.yaml"),
+        "/app/FlipCharts/watchlist.yaml",
+        "/app/FlipCharts/dist/watchlist.yaml",
+    ]
+    for candidate in candidates:
+        if os.path.exists(candidate):
+            try:
+                import yaml
+                with open(candidate, "r", encoding="utf-8") as f:
+                    items = yaml.safe_load(f)
+                    if isinstance(items, list):
+                        for item in items:
+                            if isinstance(item, dict) and item.get("symbol"):
+                                all_tickers.add(item["symbol"].upper())
+                break
+            except Exception:
+                pass
+
     return all_tickers
 
 
@@ -53,7 +77,13 @@ def fetch_ticker_data_yfinance(ticker: str, start_date, end_date) -> List[tuple]
     if yf is None:
         raise ImportError("yfinance library is not installed. Run 'pip install yfinance'")
     
-    ticker_obj = yf.Ticker(ticker)
+    clean_sym = ticker.strip().upper()
+    # Normalize crypto pairs (e.g. BTCUSDT -> BTC-USD) for Yahoo Finance
+    import re
+    crypto_match = re.match(r'^(BTC|ETH|SOL|ADA|DOGE|LTC|DOT|XRP)(USD|USDT)$', clean_sym)
+    yf_symbol = f"{crypto_match.group(1)}-USD" if crypto_match else clean_sym
+
+    ticker_obj = yf.Ticker(yf_symbol)
     # yfinance end date is exclusive, so add 1 day to include end_date
     df = ticker_obj.history(
         start=start_date.isoformat(),
@@ -69,7 +99,7 @@ def fetch_ticker_data_yfinance(ticker: str, start_date, end_date) -> List[tuple]
         date_str = timestamp.date().isoformat()
         db_data.append((
             date_str,
-            ticker.upper(),
+            clean_sym,
             float(row['Open']),
             float(row['High']),
             float(row['Low']),

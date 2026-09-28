@@ -8,7 +8,9 @@ _workspace_root = os.path.dirname(os.path.dirname(_current_dir))
 DB_PATH = os.path.join(_workspace_root, "data.db")
 
 def get_connection():
-    return sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=15.0)
+    conn.execute("PRAGMA busy_timeout = 10000;")
+    return conn
 
 def init_db():
     """Initializes the database and creates necessary tables."""
@@ -104,7 +106,6 @@ def get_last_updated_date(ticker: str) -> Optional[str]:
 
 def get_price_data(ticker: str, start_date: str) -> List[Tuple]:
     """Fetches daily price data for a ticker since start_date."""
-    init_db()
     with get_connection() as conn:
         cursor = conn.cursor()
         cursor.execute(

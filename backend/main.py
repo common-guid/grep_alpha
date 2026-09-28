@@ -79,16 +79,26 @@ sync_state = {
 
 # Path to master FlipCharts watchlist.yaml
 FLIPCHARTS_WATCHLIST_PATH = os.path.join(WORKSPACE_ROOT, "FlipCharts", "watchlist.yaml")
+FLIPCHARTS_DIST_WATCHLIST_PATH = os.path.join(WORKSPACE_ROOT, "FlipCharts", "dist", "watchlist.yaml")
 BACKUPS_DIR = os.path.join(WORKSPACE_ROOT, "update_pipeline", ".backups")
+
+
+def resolve_flipcharts_watchlist_path() -> Optional[str]:
+    if os.path.exists(FLIPCHARTS_WATCHLIST_PATH):
+        return FLIPCHARTS_WATCHLIST_PATH
+    if os.path.exists(FLIPCHARTS_DIST_WATCHLIST_PATH):
+        return FLIPCHARTS_DIST_WATCHLIST_PATH
+    return None
 
 
 def get_flipcharts_watchlist_items() -> List[Dict[str, Any]]:
     """Load and parse FlipCharts/watchlist.yaml into a list of ticker objects."""
-    if not os.path.exists(FLIPCHARTS_WATCHLIST_PATH):
+    path = resolve_flipcharts_watchlist_path()
+    if not path:
         return []
     try:
         import yaml
-        with open(FLIPCHARTS_WATCHLIST_PATH, "r", encoding="utf-8") as f:
+        with open(path, "r", encoding="utf-8") as f:
             data = yaml.safe_load(f) or []
             return data if isinstance(data, list) else []
     except Exception:
@@ -104,21 +114,31 @@ class WatchlistSavePayload(BaseModel):
 def save_master_watchlist(payload: WatchlistSavePayload):
     """Persist master watchlist directly to FlipCharts/watchlist.yaml with a timestamped backup."""
     try:
-        os.makedirs(os.path.dirname(FLIPCHARTS_WATCHLIST_PATH), exist_ok=True)
+        target_path = FLIPCHARTS_WATCHLIST_PATH
+        os.makedirs(os.path.dirname(target_path), exist_ok=True)
         os.makedirs(BACKUPS_DIR, exist_ok=True)
         
         # Create timestamped backup if existing file exists
-        if os.path.exists(FLIPCHARTS_WATCHLIST_PATH):
+        existing_path = resolve_flipcharts_watchlist_path()
+        if existing_path and os.path.exists(existing_path):
             timestamp = datetime.now().strftime("%Y-%m-%d_%H%M%S")
             backup_file = os.path.join(BACKUPS_DIR, f"watchlist_{timestamp}.yaml")
             try:
                 import shutil
-                shutil.copy2(FLIPCHARTS_WATCHLIST_PATH, backup_file)
+                shutil.copy2(existing_path, backup_file)
             except Exception:
                 pass
 
-        with open(FLIPCHARTS_WATCHLIST_PATH, "w", encoding="utf-8") as f:
+        with open(target_path, "w", encoding="utf-8") as f:
             f.write(payload.yaml)
+
+        # Also sync to dist if dist exists (e.g. running in Docker container)
+        if os.path.exists(os.path.dirname(FLIPCHARTS_DIST_WATCHLIST_PATH)):
+            try:
+                with open(FLIPCHARTS_DIST_WATCHLIST_PATH, "w", encoding="utf-8") as f:
+                    f.write(payload.yaml)
+            except Exception:
+                pass
 
         return {"status": "success", "message": "Watchlist saved successfully"}
     except Exception as e:
@@ -313,6 +333,18 @@ def get_prices(
     
     rows = database.get_price_data(symbol, warmup_start.isoformat())
     if not rows:
+        try:
+            print(f"[ON-DEMAND] Fetching missing market data for {symbol} via yfinance...")
+            start_date = today - timedelta(days=days + 350)
+            end_date = today - timedelta(days=1)
+            new_data = data_fetcher.fetch_ticker_data_yfinance(symbol, start_date, end_date)
+            if new_data:
+                database.insert_daily_prices(new_data)
+                rows = database.get_price_data(symbol, warmup_start.isoformat())
+        except Exception as fetch_err:
+            print(f"[ON-DEMAND ERROR] Failed fetching {symbol}: {fetch_err}")
+
+    if not rows:
         return []
     
     df = pd.DataFrame(rows, columns=['date', 'open', 'high', 'low', 'close', 'volume'])
@@ -421,7 +453,7 @@ def run_sync_task(force: bool = False):
 
 @app.post("/api/sync")
 def trigger_sync(background_tasks: BackgroundTasks, force: bool = Query(False, description="Bypass active 24-hour rate limit cooldown")):
-    """Trigger background Alpaca EOD market data ingestion into SQLite."""
+    """Trigger background yfinance EOD market data ingestion into SQLite."""
     global sync_state
     if sync_state["is_running"]:
         return {"status": "already_running", "message": "Market data sync is currently in progress."}

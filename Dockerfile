@@ -28,6 +28,7 @@ COPY grep_alpha ./grep_alpha
 
 # Copy built frontend dist from Stage 1
 COPY --from=frontend-builder /app/FlipCharts/dist ./FlipCharts/dist
+COPY FlipCharts/watchlist.yaml ./FlipCharts/watchlist.yaml
 
 ENV PYTHONPATH=/app
 EXPOSE 8000

@@ -9,7 +9,9 @@ services:
     volumes:
       - ./data.db:/app/data.db
       - ./grep_alpha/watchlists:/app/grep_alpha/watchlists
+      - ./FlipCharts/watchlist.yaml:/app/FlipCharts/watchlist.yaml
     environment:
+      - DATA_PROVIDER=yfinance
       - APCA_API_KEY_ID=${APCA_API_KEY_ID}
       - APCA_API_SECRET_KEY=${APCA_API_SECRET_KEY}
       - APCA_API_BASE_URL=${APCA_API_BASE_URL:-https://paper-api.alpaca.markets}

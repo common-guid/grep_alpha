@@ -190,6 +190,19 @@ export const ChartCard: React.FC<ChartCardProps> = ({ symbol, timeframe }) => {
             </div>
         )}
 
+        {!loading && !error && inView && data.length === 0 && (
+            <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#131722] p-4 text-center z-10">
+                <AlertCircle size={20} className="text-amber-500 mb-2" />
+                <p className="text-xs text-gray-400">No price data available for {symbol}</p>
+                <button 
+                    onClick={fetchData}
+                    className="mt-3 px-3 py-1 bg-[#26a69a] text-white text-[10px] rounded-sm hover:bg-[#2bbbad]"
+                >
+                    Retry Fetch
+                </button>
+            </div>
+        )}
+
         <div ref={containerRef} className="w-full h-full" />
       </div>
 

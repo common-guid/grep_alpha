@@ -7,9 +7,9 @@ import { IApiClient } from './IApiClient';
 import { CandlestickData } from '../charts/IChartAdapter';
 
 export class DatabaseApiClient implements IApiClient {
-  private fallbackClient: IApiClient;
+  private fallbackClient?: IApiClient;
 
-  constructor(fallbackClient: IApiClient) {
+  constructor(fallbackClient?: IApiClient) {
     this.fallbackClient = fallbackClient;
   }
 
@@ -17,18 +17,23 @@ export class DatabaseApiClient implements IApiClient {
     try {
       const response = await fetch(`/api/prices?symbol=${encodeURIComponent(symbol)}&timeframe=${encodeURIComponent(timeframe)}`);
       if (!response.ok) {
-        throw new Error(`Database API error: ${response.statusText}`);
+        throw new Error(`Market data service error (${response.status})`);
       }
 
       const data = await response.json();
-      if (data && Array.isArray(data) && data.length > 0) {
+      if (data && Array.isArray(data)) {
         return data;
       }
-      console.log(`No database records for ${symbol}. Falling back.`);
-    } catch (e) {
-      console.warn(`Failed to fetch database records for ${symbol}. Falling back.`, e);
+      return [];
+    } catch (e: any) {
+      if (this.fallbackClient) {
+        try {
+          return await this.fallbackClient.fetchStockData(symbol, timeframe);
+        } catch {
+          // Fallback failed, return clean error
+        }
+      }
+      throw new Error(e.message || `No price data available for ${symbol}`);
     }
-
-    return this.fallbackClient.fetchStockData(symbol, timeframe);
   }
 }

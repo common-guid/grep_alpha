@@ -40,16 +40,8 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
         </div>
 
         <form onSubmit={handleSave} className="p-6 space-y-4">
-          <div>
-            <label className="block text-xs font-semibold text-gray-400 uppercase mb-1">Preferred API</label>
-            <select 
-              value={form.preferredApi}
-              onChange={e => setForm({ ...form, preferredApi: e.target.value as any })}
-              className="w-full bg-[#131722] border border-[#242733] text-white p-2 rounded focus:outline-none focus:border-[#26a69a]"
-            >
-              <option value="alphavantage">Alpha Vantage</option>
-              <option value="alpaca">Alpaca</option>
-            </select>
+          <div className="bg-[#131722] border border-[#242733] p-3 rounded text-xs text-gray-400">
+            <span className="text-[#26a69a] font-semibold">Automatic Ingestion:</span> Market data is automatically ingested keylessly via backend <code className="text-white">yfinance</code> into your local database. Third-party keys below are optional fallbacks.
           </div>
 
           <div className="space-y-3 pt-2">

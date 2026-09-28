@@ -123,10 +123,13 @@ export const ServiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
   const api = useMemo(() => {
     if (!settings) return null;
-    const baseClient = settings.preferredApi === 'alpaca' 
-      ? new AlpacaApiClient(settings) 
-      : new AlphaVantageApiClient(settings);
-    return new DatabaseApiClient(baseClient);
+    let fallbackClient: IApiClient | undefined;
+    if (settings.preferredApi === 'alpaca' && settings.alpacaKey && settings.alpacaSecret) {
+      fallbackClient = new AlpacaApiClient(settings);
+    } else if (settings.alphaVantageKey) {
+      fallbackClient = new AlphaVantageApiClient(settings);
+    }
+    return new DatabaseApiClient(fallbackClient);
   }, [settings]);
 
   const updateSettings = async (newSettings: UserSettings) => {
