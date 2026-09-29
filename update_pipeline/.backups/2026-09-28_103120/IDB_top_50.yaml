@@ -1,5 +1,5 @@
 name: ibd top 50
-updated: '2026-09-28'
+updated: '2026-09-14'
 tickers:
 - symbol: CAVA
   status: watching
@@ -47,7 +47,7 @@ tickers:
     \ the premier equity vehicle for the commercialization of space."
   tags: aerospace_space
   date: '2026-09-03'
-- symbol: APH
+- symbol: aph
   status: watching
   target_entry: null
   thesis: 2026-09-03:Amphenol is the primary beneficiary of the physical layer requirements
@@ -55,8 +55,8 @@ tickers:
     order-of-magnitude increase in high-speed interconnects and specialized cabling,
     where APH holds dominant market share and superior pricing power compared to commodity
     hardware providers.
-  tags: infrastructure_industrials, Industrial, Electronics, Components
-  date: '2026-09-28'
+  tags: infrastructure_industrials
+  date: '2026-09-03'
 - symbol: pwr
   status: watching
   target_entry: null
@@ -431,15 +431,15 @@ tickers:
   target_entry: null
   thesis: 2026-09-03:Kicking into high gear in the software space, moving decisively
     above its 200-day moving average and continuing to climb.
-  tags: software_internet, Big_Tech, Software, AI_Adjacent
-  date: '2026-09-28'
+  tags: software_internet
+  date: '2026-09-03'
 - symbol: MU
   status: watching
   target_entry: null
   thesis: 2026-09-03:Held up better than peers but still 30% off highs. Exhibiting
     spectacular numbers, but the chart is damaged and needs time to recover.
-  tags: software_internet, semiconductors, Memory, Semi-IDM, Technology
-  date: '2026-09-28'
+  tags: software_internet, semiconductors
+  date: '2026-09-03'
 - symbol: NBIS
   status: watching
   target_entry: null
@@ -453,8 +453,8 @@ tickers:
   thesis: 2026-09-03:A longtime leader in enterprise software and content delivery
     networks, showing strong growth and execution. Popped 15% after hours on earnings,
     holding support at short-term moving averages.
-  tags: software_internet, Network, Software, Cloud
-  date: '2026-09-28'
+  tags: software_internet
+  date: '2026-09-03'
 - symbol: NVDA
   status: watching
   target_entry: null
@@ -600,8 +600,8 @@ tickers:
   thesis: 2026-09-03:Stuck under a flat 50-day moving average, reflecting uncertainty
     in AI stocks. Direction is not clear, but its ATR is not extreme compared to other
     AI names.
-  tags: software_internet, semiconductors, Semi-Fabless, Technology, Manufacturing
-  date: '2026-09-28'
+  tags: software_internet, semiconductors
+  date: '2026-09-03'
 - symbol: TWLO
   status: watching
   target_entry: null
@@ -731,14 +731,14 @@ tickers:
   target_entry: null
   thesis: 2026-09-03:Reporting earnings with AI profitability in the spotlight, suggesting
     potential positive performance related to AI.
-  tags: software_internet, Software, Cybersecurity, Network
-  date: '2026-09-28'
+  tags: software_internet
+  date: '2026-09-03'
 - symbol: PLTR
   status: watching
   target_entry: null
   thesis: ''
-  tags: software_internet, Software, AI_Adjacent, Data_Analytics
-  date: '2026-09-28'
+  tags: software_internet
+  date: '2026-09-03'
 - symbol: SNOW
   status: watching
   target_entry: null
@@ -764,33 +764,3 @@ tickers:
   thesis: 2026-09-03:Strong services revenue
   tags: software_internet, infrastructure_industrials
   date: '2026-09-03'
-- symbol: BE
-  status: watching
-  target_entry: null
-  thesis: ''
-  tags: Power, Energy, Fuel_Cells
-  date: '2026-09-28'
-- symbol: BIIB
-  status: watching
-  target_entry: null
-  thesis: ''
-  tags: Bio, Pharma, Biotechnology
-  date: '2026-09-28'
-- symbol: NTAP
-  status: watching
-  target_entry: null
-  thesis: ''
-  tags: Software, Data_Storage, Cloud
-  date: '2026-09-28'
-- symbol: SHOP
-  status: watching
-  target_entry: null
-  thesis: ''
-  tags: Software, E-commerce, Cloud
-  date: '2026-09-28'
-- symbol: XP
-  status: watching
-  target_entry: null
-  thesis: ''
-  tags: Financial_Services, Fintech, Brokerage
-  date: '2026-09-28'
