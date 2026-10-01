@@ -67,7 +67,6 @@ class TestYFinanceVsAlpaca(unittest.TestCase):
                     f"Close price mismatch for {ticker} on {date_str}: yfinance={yf_close}, Alpaca={alpaca_close} (diff: {pct_diff:.2%})"
                 )
 
-    @unittest.skip("network-bound; unmocked bulk sync")
     def test_sync_tickers_yfinance_default(self):
         """Test sync_tickers master function defaulting to yfinance without error."""
         res = data_fetcher.sync_tickers(force=True)

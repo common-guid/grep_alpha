@@ -285,12 +285,6 @@ npm run dev
 2. **On-Demand Auto-Ingestion**: If a requested ticker has no records in SQLite, the backend automatically downloads daily OHLCV bars via `yfinance` keylessly on the fly, stores them in `data.db`, and serves the chart immediately.
 3. **Full Watchlist Batch Sync**: Sync all tickers across watchlists on demand via the **Market Sync** tab in the UI or via the CLI (`watch sync`). Optional Alpaca fallback is supported if configured.
 
-#### Canonical Data Cache
-
-> **Production authority: the Docker volume.** The deployed container mounts a named volume at `/app/data` (`DB_PATH=/app/data/data.db`). All production syncs run inside the container: `docker compose exec app python -m grep_alpha.src.cli watch sync` (or the Market Sync UI tab / `POST /api/sync`).
->
-> **Repo-root `data.db` is a dev-only artifact.** When `DB_PATH` is unset (repo/CLI use outside Docker), sync and cache-write paths print a `[dev-cache]` notice to stderr and operate on the repo-local file. That cache is isolated from production and is not authoritative — do not copy it over the volume.
-
 ---
 
 ## 💻 Terminal CLI Guide (`grep_alpha`)
