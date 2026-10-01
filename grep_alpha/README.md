@@ -70,6 +70,8 @@ python src/cli.py watch sync
 ```
 *This performs a delta-sync, only fetching missing days since the last update.*
 
+> **Canonical data cache:** in production, sync inside the container — `docker compose exec app python -m grep_alpha.src.cli watch sync` (its cache is the Docker volume at `/app/data`, `DB_PATH` set). Running the CLI from the repo without `DB_PATH` uses the repo-local `data.db` (dev only) and prints a `[dev-cache]` notice; that cache is not the production authority.
+
 ### 3. Visual Review ("Flip-Charts")
 Launch the interactive web interface for a specific category:
 

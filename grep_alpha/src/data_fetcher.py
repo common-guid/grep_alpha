@@ -1,4 +1,5 @@
 import os
+import sys
 import time
 from datetime import datetime, timedelta
 from typing import List, Set, Optional
@@ -146,6 +147,12 @@ def sync_tickers(force: bool = False, provider: Optional[str] = None) -> dict:
     Defaults to yfinance (no API key required), but supports provider='alpaca' if configured.
     Enforces a persistent 24-hour rate-limit circuit breaker cooldown if rate limited.
     """
+    if not os.environ.get("DB_PATH"):
+        print(
+            "[dev-cache] Using repo-local data.db (DB_PATH unset). Production data lives in "
+            "the Docker volume — sync prod via: docker compose exec app python -m grep_alpha.src.cli watch sync",
+            file=sys.stderr,
+        )
     database.init_db()
     
     active_provider = (provider or os.getenv("DATA_PROVIDER", "yfinance")).lower()
