@@ -74,3 +74,9 @@ Reviewed `watchlists/IBD_weekly.yaml` and consolidated duplicate entries (such a
 ## Migration: Keyless yfinance Data Ingestion & On-Demand Caching | 2026-09-28
 Migrated primary historical market data provider to Yahoo Finance (`yfinance`) with optional Alpaca fallback. Resolved "key not found" chart rendering issues across FlipCharts. Enabled automatic on-demand ingestion in FastAPI (`backend/main.py`) for uncached tickers. Enhanced SQLite concurrency with 30s busy timeout, WAL pragma, and connection pooling. Mounted `FlipCharts/watchlist.yaml` in Docker Compose. Synchronized 260 tickers (84,936 rows) up to 2026-09-27. Aligned root `README.md`, `FlipCharts/README.md`, and `grep_alpha/README.md`.
 
+## Fix: Docker Compose SQLite startup failure | 2026-09-30
+Replaced the host database-file bind mount with a persistent directory volume, added a configurable database path with automatic parent-directory creation, and defaulted optional Alpaca credentials to empty values without Compose warnings. Added database-path, first-start initialization, and cache-preservation regression tests and documented Docker cache persistence and migration.
+
+## Documentation: Docker deployment and cache alignment | 2026-09-30
+Updated the root architecture overview to distinguish local SQLite storage from the Docker named-volume cache, and corrected the CLI README's Docker port, build command, and container sync invocation. Documented repository-root execution and cache persistence, and validated the instructions against Compose configuration and the container CLI.
+

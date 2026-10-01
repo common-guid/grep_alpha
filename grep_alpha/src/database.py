@@ -5,9 +5,12 @@ from typing import Optional, List, Tuple
 # Resolve DB_PATH relative to the workspace root directory
 _current_dir = os.path.dirname(os.path.abspath(__file__))
 _workspace_root = os.path.dirname(os.path.dirname(_current_dir))
-DB_PATH = os.path.join(_workspace_root, "data.db")
+DB_PATH = os.environ.get("DB_PATH") or os.path.join(_workspace_root, "data.db")
 
 def get_connection():
+    parent_dir = os.path.dirname(DB_PATH)
+    if parent_dir:
+        os.makedirs(parent_dir, exist_ok=True)
     conn = sqlite3.connect(DB_PATH, timeout=15.0)
     conn.execute("PRAGMA busy_timeout = 10000;")
     return conn

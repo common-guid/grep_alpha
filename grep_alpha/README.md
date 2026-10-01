@@ -25,6 +25,7 @@ Clone the repository and install dependencies:
 pip install -r requirements.txt
 ```
 
+
 ### 3. Environment Configuration (Optional)
 Data fetching defaults to keyless Yahoo Finance. If using Alpaca, create a `.env` file or export the following variables:
 
@@ -110,14 +111,18 @@ If you prefer Yahoo Finance or Polygon.io, simply update the `sync_tickers` logi
 ---
 
 ## 🐳 Docker Support
-Run the entire stack without installing Python locally. The web interface will be available at **http://localhost:8501**.
+Run the unified FastAPI backend and React FlipCharts interface without installing Python locally. Run the following commands from the repository root (the parent of this directory), where the root `docker-compose.yml` lives. The web interface will be available at **http://localhost:3000**; Docker does not launch the legacy Streamlit dashboard.
 
 ```bash
-# 1. Start the container
-docker compose up -d
+# 1. Build and start the container
+docker compose up -d --build
 
 # 2. Sync data (first time or daily)
-docker compose exec app python src/cli.py watch sync
+docker compose exec app python -m grep_alpha.src.cli watch sync
 
-# 3. Open http://localhost:8501 in your browser
+# 3. Open http://localhost:3000 in your browser
 ```
+
+Compose stores the SQLite cache at `/app/data/data.db` in the persistent `app_data` named volume and creates it automatically on first startup. No host `data.db` file is required. The volume survives container recreation and `docker compose down`; `docker compose down -v` deletes it.
+
+Local Python runs still default to the workspace-root `data.db`, with `DB_PATH` available to override that location. The local and Docker caches are separate by default, so use the container sync command above to populate charts served by Docker. Existing host caches are not imported automatically; see the [root Docker deployment guide](../README.md#-docker-deployment) for persistence and migration details.

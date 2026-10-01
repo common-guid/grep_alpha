@@ -7,12 +7,16 @@ services:
     ports:
       - "3000:8000"
     volumes:
-      - ./data.db:/app/data.db
+      - app_data:/app/data
       - ./grep_alpha/watchlists:/app/grep_alpha/watchlists
       - ./FlipCharts/watchlist.yaml:/app/FlipCharts/watchlist.yaml
     environment:
       - DATA_PROVIDER=yfinance
-      - APCA_API_KEY_ID=${APCA_API_KEY_ID}
-      - APCA_API_SECRET_KEY=${APCA_API_SECRET_KEY}
+      - DB_PATH=/app/data/data.db
+      - APCA_API_KEY_ID=${APCA_API_KEY_ID:-}
+      - APCA_API_SECRET_KEY=${APCA_API_SECRET_KEY:-}
       - APCA_API_BASE_URL=${APCA_API_BASE_URL:-https://paper-api.alpaca.markets}
     restart: unless-stopped
+
+volumes:
+  app_data:

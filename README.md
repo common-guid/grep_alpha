@@ -47,7 +47,7 @@ A high-performance, hybrid trading intelligence platform and automated pipeline 
 
 - 🚀 **High-Performance Candlestick Charts**: Built with TradingView's `lightweight-charts` rendering 10 EMA, 50 SMA, 200 SMA, and 14 ATR.
 - 📊 **Sector & Theme Momentum (Base 100)**: Calculate **Price-Weighted** and **Equal-Weighted** indices to evaluate relative sector strength over 3-month and 1-year windows.
-- ⚡ **Shared SQLite Cache (`data.db`)**: Local daily price caching prevents redundant third-party API queries and enables instant chart rendering.
+- ⚡ **Persistent SQLite Cache**: Daily price caching prevents redundant third-party API queries and enables instant chart rendering. Local runs use workspace-root `data.db`; Docker uses a separate cache in the `app_data` volume.
 - 🏷️ **Tag Taxonomy Filtering**: Group stocks across customizable tags (e.g., `AI_Adjacent`, `Semi-Fabless`, `Defense_Tech`, `Space`).
 - 📝 **Interactive Thesis Editor**: Manage investment theses, target entry prices, and statuses (`watching`, `core_holding`, `trimmed`) in real time.
 - 🛠️ **Terminal-First CLI**: Manage YAML-based watchlists (`add`, `rm`, `note`, `ls`, `sync`) without leaving your shell environment.
@@ -77,7 +77,7 @@ flowchart TD
     subgraph Core Storage & YAML Watchlists
         WATCHLISTS_DIR[grep_alpha/watchlists/*.yaml]
         FLIP_WATCHLIST[FlipCharts/watchlist.yaml]
-        SQLITE_DB[(Shared data.db SQLite Cache)]
+        SQLITE_DB[(SQLite Cache selected by DB_PATH)]
     end
 
     subgraph Backend & API Layer
@@ -117,6 +117,7 @@ flowchart TD
     CLI <--> FETCHER
     CLI --> STREAMLIT
 ```
+The backend and CLI share the database within the same runtime environment. Local Python runs default to workspace-root `data.db`; Compose sets `DB_PATH=/app/data/data.db` inside the persistent `app_data` volume. These local and Docker caches are separate by default. Run CLI sync commands inside the container to populate the cache used by the Docker web application.
 
 ---
 
@@ -127,7 +128,7 @@ grep_alpha/
 ├── Dockerfile                        # Multi-stage build (Node 22 builder + Python 3.11 FastAPI runner)
 ├── docker-compose.yml                # Docker compose orchestration (Ports 3000 -> 8000, volume mounts)
 ├── available-tags.md                 # Taxonomy of approved sector/industry tags for AI extraction
-├── data.db                           # Shared SQLite database containing daily historical price tables
+├── data.db                           # Local-run SQLite cache (created at runtime; not required by Docker)
 ├── update_watchlist.py               # Root CLI shortcut for automated watchlist update pipeline
 │
 ├── backend/                          # FastAPI Backend API Gateway
@@ -449,6 +450,10 @@ docker compose up -d --build
 ```
 
 Access the unified application at **[http://localhost:3000](http://localhost:3000)** (or `http://<HOST_IP>:3000`).
+
+Compose stores the SQLite cache at `/app/data/data.db` in the persistent `app_data` named volume. The application creates the database and its parent directory on first startup; no host `data.db` file is required. The cache survives container recreation and `docker compose down`, but `docker compose down -v` removes it. Local runs still default to the workspace-root `data.db`; set `DB_PATH` to override the location.
+
+If migrating an existing host SQLite cache, back it up and copy a consistent SQLite snapshot into the volume before starting the service. Compose does not automatically import the old host database.
 
 ### Trigger Sync inside Container
 
