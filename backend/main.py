@@ -171,9 +171,11 @@ def get_watchlists():
     tag_map: Dict[str, List[str]] = {}
     for item in master_items:
         sym = item.get("symbol", "")
-        tags = item.get("tags", [])
+        tags = item.get("tags") or []
         if isinstance(tags, str):
             tags = [t.strip() for t in tags.split(",") if t.strip()]
+        elif not isinstance(tags, (list, tuple, set)):
+            tags = []
         for t in tags:
             tag_key = t.strip().lower()
             if not tag_key:
@@ -222,9 +224,11 @@ def get_watchlist_detail(category: str):
     target_tag = category.lower().replace("_", "").replace("-", "")
     matching_tickers = []
     for item in master_items:
-        tags = item.get("tags", [])
+        tags = item.get("tags") or []
         if isinstance(tags, str):
             tags = [t.strip() for t in tags.split(",") if t.strip()]
+        elif not isinstance(tags, (list, tuple, set)):
+            tags = []
         for t in tags:
             norm_tag = t.lower().replace("_", "").replace("-", "")
             if norm_tag == target_tag or t.lower() == category.lower():
@@ -404,9 +408,11 @@ def get_sector_momentum(
                 target_tag = category.lower().replace("_", "").replace("-", "")
                 for item in master_items:
                     sym = item.get("symbol")
-                    tags = item.get("tags", [])
+                    tags = item.get("tags") or []
                     if isinstance(tags, str):
                         tags = [t.strip() for t in tags.split(",") if t.strip()]
+                    elif not isinstance(tags, (list, tuple, set)):
+                        tags = []
                     for t in tags:
                         norm_tag = t.lower().replace("_", "").replace("-", "")
                         if norm_tag == target_tag or t.lower() == category.lower():
@@ -472,6 +478,7 @@ def trigger_sync(background_tasks: BackgroundTasks, force: bool = Query(False, d
 @app.get("/api/status")
 def get_system_status():
     """Get system health, cache metrics, market data sync state, and 24-hour rate limit cooldown lock."""
+    database.init_db()
     conn = database.get_connection()
     cursor = conn.cursor()
     cursor.execute("SELECT COUNT(DISTINCT ticker), COUNT(*), MAX(date) FROM daily_prices")

@@ -98,6 +98,7 @@ def clear_rate_limit_cooldown():
 
 def get_last_updated_date(ticker: str) -> Optional[str]:
     """Queries the most recent date a specific ticker was updated."""
+    init_db()
     with get_connection() as conn:
         cursor = conn.cursor()
         cursor.execute(
@@ -109,6 +110,7 @@ def get_last_updated_date(ticker: str) -> Optional[str]:
 
 def get_price_data(ticker: str, start_date: str) -> List[Tuple]:
     """Fetches daily price data for a ticker since start_date."""
+    init_db()
     with get_connection() as conn:
         cursor = conn.cursor()
         cursor.execute(
@@ -124,6 +126,7 @@ def get_price_data(ticker: str, start_date: str) -> List[Tuple]:
 
 def insert_daily_prices(data: List[Tuple]):
     """Bulk inserts new records into the daily_prices table."""
+    init_db()
     with get_connection() as conn:
         cursor = conn.cursor()
         cursor.executemany(

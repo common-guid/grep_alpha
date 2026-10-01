@@ -14,7 +14,13 @@ class TestIBDTags(unittest.TestCase):
             "transportation_logistics",
             "energy_utilities",
             "financials",
-            "diversified_etfs"
+            "diversified_etfs",
+            # Consolidated granular tags from automated weekly refresh pipeline
+            "Industrial", "Electronics", "Components", "Big_Tech", "Software",
+            "AI_Adjacent", "Memory", "Semi-IDM", "Technology", "Network", "Cloud",
+            "Semi-Fabless", "Manufacturing", "Cybersecurity", "Data_Analytics",
+            "Power", "Energy", "Fuel_Cells", "Bio", "Pharma", "Biotechnology",
+            "Data_Storage", "E-commerce", "Financial_Services", "Fintech", "Brokerage"
         }
 
     def validate_tags(self, category):

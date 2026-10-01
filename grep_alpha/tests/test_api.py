@@ -9,6 +9,8 @@ if WORKSPACE_ROOT not in sys.path:
     sys.path.insert(0, WORKSPACE_ROOT)
 
 from backend.main import app
+from grep_alpha.src import database
+import tempfile
 
 client = TestClient(app)
 
@@ -77,3 +79,29 @@ def test_get_status():
     data = response.json()
     assert "sync" in data
     assert "database" in data
+
+def test_status_startup_schema_init_fresh_temp_db():
+    """V4 regression test: fresh temp DB_PATH + FastAPI TestClient GET /api/status succeeds (proves startup schema init)."""
+    with tempfile.TemporaryDirectory() as tmp_dir:
+        temp_db_path = os.path.join(tmp_dir, "fresh_status_test.db")
+        original_db_path = database.DB_PATH
+        try:
+            database.DB_PATH = temp_db_path
+            assert not os.path.exists(temp_db_path)
+            
+            with TestClient(app) as test_client:
+                response = test_client.get("/api/status")
+                assert response.status_code == 200
+                data = response.json()
+                assert "database" in data
+                assert data["database"]["path"] == temp_db_path
+                assert data["database"]["unique_tickers"] == 0
+                assert data["database"]["total_records"] == 0
+                
+            import sqlite3
+            with sqlite3.connect(temp_db_path) as conn:
+                cursor = conn.cursor()
+                cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='daily_prices'")
+                assert cursor.fetchone() is not None
+        finally:
+            database.DB_PATH = original_db_path
