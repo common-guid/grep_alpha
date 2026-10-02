@@ -37,3 +37,6 @@ scratch/
 .backups/
 test_env/
 
+
+# One-time tag migration backups
+.tagv2_backup/

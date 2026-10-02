@@ -51,7 +51,7 @@ Return a JSON array of ticker objects. Each object MUST adhere strictly to the f
 - symbol: The uppercase ticker symbol (e.g. "NVDA", "AAPL", "CAVA").
 - status: Always "watching"
 - target_entry: Always null
-- tags: A comma-separated string containing AT LEAST TWO descriptive tags matching the taxonomy above or general business keywords (e.g. "Big_Tech, Software, AI_Adjacent").
+- tags: A comma-separated string containing AT LEAST TWO tags. You MUST pick tags ONLY from the taxonomy list provided above — never invent tags or use general business keywords. Pick the closest matches; if no taxonomy tag fits the business, use exactly "Unknown_Sector" and explain the business in the thesis. (e.g. "Big_Tech, Software, AI_Adjacent").
 - thesis:
   - If, and ONLY IF, the video context or your institutional knowledge provides a specific, data-driven investment thesis explaining why this ticker is in focus / likely to outperform, enter that thesis here.
   - Otherwise, you MUST leave this as an empty string ("").
