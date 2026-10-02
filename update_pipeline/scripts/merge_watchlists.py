@@ -49,8 +49,26 @@ def create_backups(files: list[str], backup_dir: str) -> str:
     return target_backup_dir
 
 
+def _canonical_tags():
+    """Load the approved tag set from available-tags.md (repo root)."""
+    tags_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "available-tags.md")
+    tags = set()
+    try:
+        for line in open(tags_path):
+            line = line.strip()
+            if line and not line.startswith("#") and " - " in line:
+                tags.add(line.split(" - ")[0].strip())
+    except OSError:
+        pass  # taxonomy file unavailable: skip the warning rather than fail the merge
+    return tags
+
+
 def normalize_tags(existing_tags_str: str, new_tags_str: str) -> str:
-    """Combine and deduplicate comma-separated tags strings."""
+    """Combine and deduplicate comma-separated tags strings.
+
+    Warns (stderr) when a merge introduces a tag that is not in available-tags.md —
+    sign of a drifting extraction prompt. Does not block the merge.
+    """
     tags_set = []
     seen = set()
 
@@ -62,6 +80,11 @@ def normalize_tags(existing_tags_str: str, new_tags_str: str) -> str:
             if p.lower() not in seen:
                 seen.add(p.lower())
                 tags_set.append(p)
+                if p not in _canonical_tags():
+                    print(
+                        f"[tag-warn] Tag '{p}' is not in available-tags.md — extraction prompt may be drifting.",
+                        file=sys.stderr,
+                    )
 
     return ", ".join(tags_set)
 

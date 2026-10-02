@@ -6,32 +6,32 @@
 - symbol: AAPL
   status: core_holding
   target_entry: 170
-  thesis: "2026-09-03:Consistent cash flow generator. Massive share buybacks and premium"
-  tags: Big_Tech, Software, AI_Adjacent, Consumer_Electronics, Hardware
+  thesis: 2026-09-03:Consistent cash flow generator. Massive share buybacks and premium
+  tags: Big_Tech, Software, AI_Adjacent, Hardware
 - symbol: ABBV
   status: watching
   target_entry: null
-  thesis: "2026-09-03:AbbVie has successfully managed the Humira patent cliff through"
+  thesis: 2026-09-03:AbbVie has successfully managed the Humira patent cliff through
   tags: Pharma, Bio
 - symbol: ABT
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Abbott's diversified model provides a unique hedge within healthcare."
+  thesis: 2026-09-03:Abbott's diversified model provides a unique hedge within healthcare.
   tags: MedTech
 - symbol: ADI
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Bullish sentiment; highlighted as a key ticker in focus during"
+  thesis: 2026-09-03:Bullish sentiment; highlighted as a key ticker in focus during
   tags: Semi-IDM
 - symbol: AERG
   status: watching
   target_entry: 12
-  thesis: "2026-09-03:Specializes in directed energy and laser technology. High growth"
+  thesis: 2026-09-03:Specializes in directed energy and laser technology. High growth
   tags: Aero
 - symbol: AGX
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Argan was identified as a key stock to watch on a day where the"
+  thesis: 2026-09-03:Argan was identified as a key stock to watch on a day where the
   tags: Power
 - symbol: AMGN
   status: watching
@@ -41,13 +41,13 @@
 - symbol: ANET
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Bullish sentiment; discussed as a primary stock to watch as major"
+  thesis: 2026-09-03:Bullish sentiment; discussed as a primary stock to watch as major
   tags: Network, AI_Adjacent
 - symbol: APH
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Amphenol is the primary beneficiary of the physical layer requirements"
-  tags: Network, Fiber_optics, AI_Adjacent, Industrial, Electronics, Components
+  thesis: 2026-09-03:Amphenol is the primary beneficiary of the physical layer requirements
+  tags: Network, Fiber_optics, AI_Adjacent, Manufacturing, Hardware
 - symbol: ASTS
   status: watching
   target_entry: null
@@ -56,33 +56,33 @@
 - symbol: ATRO
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Making a decent move with a pseudo handle formation, showing"
+  thesis: 2026-09-03:Making a decent move with a pseudo handle formation, showing
   tags: Aero, Defense, Manufacturing
 - symbol: AVAV
   status: watching
   target_entry: null
-  thesis: "2026-09-03:AeroVironment is the undisputed leader in tactical loitering"
+  thesis: 2026-09-03:AeroVironment is the undisputed leader in tactical loitering
   tags: Aero
 - symbol: AVGO
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Bullish sentiment; analyzed as a focus stock as the Nasdaq and"
+  thesis: 2026-09-03:Bullish sentiment; analyzed as a focus stock as the Nasdaq and
   tags: Semi-Fabless, Software, Big_Tech, AI_Adjacent
 - symbol: AXSM
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Axsome Therapeutics was highlighted as a notable stock to watch"
+  thesis: 2026-09-03:Axsome Therapeutics was highlighted as a notable stock to watch
   tags: Bio, Pharma
 - symbol: BEN
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Franklin Resources was analyzed as a key ticker to watch during"
-  tags: 
+  thesis: 2026-09-03:Franklin Resources was analyzed as a key ticker to watch during
+  tags: ''
 - symbol: BIIB
   status: watching
   target_entry: null
   thesis: ''
-  tags: Bio, Pharma, Biotechnology
+  tags: Bio, Pharma
 - symbol: BMY
   status: watching
   target_entry: null
@@ -91,12 +91,12 @@
 - symbol: BTSG
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Bitdeer Technologies Group was featured for discussion as the"
+  thesis: 2026-09-03:Bitdeer Technologies Group was featured for discussion as the
   tags: AI_Adjacent, Power
 - symbol: BTU
   status: watching
   target_entry: null
-  thesis: "2026-09-03:The stock faded after a breakout attempt, serving as a warning"
+  thesis: 2026-09-03:The stock faded after a breakout attempt, serving as a warning
   tags: Metals, Power
 - symbol: CACI
   status: watching
@@ -106,13 +106,13 @@
 - symbol: CAT
   status: watching
   target_entry: null
-  thesis: "2026-09-03:The stock was a primary focus during a mixed session characterized"
+  thesis: 2026-09-03:The stock was a primary focus during a mixed session characterized
   tags: Power
 - symbol: CAVA
   status: watching
   target_entry: null
-  thesis: "2026-09-03:CAVA is replicating the Chipotle playbook with superior unit"
-  tags: 
+  thesis: 2026-09-03:CAVA is replicating the Chipotle playbook with superior unit
+  tags: ''
 - symbol: CCJ
   status: watching
   target_entry: null
@@ -126,42 +126,42 @@
 - symbol: CLS
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Celestica was in focus as tech stocks declined following developments"
-  tags: Network, AI_Adjacent, Electronics_Manufacturing, Hardware
+  thesis: 2026-09-03:Celestica was in focus as tech stocks declined following developments
+  tags: Network, AI_Adjacent, Hardware
 - symbol: COHR
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Experienced a huge run (42-44% last week) but gave back 14% today,"
-  tags: Network, Fiber_optics, AI_Adjacent, Technology
+  thesis: 2026-09-03:Experienced a huge run (42-44% last week) but gave back 14% today,
+  tags: Network, Fiber_optics, AI_Adjacent
 - symbol: COST
   status: watching
   target_entry: null
-  thesis: "2026-09-03:The stock is showing resilience by holding up relatively well"
-  tags: 
+  thesis: 2026-09-03:The stock is showing resilience by holding up relatively well
+  tags: ''
 - symbol: CRDO
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Operating in the optical space, with a focus on copper getting"
+  thesis: 2026-09-03:Operating in the optical space, with a focus on copper getting
   tags: Semi-Fabless, Network, Fiber_optics
 - symbol: CW
   status: watching
   target_entry: null
-  thesis: "2026-09-03:The stock was highlighted as a key name to watch while major"
+  thesis: 2026-09-03:The stock was highlighted as a key name to watch while major
   tags: Aero, Power
 - symbol: DPRO
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Commercial drone solutions and hardware. Expanding enterprise"
+  thesis: 2026-09-03:Commercial drone solutions and hardware. Expanding enterprise
   tags: Aero
 - symbol: ECG
   status: watching
   target_entry: null
   thesis: ''
-  tags: 
+  tags: ''
 - symbol: EME
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Emcor was a featured stock for discussion during the walkthrough"
+  thesis: 2026-09-03:Emcor was a featured stock for discussion during the walkthrough
   tags: Power
 - symbol: EMR
   status: watching
@@ -171,12 +171,12 @@
 - symbol: ENSG
   status: watching
   target_entry: null
-  thesis: "2026-09-03:The stock is maintaining its strength and holding firm during"
-  tags: 
+  thesis: 2026-09-03:The stock is maintaining its strength and holding firm during
+  tags: ''
 - symbol: EQIX
   status: watching
   target_entry: null
-  thesis: "2026-09-03:This data center REIT is showing relative strength by holding"
+  thesis: 2026-09-03:This data center REIT is showing relative strength by holding
   tags: Network, AI_Adjacent
 - symbol: ESE
   status: watching
@@ -196,32 +196,32 @@
 - symbol: EWZ
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Bullish. The stock is clearing trendlines and showing strength;"
-  tags: 
+  thesis: 2026-09-03:Bullish. The stock is clearing trendlines and showing strength;
+  tags: ''
 - symbol: FCX
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Copper is coming back strong, with FCX up 11% for the week and"
-  tags: Metals, Mining, Commodities
+  thesis: 2026-09-03:Copper is coming back strong, with FCX up 11% for the week and
+  tags: Metals
 - symbol: FDX
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Bullish sentiment; listed as a focus ticker amid a bullish market"
-  tags: 
+  thesis: 2026-09-03:Bullish sentiment; listed as a focus ticker amid a bullish market
+  tags: ''
 - symbol: FIGS
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Figs was in focus during a session where stocks declined due"
-  tags: 
+  thesis: 2026-09-03:Figs was in focus during a session where stocks declined due
+  tags: ''
 - symbol: FIVE
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Five Below was analyzed as a stock of interest and highlighted"
-  tags: 
+  thesis: 2026-09-03:Five Below was analyzed as a stock of interest and highlighted
+  tags: ''
 - symbol: FIX
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Bullish. The stock is leading the market with a strong relative"
+  thesis: 2026-09-03:Bullish. The stock is leading the market with a strong relative
   tags: Power
 - symbol: FLY
   status: watching
@@ -237,16 +237,16 @@
   status: watching
   target_entry: null
   thesis: ''
-  tags: 
+  tags: ''
 - symbol: FSLY
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Bearish. The analyst liquidated the position after the stock"
+  thesis: 2026-09-03:Bearish. The analyst liquidated the position after the stock
   tags: Software, Network
 - symbol: GD
   status: watching
   target_entry: null
-  thesis: "2026-09-03:General Dynamics is the sole beneficiary of an unprecedented"
+  thesis: 2026-09-03:General Dynamics is the sole beneficiary of an unprecedented
   tags: Aero
 - symbol: GEV
   status: watching
@@ -261,22 +261,22 @@
 - symbol: GLNG
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Golar LNG is a unique leader in Floating Liquefied Natural Gas"
+  thesis: 2026-09-03:Golar LNG is a unique leader in Floating Liquefied Natural Gas
   tags: Power
 - symbol: GLW
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Bullish sentiment; featured as a focus stock as the Nasdaq and"
-  tags: Fiber_optics, Network, Manufacturing, Materials
+  thesis: 2026-09-03:Bullish sentiment; featured as a focus stock as the Nasdaq and
+  tags: Fiber_optics, Network, Manufacturing, Metals
 - symbol: GOOGL
   status: core_holding
   target_entry: 135
-  thesis: "2026-09-03:Undisputed leader in search, digital advertising, and cutting-edge"
-  tags: Big_Tech, Software, AI_Adjacent, Advertising
+  thesis: 2026-09-03:Undisputed leader in search, digital advertising, and cutting-edge
+  tags: Big_Tech, Software, AI_Adjacent, Entertainment
 - symbol: GRMN
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Bullish sentiment; highlighted as a stock in focus after indexes"
+  thesis: 2026-09-03:Bullish sentiment; highlighted as a stock in focus after indexes
   tags: Aero
 - symbol: GSK
   status: watching
@@ -286,12 +286,12 @@
 - symbol: GVA
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Granite Construction was featured as a stock to watch as earnings"
-  tags: 
+  thesis: 2026-09-03:Granite Construction was featured as a stock to watch as earnings
+  tags: ''
 - symbol: HEI
   status: watching
   target_entry: null
-  thesis: "2026-09-03:HEICO's Flight Support Group represents the highest-quality business"
+  thesis: 2026-09-03:HEICO's Flight Support Group represents the highest-quality business
   tags: Aero
 - symbol: HII
   status: watching
@@ -301,7 +301,7 @@
 - symbol: HLT
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Bullish sentiment; identified as a focus stock during a period"
+  thesis: 2026-09-03:Bullish sentiment; identified as a focus stock during a period
   tags: Hospitality
 - symbol: HNRG
   status: watching
@@ -311,33 +311,33 @@
 - symbol: HWM
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Howmet operates as a mission-critical bottleneck in the aerospace"
+  thesis: 2026-09-03:Howmet operates as a mission-critical bottleneck in the aerospace
   tags: Aero
 - symbol: IGV
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Bearish. Software is described as 'damaged goods' after failing"
-  tags: Software, ETF, Technology
+  thesis: 2026-09-03:Bearish. Software is described as 'damaged goods' after failing
+  tags: Software, ETF
 - symbol: ITA
   status: watching
   target_entry: null
-  thesis: "2026-09-03:The iShares U.S. Aerospace & Defense ETF had a nice move this"
+  thesis: 2026-09-03:The iShares U.S. Aerospace & Defense ETF had a nice move this
   tags: Aero, ETF, Defense
 - symbol: JBHT
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Bullish sentiment; identified as a key stock to watch during"
-  tags: 
+  thesis: 2026-09-03:Bullish sentiment; identified as a key stock to watch during
+  tags: ''
 - symbol: JBL
   status: watching
   target_entry: 240
-  thesis: "2026-09-03:Jabil shows leadership with a relative strength line at new highs"
+  thesis: 2026-09-03:Jabil shows leadership with a relative strength line at new highs
   tags: Network, AI_Adjacent
 - symbol: JCAP
   status: watching
   target_entry: null
   thesis: ''
-  tags: 
+  tags: ''
 - symbol: JCI
   status: watching
   target_entry: null
@@ -346,7 +346,7 @@
 - symbol: JNJ
   status: watching
   target_entry: null
-  thesis: "2026-09-03:The stock is noted as one of the few names holding up while the"
+  thesis: 2026-09-03:The stock is noted as one of the few names holding up while the
   tags: Pharma, MedTech
 - symbol: KRMN
   status: watching
@@ -362,7 +362,7 @@
   status: watching
   target_entry: null
   thesis: ''
-  tags: 
+  tags: ''
 - symbol: LDOS
   status: watching
   target_entry: null
@@ -376,17 +376,18 @@
 - symbol: LITE
   status: watching
   target_entry: null
-  thesis: "2026-09-03:An optical name in the AI infrastructure space, expected to report"
-  tags: Fiber_optics, Network, AI_Adjacent, Technology
+  thesis: 2026-09-03:An optical name in the AI infrastructure space, expected to report
+  tags: Fiber_optics, Network, AI_Adjacent
 - symbol: LMT
   status: watching
   target_entry: null
-  thesis: "\"2026-09-03:Lockheed Martin maintains a dominant position as the prime contractor\\"
+  thesis: '"2026-09-03:Lockheed Martin maintains a dominant position as the prime
+    contractor\'
   tags: Aero, Space, Defense
 - symbol: LRCX
   status: watching
   target_entry: 275
-  thesis: "2026-09-03:Lam Research showed an outside day upside reversal through its"
+  thesis: 2026-09-03:Lam Research showed an outside day upside reversal through its
   tags: Semi-IDM, Hardware, Manufacturing
 - symbol: MBLY
   status: watching
@@ -396,12 +397,12 @@
 - symbol: MDGL
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Madrigal holds a multi-year first-mover advantage with Rezdiffra,"
+  thesis: 2026-09-03:Madrigal holds a multi-year first-mover advantage with Rezdiffra,
   tags: Bio, Pharma
 - symbol: MIRM
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Mirum Pharmaceuticals has established a dominant niche in rare"
+  thesis: 2026-09-03:Mirum Pharmaceuticals has established a dominant niche in rare
   tags: Bio, Pharma
 - symbol: MOD
   status: watching
@@ -411,28 +412,28 @@
 - symbol: MRK
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Keytruda remains the dominant oncology asset globally, and Merck's"
+  thesis: 2026-09-03:Keytruda remains the dominant oncology asset globally, and Merck's
   tags: Pharma, Bio
 - symbol: MRX
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Marex was featured as a stock in focus as the hosts reviewed"
-  tags: Financial_Services, Brokerage, Commodities
+  thesis: 2026-09-03:Marex was featured as a stock in focus as the hosts reviewed
+  tags: Financial_Services, Metals
 - symbol: MSFT
   status: core_holding
   target_entry: null
-  thesis: "2026-09-03:Dominant enterprise SaaS, cloud infrastructure (Azure), and leader"
-  tags: Big_Tech, Software, AI_Adjacent, Cloud_Computing
+  thesis: 2026-09-03:Dominant enterprise SaaS, cloud infrastructure (Azure), and leader
+  tags: Big_Tech, Software, AI_Adjacent, Cloud
 - symbol: MU
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Micron was in focus as part of a significant rally within the"
-  tags: Memory, Semi-IDM, Hardware, AI_Adjacent, Technology
+  thesis: 2026-09-03:Micron was in focus as part of a significant rally within the
+  tags: Memory, Semi-IDM, Hardware, AI_Adjacent
 - symbol: NET
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Increase network connectivity. The stock was analyzed as a market"
-  tags: Software, Network, Cybersecurity, Cloud_Computing, Cloud
+  thesis: 2026-09-03:Increase network connectivity. The stock was analyzed as a market
+  tags: Software, Network, Cybersecurity, Cloud
 - symbol: NNE
   status: watching
   target_entry: null
@@ -446,23 +447,23 @@
 - symbol: NVDA
   status: watching
   target_entry: 850
-  thesis: "2026-09-03:Global AI compute leader with deep hardware moat in GPUs and"
-  tags: Semi-Fabless, Big_Tech, AI_Adjacent, Semi-IDM, Technology, Graphics_Processing
+  thesis: 2026-09-03:Global AI compute leader with deep hardware moat in GPUs and
+  tags: Semi-Fabless, Big_Tech, AI_Adjacent, Semi-IDM
 - symbol: NVMI
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Nova Ltd is a critical bottleneck provider in the semiconductor"
+  thesis: 2026-09-03:Nova Ltd is a critical bottleneck provider in the semiconductor
   tags: Semi-Fabless
 - symbol: NXT
   status: watching
   target_entry: null
-  thesis: "2026-09-03:The solar stock is forming a potential handle or flat base characterized"
+  thesis: 2026-09-03:The solar stock is forming a potential handle or flat base characterized
   tags: Power
 - symbol: OC
   status: watching
   target_entry: null
   thesis: ''
-  tags: 
+  tags: ''
 - symbol: OKLO
   status: watching
   target_entry: null
@@ -481,52 +482,53 @@
 - symbol: POWL
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Bullish. The analyst identifies this as the best-looking chart"
+  thesis: 2026-09-03:Bullish. The analyst identifies this as the best-looking chart
   tags: Power
 - symbol: PRIM
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Primoris was analyzed as a key stock to watch during Monday's"
+  thesis: 2026-09-03:Primoris was analyzed as a key stock to watch during Monday's
   tags: Power
 - symbol: PWR
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Bullish. The stock showed a positive upside reversal at the 50-day"
+  thesis: 2026-09-03:Bullish. The stock showed a positive upside reversal at the 50-day
   tags: Power
 - symbol: QCOM
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Qualcomm was discussed as a key stock to watch during Wednesday's"
+  thesis: 2026-09-03:Qualcomm was discussed as a key stock to watch during Wednesday's
   tags: Semi-Fabless, Network
 - symbol: RCAT
   status: watching
   target_entry: 3.5
-  thesis: "2026-09-03:Leading provider of sUAS drones for defense and tactical imaging."
+  thesis: 2026-09-03:Leading provider of sUAS drones for defense and tactical imaging.
   tags: Aero
 - symbol: REGN
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Regeneron's Dupixent is a generational asset in immunology with"
+  thesis: 2026-09-03:Regeneron's Dupixent is a generational asset in immunology with
   tags: Bio
 - symbol: RKLB
   status: watching
   target_entry: null
-  thesis: "\"2026-09-03:Rocket Lab was a featured ticker for discussion during the walkthrough\\"
-  tags: Space, Aero, Technology
+  thesis: '"2026-09-03:Rocket Lab was a featured ticker for discussion during the
+    walkthrough\'
+  tags: Space, Aero
 - symbol: ROKU
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Roku was analyzed as a key stock to watch during Friday's solid"
+  thesis: 2026-09-03:Roku was analyzed as a key stock to watch during Friday's solid
   tags: Software
 - symbol: RSI
   status: watching
   target_entry: null
-  thesis: "2026-09-03:The stock jumped 5% after breaking out of a double bottom, benefiting"
+  thesis: 2026-09-03:The stock jumped 5% after breaking out of a double bottom, benefiting
   tags: Software
 - symbol: RTX
   status: watching
   target_entry: null
-  thesis: "2026-09-03:RTX benefits from the dual tailwinds of a historic commercial"
+  thesis: 2026-09-03:RTX benefits from the dual tailwinds of a historic commercial
   tags: Aero
 - symbol: SAIC
   status: watching
@@ -541,28 +543,28 @@
 - symbol: SMH
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Bullish. The semiconductor sector is viewed as a leading group"
-  tags: Semi-IDM, Semi-Fabless, ETF, AI_Adjacent, Technology
+  thesis: 2026-09-03:Bullish. The semiconductor sector is viewed as a leading group
+  tags: Semi-IDM, Semi-Fabless, ETF, AI_Adjacent
 - symbol: SNDK
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Shares plunged 11% in a potential failed breakout following reports"
-  tags: Memory, Semi-Fabless, AI_Adjacent, Technology
+  thesis: 2026-09-03:Shares plunged 11% in a potential failed breakout following reports
+  tags: Memory, Semi-Fabless, AI_Adjacent
 - symbol: SOLUSDT
   status: watching
   target_entry: 120
-  thesis: "2026-09-03:High-performance monolithic L1 blockchain with growing retail"
-  tags: 
+  thesis: 2026-09-03:High-performance monolithic L1 blockchain with growing retail
+  tags: ''
 - symbol: STNG
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Scorpio Tankers was discussed in focus as the hosts reviewed"
-  tags: 
+  thesis: 2026-09-03:Scorpio Tankers was discussed in focus as the hosts reviewed
+  tags: ''
 - symbol: STRL
   status: watching
   target_entry: null
   thesis: ''
-  tags: 
+  tags: ''
 - symbol: TAK
   status: watching
   target_entry: null
@@ -571,7 +573,7 @@
 - symbol: TER
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Teradyne was in focus as tech stocks outperformed after the Fed"
+  thesis: 2026-09-03:Teradyne was in focus as tech stocks outperformed after the Fed
   tags: Semi-Fabless
 - symbol: TEVA
   status: watching
@@ -581,13 +583,13 @@
 - symbol: TSLA
   status: watching
   target_entry: 180
-  thesis: "2026-09-03:EV and robotics manufacturer. Potential autonomous driving and"
-  tags: Power, AI_Adjacent, Auto, Robotics, Big_Tech, EV, Automotive
+  thesis: 2026-09-03:EV and robotics manufacturer. Potential autonomous driving and
+  tags: Power, AI_Adjacent, Transportation, Hardware, Big_Tech
 - symbol: TSM
   status: watching
   target_entry: null
-  thesis: "2026-09-03:TSMC was in focus as the Nasdaq reached a new high following"
-  tags: Semi-IDM, AI_Adjacent, Technology, Semi-Fabless, Manufacturing
+  thesis: 2026-09-03:TSMC was in focus as the Nasdaq reached a new high following
+  tags: Semi-IDM, AI_Adjacent, Semi-Fabless, Manufacturing
 - symbol: TT
   status: watching
   target_entry: null
@@ -601,7 +603,7 @@
 - symbol: UI
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Increase network connectivity."
+  thesis: 2026-09-03:Increase network connectivity.
   tags: Network
 - symbol: VIAV
   status: watching
@@ -611,22 +613,22 @@
 - symbol: VICR
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Bullish sentiment; categorized as a key stock in focus as the"
+  thesis: 2026-09-03:Bullish sentiment; categorized as a key stock in focus as the
   tags: Power
 - symbol: VIK
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Bullish sentiment; noted as a focus ticker as indexes displayed"
-  tags: Hospitality, Travel, Cruise_Line
+  thesis: 2026-09-03:Bullish sentiment; noted as a focus ticker as indexes displayed
+  tags: Hospitality, Transportation
 - symbol: VRT
   status: watching
   target_entry: null
-  thesis: "2026-09-03:The stock fell 8.6% and broke below its 21-day moving average"
+  thesis: 2026-09-03:The stock fell 8.6% and broke below its 21-day moving average
   tags: Power
 - symbol: VRTX
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Vertex holds a functional monopoly in the Cystic Fibrosis market,"
+  thesis: 2026-09-03:Vertex holds a functional monopoly in the Cystic Fibrosis market,
   tags: Bio, Pharma
 - symbol: VST
   status: watching
@@ -636,48 +638,48 @@
 - symbol: VXUS
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Neutral/Bullish. The analyst maintains a small position as it"
-  tags: 
+  thesis: 2026-09-03:Neutral/Bullish. The analyst maintains a small position as it
+  tags: ''
 - symbol: WAB
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Wabtec was analyzed as a key stock to watch during Thursday's"
-  tags: 
+  thesis: 2026-09-03:Wabtec was analyzed as a key stock to watch during Thursday's
+  tags: ''
 - symbol: WWD
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Bullish sentiment; discussed as a key stock to watch following"
-  tags: Aero, Power, Industrial, Manufacturing
+  thesis: 2026-09-03:Bullish sentiment; discussed as a key stock to watch following
+  tags: Aero, Power, Manufacturing
 - symbol: XLU
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Bearish/Neutral. The analyst views the relative weakness in utilities"
+  thesis: 2026-09-03:Bearish/Neutral. The analyst views the relative weakness in utilities
   tags: Power
 - symbol: XPO
   status: watching
   target_entry: null
-  thesis: "2026-09-03:XPO was noted as a key ticker for market participants during"
-  tags: 
+  thesis: 2026-09-03:XPO was noted as a key ticker for market participants during
+  tags: ''
 - symbol: AAL
   status: watching
   target_entry: null
   thesis: ''
-  tags: Aero, Travel, Airline
+  tags: Aero, Transportation
 - symbol: AMAT
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Applied Materials is showing strength in the chip equipment sector,"
+  thesis: 2026-09-03:Applied Materials is showing strength in the chip equipment sector,
   tags: Semi-IDM, Hardware, Manufacturing, AI_Adjacent
 - symbol: AMP
   status: watching
   target_entry: null
   thesis: ''
-  tags: Financial, Investment_Services
+  tags: Financial_Services
 - symbol: ARCB
   status: watching
   target_entry: null
   thesis: ''
-  tags: Transportation, Logistics
+  tags: Transportation
 - symbol: ARM
   status: watching
   target_entry: null
@@ -686,93 +688,93 @@
 - symbol: ASML
   status: watching
   target_entry: null
-  thesis: "2026-09-03:ASML Holding is holding up nicely with three tight closes, demonstrating"
+  thesis: 2026-09-03:ASML Holding is holding up nicely with three tight closes, demonstrating
   tags: Semi-IDM, Hardware, Manufacturing
 - symbol: BA
   status: watching
   target_entry: null
-  thesis: "2026-09-03:A Dow component experiencing weakness, down 3% today, likely"
-  tags: Aero, Manufacturing, Industrial
+  thesis: 2026-09-03:A Dow component experiencing weakness, down 3% today, likely
+  tags: Aero, Manufacturing
 - symbol: BE
   status: watching
   target_entry: null
   thesis: ''
-  tags: Power, Energy, Clean_Energy, Fuel_Cells
+  tags: Power, Energy
 - symbol: CR
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Crane Company is showing orderly action amid market chop, forming"
-  tags: Industrial, Manufacturing
+  thesis: 2026-09-03:Crane Company is showing orderly action amid market chop, forming
+  tags: Manufacturing
 - symbol: CSX
   status: watching
   target_entry: null
   thesis: ''
-  tags: Transportation, Rail
+  tags: Transportation
 - symbol: CVX
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Chevron is also in an uptrend, nearing its $198 level, mirroring"
-  tags: Oil_Gas, Energy
+  thesis: 2026-09-03:Chevron is also in an uptrend, nearing its $198 level, mirroring
+  tags: Energy
 - symbol: DAL
   status: watching
   target_entry: null
   thesis: ''
-  tags: Aero, Travel, Airline
+  tags: Aero, Transportation
 - symbol: DIA
   status: watching
   target_entry: null
-  thesis: "2026-09-03:The SPDR Dow Jones Industrial Average ETF Trust (DIA) is outperforming,"
-  tags: ETF, Blue_Chip, Equity, Defensive
+  thesis: 2026-09-03:The SPDR Dow Jones Industrial Average ETF Trust (DIA) is outperforming,
+  tags: ETF, Blue_Chip
 - symbol: EAT
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Brinker International is in new high territory, up 4.5% with"
-  tags: Hospitality, Restaurant, Retail, Restaurants
+  thesis: 2026-09-03:Brinker International is in new high territory, up 4.5% with
+  tags: Hospitality, E-commerce
 - symbol: FTNT
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Fortinet has been on a monster tear since a 20% gap-up breakout"
+  thesis: 2026-09-03:Fortinet has been on a monster tear since a 20% gap-up breakout
   tags: Software, Cybersecurity, Network
 - symbol: HOOD
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Flashed buy signals, indicating a data-driven investment opportunity."
-  tags: Financial, Fintech, Brokerage, Financial_Services
+  thesis: 2026-09-03:Flashed buy signals, indicating a data-driven investment opportunity.
+  tags: Financial_Services, Fintech
 - symbol: HP
   status: watching
   target_entry: null
   thesis: ''
-  tags: Oil_Gas_Services, Energy
+  tags: Energy
 - symbol: HQY
   status: watching
   target_entry: null
-  thesis: "2026-09-03:HealthEquity is breaking out with a 4.7% gain, showing improved"
-  tags: Financial, Healthcare, Software
+  thesis: 2026-09-03:HealthEquity is breaking out with a 4.7% gain, showing improved
+  tags: Financial_Services, Healthcare, Software
 - symbol: INTC
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Intel's stock is up 9% after hours following its earnings report,"
+  thesis: 2026-09-03:Intel's stock is up 9% after hours following its earnings report,
   tags: Semi-IDM, Hardware
 - symbol: ITB
   status: watching
   target_entry: null
   thesis: ''
-  tags: ETF, Homebuilding, Construction
+  tags: ETF, Manufacturing
 - symbol: IWM
   status: watching
   target_entry: null
-  thesis: "2026-09-03:The iShares Russell 2000 ETF is notable for holding its 50-day"
-  tags: ETF, Small_Cap, Equity, Broad_Market
+  thesis: 2026-09-03:The iShares Russell 2000 ETF is notable for holding its 50-day
+  tags: ETF, Broad_Market
 - symbol: KIE
   status: watching
   target_entry: null
   thesis: ''
-  tags: ETF, Financial, Insurance
+  tags: ETF, Financial_Services
 - symbol: KRE
   status: watching
   target_entry: null
   thesis: ''
-  tags: ETF, Financial, Banking
+  tags: ETF, Financial_Services
 - symbol: LUMN
   status: watching
   target_entry: null
@@ -782,7 +784,7 @@
   status: watching
   target_entry: null
   thesis: ''
-  tags: Financial, Payments, Fintech
+  tags: Financial_Services, Fintech
 - symbol: MAGS
   status: watching
   target_entry: null
@@ -791,8 +793,8 @@
 - symbol: META
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Part of the Magnificent 7, but struggling, remaining below both"
-  tags: Big_Tech, Social_Media, AI_Adjacent
+  thesis: 2026-09-03:Part of the Magnificent 7, but struggling, remaining below both
+  tags: Big_Tech, Entertainment, AI_Adjacent
 - symbol: MXL
   status: watching
   target_entry: null
@@ -802,286 +804,286 @@
   status: watching
   target_entry: null
   thesis: ''
-  tags: Transportation, Rail
+  tags: Transportation
 - symbol: QQQE
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Reflects positive breadth in the market, despite mega-cap weakness."
-  tags: ETF, Tech, Equity, Broad_Market, Technology
+  thesis: 2026-09-03:Reflects positive breadth in the market, despite mega-cap weakness.
+  tags: ETF, Broad_Market
 - symbol: RJF
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Raymond James Financial is breaking out of a cup with handle"
-  tags: Financial, Investment_Services
+  thesis: 2026-09-03:Raymond James Financial is breaking out of a cup with handle
+  tags: Financial_Services
 - symbol: RSP
   status: watching
   target_entry: null
-  thesis: "2026-09-03:The Invesco S&P 500 Equal Weight ETF is performing well, almost"
-  tags: ETF, Equity, Broad_Market
+  thesis: 2026-09-03:The Invesco S&P 500 Equal Weight ETF is performing well, almost
+  tags: ETF, Broad_Market
 - symbol: SCHD
   status: watching
   target_entry: null
-  thesis: "2026-09-03:The Schwab U.S. Dividend Equity ETF (SCHD) has recently popped"
-  tags: ETF, Dividend, Equity, Defensive
+  thesis: 2026-09-03:The Schwab U.S. Dividend Equity ETF (SCHD) has recently popped
+  tags: ETF, Dividend
 - symbol: SHOP
   status: watching
   target_entry: null
   thesis: ''
-  tags: E_commerce, Software, E-commerce, Cloud
+  tags: E-commerce, Software, Cloud
 - symbol: SMCI
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Super Micro Computer is showing signs of rebound, holding at"
-  tags: Hardware, AI_Adjacent, Server, Servers
+  thesis: 2026-09-03:Super Micro Computer is showing signs of rebound, holding at
+  tags: Hardware, AI_Adjacent
 - symbol: SQ
   status: watching
   target_entry: null
   thesis: ''
-  tags: Fintech, Software, Payments
+  tags: Fintech, Software
 - symbol: STX
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Seagate Technology is showing encouraging signs heading into"
-  tags: Memory, Tech, Hardware
+  thesis: 2026-09-03:Seagate Technology is showing encouraging signs heading into
+  tags: Memory, Hardware
 - symbol: TD
   status: watching
   target_entry: null
   thesis: ''
-  tags: Financial, Banking
+  tags: Financial_Services
 - symbol: UAL
   status: watching
   target_entry: null
   thesis: ''
-  tags: Aero, Travel, Airline
+  tags: Aero, Transportation
 - symbol: UNP
   status: watching
   target_entry: null
   thesis: ''
-  tags: Transportation, Rail
+  tags: Transportation
 - symbol: V
   status: watching
   target_entry: null
   thesis: ''
-  tags: Financial, Payments, Fintech
+  tags: Financial_Services, Fintech
 - symbol: WDC
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Gapped down on earnings, reflecting a tough tone for memory stocks,"
-  tags: Memory, Tech, Hardware, Storage, Technology
+  thesis: 2026-09-03:Gapped down on earnings, reflecting a tough tone for memory stocks,
+  tags: Memory, Hardware
 - symbol: WERN
   status: watching
   target_entry: null
   thesis: ''
-  tags: Transportation, Logistics
+  tags: Transportation
 - symbol: XLF
   status: watching
   target_entry: null
-  thesis: "2026-09-03:The Financial Select Sector SPDR Fund is seeing increased interest,"
-  tags: ETF, Financial
+  thesis: 2026-09-03:The Financial Select Sector SPDR Fund is seeing increased interest,
+  tags: ETF, Financial_Services
 - symbol: XLP
   status: watching
   target_entry: null
   thesis: ''
-  tags: ETF, Consumer_Staples, Defensive
+  tags: ETF
 - symbol: XLRE
   status: watching
   target_entry: null
   thesis: ''
-  tags: ETF, Real_Estate
+  tags: ETF, Financial_Services
 - symbol: XOM
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Exxon Mobil is in a nice uptrend, approaching recent highs around"
-  tags: Oil_Gas, Energy
+  thesis: 2026-09-03:Exxon Mobil is in a nice uptrend, approaching recent highs around
+  tags: Energy
 - symbol: AFRM
   status: watching
   target_entry: null
-  thesis: "2026-09-03:A 'buy now pay later' company that dropped 22% after hours on"
-  tags: Fintech, Financial, E-commerce
+  thesis: 2026-09-03:A 'buy now pay later' company that dropped 22% after hours on
+  tags: Fintech, Financial_Services, E-commerce
 - symbol: AMZN
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Stock of the day with a high handle and a double bottom breakout"
-  tags: Big_Tech, E-commerce, Cloud_Computing, AI_Adjacent
+  thesis: 2026-09-03:Stock of the day with a high handle and a double bottom breakout
+  tags: Big_Tech, E-commerce, Cloud, AI_Adjacent
 - symbol: APP
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Experienced a nasty earnings downdraft, contributing to broader"
-  tags: Software, Advertising, Mobile_Gaming
+  thesis: 2026-09-03:Experienced a nasty earnings downdraft, contributing to broader
+  tags: Software, Entertainment
 - symbol: BLLN
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Experienced a significant drop on earnings, highlighting the"
-  tags: Unknown_Industry, Earnings_Risk, Volatile
+  thesis: 2026-09-03:Experienced a significant drop on earnings, highlighting the
+  tags: Unknown_Sector
 - symbol: BROS
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Experienced a significant 'blow up' after a failed trade attempt."
-  tags: Hospitality, Restaurants
+  thesis: 2026-09-03:Experienced a significant 'blow up' after a failed trade attempt.
+  tags: Hospitality
 - symbol: BUG
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Looking significantly better, indicating a strong recovery in"
+  thesis: 2026-09-03:Looking significantly better, indicating a strong recovery in
   tags: ETF, Cybersecurity, Software
 - symbol: CAKE
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Showed strong action and was a missed opportunity on June 5th,"
-  tags: Hospitality, Restaurants
+  thesis: 2026-09-03:Showed strong action and was a missed opportunity on June 5th,
+  tags: Hospitality
 - symbol: CIBR
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Looking significantly better, indicating a strong recovery in"
+  thesis: 2026-09-03:Looking significantly better, indicating a strong recovery in
   tags: ETF, Cybersecurity, Software
 - symbol: CRM
   status: watching
   target_entry: null
-  thesis: "2026-09-03:A Dow component experiencing weakness, down 3% today, likely"
-  tags: Software, Cloud_Computing, Big_Tech
+  thesis: 2026-09-03:A Dow component experiencing weakness, down 3% today, likely
+  tags: Software, Cloud, Big_Tech
 - symbol: CRWE
   status: watching
   target_entry: null
-  thesis: "2026-09-03:A 'lagard' in the Neoclouds space, showing an 8-10% gain after"
-  tags: Cloud_Computing, AI_Adjacent, Data_Centers
+  thesis: 2026-09-03:A 'lagard' in the Neoclouds space, showing an 8-10% gain after
+  tags: Cloud, AI_Adjacent, Hardware
 - symbol: CSCO
   status: watching
   target_entry: null
-  thesis: "2026-09-03:A networking and cybersecurity company right at a key round number"
+  thesis: 2026-09-03:A networking and cybersecurity company right at a key round number
   tags: Network, Cybersecurity, Software
 - symbol: DAVE
   status: watching
   target_entry: null
-  thesis: "2026-09-03:A fintech app that experienced a 15% down day on earnings, but"
-  tags: Fintech, Financial, Mobile_Banking
+  thesis: 2026-09-03:A fintech app that experienced a 15% down day on earnings, but
+  tags: Fintech, Financial_Services
 - symbol: DELL
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Exhibits a high tight flag pattern but has been choppy, leading"
-  tags: Technology, Hardware, Computers, Enterprise_Technology, AI_Adjacent
+  thesis: 2026-09-03:Exhibits a high tight flag pattern but has been choppy, leading
+  tags: Hardware, Software, AI_Adjacent
 - symbol: FFIV
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Looking good in the software sector, indicating strength in its"
+  thesis: 2026-09-03:Looking good in the software sector, indicating strength in its
   tags: Software, Network, Cybersecurity
 - symbol: GDX
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Up 21% for the week, indicating a strong rally in gold miners,"
-  tags: Metals, Mining, Gold
+  thesis: 2026-09-03:Up 21% for the week, indicating a strong rally in gold miners,
+  tags: Metals
 - symbol: GDXJ
   status: watching
   target_entry: null
-  thesis: "2026-09-03:A way to play the strong rally in gold, alongside GDX."
-  tags: Metals, Mining, Gold
+  thesis: 2026-09-03:A way to play the strong rally in gold, alongside GDX.
+  tags: Metals
 - symbol: GEO
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Attempted breakout with strong price outperformance (blue dot"
-  tags: Government_Services, Security, Private_Prisons
+  thesis: 2026-09-03:Attempted breakout with strong price outperformance (blue dot
+  tags: Defense, Cybersecurity
 - symbol: GH
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Gapped up strongly on earnings and broke above recent resistance,"
+  thesis: 2026-09-03:Gapped up strongly on earnings and broke above recent resistance,
   tags: MedTech, Bio, Healthcare
 - symbol: GS
   status: watching
   target_entry: null
-  thesis: "2026-09-03:A Dow component having a rough day, giving up its 50-day moving"
-  tags: Financial, Banking
+  thesis: 2026-09-03:A Dow component having a rough day, giving up its 50-day moving
+  tags: Financial_Services
 - symbol: HACK
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Looking significantly better, indicating a strong recovery in"
+  thesis: 2026-09-03:Looking significantly better, indicating a strong recovery in
   tags: ETF, Cybersecurity, Software
 - symbol: HON
   status: watching
   target_entry: null
-  thesis: "2026-09-03:A Dow component experiencing weakness, down 3% today, likely"
-  tags: Industrial, Manufacturing, Aerospace
+  thesis: 2026-09-03:A Dow component experiencing weakness, down 3% today, likely
+  tags: Manufacturing, Aero
 - symbol: IBB
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Looking strong, indicating a positive trend in the biotechnology"
+  thesis: 2026-09-03:Looking strong, indicating a positive trend in the biotechnology
   tags: ETF, Bio, Healthcare
 - symbol: INSW
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Recently broke out of a double bottom, but its performance is"
-  tags: Shipping, Oil, Transportation
+  thesis: 2026-09-03:Recently broke out of a double bottom, but its performance is
+  tags: Transportation, Energy
 - symbol: JD
   status: watching
   target_entry: null
-  thesis: "2026-09-03:A China e-commerce name that appears to be at a new low with"
-  tags: E-commerce, China, Technology
+  thesis: 2026-09-03:A China e-commerce name that appears to be at a new low with
+  tags: E-commerce
 - symbol: JETS
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Down 3.4% due to rising oil prices and geopolitical risks, requiring"
-  tags: ETF, Aero, Hospitality, Travel
+  thesis: 2026-09-03:Down 3.4% due to rising oil prices and geopolitical risks, requiring
+  tags: ETF, Aero, Hospitality, Transportation
 - symbol: LFST
   status: watching
   target_entry: null
-  thesis: "2026-09-03:A midcap company in the mental health services space (in-person"
-  tags: Hospitality, Healthcare, Mental_Health
+  thesis: 2026-09-03:A midcap company in the mental health services space (in-person
+  tags: Hospitality, Healthcare
 - symbol: LGND
   status: watching
   target_entry: null
-  thesis: "2026-09-03:A profitable biotech that broke out in early June and had an"
+  thesis: 2026-09-03:A profitable biotech that broke out in early June and had an
   tags: Bio, Pharma, Healthcare
 - symbol: LIIT
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Beat views and guided above expectations for the next quarter,"
-  tags: Software, Technology, High_Growth
+  thesis: 2026-09-03:Beat views and guided above expectations for the next quarter,
+  tags: Software
 - symbol: LLY
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Despite strong potential and a compelling story, the stock has"
+  thesis: 2026-09-03:Despite strong potential and a compelling story, the stock has
   tags: Pharma, Bio, Healthcare
 - symbol: LQDA
   status: watching
   target_entry: null
-  thesis: "2026-09-03:A profitable biotech leader that had a great breakout on its"
+  thesis: 2026-09-03:A profitable biotech leader that had a great breakout on its
   tags: Bio, Pharma, Healthcare
 - symbol: MGN
   status: watching
   target_entry: null
-  thesis: "2026-09-03:A low-priced stock (10 cents) that significantly skewed NASDAQ"
-  tags: Penny_Stock, Micro_Cap, Distorted_Volume
+  thesis: 2026-09-03:A low-priced stock (10 cents) that significantly skewed NASDAQ
+  tags: ''
 - symbol: NBIS
   status: watching
   target_entry: null
-  thesis: "2026-09-03:A high ATR stock that experienced a clear rejection at its 50-day"
-  tags: Cloud_Computing, AI_Adjacent, Data_Centers
+  thesis: 2026-09-03:A high ATR stock that experienced a clear rejection at its 50-day
+  tags: Cloud, AI_Adjacent, Hardware
 - symbol: NVT
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Similar to TSM but is above its 50-day moving average. Exhibited"
-  tags: Electrical_Equipment, Industrial, Technology
+  thesis: 2026-09-03:Similar to TSM but is above its 50-day moving average. Exhibited
+  tags: Hardware, Manufacturing
 - symbol: QQQ
   status: watching
   target_entry: null
   thesis: ''
-  tags: ETF, Broad_Market, Technology
+  tags: ETF, Broad_Market
 - symbol: SECO
   status: watching
   target_entry: null
-  thesis: "2026-09-03:A big player in copper, showing similar strong action to FCX,"
-  tags: Metals, Industrial, Manufacturing
+  thesis: 2026-09-03:A big player in copper, showing similar strong action to FCX,
+  tags: Metals, Manufacturing
 - symbol: SITM
   status: watching
   target_entry: null
-  thesis: "2026-09-03:An emerging leader in precision timing solutions for data centers,"
-  tags: Semi-IDM, AI_Adjacent, Technology
+  thesis: 2026-09-03:An emerging leader in precision timing solutions for data centers,
+  tags: Semi-IDM, AI_Adjacent
 - symbol: SOXL
   status: watching
   target_entry: null
-  thesis: "2026-09-03:A triple-leveraged semiconductor ETF that was hard to beat during"
+  thesis: 2026-09-03:A triple-leveraged semiconductor ETF that was hard to beat during
   tags: ETF, Leveraged_ETF, Semi-IDM, AI_Adjacent
 - symbol: SPHR
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Exhibiting a strong uptrend with multiple bounces off the 10-week"
+  thesis: 2026-09-03:Exhibiting a strong uptrend with multiple bounces off the 10-week
   tags: Entertainment, Hospitality
 - symbol: SPY
   status: watching
@@ -1091,83 +1093,83 @@
 - symbol: SZZL
   status: watching
   target_entry: null
-  thesis: "2026-09-03:A 'buy now pay later' company that dropped 22% after hours on"
-  tags: Fintech, Financial, E-commerce
+  thesis: 2026-09-03:A 'buy now pay later' company that dropped 22% after hours on
+  tags: Fintech, Financial_Services, E-commerce
 - symbol: TEAM
   status: watching
   target_entry: null
-  thesis: "2026-09-03:An enterprise software company that was a lagard in the AI-fueled"
-  tags: Software, Cloud_Computing, Enterprise_Software
+  thesis: 2026-09-03:An enterprise software company that was a lagard in the AI-fueled
+  tags: Software, Cloud
 - symbol: TNA
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Used as a broad-based, leveraged ETF position (3x Russell 2000)"
-  tags: ETF, Leveraged_ETF, Small_Cap, Broad_Market
+  thesis: 2026-09-03:Used as a broad-based, leveraged ETF position (3x Russell 2000)
+  tags: ETF, Leveraged_ETF, Broad_Market
 - symbol: TPR
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Recently broke out of a cup with handle base, showing solid growth"
-  tags: Retail, Apparel, Luxury_Goods
+  thesis: 2026-09-03:Recently broke out of a cup with handle base, showing solid growth
+  tags: E-commerce
 - symbol: TQQQ
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Used as a broad-based, leveraged ETF position (3x NASDAQ 100)"
-  tags: ETF, Leveraged_ETF, Broad_Market, Technology
+  thesis: 2026-09-03:Used as a broad-based, leveraged ETF position (3x NASDAQ 100)
+  tags: ETF, Leveraged_ETF, Broad_Market
 - symbol: TWLO
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Broke out on earnings, showing nice action and a history of big"
-  tags: Software, Network, AI_Adjacent, Communications
+  thesis: 2026-09-03:Broke out on earnings, showing nice action and a history of big
+  tags: Software, Network, AI_Adjacent
 - symbol: UPRO
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Used as a broad-based, leveraged ETF position (3x S&P 500) to"
+  thesis: 2026-09-03:Used as a broad-based, leveraged ETF position (3x S&P 500) to
   tags: ETF, Leveraged_ETF, Broad_Market
 - symbol: USO
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Rose slightly, but crude oil prices remain a key factor influencing"
-  tags: ETF, Oil, Energy
+  thesis: 2026-09-03:Rose slightly, but crude oil prices remain a key factor influencing
+  tags: ETF, Energy
 - symbol: VLO
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Looks good and was bought, but is highly susceptible to geopolitical"
-  tags: Energy, Oil, Refining
+  thesis: 2026-09-03:Looks good and was bought, but is highly susceptible to geopolitical
+  tags: Energy
 - symbol: VOO
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Cleared a new high with clear power, indicating a confirmed uptrend"
+  thesis: 2026-09-03:Cleared a new high with clear power, indicating a confirmed uptrend
   tags: ETF, Broad_Market
 - symbol: XBI
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Looking strong and more spread out than IBB, indicating a positive"
+  thesis: 2026-09-03:Looking strong and more spread out than IBB, indicating a positive
   tags: ETF, Bio, Healthcare
 - symbol: XLE
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Sizable move up almost 5% and looks technically actionable, but"
-  tags: ETF, Energy, Oil
+  thesis: 2026-09-03:Sizable move up almost 5% and looks technically actionable, but
+  tags: ETF, Energy
 - symbol: XLK
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Looking pretty good, reflecting strength in the technology sector,"
-  tags: ETF, Technology, Broad_Market
+  thesis: 2026-09-03:Looking pretty good, reflecting strength in the technology sector,
+  tags: ETF, Broad_Market
 - symbol: XLV
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Tends to be on the more defensive side, but medical stocks are"
+  thesis: 2026-09-03:Tends to be on the more defensive side, but medical stocks are
   tags: ETF, Healthcare
 - symbol: XOP
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Experiencing a very strong move, driven by rising Iran fears"
-  tags: ETF, Energy, Oil
+  thesis: 2026-09-03:Experiencing a very strong move, driven by rising Iran fears
+  tags: ETF, Energy
 - symbol: DT
   status: watching
   target_entry: null
   thesis: ''
-  tags: Software, Cloud_Computing, Observability
+  tags: Software, Cloud
 - symbol: EW
   status: watching
   target_entry: null
@@ -1177,49 +1179,49 @@
   status: watching
   target_entry: null
   thesis: ''
-  tags: Bio, Pharma, Oncology
+  tags: Bio, Pharma
 - symbol: FROG
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Tech earnings are fueling a bullish gain for Nasdaq, implying"
-  tags: Software, DevOps, Cloud_Computing
+  thesis: 2026-09-03:Tech earnings are fueling a bullish gain for Nasdaq, implying
+  tags: Software, Cloud
 - symbol: IBKR
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Flashed buy signals, indicating a data-driven investment opportunity."
+  thesis: 2026-09-03:Flashed buy signals, indicating a data-driven investment opportunity.
   tags: Financial_Services, Fintech
 - symbol: PANW
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Reporting earnings with AI profitability in the spotlight, suggesting"
+  thesis: 2026-09-03:Reporting earnings with AI profitability in the spotlight, suggesting
   tags: Software, Network, Cybersecurity, AI_Adjacent
 - symbol: PLTR
   status: watching
   target_entry: null
   thesis: ''
-  tags: Software, AI_Adjacent, Data_Analytics
+  tags: Software, AI_Adjacent
 - symbol: SNOW
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Reporting earnings with AI profitability in the spotlight, suggesting"
-  tags: Software, Cloud_Computing, Data_Warehousing, AI_Adjacent
+  thesis: 2026-09-03:Reporting earnings with AI profitability in the spotlight, suggesting
+  tags: Software, Cloud, AI_Adjacent
 - symbol: UBS
   status: watching
   target_entry: null
   thesis: ''
-  tags: Financial_Services, Banking
+  tags: Financial_Services
 - symbol: ZETA
   status: watching
   target_entry: null
   thesis: ''
-  tags: Software, Marketing_Technology, AI_Adjacent
+  tags: Software, AI_Adjacent
 - symbol: NTAP
   status: watching
   target_entry: null
   thesis: ''
-  tags: Software, Data_Storage, Cloud
+  tags: Software, Memory, Cloud
 - symbol: XP
   status: watching
   target_entry: null
   thesis: ''
-  tags: Financial_Services, Fintech, Brokerage
+  tags: Financial_Services, Fintech
