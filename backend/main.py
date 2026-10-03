@@ -503,6 +503,24 @@ def get_system_status():
     }
 
 
+# --- Live watchlist.yaml serving (MUST be registered before the dist static mount) ---
+# The SPA fetches /watchlist.yaml for its tag sidebar and ticker list. Serving the
+# build-time dist copy here made external watchlist changes (pipeline merges,
+# migrations) invisible until an image rebuild. Serve the live master file instead;
+# fall back to the dist copy only if the master file is missing (read-only images).
+
+@app.get("/watchlist.yaml", include_in_schema=False)
+def get_live_watchlist_yaml():
+    from fastapi.responses import PlainTextResponse
+    path = FLIPCHARTS_WATCHLIST_PATH if os.path.exists(FLIPCHARTS_WATCHLIST_PATH) else (
+        FLIPCHARTS_DIST_WATCHLIST_PATH if os.path.exists(FLIPCHARTS_DIST_WATCHLIST_PATH) else None
+    )
+    if not path:
+        raise HTTPException(status_code=404, detail="watchlist.yaml not found")
+    with open(path, "r", encoding="utf-8") as f:
+        return PlainTextResponse(f.read(), media_type="text/yaml")
+
+
 # --- Static File Serving for Production React SPA ---
 
 DIST_DIR = os.path.join(WORKSPACE_ROOT, "FlipCharts", "dist")
