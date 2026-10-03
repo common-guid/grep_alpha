@@ -105,3 +105,17 @@ def test_status_startup_schema_init_fresh_temp_db():
                 assert cursor.fetchone() is not None
         finally:
             database.DB_PATH = original_db_path
+
+
+def test_watchlist_yaml_serves_live_master_file():
+    """Regression: /watchlist.yaml must serve the live master file, not the
+    build-time dist copy. External watchlist changes (pipeline merges, migrations)
+    must be visible to the SPA without an image rebuild."""
+    response = client.get("/watchlist.yaml")
+    assert response.status_code == 200
+    assert response.headers["content-type"].startswith("text/yaml")
+    served = response.text
+    master_path = os.path.join(WORKSPACE_ROOT, "FlipCharts", "watchlist.yaml")
+    with open(master_path, "r", encoding="utf-8") as fh:
+        master = fh.read()
+    assert served == master, "/watchlist.yaml content differs from live master file"
