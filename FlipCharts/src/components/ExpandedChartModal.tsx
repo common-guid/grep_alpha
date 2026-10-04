@@ -3,13 +3,15 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useEffect, useRef, useState } from 'react';
-import { X, Settings, Download, Share2, MousePointer2, Pencil, Type, Ruler, AlertTriangle } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
+import { X, Settings, Download, Share2, AlertTriangle } from 'lucide-react';
+import { motion } from 'motion/react';
 import { useServices } from '../context/ServiceContext';
 import { CandlestickData } from '../lib/charts/IChartAdapter';
 import { cn } from '../lib/utils';
 import { checkStaleness } from '../lib/utils/staleness';
+import { DrawingManager, DrawingTool } from '../lib/charts/primitives/DrawingManager';
+import { DrawingToolbar } from './DrawingToolbar';
 
 interface ExpandedChartModalProps {
   symbol: string;
@@ -26,15 +28,43 @@ export const ExpandedChartModal: React.FC<ExpandedChartModalProps> = ({
   isOpen, 
   onClose 
 }) => {
-  const { chart, settings, api } = useServices();
+  const { chart, settings, api, getDrawings, saveDrawings } = useServices();
   const containerRef = useRef<HTMLDivElement>(null);
   const [data, setData] = useState<CandlestickData[]>(initialData);
   const [timeframe, setTimeframe] = useState(initialTimeframe);
   const [loading, setLoading] = useState(false);
   const [showVolume, setShowVolume] = useState(true);
 
+  const drawingManager = useMemo(() => new DrawingManager(), [symbol]);
+  const [activeTool, setActiveTool] = useState<DrawingTool | null>(null);
+  const [currentColor, setCurrentColor] = useState<string>('#58a6ff');
+
   const latestCandle = data.length > 0 ? data[data.length - 1] : undefined;
   const staleness = checkStaleness(latestCandle?.time);
+
+  // Load stored drawings on mount
+  useEffect(() => {
+    if (isOpen) {
+      getDrawings(symbol).then((stored) => {
+        drawingManager.setDrawings(stored);
+      });
+    }
+  }, [isOpen, symbol, getDrawings, drawingManager]);
+
+  // Debounced auto-save on drawing change
+  useEffect(() => {
+    let timeout: any;
+    const unsubscribe = drawingManager.subscribe((drawings) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        saveDrawings(symbol, drawings);
+      }, 500);
+    });
+    return () => {
+      clearTimeout(timeout);
+      unsubscribe();
+    };
+  }, [symbol, saveDrawings, drawingManager]);
 
   const fetchFullData = async (newTf: string) => {
     setLoading(true);
@@ -60,10 +90,11 @@ export const ExpandedChartModal: React.FC<ExpandedChartModalProps> = ({
         theme: settings.theme as 'dark' | 'light',
         timeframe,
         showVolume,
+        drawingBridge: { manager: drawingManager },
       });
       return cleanup;
     }
-  }, [isOpen, data, settings.theme, showVolume]);
+  }, [isOpen, data, settings.theme, showVolume, drawingManager]);
 
   const timeframes = [
     { label: 'One Day', value: '1D' },
@@ -152,14 +183,21 @@ export const ExpandedChartModal: React.FC<ExpandedChartModalProps> = ({
         </div>
 
         <div className="flex-1 flex overflow-hidden">
-          {/* Side drawing tools (static for UI impact) */}
-          <div className="w-14 border-r border-[#242733] bg-[#1c202d] flex flex-col items-center py-4 gap-4">
-             <button className="p-2 text-[#26a69a] bg-[#26a69a]/10 rounded-lg"><MousePointer2 size={18} /></button>
-             <button className="p-2 text-gray-500 hover:text-white hover:bg-[#2a2e39] rounded-lg"><Pencil size={18} /></button>
-             <button className="p-2 text-gray-500 hover:text-white hover:bg-[#2a2e39] rounded-lg"><Type size={18} /></button>
-             <button className="p-2 text-gray-500 hover:text-white hover:bg-[#2a2e39] rounded-lg"><Ruler size={18} /></button>
-             <div className="flex-1" />
-          </div>
+          {/* Drawing tools toolbar */}
+          <DrawingToolbar
+            activeTool={activeTool}
+            currentColor={currentColor}
+            onSelectTool={(tool) => {
+              setActiveTool(tool);
+              drawingManager.setActiveTool(tool);
+            }}
+            onChangeColor={(color) => {
+              setCurrentColor(color);
+              drawingManager.currentColor = color;
+            }}
+            onRemoveLast={() => drawingManager.removeLastDrawing()}
+            onClearAll={() => drawingManager.clearAll()}
+          />
 
           <div className="flex-1 relative bg-[#131722]">
              {loading && (

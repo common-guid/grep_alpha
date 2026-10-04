@@ -119,3 +119,95 @@ def test_watchlist_yaml_serves_live_master_file():
     with open(master_path, "r", encoding="utf-8") as fh:
         master = fh.read()
     assert served == master, "/watchlist.yaml content differs from live master file"
+
+
+def test_drawings_roundtrip():
+    payload = {
+        "drawings": [
+            {
+                "tool": "trendline",
+                "points": [
+                    {"time": "2026-10-01", "price": 100.0},
+                    {"time": "2026-10-05", "price": 120.0}
+                ],
+                "color": "#58a6ff"
+            }
+        ]
+    }
+    # PUT returns stored drawings with integer ids
+    r = client.put("/api/drawings/aapl", json=payload)
+    assert r.status_code == 200
+    res_data = r.json()
+    assert "drawings" in res_data
+    drawings = res_data["drawings"]
+    assert len(drawings) == 1
+    assert drawings[0]["tool"] == "trendline"
+    assert drawings[0]["symbol"] == "AAPL"
+    drawing_id = drawings[0]["id"]
+    assert isinstance(drawing_id, int)
+
+    # GET returns them
+    r2 = client.get("/api/drawings/AAPL")
+    assert r2.status_code == 200
+    got = r2.json()["drawings"]
+    assert len(got) == 1
+    assert got[0]["id"] == drawing_id
+
+    # DELETE by id
+    r3 = client.delete(f"/api/drawings/AAPL/{drawing_id}")
+    assert r3.status_code == 200
+    assert r3.json() == {"ok": True}
+
+    # GET is now empty
+    r4 = client.get("/api/drawings/aapl")
+    assert r4.status_code == 200
+    assert r4.json()["drawings"] == []
+
+
+def test_drawings_validation():
+    # Invalid tool
+    bad_tool = {
+        "drawings": [
+            {
+                "tool": "invalid_tool",
+                "points": [{"time": "2026-10-01", "price": 100.0}],
+                "color": "#58a6ff"
+            }
+        ]
+    }
+    r1 = client.put("/api/drawings/AAPL", json=bad_tool)
+    assert r1.status_code == 400
+
+    # Wrong anchor count for trendline (expects 2)
+    bad_anchors = {
+        "drawings": [
+            {
+                "tool": "trendline",
+                "points": [{"time": "2026-10-01", "price": 100.0}],
+                "color": "#58a6ff"
+            }
+        ]
+    }
+    r2 = client.put("/api/drawings/AAPL", json=bad_anchors)
+    assert r2.status_code == 400
+
+    # Wrong anchor count for hline (expects 1)
+    bad_hline = {
+        "drawings": [
+            {
+                "tool": "hline",
+                "points": [
+                    {"time": "2026-10-01", "price": 100.0},
+                    {"time": "2026-10-05", "price": 120.0}
+                ],
+                "color": "#58a6ff"
+            }
+        ]
+    }
+    r3 = client.put("/api/drawings/AAPL", json=bad_hline)
+    assert r3.status_code == 400
+
+
+def test_drawings_delete_not_found():
+    r = client.delete("/api/drawings/AAPL/999999")
+    assert r.status_code == 404
