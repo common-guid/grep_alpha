@@ -3,11 +3,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useServices } from '../context/ServiceContext';
 import { CandlestickData } from '../lib/charts/IChartAdapter';
 import { Maximize2, RefreshCw, AlertCircle, Info, FileText, AlertTriangle } from 'lucide-react';
+import { DrawingManager } from '../lib/charts/primitives/DrawingManager';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
 import { checkStaleness } from '../lib/utils/staleness';
@@ -21,7 +22,7 @@ interface ChartCardProps {
 }
 
 export const ChartCard: React.FC<ChartCardProps> = ({ symbol, timeframe }) => {
-  const { api, chart, settings, watchlistItems } = useServices();
+  const { api, chart, settings, watchlistItems, getDrawings } = useServices();
   const itemDetails = watchlistItems.find(item => item.symbol.toUpperCase() === symbol.toUpperCase());
   const containerRef = useRef<HTMLDivElement>(null);
   const { ref: inViewRef, inView } = useInView({
@@ -35,6 +36,17 @@ export const ChartCard: React.FC<ChartCardProps> = ({ symbol, timeframe }) => {
   const [isInfoOpen, setIsInfoOpen] = useState(false);
   const [isNotesOpen, setIsNotesOpen] = useState(false);
   const [isExpandedOpen, setIsExpandedOpen] = useState(false);
+
+  const drawingManager = useMemo(() => new DrawingManager(), [symbol]);
+
+  // Load stored drawings when card comes into view
+  useEffect(() => {
+    if (inView) {
+      getDrawings(symbol).then((stored) => {
+        drawingManager.setDrawings(stored);
+      });
+    }
+  }, [inView, symbol, getDrawings, drawingManager]);
 
   const fetchData = async () => {
     try {
@@ -61,10 +73,11 @@ export const ChartCard: React.FC<ChartCardProps> = ({ symbol, timeframe }) => {
         theme: settings.theme as 'dark' | 'light',
         timeframe,
         showVolume: true,
+        drawingBridge: { manager: drawingManager },
       });
       return cleanup;
     }
-  }, [inView, data, settings.theme]);
+  }, [inView, data, settings.theme, drawingManager]);
 
   const latestCandle = data.length > 0 ? data[data.length - 1] : undefined;
   const staleness = checkStaleness(latestCandle?.time);

@@ -5,6 +5,7 @@
 
 import { createChart, ColorType, IChartApi, CandlestickSeries, LineSeries, HistogramSeries, CandlestickData as LWCandlestickData } from 'lightweight-charts';
 import { IChartAdapter, CandlestickData, ChartOptions } from './IChartAdapter';
+import { DrawingPrimitive } from './primitives/DrawingPrimitive';
 
 export class LightweightChartsAdapter implements IChartAdapter {
   render(container: HTMLElement, data: any[], options: ChartOptions): () => void {
@@ -104,8 +105,59 @@ export class LightweightChartsAdapter implements IChartAdapter {
 
     window.addEventListener('resize', handleResize);
 
+    // Attach drawing primitive and event handlers if bridge is supplied
+    let cleanupBridge: (() => void) | undefined;
+    if (options.drawingBridge && options.drawingBridge.manager) {
+      const manager = options.drawingBridge.manager;
+      const primitive = new DrawingPrimitive(manager);
+      primitive.setSeriesData(data as any);
+      candlestickSeries.attachPrimitive(primitive);
+
+      const handlePointerDown = (e: MouseEvent) => {
+        if (!manager.getActiveTool()) return;
+        const rect = container.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        manager.handlePointerClick({ x, y }, chart, candlestickSeries, data as any);
+      };
+
+      const handlePointerMove = (e: MouseEvent) => {
+        if (!manager.getActiveTool()) return;
+        const rect = container.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        manager.handlePointerMove({ x, y });
+        // Request primitive redraw on mouse move when tool active
+        chart.applyOptions({});
+      };
+
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          manager.cancelPending();
+          manager.setActiveTool(null);
+          chart.applyOptions({});
+        }
+      };
+
+      container.addEventListener('pointerdown', handlePointerDown);
+      container.addEventListener('pointermove', handlePointerMove);
+      window.addEventListener('keydown', handleKeyDown);
+
+      cleanupBridge = () => {
+        container.removeEventListener('pointerdown', handlePointerDown);
+        container.removeEventListener('pointermove', handlePointerMove);
+        window.removeEventListener('keydown', handleKeyDown);
+        try {
+          candlestickSeries.detachPrimitive(primitive);
+        } catch (_) {}
+      };
+    }
+
     return () => {
       window.removeEventListener('resize', handleResize);
+      if (cleanupBridge) {
+        cleanupBridge();
+      }
       chart.remove();
     };
   }

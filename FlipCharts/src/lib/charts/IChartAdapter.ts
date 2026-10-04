@@ -12,10 +12,13 @@ export interface CandlestickData {
   volume?: number;
 }
 
+import { DrawingManager } from './primitives/DrawingManager';
+
 export interface ChartOptions {
   theme: 'dark' | 'light';
   timeframe: string;
   showVolume: boolean;
+  drawingBridge?: { manager: DrawingManager };
   onVisibleRangeChange?: (range: { from: number; to: number }) => void;
 }
 

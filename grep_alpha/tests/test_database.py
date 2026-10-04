@@ -50,6 +50,12 @@ class TestDatabase(unittest.TestCase):
             cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='daily_prices'")
             self.assertIsNotNone(cursor.fetchone())
 
+    def test_chart_drawings_table_exists_after_init(self):
+        with database.get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='chart_drawings'")
+            self.assertIsNotNone(cursor.fetchone())
+
     def test_insert_and_get_last_date(self):
         data = [
             ("2023-01-01", "AAPL", 150.0, 155.0, 149.0, 153.0, 1000),

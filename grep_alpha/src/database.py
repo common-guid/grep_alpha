@@ -39,6 +39,20 @@ def init_db():
                 created_at TEXT NOT NULL
             )
         """)
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS chart_drawings (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                symbol TEXT NOT NULL,
+                tool TEXT NOT NULL,
+                points TEXT NOT NULL,
+                color TEXT NOT NULL DEFAULT '#58a6ff',
+                created_at TEXT NOT NULL DEFAULT (datetime('now')),
+                updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+            )
+        """)
+        cursor.execute("""
+            CREATE INDEX IF NOT EXISTS idx_drawings_symbol ON chart_drawings(symbol)
+        """)
         conn.commit()
 
 from datetime import datetime, timedelta

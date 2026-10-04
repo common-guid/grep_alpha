@@ -67,6 +67,18 @@ class SyncStatusResponse(BaseModel):
     message: str
     last_synced: Optional[str] = None
 
+class DrawingPointIn(BaseModel):
+    time: Any
+    price: float
+
+class DrawingIn(BaseModel):
+    tool: str
+    points: List[DrawingPointIn]
+    color: str = "#58a6ff"
+
+class DrawingSetIn(BaseModel):
+    drawings: List[DrawingIn]
+
 # Global background sync task status state
 sync_state = {
     "is_running": False,
@@ -384,6 +396,98 @@ def get_prices(
             "atr14": float(r['atr14']) if pd.notna(r['atr14']) else None,
         })
     return result
+
+
+# --- Chart Drawings API Endpoints ---
+
+ALLOWED_DRAWING_TOOLS = {"trendline", "ray", "hline", "vline", "rect", "measure"}
+EXPECTED_ANCHOR_COUNTS = {
+    "trendline": 2,
+    "ray": 2,
+    "rect": 2,
+    "measure": 2,
+    "hline": 1,
+    "vline": 1,
+}
+
+@app.get("/api/drawings/{symbol}")
+def get_drawings(symbol: str):
+    """Retrieve all stored chart drawings for a given symbol."""
+    sym = symbol.strip().upper()
+    database.init_db()
+    with database.get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute(
+            "SELECT id, symbol, tool, points, color, created_at, updated_at FROM chart_drawings WHERE symbol = ? ORDER BY id ASC",
+            (sym,)
+        )
+        rows = cursor.fetchall()
+
+    import json
+    result = []
+    for row in rows:
+        d_id, d_sym, d_tool, d_points_str, d_color, c_at, u_at = row
+        try:
+            points = json.loads(d_points_str)
+        except Exception:
+            points = []
+        result.append({
+            "id": d_id,
+            "symbol": d_sym,
+            "tool": d_tool,
+            "points": points,
+            "color": d_color,
+            "created_at": c_at,
+            "updated_at": u_at
+        })
+    return {"drawings": result}
+
+
+@app.put("/api/drawings/{symbol}")
+def save_drawings(symbol: str, payload: DrawingSetIn):
+    """Replace all drawings for a symbol with the provided set."""
+    sym = symbol.strip().upper()
+    import json
+
+    # Validation
+    for d in payload.drawings:
+        if d.tool not in ALLOWED_DRAWING_TOOLS:
+            raise HTTPException(status_code=400, detail=f"Invalid tool '{d.tool}'. Allowed tools: {sorted(ALLOWED_DRAWING_TOOLS)}")
+        expected_cnt = EXPECTED_ANCHOR_COUNTS[d.tool]
+        if len(d.points) != expected_cnt:
+            raise HTTPException(status_code=400, detail=f"Tool '{d.tool}' requires {expected_cnt} anchor point(s), got {len(d.points)}")
+
+    database.init_db()
+    with database.get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute("DELETE FROM chart_drawings WHERE symbol = ?", (sym,))
+        for d in payload.drawings:
+            points_json = json.dumps([pt.model_dump() for pt in d.points])
+            cursor.execute(
+                """
+                INSERT INTO chart_drawings (symbol, tool, points, color, created_at, updated_at)
+                VALUES (?, ?, ?, ?, datetime('now'), datetime('now'))
+                """,
+                (sym, d.tool, points_json, d.color)
+            )
+        conn.commit()
+
+    return get_drawings(sym)
+
+
+@app.delete("/api/drawings/{symbol}/{drawing_id}")
+def delete_drawing(symbol: str, drawing_id: int):
+    """Delete a specific drawing by ID for a symbol."""
+    sym = symbol.strip().upper()
+    database.init_db()
+    with database.get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT id FROM chart_drawings WHERE symbol = ? AND id = ?", (sym, drawing_id))
+        if not cursor.fetchone():
+            raise HTTPException(status_code=404, detail=f"Drawing {drawing_id} for symbol {sym} not found")
+        cursor.execute("DELETE FROM chart_drawings WHERE symbol = ? AND id = ?", (sym, drawing_id))
+        conn.commit()
+    return {"ok": True}
 
 
 # --- Analytics Endpoint ---

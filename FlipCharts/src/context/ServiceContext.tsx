@@ -29,6 +29,8 @@ interface Services {
   updateSettings: (settings: UserSettings) => Promise<void>;
   getNotes: (symbol: string) => Promise<string>;
   saveNotes: (symbol: string, notes: string) => Promise<void>;
+  getDrawings: (symbol: string) => Promise<any[]>;
+  saveDrawings: (symbol: string, drawings: any[]) => Promise<any[]>;
 }
 
 const ServiceContext = createContext<Services | null>(null);
@@ -145,6 +147,34 @@ export const ServiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
     await storage.saveNotes(symbol, notes);
   };
 
+  const getDrawings = async (symbol: string) => {
+    try {
+      const res = await fetch(`/api/drawings/${symbol.toUpperCase()}`);
+      if (!res.ok) return [];
+      const data = await res.json();
+      return data.drawings || [];
+    } catch (err) {
+      console.error(`Error loading drawings for ${symbol}:`, err);
+      return [];
+    }
+  };
+
+  const saveDrawings = async (symbol: string, drawings: any[]) => {
+    try {
+      const res = await fetch(`/api/drawings/${symbol.toUpperCase()}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ drawings }),
+      });
+      if (!res.ok) return drawings;
+      const data = await res.json();
+      return data.drawings || drawings;
+    } catch (err) {
+      console.error(`Error saving drawings for ${symbol}:`, err);
+      return drawings;
+    }
+  };
+
   // Derive watchlists dynamically from tags in watchlistItems, with 'all' at the top
   const watchlists = useMemo<DerivedWatchlist[]>(() => {
     const tagMap = new Map<string, string[]>();
@@ -215,6 +245,8 @@ export const ServiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
       updateSettings,
       getNotes,
       saveNotes,
+      getDrawings,
+      saveDrawings,
     }}>
       {children}
     </ServiceContext.Provider>
