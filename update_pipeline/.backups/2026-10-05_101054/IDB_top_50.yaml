@@ -1,5 +1,5 @@
 name: ibd top 50
-updated: '2026-10-05'
+updated: '2026-09-28'
 tickers:
 - symbol: CAVA
   status: watching
@@ -40,11 +40,11 @@ tickers:
 - symbol: RKLB
   status: watching
   target_entry: null
-  thesis: "2026-09-03:Rocket Lab has successfully transitioned from a high-risk launch\
-    \ startup to a vertically integrated space systems leader. With a record backlog\
-    \ in its high-margin Space Systems division and the development of the Neutron\
-    \ rocket\u2014designed to break the current medium-launch monopoly\u2014RKLB is\
-    \ the premier equity vehicle for the commercialization of space."
+  thesis: 2026-09-03:Rocket Lab has successfully transitioned from a high-risk launch
+    startup to a vertically integrated space systems leader. With a record backlog
+    in its high-margin Space Systems division and the development of the Neutron rocket—designed
+    to break the current medium-launch monopoly—RKLB is the premier equity vehicle
+    for the commercialization of space.
   tags: Space
   date: '2026-09-03'
 - symbol: APH
@@ -149,16 +149,10 @@ tickers:
 - symbol: BLLN
   status: watching
   target_entry: null
-  thesis: '2026-09-03:Experienced a significant drop on earnings, highlighting the
+  thesis: 2026-09-03:Experienced a significant drop on earnings, highlighting the
     risk of holding through earnings even with a cushion.
-
-    2026-10-05:In space with Natera and Guardant Health, but is profitable unlike
-    competitors. Uses DNA molecular level testing from one blood sample for fetal
-    disorders. Recently signed deal with Anthem healthcare network, driving test quantity.
-    Volatile young IPO, but stabilizing and trying to turn corner after terrible earnings
-    gap down.'
-  tags: ETF, Bio, MedTech, Healthcare
-  date: '2026-10-05'
+  tags: ETF
+  date: '2026-09-03'
 - symbol: BROS
   status: watching
   target_entry: null
@@ -168,15 +162,10 @@ tickers:
 - symbol: BUG
   status: watching
   target_entry: null
-  thesis: '2026-09-03:Looking significantly better, indicating a strong recovery in
+  thesis: 2026-09-03:Looking significantly better, indicating a strong recovery in
     the cybersecurity software sector.
-
-    2026-10-05:Had a really strong day today, nice bounce off 21-day line. AI scares
-    prompted this move. Started weak but quickly recovered, finished at highs (upside
-    reversal). Getting support at pivot for its base. Cybersecurity is a leading area,
-    showing strength even today.'
-  tags: Software, ETF, Cybersecurity, AI_Adjacent
-  date: '2026-10-05'
+  tags: Software, ETF
+  date: '2026-09-03'
 - symbol: CAKE
   status: watching
   target_entry: null
@@ -194,22 +183,18 @@ tickers:
 - symbol: COHR
   status: watching
   target_entry: null
-  thesis: '2026-09-03:Experienced a huge run (42-44% last week) but gave back 14%
-    today, making it risky ahead of earnings. High ATR and significant effort to get
-    up there suggest caution.
-
-    2026-10-05:Moving with other optical names, but not in as good a position as Lumentum.'
-  tags: Software, ETF, Manufacturing, Fiber_optics
-  date: '2026-10-05'
+  thesis: 2026-09-03:Experienced a huge run (42-44% last week) but gave back 14% today,
+    making it risky ahead of earnings. High ATR and significant effort to get up there
+    suggest caution.
+  tags: Software, ETF
+  date: '2026-09-03'
 - symbol: CRDO
   status: watching
   target_entry: null
-  thesis: '2026-09-03:Operating in the optical space, with a focus on copper getting
+  thesis: 2026-09-03:Operating in the optical space, with a focus on copper getting
     into optical, making it an interesting AI-adjacent stock at key levels.
-
-    2026-10-05:Moving with other optical names, but not in as good a position as Lumentum.'
-  tags: Software, Semi-IDM, ETF, Semi-Fabless, Network
-  date: '2026-10-05'
+  tags: Software, Semi-IDM, ETF
+  date: '2026-09-03'
 - symbol: CRM
   status: watching
   target_entry: null
@@ -243,15 +228,11 @@ tickers:
 - symbol: DELL
   status: watching
   target_entry: null
-  thesis: '2026-09-03:Exhibits a high tight flag pattern but has been choppy, leading
+  thesis: 2026-09-03:Exhibits a high tight flag pattern but has been choppy, leading
     to multiple failed breakout attempts due to tight stops. Recent Microsoft update
     caused unexpected shutdowns for Dell computers.
-
-    2026-10-05:One of the leaders breaking out early in the year. Showing high relative
-    strength, part of a handful of names trying to lead. Building right side of bases,
-    showing accumulation.'
-  tags: ETF, Software, Manufacturing, Hardware, Big_Tech
-  date: '2026-10-05'
+  tags: ETF, Software, Manufacturing
+  date: '2026-09-03'
 - symbol: EAT
   status: watching
   target_entry: null
@@ -300,13 +281,11 @@ tickers:
 - symbol: GH
   status: watching
   target_entry: null
-  thesis: '2026-09-03:Gapped up strongly on earnings and broke above recent resistance,
+  thesis: 2026-09-03:Gapped up strongly on earnings and broke above recent resistance,
     signaling a potential entry. Bounced off the 10-week moving average, but fundamentals
     are currently rough, making it a pattern-driven trade.
-
-    2026-10-05:In the prenatal/genetic testing space, but not profitable.'
-  tags: Healthcare, Bio, MedTech
-  date: '2026-10-05'
+  tags: Healthcare
+  date: '2026-09-03'
 - symbol: GOOGL
   status: watching
   target_entry: null
@@ -345,15 +324,10 @@ tickers:
 - symbol: IGV
   status: watching
   target_entry: null
-  thesis: '2026-09-03:Uptrend clearly intact, well above the 10-day line, indicating
+  thesis: 2026-09-03:Uptrend clearly intact, well above the 10-day line, indicating
     continued money rotation into the software sector.
-
-    2026-10-05:Nice action, many components around buy points or hitting highs. Doing
-    pretty well despite tricky environment. Right up at all these levels again, individual
-    names looking good. Bouncing off 21-day line, potentially setting up a new base
-    with an early entry around 109.'
-  tags: Software, ETF, Big_Tech
-  date: '2026-10-05'
+  tags: Software, ETF
+  date: '2026-09-03'
 - symbol: INSW
   status: watching
   target_entry: null
@@ -372,11 +346,9 @@ tickers:
 - symbol: IWM
   status: watching
   target_entry: null
-  thesis: 2026-10-05:Looks pretty awful, clear declines. Small caps struggling, punishing
-    cyclical companies not growing like crazy due to high interest rates and fuel
-    costs.
-  tags: ETF, Broad_Market
-  date: '2026-10-05'
+  thesis: ''
+  tags: ETF
+  date: '2026-09-03'
 - symbol: JD
   status: watching
   target_entry: null
@@ -403,16 +375,11 @@ tickers:
 - symbol: LGND
   status: watching
   target_entry: null
-  thesis: '2026-09-03:A profitable biotech that broke out in early June and had an
+  thesis: 2026-09-03:A profitable biotech that broke out in early June and had an
     orderly pullback, bouncing off its 10-week line. It funds biotech companies and
     collects royalties, showing a very solid record of consistent growth.
-
-    2026-10-05:Up over 4% today. Royalty aggregator, funding drug development and
-    receiving a piece of profits. Profitable, unlike many biotechs. Crossed a downward
-    sloping trend line as an early entry, moving nicely toward cup buy point. Strong
-    movement in medical space, with supporting action from other stocks in the group.'
-  tags: Healthcare, Bio, Pharma
-  date: '2026-10-05'
+  tags: Healthcare
+  date: '2026-09-03'
 - symbol: LIIT
   status: watching
   target_entry: null
@@ -424,16 +391,11 @@ tickers:
 - symbol: LITE
   status: watching
   target_entry: null
-  thesis: '2026-09-03:An optical name in the AI infrastructure space, expected to
-    report triple-digit growth (237% EPS, 105% revenue). At key levels with a 10%
-    ATR, it could be actionable after earnings, but also carries significant risk.
-
-    2026-10-05:Up 7.7%, first close above 1000 in a while, clear break above ceiling.
-    Formed a handle, could be treated as a handle buy point (1026 or 1000 level).
-    Strong fundamentals with triple-digit top and bottom-line growth for a couple
-    of quarters. Performing well on a shaky S&P day.'
-  tags: Software, ETF, Network, Hardware, Manufacturing
-  date: '2026-10-05'
+  thesis: 2026-09-03:An optical name in the AI infrastructure space, expected to report
+    triple-digit growth (237% EPS, 105% revenue). At key levels with a 10% ATR, it
+    could be actionable after earnings, but also carries significant risk.
+  tags: Software, ETF
+  date: '2026-09-03'
 - symbol: LLY
   status: watching
   target_entry: null
@@ -453,16 +415,10 @@ tickers:
 - symbol: META
   status: watching
   target_entry: null
-  thesis: '2026-09-03:Part of the Magnificent 7, but struggling, remaining below both
+  thesis: 2026-09-03:Part of the Magnificent 7, but struggling, remaining below both
     its 50-day and 200-day moving averages.
-
-    2026-10-05:Setting up a handle after clearing a trend line from a large base.
-    Excitement around ''Muse'' (AI product) which is useful to customers, suggesting
-    Meta could do ''neat stuff.'' Pausing after a strong run, making it potentially
-    more comfortable to buy. Revenue growth solid, but earnings growth might be flat/decline
-    due to tax/spending.'
-  tags: Software, ETF, Big_Tech, Entertainment, AI_Adjacent
-  date: '2026-10-05'
+  tags: Software, ETF
+  date: '2026-09-03'
 - symbol: MGN
   status: watching
   target_entry: null
@@ -473,28 +429,17 @@ tickers:
 - symbol: MSFT
   status: watching
   target_entry: null
-  thesis: '2026-09-03:Kicking into high gear in the software space, moving decisively
+  thesis: 2026-09-03:Kicking into high gear in the software space, moving decisively
     above its 200-day moving average and continuing to climb.
-
-    2026-10-05:Doing well, especially after taking some time off. Come back with software
-    strength. Co-pilot initiatives received positive market reaction. Solid growth,
-    picking up on earnings, revenue growth in high teens. Right around being actionable,
-    potentially clearing 519.57.'
-  tags: Software, Big_Tech, AI_Adjacent, Cloud
-  date: '2026-10-05'
+  tags: Software, Big_Tech, AI_Adjacent
+  date: '2026-09-28'
 - symbol: MU
   status: watching
   target_entry: null
-  thesis: '2026-09-03:Held up better than peers but still 30% off highs. Exhibiting
+  thesis: 2026-09-03:Held up better than peers but still 30% off highs. Exhibiting
     spectacular numbers, but the chart is damaged and needs time to recover.
-
-    2026-10-05:Upside reversal, up 3%. Quadruple-digit earnings growth (1000%+ earnings
-    gains) past two quarters. Tested 21-day line, undercut recent lows, then strong
-    rebound. Actionable off breaking mini trend line or above 1827. Strong growth
-    expected for years due to AI demand, not just cyclical. Strong beat on earnings,
-    revenue growth 379%, guided up significantly.'
-  tags: Software, Memory, Semi-IDM, AI_Adjacent
-  date: '2026-10-05'
+  tags: Software, Memory, Semi-IDM
+  date: '2026-09-28'
 - symbol: NBIS
   status: watching
   target_entry: null
@@ -513,13 +458,9 @@ tickers:
 - symbol: NVDA
   status: watching
   target_entry: null
-  thesis: '2026-09-03:GPU demand strong
-
-    2026-10-05:Improved and at new highs, not alone in its strength. Valuation is
-    high, passed $1 trillion and now over $5 trillion and climbing. Important part
-    of the AI and technology trade.'
-  tags: Software, Semi-IDM, Semi-Fabless, AI_Adjacent, Big_Tech
-  date: '2026-10-05'
+  thesis: 2026-09-03:GPU demand strong
+  tags: Software, Semi-IDM
+  date: '2026-09-03'
 - symbol: NVT
   status: watching
   target_entry: null
@@ -531,30 +472,22 @@ tickers:
 - symbol: QQQ
   status: watching
   target_entry: null
-  thesis: 2026-10-05:NASDAQ 100 ETF, up 1% on the day, holding at new highs. Analyst
-    owns it and is not overly bearish on the NASDAQ.
-  tags: Software, ETF, Broad_Market, Big_Tech
-  date: '2026-10-05'
+  thesis: ''
+  tags: Software, ETF
+  date: '2026-09-03'
 - symbol: QQQE
   status: watching
   target_entry: null
-  thesis: '2026-09-03:Reflects positive breadth in the market, despite mega-cap weakness.
-
-    2026-10-05:Declining a little today, hugging its 50-day line. Doesn''t weight
-    mega caps, showing difficulty in broader growth market.'
-  tags: Software, ETF, Broad_Market
-  date: '2026-10-05'
+  thesis: 2026-09-03:Reflects positive breadth in the market, despite mega-cap weakness.
+  tags: Software, ETF
+  date: '2026-09-03'
 - symbol: RSP
   status: watching
   target_entry: null
-  thesis: '2026-09-03:Making new highs and outperforming, indicating broader market
+  thesis: 2026-09-03:Making new highs and outperforming, indicating broader market
     strength beyond just mega-caps.
-
-    2026-10-05:Trending lower for quite some time, well below 21 and 50-day lines.
-    Indicator of poor market breadth, showing that much of the market (excluding big
-    cap tech) looks awful.'
-  tags: ETF, Broad_Market
-  date: '2026-10-05'
+  tags: ETF
+  date: '2026-09-03'
 - symbol: SECO
   status: watching
   target_entry: null
@@ -582,16 +515,11 @@ tickers:
 - symbol: SMH
   status: watching
   target_entry: null
-  thesis: '2026-09-03:Down 2.3% and stuck below its 50-day moving average, presenting
+  thesis: 2026-09-03:Down 2.3% and stuck below its 50-day moving average, presenting
     potential shorting opportunities or requiring a decisive move above key levels
     for longs.
-
-    2026-10-05:Chips have been on a tear, up almost 4% on the week. Recovered from
-    being below 10-week moving average. Nvidia is a big component, but other strong
-    stocks are also contributing. Important part of the AI and technology trade. Tight
-    action around 600 level, could break either way, need follow-up strength.'
-  tags: Software, Semi-IDM, ETF, Semi-Fabless, AI_Adjacent
-  date: '2026-10-05'
+  tags: Software, Semi-IDM, ETF
+  date: '2026-09-03'
 - symbol: SNDK
   status: watching
   target_entry: null
@@ -619,10 +547,9 @@ tickers:
 - symbol: SPY
   status: watching
   target_entry: null
-  thesis: 2026-10-05:Down slightly today, fading at the end. Struggling to establish
-    a trend, but holding above 50-day line.
-  tags: ETF, Broad_Market, Blue_Chip
-  date: '2026-10-05'
+  thesis: ''
+  tags: ETF
+  date: '2026-09-03'
 - symbol: SZZL
   status: watching
   target_entry: null
@@ -694,14 +621,11 @@ tickers:
 - symbol: USO
   status: watching
   target_entry: null
-  thesis: '2026-09-03:Rose slightly, but crude oil prices remain a key factor influencing
+  thesis: 2026-09-03:Rose slightly, but crude oil prices remain a key factor influencing
     market direction, with potential for significant market impact if prices reach
     $100 or fall to $60.
-
-    2026-10-05:Down about 1.8% on the day, finished off lows. Three-week decline.
-    Market has been resilient despite oil prices.'
   tags: Energy, ETF
-  date: '2026-10-05'
+  date: '2026-09-03'
 - symbol: VLO
   status: watching
   target_entry: null
@@ -719,13 +643,10 @@ tickers:
 - symbol: WDC
   status: watching
   target_entry: null
-  thesis: '2026-09-03:Gapped down on earnings, reflecting a tough tone for memory
-    stocks, but is now off its lows.
-
-    2026-10-05:Weakest of the memory names, but still nice to see other names showing
-    strength.'
-  tags: Software, Memory, Manufacturing, Hardware
-  date: '2026-10-05'
+  thesis: 2026-09-03:Gapped down on earnings, reflecting a tough tone for memory stocks,
+    but is now off its lows.
+  tags: Software, Memory, Manufacturing
+  date: '2026-09-03'
 - symbol: XBI
   status: watching
   target_entry: null
@@ -736,36 +657,24 @@ tickers:
 - symbol: XLE
   status: watching
   target_entry: null
-  thesis: '2026-09-03:Sizable move up almost 5% and looks technically actionable,
-    but carries significant headline risk due to geopolitics and oil price volatility.
-
-    2026-10-05:Oil stocks underperformed today, oil took a hit (down 3.5%, below $90/barrel).
-    Still higher than they have been on a monthly chart, putting pressure on inflation.
-    Market resilience despite this.'
+  thesis: 2026-09-03:Sizable move up almost 5% and looks technically actionable, but
+    carries significant headline risk due to geopolitics and oil price volatility.
   tags: Energy, ETF
-  date: '2026-10-05'
+  date: '2026-09-03'
 - symbol: XLK
   status: watching
   target_entry: null
-  thesis: '2026-09-03:Looking pretty good, reflecting strength in the technology sector,
+  thesis: 2026-09-03:Looking pretty good, reflecting strength in the technology sector,
     particularly from leading software and Magnificent 7 stocks.
-
-    2026-10-05:Getting to new highs, which is encouraging, contrasting with defensive
-    sectors coming down.'
-  tags: Software, ETF, Big_Tech, Hardware
-  date: '2026-10-05'
+  tags: Software, ETF
+  date: '2026-09-03'
 - symbol: XLV
   status: watching
   target_entry: null
-  thesis: '2026-09-03:Tends to be on the more defensive side, but medical stocks are
+  thesis: 2026-09-03:Tends to be on the more defensive side, but medical stocks are
     showing up in screens.
-
-    2026-10-05:Trying to get above a downtrend line in a flat base, getting support
-    where desired. Decent strength, outperformance (up 0.3%). Mixed bag: defensive,
-    but also growth from aging population and AI impact. Area to watch, but need to
-    discern if it''s defensive rotation or growth excitement.'
-  tags: Healthcare, ETF, Bio, Pharma, MedTech
-  date: '2026-10-05'
+  tags: Healthcare, ETF
+  date: '2026-09-03'
 - symbol: XOP
   status: watching
   target_entry: null
@@ -801,13 +710,10 @@ tickers:
 - symbol: FTNT
   status: watching
   target_entry: null
-  thesis: '2026-09-03:Software sector is shining, indicating potential positive performance
+  thesis: 2026-09-03:Software sector is shining, indicating potential positive performance
     or outlook.
-
-    2026-10-05:Surged >130% from spring lows, top S&P 500 performer. AI is a significant
-    tailwind, increasing attack surface and making enterprise security more strategic.'
-  tags: Software, Cybersecurity, Network
-  date: '2026-10-05'
+  tags: Software
+  date: '2026-09-03'
 - symbol: HOOD
   status: watching
   target_entry: null
@@ -823,21 +729,10 @@ tickers:
 - symbol: PANW
   status: watching
   target_entry: null
-  thesis: '2026-09-03:Reporting earnings with AI profitability in the spotlight, suggesting
+  thesis: 2026-09-03:Reporting earnings with AI profitability in the spotlight, suggesting
     potential positive performance related to AI.
-
-    2026-10-05:Surged >130% from spring lows, top S&P 500 performer. AI is a significant
-    tailwind, increasing attack surface and making enterprise security more strategic.
-    Winning market share in platform consolidation. Has full security stack (network,
-    cloud, SOC, AI, identity via Cyberark acquisition). Breadth is an advantage. Customers
-    want consolidation, metrics show scaling platformization. Best positioned to capitalize
-    on AI, especially in runtime security. Looks really good, RS line blue dot ahead
-    of breakout. Closed up 4.6% today, started weak but immediately came back, finished
-    at highs. Strong relative strength, hitting relative strength new highs in its
-    base. $400 level looks interesting as a pullback area. Market pressure lifting
-    could lead to pops.'
-  tags: Software, Cybersecurity, Network, AI_Adjacent
-  date: '2026-10-05'
+  tags: Software, Cybersecurity, Network
+  date: '2026-09-28'
 - symbol: PLTR
   status: watching
   target_entry: null
@@ -847,15 +742,10 @@ tickers:
 - symbol: SNOW
   status: watching
   target_entry: null
-  thesis: '2026-09-03:Reporting earnings with AI profitability in the spotlight, suggesting
+  thesis: 2026-09-03:Reporting earnings with AI profitability in the spotlight, suggesting
     potential positive performance related to AI.
-
-    2026-10-05:Up 2.8%. Rangebound since earnings gap up. Found support at 50-day
-    line. Weekly chart shows very tight action, including three weeks tight. Potentially
-    actionable above today''s highs (around 348 level). RS line close to highs, looking
-    strong despite wobbly action.'
-  tags: Software, Cloud, Cybersecurity
-  date: '2026-10-05'
+  tags: Software
+  date: '2026-09-03'
 - symbol: UBS
   status: watching
   target_entry: null
@@ -889,14 +779,9 @@ tickers:
 - symbol: NTAP
   status: watching
   target_entry: null
-  thesis: 2026-10-05:Broke out again into buy zone of cup with handle base. Strong
-    strength in computer software enterprise companies, providing support. Moved to
-    leaders list in model portfolio, IBD stock of the day. Analyst conference on Tuesday
-    could push it higher. Finished at top of its range, making progress while market
-    struggles. Strong ratings (Composite 99, EPS 93, RS 97), in top group, strong
-    fundamentals.
-  tags: Software, Memory, Cloud, Hardware, Manufacturing
-  date: '2026-10-05'
+  thesis: ''
+  tags: Software, Memory, Cloud
+  date: '2026-09-28'
 - symbol: SHOP
   status: watching
   target_entry: null
@@ -909,280 +794,3 @@ tickers:
   thesis: ''
   tags: Financial_Services, Fintech
   date: '2026-09-28'
-- symbol: AMD
-  status: watching
-  target_entry: null
-  thesis: 2026-10-05:One of the highest relative strength tech stocks. Strong sequential
-    sales growth (10-15% quarter-over-quarter) for a multi-billion dollar company.
-    750 funds got into AMD in Q2, suggesting institutional belief in positive future.
-    Strong earnings, in AI inference space. Character change in late August/September
-    with tight ranges, held up well during tech correction (27% vs 50%+ for others).
-  tags: Semi-Fabless, AI_Adjacent, Big_Tech
-  date: '2026-10-05'
-- symbol: AMGN
-  status: watching
-  target_entry: null
-  thesis: 2026-10-05:Closed very well, getting above a support level. Part of the
-    medical space's nice movement, showing strength throughout the day.
-  tags: Bio, Pharma, Healthcare, Blue_Chip
-  date: '2026-10-05'
-- symbol: ARW
-  status: watching
-  target_entry: null
-  thesis: 2026-10-05:Breaking out with relative strength line hitting a new high (blue
-    dot). Strong move on weekly chart, closing near top of range. Part of a sector
-    (electronics) showing broad strength, with an AI-adjacent/supportive role.
-  tags: Hardware, Manufacturing, AI_Adjacent
-  date: '2026-10-05'
-- symbol: ASX
-  status: watching
-  target_entry: null
-  thesis: '2026-10-05:Classic cup base, paused at 45.52, now challenging again. Up
-    3.5% with 12% increase in volume over 50-day average. Strong look for manufacturing
-    space. In strong industry group (semiconductor manufacturing, #17/145).'
-  tags: Semi-IDM, Manufacturing
-  date: '2026-10-05'
-- symbol: ATYY
-  status: watching
-  target_entry: null
-  thesis: 2026-10-05:Breaking out solidly today, up 8.4% with RS line blue dot and
-    coming to new highs. Strong relative strength, improved significantly in a short
-    period. ADR, large, liquid company (over $100B market cap) in semiconductor equipment.
-  tags: Semi-IDM, Hardware, Manufacturing
-  date: '2026-10-05'
-- symbol: CRWD
-  status: watching
-  target_entry: null
-  thesis: 2026-10-05:Surged >130% from spring lows, top S&P 500 performer. AI is a
-    significant tailwind, increasing attack surface and making enterprise security
-    more strategic. Winning market share in platform consolidation. Has full security
-    stack (endpoint, cloud, identity, AI tools), except network security. Incredible
-    product. Customers want consolidation, metrics show scaling module usage. Best
-    positioned to capitalize on AI, especially in runtime security.
-  tags: Cybersecurity, Software, Cloud, AI_Adjacent
-  date: '2026-10-05'
-- symbol: CYBR
-  status: watching
-  target_entry: null
-  thesis: ''
-  tags: Cybersecurity, Software, Cloud
-  date: '2026-10-05'
-- symbol: DXY
-  status: watching
-  target_entry: null
-  thesis: 2026-10-05:US dollar index has been 'gangbusters' along with bond sell-off
-    and 10-year yield strengthening. Typically causes gold to go in opposite direction.
-  tags: Unknown_Sector, Financial_Services
-  date: '2026-10-05'
-- symbol: EN
-  status: watching
-  target_entry: null
-  thesis: 2026-10-05:Caught analyst's eye, showing strength throughout the day, part
-    of the medical space's nice movement.
-  tags: Pharma, Healthcare
-  date: '2026-10-05'
-- symbol: EWQ
-  status: watching
-  target_entry: null
-  thesis: 2026-10-05:Declining 2%, touching March lows, 'looked pretty ugly lately.'
-    Facing deficit and interest rate concerns, budget rumblings, upcoming elections.
-    Lacks big tech companies compared to US indexes.
-  tags: ETF, Broad_Market
-  date: '2026-10-05'
-- symbol: GLD
-  status: watching
-  target_entry: null
-  thesis: 2026-10-05:Looked interesting recently, especially gold miners, but then
-    'fell out of bed.' One of the strongest groups today, but still 'very damaged
-    goods.' Dollar strengthening (DXY) typically causes gold to go in opposite direction.
-  tags: ETF, Metals
-  date: '2026-10-05'
-- symbol: GLW
-  status: watching
-  target_entry: null
-  thesis: 2026-10-05:Had taken a pretty hard hit off the highs, around the 200-day
-    line. Moving with other optical names, but not in as good a position as Lumentum.
-  tags: Manufacturing, Fiber_optics
-  date: '2026-10-05'
-- symbol: GOOG
-  status: watching
-  target_entry: null
-  thesis: 2026-10-05:Released latest AI model after the close, rising a little bit.
-    Right at that 50-day line. Could give tech futures a bit of a boost overnight.
-  tags: Big_Tech, AI_Adjacent, Software
-  date: '2026-10-05'
-- symbol: HNGY
-  status: watching
-  target_entry: null
-  thesis: 2026-10-05:Recent IPO (1-1.5 years). Uses AI to refine treatments for in-home
-    guided therapy, saving employers and insurers costs. Chart teasing resistance
-    area, not yet blown through 100. Potential for ease of use AI technology combined
-    with cost savings.
-  tags: MedTech, AI_Adjacent, Healthcare
-  date: '2026-10-05'
-- symbol: HPE
-  status: watching
-  target_entry: null
-  thesis: 2026-10-05:Up 3.9%, back in buy zone out of cup with handle base (6344 buy
-    point). Broke out on stronger guidance for networking business and big order from
-    AMD. Strong earnings and sales, relative strength line at new high. Closed in
-    buy range despite fading off intraday highs.
-  tags: Hardware, Network, Manufacturing
-  date: '2026-10-05'
-- symbol: IBIT
-  status: watching
-  target_entry: null
-  thesis: 2026-10-05:Constructive off the bottom, went above and remained above the
-    200-day moving average line, held gains after a nice thrust. Analyst looking for
-    opportunity to add.
-  tags: ETF, Fintech
-  date: '2026-10-05'
-- symbol: MAGS
-  status: watching
-  target_entry: null
-  thesis: 2026-10-05:Doing well, group of stocks doing a bulk of the work. Up 0.4%,
-    fading off highs but technically in a buy zone. Disappointing to finish lower,
-    but still acting pretty well. Popped out of a base, but disconnect with broader
-    market (XMAG) which looks like a downtrend. Represents the few stocks carrying
-    the market.
-  tags: ETF, Big_Tech, AI_Adjacent
-  date: '2026-10-05'
-- symbol: MRVL
-  status: watching
-  target_entry: null
-  thesis: 2026-10-05:One of the leaders breaking out early in the year. Showing high
-    relative strength, part of a handful of names trying to lead. Building right side
-    of bases, showing accumulation.
-  tags: Semi-Fabless, Network
-  date: '2026-10-05'
-- symbol: MTRN
-  status: watching
-  target_entry: null
-  thesis: 2026-10-05:Up 10% today after a strong upside reversal on Thursday, up almost
-    18% for the week. Part of a broader trend of strength noticed in metals, mining,
-    and materials sectors, closing at highs.
-  tags: Metals, Manufacturing
-  date: '2026-10-05'
-- symbol: NOK
-  status: watching
-  target_entry: null
-  thesis: 2026-10-05:One of the leaders breaking out early in the year. Showing high
-    relative strength, part of a handful of names trying to lead. Building right side
-    of bases, showing accumulation.
-  tags: Network, Hardware
-  date: '2026-10-05'
-- symbol: NTRS
-  status: watching
-  target_entry: null
-  thesis: 2026-10-05:Leader in the prenatal/genetic testing space, but not profitable.
-  tags: Bio, MedTech, Healthcare
-  date: '2026-10-05'
-- symbol: OKTA
-  status: watching
-  target_entry: null
-  thesis: 2026-10-05:Plays in runtime real-time security. Has the full identity stack,
-    seeing success from new modules. Starting to figure out how to monetize AI agents.
-    Budgets shifting towards identity, and towards Okta. Best positioned on the identity
-    side, which is becoming a new perimeter with AI agents.
-  tags: Cybersecurity, Software, Cloud, AI_Adjacent
-  date: '2026-10-05'
-- symbol: RSPG
-  status: watching
-  target_entry: null
-  thesis: 2026-10-05:Equal weighted energy space. Last two days very strong, but coming
-    up to 50-day moving average line which could be resistance. Analyst hopes it hits
-    resistance and comes down, as market has shaken off energy strength.
-  tags: ETF, Energy
-  date: '2026-10-05'
-- symbol: RUT
-  status: watching
-  target_entry: null
-  thesis: 2026-10-05:In a solid downtrend, not looking great at all. Easy to stay
-    out of this market.
-  tags: ETF, Broad_Market
-  date: '2026-10-05'
-- symbol: SKHY
-  status: watching
-  target_entry: null
-  thesis: 2026-10-05:Doing something, maybe breaking a little trend line, little shelf,
-    high handle to the prior base.
-  tags: Memory, Semi-IDM
-  date: '2026-10-05'
-- symbol: SLX
-  status: watching
-  target_entry: null
-  thesis: 2026-10-05:Great day, closed at highs, breaking a downtrend (though still
-    below 50-day MA). Noted for closing better than other things, part of a surprising
-    strength in metals/mining/materials.
-  tags: ETF, Metals, Manufacturing
-  date: '2026-10-05'
-- symbol: SN
-  status: watching
-  target_entry: null
-  thesis: 2026-10-05:Quite the move coming out of a base at 134 in June, trended nicely
-    above 21-day MA. Took a hit but on recovery path, got above resistance around
-    180. Will see if it can finish strong for the month.
-  tags: Manufacturing, Hardware
-  date: '2026-10-05'
-- symbol: STX
-  status: watching
-  target_entry: null
-  thesis: 2026-10-05:Flirting with the trend line and maybe some short-term highs.
-  tags: Memory, Hardware
-  date: '2026-10-05'
-- symbol: TNX
-  status: watching
-  target_entry: null
-  thesis: 2026-10-05:10-year Treasury yield went up to 5.29%, backed off highs but
-    still high. Puts pressure on small caps and is generally poor for markets. Market
-    showing resilience despite this.
-  tags: Unknown_Sector, Financial_Services
-  date: '2026-10-05'
-- symbol: XLI
-  status: watching
-  target_entry: null
-  thesis: 2026-10-05:Currently an 'ugly chart,' down below 200-day MA. Analyst watching
-    for clues that breadth might improve; expects it to turn up and rally with positive
-    news on oil and interest rates, bringing participation into the market.
-  tags: ETF, Manufacturing, Transportation
-  date: '2026-10-05'
-- symbol: XLP
-  status: watching
-  target_entry: null
-  thesis: 2026-10-05:Defensive sector. Steadily rising for six months before 2021
-    top, indicating institutional defensive positioning. Currently, staples have come
-    down, suggesting institutions are not piling into defensive sectors, which is
-    encouraging for the broader market.
-  tags: ETF, Utilities, Blue_Chip
-  date: '2026-10-05'
-- symbol: XLRE
-  status: watching
-  target_entry: null
-  thesis: 2026-10-05:Defensive sector. Was up before 2021 top. Currently, has come
-    down, suggesting institutions are not piling into defensive sectors. Facing pressure
-    from high interest rates.
-  tags: ETF, Financial_Services
-  date: '2026-10-05'
-- symbol: XLU
-  status: watching
-  target_entry: null
-  thesis: 2026-10-05:Defensive sector. Was up before 2021 top. Currently, has come
-    down, suggesting institutions are not piling into defensive sectors. Utilities
-    also became AI-adjacent due to energy requirements, blurring its defensive nature.
-  tags: ETF, Utilities, Energy
-  date: '2026-10-05'
-- symbol: XMAG
-  status: watching
-  target_entry: null
-  thesis: 2026-10-05:Looks like a downtrend, not nearly as encouraging as MAGS. Shows
-    disconnect in market, with the other 493 stocks in S&P 500 struggling.
-  tags: ETF, Broad_Market
-  date: '2026-10-05'
-- symbol: ZS
-  status: watching
-  target_entry: null
-  thesis: 2026-10-05:Plays in runtime real-time security, making decisions in real
-    time (AI governance, remediation, provisioning). Mission critical, customers are
-    paying for this.
-  tags: Cybersecurity, Software, Cloud
-  date: '2026-10-05'
