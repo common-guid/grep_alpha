@@ -380,20 +380,49 @@ def get_prices(
         # Fallback if no visible data in window
         visible_df = df.tail(days)
     
+    return _price_records(visible_df)
+
+
+def _nn(x):
+    """Convert NaN to None; otherwise float."""
+    return None if x != x else float(x)
+
+
+def _price_records(vdf: pd.DataFrame):
+    """Build /api/prices rows without iterrows or per-row to_datetime."""
+    if vdf.empty:
+        return []
+    dates = vdf['date'].tolist()
+    ts = (
+        (pd.to_datetime(vdf['date'], format='%Y-%m-%d', utc=True)
+         - pd.Timestamp('1970-01-01', tz='UTC'))
+        // pd.Timedelta('1s')
+    ).tolist()
+    opens = vdf['open'].tolist()
+    highs = vdf['high'].tolist()
+    lows = vdf['low'].tolist()
+    closes = vdf['close'].tolist()
+    volumes = vdf['volume'].tolist()
+    ema10s = vdf['ema10'].tolist()
+    sma50s = vdf['sma50'].tolist()
+    sma200s = vdf['sma200'].tolist()
+    atr14s = vdf['atr14'].tolist()
     result = []
-    for _, r in visible_df.iterrows():
+    for d, t, o, h, l, c, v, e, s50, s200, a in zip(
+        dates, ts, opens, highs, lows, closes, volumes, ema10s, sma50s, sma200s, atr14s
+    ):
         result.append({
-            "time": r['date'],
-            "timestamp": int(pd.to_datetime(r['date'] + "T00:00:00Z").timestamp()),
-            "open": float(r['open']),
-            "high": float(r['high']),
-            "low": float(r['low']),
-            "close": float(r['close']),
-            "volume": int(r['volume']),
-            "ema10": float(r['ema10']) if pd.notna(r['ema10']) else None,
-            "sma50": float(r['sma50']) if pd.notna(r['sma50']) else None,
-            "sma200": float(r['sma200']) if pd.notna(r['sma200']) else None,
-            "atr14": float(r['atr14']) if pd.notna(r['atr14']) else None,
+            "time": d,
+            "timestamp": int(t),
+            "open": float(o),
+            "high": float(h),
+            "low": float(l),
+            "close": float(c),
+            "volume": int(v),
+            "ema10": _nn(e),
+            "sma50": _nn(s50),
+            "sma200": _nn(s200),
+            "atr14": _nn(a),
         })
     return result
 

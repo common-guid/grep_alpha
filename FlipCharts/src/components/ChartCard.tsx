@@ -15,6 +15,7 @@ import { checkStaleness } from '../lib/utils/staleness';
 import { TickerInfoModal } from './TickerInfoModal';
 import { NotesModal } from './NotesModal';
 import { ExpandedChartModal } from './ExpandedChartModal';
+import { notifyViewportChartPainted } from '../lib/viewportChartsGate';
 
 interface ChartCardProps {
   symbol: string;
@@ -75,6 +76,9 @@ export const ChartCard: React.FC<ChartCardProps> = ({ symbol, timeframe }) => {
         showVolume: true,
         drawingBridge: { manager: drawingManager },
       });
+      // Signal WatchlistStats that a viewport chart has painted so its
+      // /api/prices fan-out can start without stealing connection slots.
+      notifyViewportChartPainted();
       return cleanup;
     }
   }, [inView, data, settings.theme, drawingManager]);
