@@ -1,8 +1,16 @@
-typer
-pyyaml
-pandas
-yfinance>=0.2.38
-alpaca-trade-api
-streamlit
-plotly
-
+# Exact pins: the Docker image installs from this file, so every rebuild
+# must get the same versions the test suite was run against.
+# yfinance 0.2.58 + urllib3 1.26.20 are load-bearing: newer yfinance resolves
+# a broken urllib3 on Python 3.12. Change pins only with a passing suite.
+typer==0.27.2
+pyyaml==6.0.1
+pandas==3.0.6
+yfinance==0.2.58
+urllib3==1.26.20
+alpaca-trade-api==3.2.0
+streamlit==1.56.0
+plotly==7.1.0
+# Backend runtime (also named unpinned in the Dockerfile pip install; these pins win)
+fastapi==0.142.2
+uvicorn==0.54.0
+pydantic==2.13.5
