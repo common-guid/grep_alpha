@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import sqlite3
 from datetime import datetime, timedelta
 from src import database
@@ -74,39 +75,36 @@ def calculate_indices(tickers: list[str], timeframe: str = "3m"):
 def calculate_atr(df: pd.DataFrame, period: int = 14) -> pd.Series:
     """
     Calculates the Average True Range (ATR) of a stock over a given period.
-    
+
     df: DataFrame containing at least 'high', 'low', and 'close' columns.
     period: Volatility period (default 14).
     Returns a pandas Series of the ATR values.
+
+    Uses a numpy Wilder smooth for the ATR loop (same math as the prior
+    pandas .iloc implementation; values match within float tolerance).
     """
     if df.empty or len(df) < period:
         return pd.Series(index=df.index, dtype='float64')
 
-    # True Range calculation:
     high = df['high']
     low = df['low']
     close_prev = df['close'].shift(1)
 
-    tr1 = high - low
-    tr2 = (high - close_prev).abs()
-    tr3 = (low - close_prev).abs()
+    tr = pd.concat(
+        [high - low, (high - close_prev).abs(), (low - close_prev).abs()],
+        axis=1,
+    ).max(axis=1)
 
-    tr = pd.concat([tr1, tr2, tr3], axis=1).max(axis=1)
-
-    # Wilder's Smoothing:
-    atr = pd.Series(index=df.index, dtype='float64')
-    
-    # First ATR value is SMA of the first 'period' TRs
     first_atr = tr.iloc[0:period].mean()
-    atr.iloc[period - 1] = first_atr
+    trv = tr.to_numpy(dtype='float64', copy=False)
+    out = np.full(len(trv), np.nan, dtype='float64')
+    out[period - 1] = first_atr
+    curr_atr = float(first_atr)
+    for i in range(period, len(trv)):
+        curr_atr = (curr_atr * (period - 1) + trv[i]) / period
+        out[i] = curr_atr
 
-    # Subsequent values: ATR_t = (ATR_{t-1} * (period - 1) + TR_t) / period
-    curr_atr = first_atr
-    for i in range(period, len(df)):
-        curr_atr = (curr_atr * (period - 1) + tr.iloc[i]) / period
-        atr.iloc[i] = curr_atr
-
-    return atr
+    return pd.Series(out, index=df.index)
 
 if __name__ == "__main__":
     # Example usage (requires data in DB)

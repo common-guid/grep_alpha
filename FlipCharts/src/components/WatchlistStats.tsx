@@ -8,6 +8,7 @@ import { useServices } from '../context/ServiceContext';
 import { CandlestickData } from '../lib/charts/IChartAdapter';
 import { cn } from '../lib/utils';
 import { ArrowUpRight, ArrowDownRight, TrendingUp } from 'lucide-react';
+import { mapPool, waitForViewportChartsPriority } from '../lib/viewportChartsGate';
 
 interface WatchlistStatsProps {
   symbols: string[];
@@ -18,6 +19,9 @@ interface PerformanceAverages {
   avg1m: number | null;
   avg3m: number | null;
 }
+
+/** Keep the stats fan-out from saturating the browser's 6 connections. */
+const STATS_FETCH_CONCURRENCY = 2;
 
 export const WatchlistStats: React.FC<WatchlistStatsProps> = ({ symbols }) => {
   const { api } = useServices();
@@ -65,24 +69,27 @@ export const WatchlistStats: React.FC<WatchlistStatsProps> = ({ symbols }) => {
     }
 
     const calculateAverages = async () => {
+      // Defer the per-symbol fan-out until visible ChartCards have painted
+      // (or a timeout). Otherwise ~273 stats requests fill the HTTP/1.1
+      // 6-connection pool and visible charts wait ~9s in the browser queue.
+      await waitForViewportChartsPriority(3000);
+      if (!active) return;
+
       setLoading(true);
       try {
         const performances1w: number[] = [];
         const performances1m: number[] = [];
         const performances3m: number[] = [];
 
-        // Fetch 3M timeframe as daily data for all symbols in parallel to get history
-        const allData = await Promise.all(
-          symbols.map(async (symbol) => {
-            try {
-              const res = await api.fetchStockData(symbol, '3M');
-              return { symbol, candles: res };
-            } catch (err) {
-              console.warn(`Failed to fetch stats for ${symbol}`, err);
-              return { symbol, candles: [] as CandlestickData[] };
-            }
-          })
-        );
+        const allData = await mapPool(symbols, STATS_FETCH_CONCURRENCY, async (symbol) => {
+          try {
+            const res = await api.fetchStockData(symbol, '3M');
+            return { symbol, candles: res };
+          } catch (err) {
+            console.warn(`Failed to fetch stats for ${symbol}`, err);
+            return { symbol, candles: [] as CandlestickData[] };
+          }
+        });
 
         if (!active) return;
 
