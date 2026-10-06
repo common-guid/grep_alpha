@@ -12,5 +12,6 @@ streamlit==1.56.0
 plotly==7.1.0
 # Backend runtime (also named unpinned in the Dockerfile pip install; these pins win)
 fastapi==0.142.2
-uvicorn==0.54.0
+uvicorn==0.49.0  # 0.50+ crashes at startup with websockets<11 (required by alpaca-trade-api)
 pydantic==2.13.5
+websockets==10.4  # ceiling set by alpaca-trade-api (<11); keep in step with the uvicorn pin
