@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Grep Alpha">
+  <rect width="32" height="32" rx="6" fill="#12151e"/>
+  <rect x="1" y="1" width="30" height="30" rx="5" fill="none" stroke="#242733" stroke-width="1"/>
+  <!-- simplified up candle -->
+  <path d="M11 22V10M11 12h4v8h-4z" fill="#26a69a" stroke="#26a69a" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- simplified down candle -->
+  <path d="M21 8v16M19 11h4v7h-4z" fill="#ef5350" stroke="#ef5350" stroke-width="1.5" stroke-linecap="round"/>
+</svg>
