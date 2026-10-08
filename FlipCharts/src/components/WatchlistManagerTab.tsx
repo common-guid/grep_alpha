@@ -202,7 +202,7 @@ export const WatchlistManagerTab: React.FC<WatchlistManagerTabProps> = ({
       </div>
 
       {/* Tickers Data Table */}
-      <div className="bg-[#131722] border border-[#242733] rounded overflow-hidden shadow-xl">
+      <div className="bg-[#131722] border border-[#242733] rounded overflow-hidden shadow-xl touch:overflow-x-auto">
         <table className="w-full text-left border-collapse text-xs">
           <thead>
             <tr className="bg-[#1c202d] border-b border-[#242733] text-gray-400 font-bold uppercase tracking-wider text-[10px]">
