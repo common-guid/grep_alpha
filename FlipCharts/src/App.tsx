@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ServiceProvider, useServices } from './context/ServiceContext';
 import { Sidebar } from './components/Sidebar';
 import { ChartGrid } from './components/ChartGrid';
@@ -12,8 +12,9 @@ import { WatchlistStats } from './components/WatchlistStats';
 import { SectorMomentumTab } from './components/SectorMomentumTab';
 import { WatchlistManagerTab } from './components/WatchlistManagerTab';
 import { SyncMonitorTab } from './components/SyncMonitorTab';
-import { Settings, Layers, TrendingUp, BarChart2, Tag, Zap } from 'lucide-react';
+import { Settings, Layers, TrendingUp, BarChart2, Tag, Zap, Menu, PanelLeftClose, PanelLeftOpen } from 'lucide-react';
 import { cn } from './lib/utils';
+import { useMediaQuery } from './lib/useMediaQuery';
 
 type ActiveTab = 'charts' | 'momentum' | 'manager' | 'sync';
 
@@ -23,6 +24,40 @@ const AppContent: React.FC = () => {
   const [activeWatchlistId, setActiveWatchlistId] = useState<string>('');
   const [timeframe, setTimeframe] = useState('3M');
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+
+  // Watchlist pane: inline on md+ (open by default, collapsible); an overlay
+  // drawer below md (closed by default so the charts get the full width).
+  const isDesktop = useMediaQuery('(min-width: 768px)');
+  const [isPaneOpen, setIsPaneOpen] = useState<boolean>(isDesktop);
+  const paneToggleRef = useRef<HTMLButtonElement>(null);
+  const paneCloseRef = useRef<HTMLButtonElement>(null);
+  const isDrawerOpen = !isDesktop && isPaneOpen;
+
+  // Crossing the breakpoint (rotation, window resize) resets to that layout's default.
+  useEffect(() => {
+    setIsPaneOpen(isDesktop);
+  }, [isDesktop]);
+
+  const closeDrawer = useCallback(() => {
+    setIsPaneOpen(false);
+    paneToggleRef.current?.focus();
+  }, []);
+
+  // Drawer: Escape closes it; focus moves into it when it opens.
+  useEffect(() => {
+    if (!isDrawerOpen) return;
+    paneCloseRef.current?.focus();
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeDrawer();
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [isDrawerOpen, closeDrawer]);
+
+  const handleSelectWatchlist = useCallback((id: string) => {
+    setActiveWatchlistId(id);
+    if (!isDesktop) closeDrawer();
+  }, [isDesktop, closeDrawer]);
 
   useEffect(() => {
     if (watchlists.length > 0 && !activeWatchlistId) {
@@ -42,12 +77,57 @@ const AppContent: React.FC = () => {
 
   return (
     <div className="flex h-screen w-screen bg-[#0b0e14] text-white overflow-hidden font-sans">
-      <Sidebar activeWatchlistId={activeWatchlistId} onSelectWatchlist={setActiveWatchlistId} />
+      {isDrawerOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-black/60 md:hidden"
+          onClick={closeDrawer}
+          aria-hidden="true"
+        />
+      )}
 
-      <main className="flex-1 flex flex-col h-full overflow-hidden">
+      <div
+        id="watchlist-pane"
+        className={cn(
+          'shrink-0 h-full',
+          isDesktop
+            ? !isPaneOpen && 'hidden'
+            : cn(
+                'fixed inset-y-0 left-0 z-50 shadow-2xl transition-transform duration-200 ease-out',
+                isPaneOpen ? 'translate-x-0' : '-translate-x-full'
+              )
+        )}
+        role={isDesktop ? undefined : 'dialog'}
+        aria-modal={isDrawerOpen ? true : undefined}
+        aria-label="Watchlists"
+        inert={!isDesktop && !isPaneOpen ? true : undefined}
+      >
+        <Sidebar
+          activeWatchlistId={activeWatchlistId}
+          onSelectWatchlist={handleSelectWatchlist}
+          onClose={isDesktop ? undefined : closeDrawer}
+          closeButtonRef={paneCloseRef}
+        />
+      </div>
+
+      <main className="flex-1 min-w-0 flex flex-col h-full overflow-hidden">
         {/* Top Header Navigation & Toolbar */}
         <header className="h-16 border-b border-[#242733] bg-[#131722] flex items-center justify-between px-6 shrink-0">
           <div className="flex items-center gap-6">
+            <button
+              ref={paneToggleRef}
+              type="button"
+              onClick={() => setIsPaneOpen((open) => !open)}
+              className="-ml-3 md:-ml-2 shrink-0 h-11 w-11 md:h-9 md:w-9 flex items-center justify-center text-gray-400 hover:text-white rounded hover:bg-[#1c202d]"
+              aria-controls="watchlist-pane"
+              aria-expanded={isPaneOpen}
+              aria-label={isPaneOpen ? 'Hide watchlist pane' : 'Show watchlist pane'}
+              title={isPaneOpen ? 'Hide watchlists' : 'Show watchlists'}
+            >
+              {isDesktop
+                ? (isPaneOpen ? <PanelLeftClose size={18} /> : <PanelLeftOpen size={18} />)
+                : <Menu size={22} />}
+            </button>
+
             {/* Watchlist Info */}
             <div className="flex flex-col justify-center min-w-[120px]">
               <h2 className="text-sm font-bold leading-tight">{activeWatchlist?.name}</h2>
