@@ -9,9 +9,13 @@ interface SidebarProps {
   /** When set (small screens), shows a close button for the drawer. */
   onClose?: () => void;
   closeButtonRef?: React.Ref<HTMLButtonElement>;
+  /** When set (small screens), the app's views (tabs) are listed above the watchlists. */
+  views?: { id: string; label: string; icon: React.ReactNode }[];
+  activeViewId?: string;
+  onSelectView?: (id: string) => void;
 }
 
-export const Sidebar: React.FC<SidebarProps> = ({ activeWatchlistId, onSelectWatchlist, onClose, closeButtonRef }) => {
+export const Sidebar: React.FC<SidebarProps> = ({ activeWatchlistId, onSelectWatchlist, onClose, closeButtonRef, views, activeViewId, onSelectView }) => {
   const { watchlists, refreshWatchlists } = useServices();
   const [isRefreshing, setIsRefreshing] = React.useState(false);
 
@@ -41,6 +45,31 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeWatchlistId, onSelectWat
       </div>
 
       <div className="flex-1 overflow-y-auto py-4">
+        {views && views.length > 0 && (
+          <div className="mb-4 pb-4 border-b border-[#242733]">
+            <h2 className="px-4 mb-2 text-[10px] font-bold text-gray-500 uppercase tracking-wider">Views</h2>
+            <nav className="space-y-px" aria-label="Views">
+              {views.map((view) => (
+                <button
+                  key={view.id}
+                  type="button"
+                  onClick={() => onSelectView?.(view.id)}
+                  aria-current={activeViewId === view.id ? 'page' : undefined}
+                  className={cn(
+                    'w-full min-h-11 px-4 flex items-center gap-3 text-left text-sm font-semibold transition-colors',
+                    activeViewId === view.id
+                      ? 'bg-[#26a69a]/15 text-white border-l-2 border-[#26a69a]'
+                      : 'text-gray-300 hover:bg-[#242733]'
+                  )}
+                >
+                  <span className={activeViewId === view.id ? 'text-[#26a69a]' : 'text-gray-500'}>{view.icon}</span>
+                  {view.label}
+                </button>
+              ))}
+            </nav>
+          </div>
+        )}
+
         <div className="px-4 mb-3 flex items-center justify-between">
           <h2 className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Watchlist Tags</h2>
           <button 

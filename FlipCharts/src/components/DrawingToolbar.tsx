@@ -47,7 +47,7 @@ export const DrawingToolbar: React.FC<DrawingToolbarProps> = ({
   ];
 
   return (
-    <div className="w-14 border-r border-[#242733] bg-[#1c202d] flex flex-col items-center py-4 gap-3 shrink-0">
+    <div className="w-14 border-r border-[#242733] bg-[#1c202d] flex flex-col items-center py-4 gap-3 shrink-0 max-md:py-2 max-md:gap-2 max-md:overflow-y-auto">
       {/* Pointer / Pan tool */}
       <button
         onClick={() => onSelectTool(null)}

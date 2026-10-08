@@ -75,6 +75,36 @@ const AppContent: React.FC = () => {
     { label: '1Y', value: '1Y' },
   ];
 
+  const views: { id: ActiveTab; label: string; icon: React.ReactNode }[] = [
+    { id: 'charts', label: 'Flip-Charts', icon: <BarChart2 size={18} /> },
+    { id: 'momentum', label: 'Sector Momentum', icon: <TrendingUp size={18} /> },
+    { id: 'manager', label: 'Watchlist Manager', icon: <Tag size={18} /> },
+    { id: 'sync', label: 'Market Sync', icon: <Zap size={18} /> },
+  ];
+  const activeView = views.find((v) => v.id === activeTab);
+
+  const handleSelectView = (id: string) => {
+    setActiveTab(id as ActiveTab);
+    closeDrawer();
+  };
+
+  const paneToggle = (
+    <button
+      ref={paneToggleRef}
+      type="button"
+      onClick={() => setIsPaneOpen((open) => !open)}
+      className="-ml-1.5 md:-ml-2 shrink-0 h-11 w-11 md:h-9 md:w-9 flex items-center justify-center text-gray-400 hover:text-white rounded hover:bg-[#1c202d]"
+      aria-controls="watchlist-pane"
+      aria-expanded={isPaneOpen}
+      aria-label={isPaneOpen ? 'Hide watchlist pane' : 'Show watchlist pane'}
+      title={isPaneOpen ? 'Hide watchlists' : 'Show watchlists'}
+    >
+      {isDesktop
+        ? (isPaneOpen ? <PanelLeftClose size={18} /> : <PanelLeftOpen size={18} />)
+        : <Menu size={22} />}
+    </button>
+  );
+
   return (
     <div className="flex h-screen w-screen bg-[#0b0e14] text-white overflow-hidden font-sans">
       {isDrawerOpen && (
@@ -98,7 +128,7 @@ const AppContent: React.FC = () => {
         )}
         role={isDesktop ? undefined : 'dialog'}
         aria-modal={isDrawerOpen ? true : undefined}
-        aria-label="Watchlists"
+        aria-label={isDesktop ? 'Watchlists' : 'Menu'}
         inert={!isDesktop && !isPaneOpen ? true : undefined}
       >
         <Sidebar
@@ -106,27 +136,18 @@ const AppContent: React.FC = () => {
           onSelectWatchlist={handleSelectWatchlist}
           onClose={isDesktop ? undefined : closeDrawer}
           closeButtonRef={paneCloseRef}
+          views={isDesktop ? undefined : views}
+          activeViewId={activeTab}
+          onSelectView={handleSelectView}
         />
       </div>
 
       <main className="flex-1 min-w-0 flex flex-col h-full overflow-hidden">
-        {/* Top Header Navigation & Toolbar */}
+        {/* Top Header Navigation & Toolbar (md and up: unchanged) */}
+        {isDesktop ? (
         <header className="h-16 border-b border-[#242733] bg-[#131722] flex items-center justify-between px-6 shrink-0">
           <div className="flex items-center gap-6">
-            <button
-              ref={paneToggleRef}
-              type="button"
-              onClick={() => setIsPaneOpen((open) => !open)}
-              className="-ml-3 md:-ml-2 shrink-0 h-11 w-11 md:h-9 md:w-9 flex items-center justify-center text-gray-400 hover:text-white rounded hover:bg-[#1c202d]"
-              aria-controls="watchlist-pane"
-              aria-expanded={isPaneOpen}
-              aria-label={isPaneOpen ? 'Hide watchlist pane' : 'Show watchlist pane'}
-              title={isPaneOpen ? 'Hide watchlists' : 'Show watchlists'}
-            >
-              {isDesktop
-                ? (isPaneOpen ? <PanelLeftClose size={18} /> : <PanelLeftOpen size={18} />)
-                : <Menu size={22} />}
-            </button>
+            {paneToggle}
 
             {/* Watchlist Info */}
             <div className="flex flex-col justify-center min-w-[120px]">
@@ -213,6 +234,52 @@ const AppContent: React.FC = () => {
             </button>
           </div>
         </header>
+        ) : (
+        /* Phone header: two rows, every control on-screen. Views (tabs) live in the drawer. */
+        <header className="border-b border-[#242733] bg-[#131722] shrink-0 px-3 pt-1.5 pb-1.5 flex flex-col gap-1.5">
+          <div className="flex items-center gap-2 min-w-0">
+            {paneToggle}
+            <div className="flex-1 min-w-0 flex flex-col justify-center">
+              <h2 className="text-sm font-bold leading-tight truncate">
+                {activeTab === 'charts' ? activeWatchlist?.name : activeView?.label}
+              </h2>
+              {activeWatchlist && activeWatchlist.symbols.length > 0 && (
+                <div className="mt-1 overflow-x-auto scrollbar-hide">
+                  <WatchlistStats symbols={activeWatchlist.symbols} compact />
+                </div>
+              )}
+            </div>
+            <button
+              type="button"
+              onClick={() => setIsSettingsOpen(true)}
+              className="-mr-1.5 shrink-0 h-11 w-11 flex items-center justify-center text-gray-400 hover:text-white rounded hover:bg-[#1c202d]"
+              aria-label="Settings"
+              title="Settings"
+            >
+              <Settings size={20} />
+            </button>
+          </div>
+
+          {activeTab === 'charts' && (
+            <div className="grid grid-cols-5 gap-1" role="group" aria-label="Timeframe">
+              {timeframes.map((tf) => (
+                <button
+                  key={tf.value}
+                  type="button"
+                  onClick={() => setTimeframe(tf.value)}
+                  aria-pressed={timeframe === tf.value}
+                  className={cn(
+                    'h-11 text-xs font-bold rounded transition-colors',
+                    timeframe === tf.value ? 'bg-[#26a69a] text-white' : 'bg-[#1c202d] text-gray-400 hover:text-gray-200'
+                  )}
+                >
+                  {tf.label}
+                </button>
+              ))}
+            </div>
+          )}
+        </header>
+        )}
 
         {/* Tab Content Renderer */}
         <div className="flex-1 overflow-y-auto scrollbar-hide flex flex-col">

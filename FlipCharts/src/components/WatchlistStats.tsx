@@ -12,6 +12,8 @@ import { mapPool, waitForViewportChartsPriority } from '../lib/viewportChartsGat
 
 interface WatchlistStatsProps {
   symbols: string[];
+  /** Narrow (phone) header: short labels, no arrow icons. */
+  compact?: boolean;
 }
 
 interface PerformanceAverages {
@@ -23,7 +25,7 @@ interface PerformanceAverages {
 /** Keep the stats fan-out from saturating the browser's 6 connections. */
 const STATS_FETCH_CONCURRENCY = 2;
 
-export const WatchlistStats: React.FC<WatchlistStatsProps> = ({ symbols }) => {
+export const WatchlistStats: React.FC<WatchlistStatsProps> = ({ symbols, compact = false }) => {
   const { api } = useServices();
   const [stats, setStats] = useState<PerformanceAverages>({ avg1w: null, avg1m: null, avg3m: null });
   const [loading, setLoading] = useState(false);
@@ -140,6 +142,30 @@ export const WatchlistStats: React.FC<WatchlistStatsProps> = ({ symbols }) => {
   }, [symbols.join(','), api]);
 
   const renderBadge = (label: string, value: number | null) => {
+    if (compact) {
+      const shortLabel = label.replace(' Avg', '');
+      return (
+        <div
+          className={cn(
+            'flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-mono border whitespace-nowrap',
+            value === null
+              ? 'bg-[#1c202d] border-[#242733] text-gray-500'
+              : value >= 0
+              ? 'bg-[#26a69a]/5 border-[#26a69a]/20 text-[#26a69a]'
+              : 'bg-[#ef5350]/5 border-[#ef5350]/20 text-[#ef5350]'
+          )}
+          title={label}
+        >
+          <span className="text-gray-400 font-sans font-semibold">{shortLabel}</span>
+          {value === null ? (
+            <span className="animate-pulse">--</span>
+          ) : (
+            <span className="font-bold">{value >= 0 ? '+' : ''}{value.toFixed(2)}%</span>
+          )}
+        </div>
+      );
+    }
+
     if (value === null) {
       return (
         <div className="flex items-center gap-1.5 px-2 py-0.5 bg-[#1c202d] border border-[#242733] rounded-md text-[10px] text-gray-500 font-mono">
