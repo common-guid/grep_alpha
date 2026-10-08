@@ -47,12 +47,12 @@ export const DrawingToolbar: React.FC<DrawingToolbarProps> = ({
   ];
 
   return (
-    <div className="w-14 border-r border-[#242733] bg-[#1c202d] flex flex-col items-center py-4 gap-3 shrink-0 max-md:py-2 max-md:gap-2 max-md:overflow-y-auto">
+    <div className="w-14 border-r border-[#242733] bg-[#1c202d] flex flex-col items-center py-4 gap-3 shrink-0 max-md:py-2 max-md:gap-1 max-md:overflow-y-auto">
       {/* Pointer / Pan tool */}
       <button
         onClick={() => onSelectTool(null)}
         className={cn(
-          'p-2 rounded-lg transition-all',
+          'p-2 rounded-lg transition-all touch:p-[13px]',
           activeTool === null
             ? 'text-[#26a69a] bg-[#26a69a]/10 border border-[#26a69a]/40'
             : 'text-gray-500 hover:text-white hover:bg-[#2a2e39]'
@@ -70,7 +70,7 @@ export const DrawingToolbar: React.FC<DrawingToolbarProps> = ({
           key={t.id}
           onClick={() => onSelectTool(t.id)}
           className={cn(
-            'p-2 rounded-lg transition-all',
+            'p-2 rounded-lg transition-all touch:p-[13px]',
             activeTool === t.id
               ? 'text-[#26a69a] bg-[#26a69a]/10 border border-[#26a69a]/40 shadow-sm'
               : 'text-gray-500 hover:text-white hover:bg-[#2a2e39]'
@@ -84,14 +84,14 @@ export const DrawingToolbar: React.FC<DrawingToolbarProps> = ({
       <div className="w-8 h-px bg-[#242733] my-1" />
 
       {/* Color swatches */}
-      <div className="flex flex-col gap-1.5 items-center">
+      <div className="flex flex-col gap-1.5 items-center touch:gap-7 touch:py-3.5">
         {PRESET_COLORS.map((c) => (
           <button
             key={c}
             onClick={() => onChangeColor(c)}
             style={{ backgroundColor: c }}
             className={cn(
-              'w-4 h-4 rounded-full transition-transform',
+              'w-4 h-4 rounded-full transition-transform touch-hit',
               currentColor === c ? 'scale-125 ring-2 ring-white/50' : 'opacity-70 hover:opacity-100'
             )}
             title={`Color ${c}`}
@@ -104,7 +104,7 @@ export const DrawingToolbar: React.FC<DrawingToolbarProps> = ({
       {/* Edit actions: Eraser & Clear All */}
       <button
         onClick={onRemoveLast}
-        className="p-2 text-gray-500 hover:text-amber-400 hover:bg-[#2a2e39] rounded-lg transition-all"
+        className="p-2 text-gray-500 hover:text-amber-400 hover:bg-[#2a2e39] rounded-lg transition-all touch:p-[13px]"
         title="Remove Last Drawing"
       >
         <Eraser size={18} />
@@ -112,7 +112,7 @@ export const DrawingToolbar: React.FC<DrawingToolbarProps> = ({
 
       <button
         onClick={onClearAll}
-        className="p-2 text-gray-500 hover:text-red-400 hover:bg-[#2a2e39] rounded-lg transition-all"
+        className="p-2 text-gray-500 hover:text-red-400 hover:bg-[#2a2e39] rounded-lg transition-all touch:p-[13px]"
         title="Clear All Drawings"
       >
         <Trash2 size={18} />

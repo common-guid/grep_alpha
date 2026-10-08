@@ -84,7 +84,7 @@ export const SyncMonitorTab: React.FC = () => {
         <div className="flex items-center gap-3">
           <button
             onClick={fetchStatus}
-            className="p-2 text-gray-400 hover:text-white bg-[#1c202d] border border-[#242733] rounded hover:bg-[#242733]"
+            className="p-2 text-gray-400 hover:text-white bg-[#1c202d] border border-[#242733] rounded hover:bg-[#242733] touch:p-[13px]"
             title="Refresh Status"
           >
             <RefreshCw size={16} className={loading ? 'animate-spin' : ''} />
@@ -93,7 +93,7 @@ export const SyncMonitorTab: React.FC = () => {
           <button
             onClick={handleTriggerSync}
             disabled={status?.sync.is_running || triggering}
-            className={`flex items-center gap-2 px-5 py-2 rounded text-xs font-bold transition-all ${
+            className={`flex items-center gap-2 px-5 py-2 rounded text-xs font-bold transition-all touch:min-h-11 ${
               status?.sync.is_running || triggering
                 ? 'bg-gray-700 text-gray-400 cursor-not-allowed'
                 : 'bg-[#26a69a] hover:bg-[#2bbbad] text-white shadow-lg shadow-[#26a69a]/20'

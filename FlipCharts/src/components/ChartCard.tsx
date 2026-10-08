@@ -16,6 +16,7 @@ import { TickerInfoModal } from './TickerInfoModal';
 import { NotesModal } from './NotesModal';
 import { ExpandedChartModal } from './ExpandedChartModal';
 import { notifyViewportChartPainted } from '../lib/viewportChartsGate';
+import { useMediaQuery } from '../lib/useMediaQuery';
 
 interface ChartCardProps {
   symbol: string;
@@ -39,6 +40,8 @@ export const ChartCard: React.FC<ChartCardProps> = ({ symbol, timeframe }) => {
   const [isExpandedOpen, setIsExpandedOpen] = useState(false);
 
   const drawingManager = useMemo(() => new DrawingManager(), [symbol]);
+  // Touch devices: swipes on grid charts scroll the page (pan/zoom lives in the expanded chart).
+  const isTouchDevice = useMediaQuery('(hover: none), (pointer: coarse)');
 
   // Load stored drawings when card comes into view
   useEffect(() => {
@@ -75,13 +78,14 @@ export const ChartCard: React.FC<ChartCardProps> = ({ symbol, timeframe }) => {
         timeframe,
         showVolume: true,
         drawingBridge: { manager: drawingManager },
+        scrollFriendlyTouch: isTouchDevice,
       });
       // Signal WatchlistStats that a viewport chart has painted so its
       // /api/prices fan-out can start without stealing connection slots.
       notifyViewportChartPainted();
       return cleanup;
     }
-  }, [inView, data, settings.theme, drawingManager]);
+  }, [inView, data, settings.theme, drawingManager, isTouchDevice]);
 
   const latestCandle = data.length > 0 ? data[data.length - 1] : undefined;
   const staleness = checkStaleness(latestCandle?.time);

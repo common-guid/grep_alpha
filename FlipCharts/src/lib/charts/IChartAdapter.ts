@@ -20,6 +20,12 @@ export interface ChartOptions {
   showVolume: boolean;
   drawingBridge?: { manager: DrawingManager };
   onVisibleRangeChange?: (range: { from: number; to: number }) => void;
+  /**
+   * Touch devices, grid cards only: let vertical/horizontal swipes that start
+   * on the chart scroll the page (no touch drag-pan, no pinch-zoom). Mouse
+   * behaviour is unaffected. The expanded chart keeps full touch pan/zoom.
+   */
+  scrollFriendlyTouch?: boolean;
 }
 
 export interface IChartAdapter {

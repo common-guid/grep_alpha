@@ -74,7 +74,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeWatchlistId, onSelectWat
           <h2 className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Watchlist Tags</h2>
           <button 
             onClick={handleRefresh}
-            className="text-gray-400 hover:text-white p-1 hover:bg-[#242733] rounded transition-colors"
+            className="text-gray-400 hover:text-white p-1 hover:bg-[#242733] rounded transition-colors touch:p-4 touch:-m-3"
             title="Reload watchlist.yaml"
           >
             <RefreshCw size={12} className={cn(isRefreshing && "animate-spin")} />

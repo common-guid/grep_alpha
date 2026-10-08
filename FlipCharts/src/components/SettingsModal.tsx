@@ -34,7 +34,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
       >
         <div className="flex items-center justify-between p-4 border-b border-[#242733]">
           <h2 className="text-lg font-bold text-white">Settings</h2>
-          <button onClick={onClose} className="text-gray-400 hover:text-white">
+          <button onClick={onClose} className="text-gray-400 hover:text-white touch:p-3 touch:-m-3" aria-label="Close settings">
             <X size={20} />
           </button>
         </div>
@@ -77,13 +77,13 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
             <button 
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-sm text-gray-400 hover:text-white"
+              className="px-4 py-2 text-sm text-gray-400 hover:text-white touch:min-h-11"
             >
               Cancel
             </button>
             <button 
               type="submit"
-              className="px-4 py-2 bg-[#26a69a] text-white text-sm font-bold rounded hover:bg-[#2bbbad] flex items-center gap-2"
+              className="px-4 py-2 bg-[#26a69a] text-white text-sm font-bold rounded hover:bg-[#2bbbad] flex items-center gap-2 touch:min-h-11"
             >
               <Save size={16} />
               Save Changes
