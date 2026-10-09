@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Devices without hover (touch screens): used to reveal hover-only controls. */
+@custom-variant hover-none (@media (hover: none));
+
 @theme {
   --color-primary: #26a69a;
 }

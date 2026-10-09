@@ -104,19 +104,59 @@ export const ExpandedChartModal: React.FC<ExpandedChartModalProps> = ({
     { label: 'One Year', value: '1Y' }
   ];
 
+  // Escape: first cancels an active drawing tool, otherwise closes the modal.
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return;
+      if (activeTool !== null) {
+        setActiveTool(null);
+        drawingManager.setActiveTool(null);
+        return;
+      }
+      onClose();
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [isOpen, activeTool, drawingManager, onClose]);
+
+  // Backdrop click closes, but only if the press also started on the backdrop
+  // (a drawing/pan drag that ends outside the chart must not close it).
+  const backdropPressRef = useRef(false);
+
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+    <div
+      className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md max-md:p-0"
+      role="dialog"
+      aria-modal="true"
+      aria-label={`${symbol} expanded chart`}
+      onPointerDown={(e) => { backdropPressRef.current = e.target === e.currentTarget; }}
+      onClick={(e) => {
+        if (e.target === e.currentTarget && backdropPressRef.current) onClose();
+        backdropPressRef.current = false;
+      }}
+    >
       <motion.div 
         initial={{ scale: 0.98, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.98, opacity: 0 }}
-        className="bg-[#131722] border border-[#242733] w-full h-full rounded-xl shadow-3xl overflow-hidden flex flex-col"
+        className="relative bg-[#131722] border border-[#242733] w-full h-full rounded-xl shadow-3xl overflow-hidden flex flex-col max-md:rounded-none max-md:border-0"
       >
+        {/* Phones: always-visible close button pinned top-right */}
+        <button
+          type="button"
+          onClick={onClose}
+          className="md:hidden absolute top-1 right-1 z-20 h-11 w-11 flex items-center justify-center text-gray-300 hover:text-white bg-[#1c202d] hover:bg-red-500/20 rounded-lg"
+          aria-label="Close expanded chart"
+          title="Close"
+        >
+          <X size={24} />
+        </button>
         {/* Header toolbar */}
-        <div className="flex items-center justify-between px-6 py-3 border-b border-[#242733] bg-[#1c202d]">
-          <div className="flex items-center gap-6">
+        <div className="flex items-center justify-between px-6 py-3 border-b border-[#242733] bg-[#1c202d] max-md:pl-3 max-md:pr-14 max-md:py-2">
+          <div className="flex items-center gap-6 max-md:flex-1 max-md:flex-wrap max-md:gap-x-3 max-md:gap-y-2">
              <div className="flex flex-col">
                 <div className="flex items-center gap-2">
                   <h2 className="text-xl font-bold text-white leading-none">{symbol}</h2>
@@ -130,34 +170,35 @@ export const ExpandedChartModal: React.FC<ExpandedChartModalProps> = ({
                     </span>
                   )}
                 </div>
-                <span className="text-[10px] text-gray-500 font-mono mt-1 uppercase tracking-widest italic">Full Analysis Mode</span>
+                <span className="text-[10px] text-gray-500 font-mono mt-1 uppercase tracking-widest italic max-md:hidden">Full Analysis Mode</span>
              </div>
 
 
-             <div className="h-8 w-px bg-[#242733]" />
+             <div className="h-8 w-px bg-[#242733] max-md:hidden" />
 
-             <div className="flex items-center gap-1 bg-[#131722] rounded-lg p-1 border border-[#242733]">
+             <div className="flex items-center gap-1 bg-[#131722] rounded-lg p-1 border border-[#242733] max-md:order-last max-md:w-full max-md:grid max-md:grid-cols-5">
                 {timeframes.map(tf => (
                     <button
                         key={tf.value}
                         onClick={() => setTimeframe(tf.value)}
                         className={cn(
-                            "px-3 py-1.5 text-xs font-bold rounded-md transition-all whitespace-nowrap",
+                            "px-3 py-1.5 text-xs font-bold rounded-md transition-all whitespace-nowrap max-md:h-11 max-md:px-1",
                             timeframe === tf.value 
                                 ? "bg-[#26a69a] text-white shadow-lg" 
                                 : "text-gray-500 hover:text-gray-300 hover:bg-[#1c202d]"
                         )}
                     >
-                        {tf.label}
+                        <span className="md:hidden">{tf.value}</span>
+                        <span className="max-md:hidden">{tf.label}</span>
                     </button>
                 ))}
              </div>
 
-             <div className="flex items-center gap-2 ml-4">
+             <div className="flex items-center gap-2 ml-4 max-md:ml-auto">
                 <button 
                     onClick={() => setShowVolume(!showVolume)}
                     className={cn(
-                        "p-2 rounded-lg border transition-all",
+                        "p-2 rounded-lg border transition-all max-md:h-11 max-md:w-11 max-md:flex max-md:items-center max-md:justify-center",
                         showVolume ? "bg-[#26a69a]/10 border-[#26a69a] text-[#26a69a]" : "bg-[#131722] border-[#242733] text-gray-500"
                     )}
                     title="Toggle Volume"
@@ -167,7 +208,7 @@ export const ExpandedChartModal: React.FC<ExpandedChartModalProps> = ({
              </div>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 max-md:hidden">
              <div className="flex items-center gap-1 bg-[#131722] rounded-lg p-1 border border-[#242733] mr-4">
                 <button className="p-2 text-gray-500 hover:text-white rounded-md hover:bg-[#1c202d]"><Settings size={18} /></button>
                 <button className="p-2 text-gray-500 hover:text-white rounded-md hover:bg-[#1c202d]"><Download size={18} /></button>
@@ -176,6 +217,7 @@ export const ExpandedChartModal: React.FC<ExpandedChartModalProps> = ({
              <button 
                 onClick={onClose}
                 className="p-3 text-gray-400 hover:text-white hover:bg-red-500/20 rounded-xl transition-all"
+                aria-label="Close expanded chart"
              >
                 <X size={24} />
              </button>

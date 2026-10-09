@@ -149,31 +149,31 @@ export const ChartCard: React.FC<ChartCardProps> = ({ symbol, timeframe }) => {
                 )}
             </div>
         </div>
-        <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+        <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity hover-none:opacity-100 hover-none:gap-0 max-md:opacity-100 max-md:gap-0">
             <button 
                 onClick={() => setIsNotesOpen(true)}
-                className="p-1 hover:bg-[#2a2e39] rounded-sm text-gray-400"
+                className="p-1 hover:bg-[#2a2e39] rounded-sm text-gray-400 hover-none:p-[15px] max-md:p-[15px]"
                 title="Notes"
             >
                 <FileText size={14} />
             </button>
             <button 
                 onClick={() => setIsInfoOpen(true)}
-                className="p-1 hover:bg-[#2a2e39] rounded-sm text-gray-400"
+                className="p-1 hover:bg-[#2a2e39] rounded-sm text-gray-400 hover-none:p-[15px] max-md:p-[15px]"
                 title="Ticker Info"
             >
                 <Info size={14} />
             </button>
             <button 
                 onClick={fetchData}
-                className="p-1 hover:bg-[#2a2e39] rounded-sm text-gray-400"
+                className="p-1 hover:bg-[#2a2e39] rounded-sm text-gray-400 hover-none:p-[15px] max-md:p-[15px]"
                 title="Refresh"
             >
                 <RefreshCw size={14} className={loading ? 'animate-spin' : ''} />
             </button>
             <button 
                 onClick={() => setIsExpandedOpen(true)}
-                className="p-1 hover:bg-[#2a2e39] rounded-sm text-gray-400"
+                className="p-1 hover:bg-[#2a2e39] rounded-sm text-gray-400 hover-none:p-[15px] max-md:p-[15px]"
                 title="Expand Chart"
             >
                 <Maximize2 size={14} />
