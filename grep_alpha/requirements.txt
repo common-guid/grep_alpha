@@ -1,8 +1,19 @@
-typer
-pyyaml
-pandas
-yfinance>=0.2.38
-alpaca-trade-api
-streamlit
-plotly
-
+# Exact pins from the running squawk image watchlist_monitor_app
+# (started 2026-10-06, healthy). Do not replace these with the test-venv
+# pins in closed PR #14: those downgrade yfinance, uvicorn, websockets,
+# and alpaca-trade-api. Change a pin only with a passing suite and an
+# accepted image rebuild.
+typer==0.27.2
+pyyaml==6.0.3
+pandas==3.0.6
+yfinance==1.7.0
+urllib3==1.24.3
+alpaca-trade-api==0.48
+streamlit==1.65.0
+plotly==7.1.0
+# Backend runtime. The Dockerfile also names fastapi, uvicorn, and pydantic
+# unpinned. These pins win.
+fastapi==0.142.2
+uvicorn==0.54.0
+pydantic==2.13.5
+websockets==17.2
