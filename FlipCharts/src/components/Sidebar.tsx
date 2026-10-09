@@ -1,14 +1,17 @@
 import React from 'react';
 import { useServices } from '../context/ServiceContext';
-import { List, TrendingUp, RefreshCw } from 'lucide-react';
+import { List, TrendingUp, RefreshCw, X } from 'lucide-react';
 import { cn } from '../lib/utils';
 
 interface SidebarProps {
   activeWatchlistId: string;
   onSelectWatchlist: (id: string) => void;
+  /** When set (small screens), shows a close button for the drawer. */
+  onClose?: () => void;
+  closeButtonRef?: React.Ref<HTMLButtonElement>;
 }
 
-export const Sidebar: React.FC<SidebarProps> = ({ activeWatchlistId, onSelectWatchlist }) => {
+export const Sidebar: React.FC<SidebarProps> = ({ activeWatchlistId, onSelectWatchlist, onClose, closeButtonRef }) => {
   const { watchlists, refreshWatchlists } = useServices();
   const [isRefreshing, setIsRefreshing] = React.useState(false);
 
@@ -23,6 +26,18 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeWatchlistId, onSelectWat
       <div className="p-4 border-b border-[#242733] flex items-center gap-2">
         <TrendingUp className="text-[#26a69a]" size={20} />
         <h1 className="text-sm font-bold text-white uppercase tracking-wider">Stock Reviewer</h1>
+        {onClose && (
+          <button
+            ref={closeButtonRef}
+            type="button"
+            onClick={onClose}
+            className="ml-auto -mr-2 h-11 w-11 flex items-center justify-center text-gray-400 hover:text-white rounded hover:bg-[#242733]"
+            aria-label="Close watchlist pane"
+            title="Close"
+          >
+            <X size={20} />
+          </button>
+        )}
       </div>
 
       <div className="flex-1 overflow-y-auto py-4">
@@ -41,9 +56,18 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeWatchlistId, onSelectWat
           {watchlists.map(list => (
             <div 
               key={list.id}
+              role="button"
+              tabIndex={0}
+              aria-current={activeWatchlistId === list.id ? 'true' : undefined}
               onClick={() => onSelectWatchlist(list.id)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  onSelectWatchlist(list.id);
+                }
+              }}
               className={cn(
-                "group px-4 py-2 cursor-pointer flex items-center justify-between text-xs transition-colors",
+                "group px-4 py-3.5 md:py-2 cursor-pointer flex items-center justify-between text-xs transition-colors",
                 activeWatchlistId === list.id 
                   ? "bg-[#2a2e39] text-white border-l-2 border-[#26a69a]" 
                   : "text-gray-400 hover:bg-[#242733] hover:text-gray-200"

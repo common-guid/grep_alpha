@@ -25,6 +25,9 @@ export class LightweightChartsAdapter implements IChartAdapter {
         borderColor: '#242733',
         timeVisible: true,
         secondsVisible: false,
+        // Keep the visible range (not the bar spacing) when the container
+        // resizes, so a chart widened by collapsing the pane stays fitted.
+        lockVisibleTimeRangeOnResize: true,
       },
       rightPriceScale: {
         borderColor: '#242733',
@@ -99,11 +102,30 @@ export class LightweightChartsAdapter implements IChartAdapter {
     // Fit content
     chart.timeScale().fitContent();
 
+    // Follow the container's size, not just the window's: the chart grid reflows
+    // when the watchlist pane is collapsed/expanded without any window resize.
+    let lastW = container.clientWidth;
+    let lastH = container.clientHeight;
+    let resizeFrame = 0;
     const handleResize = () => {
-      chart.applyOptions({ width: container.clientWidth, height: container.clientHeight });
+      cancelAnimationFrame(resizeFrame);
+      resizeFrame = requestAnimationFrame(() => {
+        const w = container.clientWidth;
+        const h = container.clientHeight;
+        if (w === 0 || h === 0 || (w === lastW && h === lastH)) return;
+        lastW = w;
+        lastH = h;
+        chart.applyOptions({ width: w, height: h });
+      });
     };
 
-    window.addEventListener('resize', handleResize);
+    let resizeObserver: ResizeObserver | undefined;
+    if (typeof ResizeObserver !== 'undefined') {
+      resizeObserver = new ResizeObserver(handleResize);
+      resizeObserver.observe(container);
+    } else {
+      window.addEventListener('resize', handleResize);
+    }
 
     // Attach drawing primitive and event handlers if bridge is supplied
     let cleanupBridge: (() => void) | undefined;
@@ -154,7 +176,12 @@ export class LightweightChartsAdapter implements IChartAdapter {
     }
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      cancelAnimationFrame(resizeFrame);
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+      } else {
+        window.removeEventListener('resize', handleResize);
+      }
       if (cleanupBridge) {
         cleanupBridge();
       }
