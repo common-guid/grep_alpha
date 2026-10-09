@@ -67,7 +67,7 @@ export const NotesModal: React.FC<NotesModalProps> = ({ symbol, isOpen, onClose 
           </div>
           <button 
             onClick={onClose} 
-            className="p-2 text-gray-400 hover:text-white hover:bg-[#2a2e39] rounded-lg transition-colors"
+            className="p-2 text-gray-400 hover:text-white hover:bg-[#2a2e39] rounded-lg transition-colors touch:p-3"
           >
             <X size={20} />
           </button>
@@ -89,7 +89,7 @@ export const NotesModal: React.FC<NotesModalProps> = ({ symbol, isOpen, onClose 
         <div className="px-4 py-3 bg-[#131722] border-t border-[#242733] flex items-center justify-between">
           <button 
             onClick={handleClear}
-            className="p-2 text-gray-500 hover:text-red-400 transition-colors rounded-lg hover:bg-red-400/10"
+            className="p-2 text-gray-500 hover:text-red-400 transition-colors rounded-lg hover:bg-red-400/10 touch:p-[13px]"
             title="Clear Notes"
           >
             <Trash2 size={18} />
@@ -98,14 +98,14 @@ export const NotesModal: React.FC<NotesModalProps> = ({ symbol, isOpen, onClose 
           <div className="flex gap-3">
             <button 
               onClick={onClose}
-              className="px-4 py-2 text-gray-400 text-sm hover:text-white transition-colors"
+              className="px-4 py-2 text-gray-400 text-sm hover:text-white transition-colors touch:min-h-11"
             >
               Cancel
             </button>
             <button 
               onClick={handleSave}
               disabled={!hasChanges || isSaving}
-              className={`px-6 py-2 rounded-lg text-sm font-bold flex items-center gap-2 transition-all shadow-lg ${
+              className={`px-6 py-2 rounded-lg text-sm font-bold flex items-center gap-2 transition-all shadow-lg touch:min-h-11 ${
                 hasChanges && !isSaving
                   ? "bg-[#26a69a] text-white hover:bg-[#2bbbad]"
                   : "bg-[#2a2e39] text-gray-500 cursor-not-allowed"

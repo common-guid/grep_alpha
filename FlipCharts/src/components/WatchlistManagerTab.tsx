@@ -177,7 +177,7 @@ export const WatchlistManagerTab: React.FC<WatchlistManagerTabProps> = ({
 
           <button
             onClick={openAddModal}
-            className="flex items-center gap-1.5 bg-[#26a69a] hover:bg-[#2bbbad] text-white text-xs font-bold px-4 py-2 rounded transition-colors shadow-lg shadow-[#26a69a]/10"
+            className="flex items-center gap-1.5 bg-[#26a69a] hover:bg-[#2bbbad] text-white text-xs font-bold px-4 py-2 rounded transition-colors shadow-lg shadow-[#26a69a]/10 touch:min-h-11"
           >
             <Plus size={16} /> Add Symbol
           </button>
@@ -202,7 +202,7 @@ export const WatchlistManagerTab: React.FC<WatchlistManagerTabProps> = ({
       </div>
 
       {/* Tickers Data Table */}
-      <div className="bg-[#131722] border border-[#242733] rounded overflow-hidden shadow-xl">
+      <div className="bg-[#131722] border border-[#242733] rounded overflow-hidden shadow-xl touch:overflow-x-auto">
         <table className="w-full text-left border-collapse text-xs">
           <thead>
             <tr className="bg-[#1c202d] border-b border-[#242733] text-gray-400 font-bold uppercase tracking-wider text-[10px]">
@@ -263,14 +263,14 @@ export const WatchlistManagerTab: React.FC<WatchlistManagerTabProps> = ({
                   <div className="flex items-center justify-end gap-2">
                     <button
                       onClick={() => openEditModal(t)}
-                      className="p-1.5 hover:bg-[#242733] text-gray-400 hover:text-white rounded transition-colors"
+                      className="p-1.5 hover:bg-[#242733] text-gray-400 hover:text-white rounded transition-colors touch:p-[15px]"
                       title="Edit metadata"
                     >
                       <Edit3 size={14} />
                     </button>
                     <button
                       onClick={() => handleRemoveTicker(t.symbol)}
-                      className="p-1.5 hover:bg-red-500/20 text-gray-400 hover:text-red-400 rounded transition-colors"
+                      className="p-1.5 hover:bg-red-500/20 text-gray-400 hover:text-red-400 rounded transition-colors touch:p-[15px]"
                       title="Remove ticker"
                     >
                       <Trash2 size={14} />
@@ -302,7 +302,7 @@ export const WatchlistManagerTab: React.FC<WatchlistManagerTabProps> = ({
               <h3 className="text-sm font-bold text-white uppercase tracking-wider">
                 Add Symbol to {activeCategoryObj.name}
               </h3>
-              <button onClick={() => setIsAddModalOpen(false)} className="text-gray-400 hover:text-white">
+              <button onClick={() => setIsAddModalOpen(false)} className="text-gray-400 hover:text-white touch:p-[13px] touch:-m-[13px]" aria-label="Close">
                 <X size={18} />
               </button>
             </div>
@@ -372,13 +372,13 @@ export const WatchlistManagerTab: React.FC<WatchlistManagerTabProps> = ({
                 <button
                   type="button"
                   onClick={() => setIsAddModalOpen(false)}
-                  className="px-4 py-2 bg-[#1c202d] text-gray-400 hover:text-white rounded transition-colors"
+                  className="px-4 py-2 bg-[#1c202d] text-gray-400 hover:text-white rounded transition-colors touch:min-h-11"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-[#26a69a] hover:bg-[#2bbbad] text-white font-bold rounded transition-colors"
+                  className="px-4 py-2 bg-[#26a69a] hover:bg-[#2bbbad] text-white font-bold rounded transition-colors touch:min-h-11"
                 >
                   Add Symbol
                 </button>
@@ -396,7 +396,7 @@ export const WatchlistManagerTab: React.FC<WatchlistManagerTabProps> = ({
               <h3 className="text-sm font-bold text-white uppercase tracking-wider">
                 Edit Metadata: <span className="font-mono text-[#26a69a]">{editingItem.symbol}</span>
               </h3>
-              <button onClick={() => setEditingItem(null)} className="text-gray-400 hover:text-white">
+              <button onClick={() => setEditingItem(null)} className="text-gray-400 hover:text-white touch:p-[13px] touch:-m-[13px]" aria-label="Close">
                 <X size={18} />
               </button>
             </div>
@@ -457,13 +457,13 @@ export const WatchlistManagerTab: React.FC<WatchlistManagerTabProps> = ({
                 <button
                   type="button"
                   onClick={() => setEditingItem(null)}
-                  className="px-4 py-2 bg-[#1c202d] text-gray-400 hover:text-white rounded transition-colors"
+                  className="px-4 py-2 bg-[#1c202d] text-gray-400 hover:text-white rounded transition-colors touch:min-h-11"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-[#26a69a] hover:bg-[#2bbbad] text-white font-bold rounded transition-colors"
+                  className="px-4 py-2 bg-[#26a69a] hover:bg-[#2bbbad] text-white font-bold rounded transition-colors touch:min-h-11"
                 >
                   Save Changes
                 </button>

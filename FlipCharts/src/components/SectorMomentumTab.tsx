@@ -182,7 +182,7 @@ export const SectorMomentumTab: React.FC<SectorMomentumTabProps> = ({
           <div className="flex items-center bg-[#1c202d] border border-[#242733] rounded p-0.5">
             <button
               onClick={() => setTimeframe('3m')}
-              className={`px-3 py-1 text-xs font-bold rounded transition-colors ${
+              className={`px-3 py-1 text-xs font-bold rounded transition-colors touch:min-h-11 ${
                 timeframe === '3m' ? 'bg-[#26a69a] text-white' : 'text-gray-400 hover:text-white'
               }`}
             >
@@ -190,7 +190,7 @@ export const SectorMomentumTab: React.FC<SectorMomentumTabProps> = ({
             </button>
             <button
               onClick={() => setTimeframe('1y')}
-              className={`px-3 py-1 text-xs font-bold rounded transition-colors ${
+              className={`px-3 py-1 text-xs font-bold rounded transition-colors touch:min-h-11 ${
                 timeframe === '1y' ? 'bg-[#26a69a] text-white' : 'text-gray-400 hover:text-white'
               }`}
             >
@@ -200,7 +200,7 @@ export const SectorMomentumTab: React.FC<SectorMomentumTabProps> = ({
 
           <button
             onClick={fetchIndices}
-            className="p-2 text-gray-400 hover:text-white bg-[#1c202d] border border-[#242733] rounded hover:bg-[#242733]"
+            className="p-2 text-gray-400 hover:text-white bg-[#1c202d] border border-[#242733] rounded hover:bg-[#242733] touch:p-[13px]"
             title="Refresh Index"
           >
             <RefreshCw size={16} className={loading ? 'animate-spin' : ''} />

@@ -67,7 +67,7 @@ export const TickerInfoModal: React.FC<TickerInfoModalProps> = ({ symbol, data, 
           </div>
           <button 
             onClick={onClose} 
-            className="p-2 text-gray-400 hover:text-white hover:bg-[#2a2e39] rounded-lg transition-colors"
+            className="p-2 text-gray-400 hover:text-white hover:bg-[#2a2e39] rounded-lg transition-colors touch:p-3"
           >
             <X size={20} />
           </button>
@@ -216,7 +216,7 @@ export const TickerInfoModal: React.FC<TickerInfoModalProps> = ({ symbol, data, 
         <div className="px-6 py-4 bg-[#131722] border-t border-[#242733] flex justify-end">
           <button 
             onClick={onClose}
-            className="px-6 py-2 bg-[#2a2e39] text-gray-200 text-sm font-bold rounded-lg hover:bg-[#343a46] transition-colors shadow-lg"
+            className="px-6 py-2 bg-[#2a2e39] text-gray-200 text-sm font-bold rounded-lg hover:bg-[#343a46] transition-colors shadow-lg touch:min-h-11"
           >
             Close
           </button>

@@ -3,6 +3,33 @@
 /* Devices without hover (touch screens): used to reveal hover-only controls. */
 @custom-variant hover-none (@media (hover: none));
 
+/* Touch screens or small viewports: 44px touch targets (fix 5). Desktop with a mouse (>=768px, hover: hover) never matches. */
+@custom-variant touch (@media (hover: none), (width < 48rem));
+
+@media (hover: none), (width < 48rem) {
+  /* Form fields: 44px tall; 16px text also stops iOS Safari zooming the page on focus. */
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="hidden"]),
+  select,
+  textarea {
+    min-height: 44px;
+    font-size: 16px;
+  }
+
+  /* Invisible 44x44 hit area centred on a control whose visual size should stay small. */
+  .touch-hit {
+    position: relative;
+  }
+  .touch-hit::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: max(100%, 44px);
+    height: max(100%, 44px);
+    transform: translate(-50%, -50%);
+  }
+}
+
 @theme {
   --color-primary: #26a69a;
 }

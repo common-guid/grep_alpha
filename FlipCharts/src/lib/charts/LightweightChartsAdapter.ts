@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { createChart, ColorType, IChartApi, CandlestickSeries, LineSeries, HistogramSeries, CandlestickData as LWCandlestickData } from 'lightweight-charts';
+import { createChart, ColorType, IChartApi, CandlestickSeries, LineSeries, HistogramSeries, CandlestickData as LWCandlestickData, TrackingModeExitMode } from 'lightweight-charts';
 import { IChartAdapter, CandlestickData, ChartOptions } from './IChartAdapter';
 import { DrawingPrimitive } from './primitives/DrawingPrimitive';
 
@@ -32,6 +32,18 @@ export class LightweightChartsAdapter implements IChartAdapter {
       rightPriceScale: {
         borderColor: '#242733',
       },
+      ...(options.scrollFriendlyTouch
+        ? {
+            // lightweight-charts only preventDefault()s a touchmove when a touch
+            // drag is enabled or crosshair tracking is active, so turning these
+            // off hands the swipe back to the page. Mouse options stay default.
+            handleScroll: { horzTouchDrag: false, vertTouchDrag: false },
+            handleScale: { pinch: false },
+            // Long-press crosshair ends on touch end, instead of capturing the
+            // next swipe until another tap (default OnNextTap).
+            trackingMode: { exitMode: TrackingModeExitMode.OnTouchEnd },
+          }
+        : {}),
     });
 
     const candlestickSeries = chart.addSeries(CandlestickSeries, {
