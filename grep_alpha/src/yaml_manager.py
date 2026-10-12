@@ -79,7 +79,8 @@ class YAMLManager:
             "symbol": ticker.upper(),
             "status": status,
             "thesis": formatted_thesis,
-            "date": today
+            "date": today,  # last updated
+            "added": today,  # first-seen; never changed by updates
         }
         data["tickers"].append(new_entry)
         self.save_watchlist(category, data)
