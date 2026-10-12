@@ -1,5 +1,5 @@
 name: ibd top 50
-updated: '2026-10-05'
+updated: '2026-10-12'
 tickers:
 - symbol: CAVA
   status: watching
@@ -673,8 +673,8 @@ tickers:
   thesis: 2026-09-03:Stuck under a flat 50-day moving average, reflecting uncertainty
     in AI stocks. Direction is not clear, but its ATR is not extreme compared to other
     AI names.
-  tags: Software, Semi-IDM, Semi-Fabless, Manufacturing
-  date: '2026-09-28'
+  tags: Software, Semi-IDM, Semi-Fabless, Manufacturing, AI_Adjacent
+  date: '2026-10-12'
 - symbol: TWLO
   status: watching
   target_entry: null
@@ -854,8 +854,8 @@ tickers:
     line. Weekly chart shows very tight action, including three weeks tight. Potentially
     actionable above today''s highs (around 348 level). RS line close to highs, looking
     strong despite wobbly action.'
-  tags: Software, Cloud, Cybersecurity
-  date: '2026-10-05'
+  tags: Software, Cloud, Cybersecurity, AI_Adjacent
+  date: '2026-10-12'
 - symbol: UBS
   status: watching
   target_entry: null
@@ -872,8 +872,8 @@ tickers:
   status: watching
   target_entry: null
   thesis: 2026-09-03:Strong services revenue
-  tags: Software, Manufacturing
-  date: '2026-09-03'
+  tags: Software, Manufacturing, Big_Tech, Hardware, Blue_Chip
+  date: '2026-10-12'
 - symbol: BE
   status: watching
   target_entry: null
@@ -1186,3 +1186,63 @@ tickers:
     paying for this.
   tags: Cybersecurity, Software, Cloud
   date: '2026-10-05'
+- symbol: ABBV
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Pharma, Bio, Blue_Chip
+  date: '2026-10-12'
+- symbol: ASML
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Manufacturing, Hardware, AI_Adjacent
+  date: '2026-10-12'
+- symbol: BAC
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Financial_Services, Blue_Chip
+  date: '2026-10-12'
+- symbol: DDOG
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Software, Cloud, AI_Adjacent
+  date: '2026-10-12'
+- symbol: ETN
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Manufacturing, Power
+  date: '2026-10-12'
+- symbol: GCT
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: E-commerce, Cloud
+  date: '2026-10-12'
+- symbol: GEV
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Energy, Manufacturing
+  date: '2026-10-12'
+- symbol: JPM
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Financial_Services, Blue_Chip
+  date: '2026-10-12'
+- symbol: WCC
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Manufacturing, Hardware
+  date: '2026-10-12'
+- symbol: ZBRA
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Hardware, Software
+  date: '2026-10-12'
