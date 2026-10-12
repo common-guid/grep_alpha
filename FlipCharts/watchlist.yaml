@@ -8,13 +8,15 @@
   status: core_holding
   target_entry: 170
   thesis: 2026-09-03:Consistent cash flow generator. Massive share buybacks and premium
-  tags: Big_Tech, Software, AI_Adjacent, Hardware
+  tags: Big_Tech, Software, AI_Adjacent, Hardware, Blue_Chip
+  date: '2026-10-12'
   added: '2026-07-23'
 - symbol: ABBV
   status: watching
   target_entry: null
   thesis: 2026-09-03:AbbVie has successfully managed the Humira patent cliff through
-  tags: Pharma, Bio
+  tags: Pharma, Bio, Blue_Chip
+  date: '2026-10-12'
   added: '2026-07-23'
 - symbol: ABT
   status: watching
@@ -241,7 +243,8 @@
   status: watching
   target_entry: null
   thesis: ''
-  tags: Power
+  tags: Power, Manufacturing
+  date: '2026-10-12'
   added: '2026-07-23'
 - symbol: EWZ
   status: watching
@@ -313,7 +316,8 @@
   status: watching
   target_entry: null
   thesis: ''
-  tags: Power
+  tags: Power, Energy, Manufacturing
+  date: '2026-10-12'
   added: '2026-07-23'
 - symbol: GILD
   status: watching
@@ -760,6 +764,7 @@
   target_entry: null
   thesis: 2026-09-03:TSMC was in focus as the Nasdaq reached a new high following
   tags: Semi-IDM, AI_Adjacent, Semi-Fabless, Manufacturing
+  date: '2026-10-12'
   added: '2026-07-23'
 - symbol: TT
   status: watching
@@ -885,7 +890,8 @@
   status: watching
   target_entry: null
   thesis: 2026-09-03:ASML Holding is holding up nicely with three tight closes, demonstrating
-  tags: Semi-IDM, Hardware, Manufacturing
+  tags: Semi-IDM, Hardware, Manufacturing, AI_Adjacent
+  date: '2026-10-12'
   added: '2026-07-28'
 - symbol: BA
   status: watching
@@ -1899,3 +1905,45 @@
   tags: Cybersecurity, Software, Cloud
   date: '2026-10-05'
   added: '2026-10-05'
+- symbol: BAC
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Financial_Services, Blue_Chip
+  date: '2026-10-12'
+  added: '2026-10-12'
+- symbol: DDOG
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Software, Cloud, AI_Adjacent
+  date: '2026-10-12'
+  added: '2026-10-12'
+- symbol: GCT
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: E-commerce, Cloud
+  date: '2026-10-12'
+  added: '2026-10-12'
+- symbol: JPM
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Financial_Services, Blue_Chip
+  date: '2026-10-12'
+  added: '2026-10-12'
+- symbol: WCC
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Manufacturing, Hardware
+  date: '2026-10-12'
+  added: '2026-10-12'
+- symbol: ZBRA
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Hardware, Software
+  date: '2026-10-12'
+  added: '2026-10-12'
