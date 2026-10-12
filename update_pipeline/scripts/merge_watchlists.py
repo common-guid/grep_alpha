@@ -92,7 +92,8 @@ def normalize_tags(existing_tags_str: str, new_tags_str: str) -> str:
 def merge_ticker_entry(existing_ticker: dict, extracted_ticker: dict) -> dict:
     """
     Merge new extracted ticker data into existing ticker entry.
-    Preserves: status, target_entry, existing non-empty thesis.
+    Preserves: status, target_entry, existing non-empty thesis, `added` (first-seen date).
+    `date` means "last updated" and is bumped to today when anything changes.
     Merges: tags (appends missing tags).
     """
     symbol = existing_ticker.get("symbol", extracted_ticker.get("symbol")).upper()
@@ -124,7 +125,7 @@ def merge_ticker_entry(existing_ticker: dict, extracted_ticker: dict) -> dict:
         final_tags != existing_ticker.get("tags", "")):
         date_val = today
 
-    return {
+    merged = {
         "symbol": symbol,
         "status": status,
         "target_entry": target_entry,
@@ -132,6 +133,10 @@ def merge_ticker_entry(existing_ticker: dict, extracted_ticker: dict) -> dict:
         "tags": final_tags,
         "date": date_val
     }
+    # `added` is the frozen first-seen date: carry it over, never set or change it here.
+    if existing_ticker.get("added"):
+        merged["added"] = existing_ticker["added"]
+    return merged
 
 
 def merge_flipcharts_watchlist(existing_data: list, extracted_data: dict) -> list:
@@ -173,7 +178,8 @@ def merge_flipcharts_watchlist(existing_data: list, extracted_data: dict) -> lis
                 "target_entry": None,
                 "thesis": formatted_thesis,
                 "tags": str(ext.get("tags", "")).strip(),
-                "date": today
+                "date": today,
+                "added": today
             })
             processed_symbols.add(sym)
 

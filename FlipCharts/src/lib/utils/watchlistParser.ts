@@ -9,6 +9,17 @@ export interface WatchlistItem {
   target_entry: number | null;
   thesis: string;
   tags: string[];
+  /** Last-updated date (YYYY-MM-DD). Bumped whenever the entry changes. */
+  date?: string;
+  /** First-seen date (YYYY-MM-DD). Set once when the symbol is added; never changed. */
+  added?: string;
+}
+
+export function todayIso(now: Date = new Date()): string {
+  const y = now.getFullYear();
+  const m = String(now.getMonth() + 1).padStart(2, '0');
+  const d = String(now.getDate()).padStart(2, '0');
+  return `${y}-${m}-${d}`;
 }
 
 export function parseWatchlistYaml(yamlText: string): WatchlistItem[] {
@@ -96,6 +107,12 @@ function parseProperty(line: string, item: Partial<WatchlistItem>) {
         .map((t) => t.trim())
         .filter(Boolean);
       break;
+    case 'date':
+      if (/^\d{4}-\d{2}-\d{2}$/.test(val)) item.date = val;
+      break;
+    case 'added':
+      if (/^\d{4}-\d{2}-\d{2}$/.test(val)) item.added = val;
+      break;
   }
 }
 
@@ -122,6 +139,8 @@ export function dumpWatchlistYaml(items: WatchlistItem[]): string {
       ? item.tags
       : '';
     yaml += `  tags: ${tagsStr}\n`;
+    if (item.date) yaml += `  date: '${item.date}'\n`;
+    if (item.added) yaml += `  added: '${item.added}'\n`;
   }
   return yaml;
 }

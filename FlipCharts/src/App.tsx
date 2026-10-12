@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { ServiceProvider, useServices } from './context/ServiceContext';
 import { Sidebar } from './components/Sidebar';
 import { ChartGrid } from './components/ChartGrid';
@@ -12,14 +12,34 @@ import { WatchlistStats } from './components/WatchlistStats';
 import { SectorMomentumTab } from './components/SectorMomentumTab';
 import { WatchlistManagerTab } from './components/WatchlistManagerTab';
 import { SyncMonitorTab } from './components/SyncMonitorTab';
-import { Settings, Layers, TrendingUp, BarChart2, Tag, Zap, Menu, PanelLeftClose, PanelLeftOpen } from 'lucide-react';
+import { GridControls, viewSummary } from './components/GridControls';
+import {
+  GridView, resolveView, writeViewParams, filterByAdded, sortItems, latestAdded, isDefaultView,
+} from './lib/utils/chartFilters';
+import { todayIso } from './lib/utils/watchlistParser';
+import { Settings, Layers, TrendingUp, BarChart2, Tag, Zap, Menu, PanelLeftClose, PanelLeftOpen, SlidersHorizontal } from 'lucide-react';
 import { cn } from './lib/utils';
 import { useMediaQuery } from './lib/useMediaQuery';
 
 type ActiveTab = 'charts' | 'momentum' | 'manager' | 'sync';
 
+const GRID_VIEW_KEY = 'grep-alpha:grid-view';
+
+function loadInitialView(): GridView {
+  let stored: Record<string, unknown> | null = null;
+  try {
+    stored = JSON.parse(window.localStorage.getItem(GRID_VIEW_KEY) || 'null');
+  } catch {
+    stored = null;
+  }
+  // URL wins over localStorage when it carries any view param.
+  return resolveView(new URLSearchParams(window.location.search), stored);
+}
+
 const AppContent: React.FC = () => {
-  const { watchlists, refreshWatchlists } = useServices();
+  const { watchlists, refreshWatchlists, watchlistItems } = useServices();
+  const [gridView, setGridView] = useState<GridView>(loadInitialView);
+  const gridScrollRef = useRef<HTMLDivElement>(null);
   const [activeTab, setActiveTab] = useState<ActiveTab>('charts');
   const [activeWatchlistId, setActiveWatchlistId] = useState<string>('');
   const [timeframe, setTimeframe] = useState('3M');
@@ -66,6 +86,55 @@ const AppContent: React.FC = () => {
   }, [watchlists, activeWatchlistId]);
 
   const activeWatchlist = watchlists.find((w) => w.id === activeWatchlistId);
+
+  // Persist the grid view to localStorage and the URL (replaceState: no history spam).
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(GRID_VIEW_KEY, JSON.stringify(gridView));
+    } catch {
+      /* storage unavailable */
+    }
+    const params = writeViewParams(new URLSearchParams(window.location.search), gridView);
+    const qs = params.toString();
+    const url = `${window.location.pathname}${qs ? `?${qs}` : ''}${window.location.hash}`;
+    if (url !== `${window.location.pathname}${window.location.search}${window.location.hash}`) {
+      window.history.replaceState(window.history.state, '', url);
+    }
+  }, [gridView]);
+
+  const itemsBySymbol = useMemo(() => {
+    const m = new Map<string, (typeof watchlistItems)[number]>();
+    for (const i of watchlistItems) m.set(i.symbol.toUpperCase(), i);
+    return m;
+  }, [watchlistItems]);
+
+  const latestAddedDate = useMemo(() => latestAdded(watchlistItems), [watchlistItems]);
+
+  // Tag selection -> date-added filter -> sort. Symbols stay the React keys, so a
+  // re-sort moves existing ChartCards instead of re-creating their charts.
+  const gridSymbols = useMemo(() => {
+    if (!activeWatchlist) return [];
+    if (isDefaultView(gridView)) return activeWatchlist.symbols;
+    const rows = activeWatchlist.symbols.map((symbol) => {
+      const it = itemsBySymbol.get(symbol.toUpperCase());
+      return { symbol, added: it?.added, date: it?.date };
+    });
+    const filtered = filterByAdded(rows, gridView, todayIso(), latestAddedDate);
+    return sortItems(filtered, gridView.sort).map((r) => r.symbol);
+  }, [activeWatchlist, gridView, itemsBySymbol, latestAddedDate]);
+
+  // After a filter/sort change, jump back to the top so the new first cards are the
+  // ones in view (their IntersectionObservers fire on the layout change).
+  useEffect(() => {
+    gridScrollRef.current?.scrollTo({ top: 0 });
+  }, [gridView]);
+
+  const gridControlsProps = {
+    view: gridView,
+    onChange: setGridView,
+    shown: gridSymbols.length,
+    total: activeWatchlist?.symbols.length ?? 0,
+  };
 
   const timeframes = [
     { label: '1D', value: '1D' },
@@ -139,6 +208,7 @@ const AppContent: React.FC = () => {
           views={isDesktop ? undefined : views}
           activeViewId={activeTab}
           onSelectView={handleSelectView}
+          filterSection={!isDesktop && activeTab === 'charts' ? <GridControls {...gridControlsProps} variant="drawer" /> : undefined}
         />
       </div>
 
@@ -249,6 +319,24 @@ const AppContent: React.FC = () => {
                 </div>
               )}
             </div>
+            {activeTab === 'charts' && (
+              <button
+                type="button"
+                onClick={() => setIsPaneOpen(true)}
+                data-testid="grid-view-chip"
+                className={cn(
+                  'shrink-0 h-11 px-2.5 flex items-center gap-1.5 rounded text-[11px] font-bold whitespace-nowrap',
+                  isDefaultView(gridView)
+                    ? 'text-gray-400 bg-[#1c202d] hover:text-white'
+                    : 'text-[#26a69a] bg-[#26a69a]/15 hover:bg-[#26a69a]/25'
+                )}
+                aria-label={`Filter and sort charts (${viewSummary(gridView)}, ${gridSymbols.length} of ${activeWatchlist?.symbols.length ?? 0})`}
+                title="Filter & sort"
+              >
+                <SlidersHorizontal size={14} />
+                {isDefaultView(gridView) ? 'Sort' : viewSummary(gridView)}
+              </button>
+            )}
             <button
               type="button"
               onClick={() => setIsSettingsOpen(true)}
@@ -282,10 +370,24 @@ const AppContent: React.FC = () => {
         )}
 
         {/* Tab Content Renderer */}
-        <div className="flex-1 overflow-y-auto scrollbar-hide flex flex-col">
+        {isDesktop && activeTab === 'charts' && activeWatchlist && (
+          <GridControls {...gridControlsProps} variant="toolbar" />
+        )}
+        <div ref={gridScrollRef} className="flex-1 overflow-y-auto scrollbar-hide flex flex-col">
           {activeTab === 'charts' && (
             activeWatchlist ? (
-              <ChartGrid symbols={activeWatchlist.symbols} timeframe={timeframe} />
+              <ChartGrid
+                symbols={gridSymbols}
+                timeframe={timeframe}
+                emptyMessage={isDefaultView(gridView) ? undefined : (
+                  <>
+                    No charts added in this range.{' '}
+                    <button type="button" className="text-[#26a69a] underline min-h-11 touch:px-2" onClick={() => setGridView({ ...gridView, added: 'all', from: '', to: '' })}>
+                      Show all
+                    </button>
+                  </>
+                )}
+              />
             ) : (
               <div className="flex-1 flex items-center justify-center text-gray-500">
                 <div className="text-center">
