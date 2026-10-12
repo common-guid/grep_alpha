@@ -12,6 +12,8 @@ import { DrawingManager } from '../lib/charts/primitives/DrawingManager';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
 import { checkStaleness } from '../lib/utils/staleness';
+import { addedLabel, IMPORT_DATE } from '../lib/utils/chartFilters';
+import { todayIso } from '../lib/utils/watchlistParser';
 import { TickerInfoModal } from './TickerInfoModal';
 import { NotesModal } from './NotesModal';
 import { ExpandedChartModal } from './ExpandedChartModal';
@@ -119,6 +121,24 @@ export const ChartCard: React.FC<ChartCardProps> = ({ symbol, timeframe }) => {
                           : "bg-yellow-500/10 text-yellow-400 border-yellow-500/30"
                     )}>
                         {itemDetails.status.replace('_', ' ')}
+                    </span>
+                )}
+                {itemDetails?.added && (
+                    <span
+                        data-testid="added-badge"
+                        className={cn(
+                            "px-1 py-0.2 text-[8px] font-mono rounded border shrink-0 cursor-help",
+                            itemDetails.added === IMPORT_DATE
+                              ? "text-gray-500 border-[#2a2e39] italic"
+                              : "text-gray-400 border-[#2a2e39] bg-[#131722]"
+                        )}
+                        title={
+                            itemDetails.added === IMPORT_DATE
+                              ? `Added in the initial import (on or before ${IMPORT_DATE}; real add date unknown)${itemDetails.date ? ` · last updated ${itemDetails.date}` : ''}`
+                              : `Added ${itemDetails.added}${itemDetails.date ? ` · last updated ${itemDetails.date}` : ''}`
+                        }
+                    >
+                        {addedLabel(itemDetails.added, todayIso())}
                     </span>
                 )}
                 {staleness.isStale && (

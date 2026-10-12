@@ -6,7 +6,7 @@ import { AlphaVantageApiClient, AlpacaApiClient } from '../lib/api/ApiClient';
 import { DatabaseApiClient } from '../lib/api/DatabaseApiClient';
 import { IChartAdapter } from '../lib/charts/IChartAdapter';
 import { LightweightChartsAdapter } from '../lib/charts/LightweightChartsAdapter';
-import { parseWatchlistYaml, dumpWatchlistYaml, WatchlistItem } from '../lib/utils/watchlistParser';
+import { parseWatchlistYaml, dumpWatchlistYaml, WatchlistItem, todayIso } from '../lib/utils/watchlistParser';
 
 export interface DerivedWatchlist {
   id: string;
@@ -87,11 +87,15 @@ export const ServiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
         ...newItem,
         symbol: sym,
         tags: mergedTags,
+        date: todayIso(),
+        // First-seen date is frozen: keep whatever the existing entry had.
+        added: existing.added,
       };
       updated = [...watchlistItems];
       updated[existingIdx] = mergedItem;
     } else {
-      updated = [...watchlistItems, { ...newItem, symbol: sym }];
+      const today = todayIso();
+      updated = [...watchlistItems, { ...newItem, symbol: sym, date: today, added: today }];
     }
 
     await saveWatchlist(updated);
@@ -101,7 +105,8 @@ export const ServiceProvider: React.FC<{ children: React.ReactNode }> = ({ child
     const sym = symbol.toUpperCase().trim();
     const updated = watchlistItems.map((item) => {
       if (item.symbol.toUpperCase() === sym) {
-        return { ...item, ...updates, symbol: sym };
+        // Edits bump the last-updated `date`; the first-seen `added` date never changes.
+        return { ...item, ...updates, symbol: sym, date: todayIso(), added: item.added };
       }
       return item;
     });

@@ -13,9 +13,11 @@ interface SidebarProps {
   views?: { id: string; label: string; icon: React.ReactNode }[];
   activeViewId?: string;
   onSelectView?: (id: string) => void;
+  /** When set (small screens, Flip-Charts view), rendered as a "Filter & sort" section below Views. */
+  filterSection?: React.ReactNode;
 }
 
-export const Sidebar: React.FC<SidebarProps> = ({ activeWatchlistId, onSelectWatchlist, onClose, closeButtonRef, views, activeViewId, onSelectView }) => {
+export const Sidebar: React.FC<SidebarProps> = ({ activeWatchlistId, onSelectWatchlist, onClose, closeButtonRef, views, activeViewId, onSelectView, filterSection }) => {
   const { watchlists, refreshWatchlists } = useServices();
   const [isRefreshing, setIsRefreshing] = React.useState(false);
 
@@ -67,6 +69,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeWatchlistId, onSelectWat
                 </button>
               ))}
             </nav>
+          </div>
+        )}
+
+        {filterSection && (
+          <div className="mb-4 pb-4 border-b border-[#242733]">
+            <h2 className="px-4 mb-2 text-[10px] font-bold text-gray-500 uppercase tracking-wider">Filter &amp; sort</h2>
+            {filterSection}
           </div>
         )}
 
