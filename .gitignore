@@ -40,3 +40,6 @@ test_env/
 
 # One-time tag migration backups
 .tagv2_backup/
+
+# Pipeline snapshot backups (never commit)
+update_pipeline/.backups/
