@@ -285,6 +285,10 @@ npm run dev
 2. **On-Demand Auto-Ingestion**: If a requested ticker has no records in SQLite, the backend automatically downloads daily OHLCV bars via `yfinance` keylessly on the fly, stores them in `data.db`, and serves the chart immediately.
 3. **Full Watchlist Batch Sync**: Sync all tickers across watchlists on demand via the **Market Sync** tab in the UI or via the CLI (`watch sync`). Optional Alpaca fallback is supported if configured.
 
+#### Held Positions (Alpaca paper)
+
+The **Held** toggle (toolbar on desktop, Filter & sort in the mobile drawer; `?held=1`) shows only symbols held in the Alpaca paper account and combines with the tag, date-added and sort controls. Held cards show `qty @ avg cost · unrealized P&L %` (prefixed `SHORT` for shorts). A held symbol missing from the watchlist is added automatically with the `paper` tag. See [docs/paper-positions-api.md](docs/paper-positions-api.md).
+
 #### Canonical Data Cache
 
 > **Production authority: the Docker volume.** The deployed container mounts a named volume at `/app/data` (`DB_PATH=/app/data/data.db`). All production syncs run inside the container: `docker compose exec app python -m grep_alpha.src.cli watch sync` (or the Market Sync UI tab / `POST /api/sync`).
@@ -439,6 +443,15 @@ The FastAPI server acts as a unified API gateway for both the web app and third-
 | :--- | :--- | :--- |
 | `POST` | `/api/sync` | Trigger async background market data sync task |
 | `GET` | `/api/status` | Get DB row counts, latest cached date, and background sync state |
+
+### Paper Positions Endpoints (Alpaca paper account, read-only)
+
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/api/positions` | Open paper positions (qty, avg cost, unrealized P&L, `on_watchlist`), cached 60s; `status` ok / unconfigured / error. No side effects |
+| `POST` | `/api/positions/sync-watchlist` | Idempotently add held symbols missing from `FlipCharts/watchlist.yaml` (tag `paper`); called by Grep Alpha Trader after fills and by the app |
+
+Needs `ALPACA_PAPER_KEY_ID` / `ALPACA_PAPER_SECRET_KEY` (PK paper key) in the backend environment. Full contract and persistence rules: [docs/paper-positions-api.md](docs/paper-positions-api.md).
 
 ---
 
