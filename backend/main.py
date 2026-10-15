@@ -18,6 +18,7 @@ if GREP_ALPHA_DIR not in sys.path:
 
 from grep_alpha.src.yaml_manager import YAMLManager
 from grep_alpha.src import database, analytics, data_fetcher
+from grep_alpha.src.paper_positions import PositionsService
 
 from contextlib import asynccontextmanager
 
@@ -673,6 +674,25 @@ def get_live_watchlist_yaml():
         raise HTTPException(status_code=404, detail="watchlist.yaml not found")
     with open(path, "r", encoding="utf-8") as f:
         return PlainTextResponse(f.read(), media_type="text/yaml")
+
+
+# --- Alpaca PAPER positions (read-only) ---
+# GET only. No side effects: it never writes the watchlist. Auto-adding held symbols
+# that are missing from the watchlist is a separate, explicit POST (see below).
+positions_service = PositionsService()
+
+
+def _watchlist_symbol_set() -> set:
+    return {str(i.get("symbol", "")).upper() for i in get_flipcharts_watchlist_items() if isinstance(i, dict)}
+
+
+@app.get("/api/positions")
+def get_paper_positions():
+    """Open positions in the Alpaca paper account, cached ~60s. status: ok | unconfigured | error."""
+    snap = positions_service.get()
+    on_list = _watchlist_symbol_set()
+    snap["positions"] = [dict(p, on_watchlist=p["symbol"] in on_list) for p in snap.get("positions", [])]
+    return snap
 
 
 # --- Static File Serving for Production React SPA ---
