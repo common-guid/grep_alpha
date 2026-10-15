@@ -135,6 +135,13 @@ class PositionsService:
             self._good_at = 0.0
             self._error_at = 0.0
 
+    def refresh_if_older_than(self, seconds: float) -> None:
+        """Force the next get() to hit Alpaca if the snapshot is older than `seconds`."""
+        with self._lock:
+            if self._clock() - self._good_at >= seconds:
+                self._good_at = 0.0
+                self._error_at = 0.0
+
     def _fetch(self) -> List[Dict[str, Any]]:
         fx = _fixture_path()
         if fx:
