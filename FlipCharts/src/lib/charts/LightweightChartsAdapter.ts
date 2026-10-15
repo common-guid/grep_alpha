@@ -56,13 +56,18 @@ export class LightweightChartsAdapter implements IChartAdapter {
 
     candlestickSeries.setData(data as LWCandlestickData[]);
 
+    // Moving averages: labels live in a top-left legend overlay instead of
+    // the right price axis, where they covered the latest candles.
+    const maSeries: { label: string; color: string; series: any; last: number }[] = [];
+
     // 10 EMA Series (Cyan)
     const ema10Data = data
       .filter((d) => d.ema10 !== undefined && d.ema10 !== null)
       .map((d) => ({ time: d.time, value: d.ema10 }));
     if (ema10Data.length > 0) {
-      const ema10Series = chart.addSeries(LineSeries, { color: '#00bec4', lineWidth: 1, title: '10 EMA' });
+      const ema10Series = chart.addSeries(LineSeries, { color: '#00bec4', lineWidth: 1, lastValueVisible: false, priceLineVisible: false });
       ema10Series.setData(ema10Data as any);
+      maSeries.push({ label: '10 EMA', color: ((ema10Series.options() as any).color), series: ema10Series, last: ema10Data[ema10Data.length - 1].value });
     }
 
     // 50 SMA Series (Amber)
@@ -70,8 +75,9 @@ export class LightweightChartsAdapter implements IChartAdapter {
       .filter((d) => d.sma50 !== undefined && d.sma50 !== null)
       .map((d) => ({ time: d.time, value: d.sma50 }));
     if (sma50Data.length > 0) {
-      const sma50Series = chart.addSeries(LineSeries, { color: '#ffc107', lineWidth: 1, title: '50 SMA' });
+      const sma50Series = chart.addSeries(LineSeries, { color: '#ffc107', lineWidth: 1, lastValueVisible: false, priceLineVisible: false });
       sma50Series.setData(sma50Data as any);
+      maSeries.push({ label: '50 SMA', color: ((sma50Series.options() as any).color), series: sma50Series, last: sma50Data[sma50Data.length - 1].value });
     }
 
     // 200 SMA Series (Red)
@@ -79,8 +85,49 @@ export class LightweightChartsAdapter implements IChartAdapter {
       .filter((d) => d.sma200 !== undefined && d.sma200 !== null)
       .map((d) => ({ time: d.time, value: d.sma200 }));
     if (sma200Data.length > 0) {
-      const sma200Series = chart.addSeries(LineSeries, { color: '#ff4757', lineWidth: 1, title: '200 SMA' });
+      const sma200Series = chart.addSeries(LineSeries, { color: '#ff4757', lineWidth: 1, lastValueVisible: false, priceLineVisible: false });
       sma200Series.setData(sma200Data as any);
+      maSeries.push({ label: '200 SMA', color: ((sma200Series.options() as any).color), series: sma200Series, last: sma200Data[sma200Data.length - 1].value });
+    }
+
+    // MA legend overlay (top-left of plot area). Shows latest values; updates
+    // to the hovered bar on crosshair move. pointer-events: none so it never
+    // blocks chart interaction or drawing tools.
+    let legend: HTMLDivElement | undefined;
+    let onCrosshair: ((p: any) => void) | undefined;
+    if (maSeries.length > 0) {
+      if (getComputedStyle(container).position === 'static') container.style.position = 'relative';
+      legend = document.createElement('div');
+      legend.className = 'ma-legend';
+      legend.setAttribute('data-testid', 'ma-legend');
+      Object.assign(legend.style, {
+        position: 'absolute', top: '4px', left: '4px', zIndex: '3',
+        pointerEvents: 'none', display: 'flex', flexDirection: 'column', gap: '1px',
+        padding: '2px 5px', borderRadius: '3px', background: 'rgba(19, 23, 34, 0.6)',
+        font: '10px/1.25 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+        whiteSpace: 'nowrap',
+      } as Partial<CSSStyleDeclaration>);
+      const valueEls: HTMLSpanElement[] = [];
+      for (const m of maSeries) {
+        const row = document.createElement('div');
+        row.style.color = m.color;
+        const lab = document.createElement('span');
+        lab.textContent = m.label + ' ';
+        const val = document.createElement('span');
+        val.textContent = Number(m.last).toFixed(2);
+        row.append(lab, val);
+        legend.appendChild(row);
+        valueEls.push(val);
+      }
+      container.appendChild(legend);
+      onCrosshair = (param: any) => {
+        maSeries.forEach((m, i) => {
+          const d = param && param.time !== undefined ? param.seriesData?.get(m.series) : undefined;
+          const v = d && typeof d.value === 'number' ? d.value : m.last;
+          valueEls[i].textContent = Number(v).toFixed(2);
+        });
+      };
+      chart.subscribeCrosshairMove(onCrosshair);
     }
 
     // Volume Series
@@ -197,6 +244,8 @@ export class LightweightChartsAdapter implements IChartAdapter {
       if (cleanupBridge) {
         cleanupBridge();
       }
+      if (onCrosshair) chart.unsubscribeCrosshairMove(onCrosshair);
+      if (legend) legend.remove();
       chart.remove();
     };
   }
