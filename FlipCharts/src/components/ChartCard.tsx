@@ -114,9 +114,7 @@ export const ChartCard: React.FC<ChartCardProps> = ({ symbol, timeframe }) => {
                 {itemDetails?.status && (
                     <span className={cn(
                         "px-1 py-0.2 text-[8px] font-bold uppercase rounded border tracking-wider shrink-0",
-                        itemDetails.status === 'core_holding' 
-                          ? "bg-[#26a69a]/10 text-[#26a69a] border-[#26a69a]/30"
-                          : itemDetails.status === 'watching'
+                        itemDetails.status === 'watching'
                           ? "bg-blue-500/10 text-blue-400 border-blue-500/30"
                           : "bg-yellow-500/10 text-yellow-400 border-yellow-500/30"
                     )}>

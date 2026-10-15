@@ -218,10 +218,10 @@ def main():
     if args.test_merge:
         print("Running merge logic self-tests...")
         today = datetime.date.today().strftime("%Y-%m-%d")
-        existing = {"symbol": "AAPL", "status": "core_holding", "target_entry": 170.0, "thesis": f"{today}:My custom thesis", "tags": "Big_Tech", "date": today}
+        existing = {"symbol": "AAPL", "status": "trimmed", "target_entry": 170.0, "thesis": f"{today}:My custom thesis", "tags": "Big_Tech", "date": today}
         extracted = {"symbol": "AAPL", "status": "watching", "target_entry": None, "thesis": "New extracted thesis", "tags": "Software, AI_Adjacent"}
         merged = merge_ticker_entry(existing, extracted)
-        assert merged["status"] == "core_holding", f"Status clobbered! {merged}"
+        assert merged["status"] == "trimmed", f"Status clobbered! {merged}"
         assert merged["target_entry"] == 170.0, f"Target entry clobbered! {merged}"
         assert merged["thesis"] == f"{today}:My custom thesis\n{today}:New extracted thesis", f"Thesis not merged correctly! {merged}"
         assert "Big_Tech" in merged["tags"] and "Software" in merged["tags"], f"Tags missing! {merged}"

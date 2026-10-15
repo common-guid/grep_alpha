@@ -65,10 +65,18 @@ def test_yaml_manager_add_sets_added_only_for_new():
 def test_yaml_manager_updates_never_change_added():
     d, m = _mgr()
     try:
-        m.update_ticker_status("t", "AAPL", "core_holding")
+        m.update_ticker_status("t", "AAPL", "trimmed")
         m.update_thesis("t", "AAPL", "more")
         t = m.get_watchlist("t")["tickers"][0]
         assert t["added"] == "2026-07-23"
         assert t["date"] == TODAY
     finally:
         shutil.rmtree(d)
+
+
+def test_legacy_core_holding_status_maps_to_watching():
+    from backend.main import TickerCreate, TickerUpdate
+    assert TickerCreate(symbol="AAPL", status="core_holding").status == "watching"
+    assert TickerUpdate(status="core_holding").status == "watching"
+    assert TickerUpdate(status="trimmed").status == "trimmed"
+    assert TickerUpdate().status is None

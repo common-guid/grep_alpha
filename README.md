@@ -49,7 +49,7 @@ A high-performance, hybrid trading intelligence platform and automated pipeline 
 - 📊 **Sector & Theme Momentum (Base 100)**: Calculate **Price-Weighted** and **Equal-Weighted** indices to evaluate relative sector strength over 3-month and 1-year windows.
 - ⚡ **Persistent SQLite Cache**: Daily price caching prevents redundant third-party API queries and enables instant chart rendering. Local runs use workspace-root `data.db`; Docker uses a separate cache in the `app_data` volume.
 - 🏷️ **Tag Taxonomy Filtering**: Group stocks across customizable tags (e.g., `AI_Adjacent`, `Semi-Fabless`, `Defense_Tech`, `Space`).
-- 📝 **Interactive Thesis Editor**: Manage investment theses, target entry prices, and statuses (`watching`, `core_holding`, `trimmed`) in real time.
+- 📝 **Interactive Thesis Editor**: Manage investment theses, target entry prices, and statuses (`watching`, `trimmed`, `passed`) in real time.
 - 🛠️ **Terminal-First CLI**: Manage YAML-based watchlists (`add`, `rm`, `note`, `ls`, `sync`) without leaving your shell environment.
 - 🤖 **Automated AI Update Pipeline**: Scrape YouTube market video transcripts (e.g., Investor's Business Daily / Stock Market Today), extract ticker theses via LLM subagents, and merge them into watchlists while preserving manual user notes.
 - 🐳 **Full Dockerization**: Run the unified FastAPI server and pre-compiled React SPA inside a multi-stage Docker container.
@@ -277,7 +277,7 @@ npm run dev
 - Displays both **Price-Weighted** and **Equal-Weighted** Base 100 indices to differentiate single-stock mega-cap distortions from broad sector participation.
 
 ### Live Thesis Notes & Persistence
-- Every chart card displays the associated thesis, status (`watching`, `core_holding`, `trimmed`), target entry price, and tags.
+- Every chart card displays the associated thesis, status (`watching`, `trimmed`, `passed`), target entry price, and tags.
 - Edit theses directly inside the UI; changes are saved via the backend API back to the underlying YAML files.
 
 ### Data Caching & Ingestion Strategy
@@ -390,7 +390,7 @@ python3 update_watchlist.py --auto-ibd --dry-run
    - Requires institutional-grade data verification before populating the `thesis` field.
 3. **Smart Merge Engine (`scripts/merge_watchlists.py`)**:
    - 📸 **Automatic Backups**: Always copies existing YAML files to `.backups/YYYY-MM-DD_HHMMSS/` prior to modification.
-   - 🛡️ **Preserves User State**: Retains user-assigned `status` (e.g. `core_holding`), custom `target_entry` prices, and manually written theses.
+   - 🛡️ **Preserves User State**: Retains user-assigned `status` (e.g. `trimmed`), custom `target_entry` prices, and manually written theses.
    - 🏷️ **Tag Union**: Appends new tags while preserving existing user-assigned tags.
    - 🔄 **Dual Synchronization**: Simultaneously updates both [FlipCharts/watchlist.yaml](file:///home/guid/projects/grep_alpha/FlipCharts/watchlist.yaml) and [grep_alpha/watchlists/IDB_top_50.yaml](file:///home/guid/projects/grep_alpha/watchlists/IDB_top_50.yaml).
 

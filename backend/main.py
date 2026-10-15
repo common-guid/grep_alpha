@@ -4,7 +4,7 @@ import asyncio
 from typing import List, Optional, Dict, Any
 from fastapi import FastAPI, HTTPException, Query, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 import pandas as pd
 from datetime import datetime, timedelta
 
@@ -49,6 +49,17 @@ yaml_manager = YAMLManager(watchlists_dir=WATCHLISTS_DIR)
 
 # --- Data Transfer Objects (Pydantic Models) ---
 
+# Legacy status removed 2026-10: `core_holding` is no longer a status (real holdings come
+# from the Alpaca paper account). Old clients sending it get `watching`.
+LEGACY_STATUS_MAP = {"core_holding": "watching"}
+
+
+def _normalize_status(v: Optional[str]) -> Optional[str]:
+    if v is None:
+        return v
+    return LEGACY_STATUS_MAP.get(v.strip().lower(), v)
+
+
 class TickerCreate(BaseModel):
     symbol: str = Field(..., json_schema_extra={"example": "AAPL"})
     thesis: Optional[str] = Field("", json_schema_extra={"example": "Breaking out of consolidation base"})
@@ -56,11 +67,21 @@ class TickerCreate(BaseModel):
     target_entry: Optional[float] = Field(None, json_schema_extra={"example": 185.50})
     tags: Optional[List[str]] = Field(default_factory=list, json_schema_extra={"example": ["Big_Tech", "AI"]})
 
+    @field_validator("status")
+    @classmethod
+    def _legacy_status(cls, v: Optional[str]) -> Optional[str]:
+        return _normalize_status(v)
+
 class TickerUpdate(BaseModel):
     thesis: Optional[str] = None
     status: Optional[str] = None
     target_entry: Optional[float] = None
     tags: Optional[List[str]] = None
+
+    @field_validator("status")
+    @classmethod
+    def _legacy_status(cls, v: Optional[str]) -> Optional[str]:
+        return _normalize_status(v)
 
 class SyncStatusResponse(BaseModel):
     is_running: bool

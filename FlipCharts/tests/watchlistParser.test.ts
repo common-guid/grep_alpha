@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { parseWatchlistYaml, dumpWatchlistYaml, todayIso } from '../src/lib/utils/watchlistParser.ts';
 
 const src = `- symbol: AAPL
-  status: core_holding
+  status: trimmed
   target_entry: 170
   thesis: '2026-09-03:Cash flow'
   tags: Big_Tech, Software
