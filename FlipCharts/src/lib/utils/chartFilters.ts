@@ -18,9 +18,11 @@ export interface GridView {
   /** Inclusive YYYY-MM-DD bounds, used when added === 'custom'. Either may be empty. */
   from: string;
   to: string;
+  /** Only symbols held in the Alpaca paper account (combines with the other filters). */
+  held: boolean;
 }
 
-export const DEFAULT_VIEW: GridView = { added: 'all', sort: 'default', from: '', to: '' };
+export const DEFAULT_VIEW: GridView = { added: 'all', sort: 'default', from: '', to: '', held: false };
 
 export const ADDED_FILTERS: { value: AddedFilter; label: string; short: string }[] = [
   { value: 'all', label: 'All', short: 'All' },
@@ -127,6 +129,7 @@ export function parseView(src: URLSearchParams | Record<string, unknown> | null 
   if (!src) return {};
   const get = (k: string): string | undefined => {
     const v = src instanceof URLSearchParams ? src.get(k) : (src as Record<string, unknown>)[k];
+    if (typeof v === 'boolean') return v ? '1' : '0';
     return typeof v === 'string' ? v : undefined;
   };
   const out: Partial<GridView> = {};
@@ -138,6 +141,9 @@ export function parseView(src: URLSearchParams | Record<string, unknown> | null 
   if (from && ISO.test(from)) out.from = from;
   const to = get('to');
   if (to && ISO.test(to)) out.to = to;
+  const held = get('held');
+  if (held === '1' || held === 'true') out.held = true;
+  else if (held === '0' || held === 'false') out.held = false;
   return out;
 }
 
@@ -150,9 +156,10 @@ export function resolveView(url: URLSearchParams, stored: Record<string, unknown
 
 /** Write the view into `params` (non-default parts only); returns the same object. */
 export function writeViewParams(params: URLSearchParams, view: GridView): URLSearchParams {
-  for (const k of ['added', 'sort', 'from', 'to']) params.delete(k);
+  for (const k of ['added', 'sort', 'from', 'to', 'held']) params.delete(k);
   if (view.added !== 'all') params.set('added', view.added);
   if (view.sort !== 'default') params.set('sort', view.sort);
+  if (view.held) params.set('held', '1');
   if (view.added === 'custom') {
     if (view.from) params.set('from', view.from);
     if (view.to) params.set('to', view.to);
@@ -161,5 +168,5 @@ export function writeViewParams(params: URLSearchParams, view: GridView): URLSea
 }
 
 export function isDefaultView(v: GridView): boolean {
-  return v.added === 'all' && v.sort === 'default';
+  return v.added === 'all' && v.sort === 'default' && !v.held;
 }

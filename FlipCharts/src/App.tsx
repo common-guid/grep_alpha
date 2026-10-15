@@ -17,6 +17,8 @@ import {
   GridView, resolveView, writeViewParams, filterByAdded, sortItems, latestAdded, isDefaultView,
 } from './lib/utils/chartFilters';
 import { todayIso } from './lib/utils/watchlistParser';
+import { PositionsProvider, usePositions } from './context/PositionsContext';
+import { filterByHeld } from './lib/utils/positions';
 import { Settings, Layers, TrendingUp, BarChart2, Tag, Zap, Menu, PanelLeftClose, PanelLeftOpen, SlidersHorizontal } from 'lucide-react';
 import { cn } from './lib/utils';
 import { useMediaQuery } from './lib/useMediaQuery';
@@ -38,6 +40,7 @@ function loadInitialView(): GridView {
 
 const AppContent: React.FC = () => {
   const { watchlists, refreshWatchlists, watchlistItems } = useServices();
+  const { snapshot: positions, held } = usePositions();
   const [gridView, setGridView] = useState<GridView>(loadInitialView);
   const gridScrollRef = useRef<HTMLDivElement>(null);
   const [activeTab, setActiveTab] = useState<ActiveTab>('charts');
@@ -110,18 +113,23 @@ const AppContent: React.FC = () => {
 
   const latestAddedDate = useMemo(() => latestAdded(watchlistItems), [watchlistItems]);
 
-  // Tag selection -> date-added filter -> sort. Symbols stay the React keys, so a
-  // re-sort moves existing ChartCards instead of re-creating their charts.
+  // Tag selection -> date-added filter -> held filter -> sort. Symbols stay the React
+  // keys, so a re-sort moves existing ChartCards instead of re-creating their charts.
   const gridSymbols = useMemo(() => {
     if (!activeWatchlist) return [];
     if (isDefaultView(gridView)) return activeWatchlist.symbols;
     const rows = activeWatchlist.symbols.map((symbol) => {
       const it = itemsBySymbol.get(symbol.toUpperCase());
-      return { symbol, added: it?.added, date: it?.date };
+      return { symbol, added: it?.added, date: it?.date } as { symbol: string; added?: string; date?: string };
     });
-    const filtered = filterByAdded(rows, gridView, todayIso(), latestAddedDate);
+    let filtered = filterByAdded(rows, gridView, todayIso(), latestAddedDate);
+    if (gridView.held) {
+      // On "All Symbols", a just-filled symbol shows even before the watchlist sync lands.
+      const extra = activeWatchlist.id === 'all' && gridView.added === 'all';
+      filtered = filterByHeld(filtered, held, extra, (symbol) => ({ symbol }));
+    }
     return sortItems(filtered, gridView.sort).map((r) => r.symbol);
-  }, [activeWatchlist, gridView, itemsBySymbol, latestAddedDate]);
+  }, [activeWatchlist, gridView, itemsBySymbol, latestAddedDate, held]);
 
   // After a filter/sort change, jump back to the top so the new first cards are the
   // ones in view (their IntersectionObservers fire on the layout change).
@@ -134,7 +142,36 @@ const AppContent: React.FC = () => {
     onChange: setGridView,
     shown: gridSymbols.length,
     total: activeWatchlist?.symbols.length ?? 0,
+    positions,
   };
+
+  const heldNotice = gridView.held && (positions.status === 'unconfigured'
+    ? 'Paper keys are not installed on the backend, so held positions are unavailable.'
+    : positions.status === 'error'
+    ? `Couldn't reach Alpaca: positions unavailable${positions.error ? ` (${positions.error})` : ''}.`
+    : positions.stale
+    ? `Couldn't reach Alpaca: showing last known positions${positions.fetched_at ? ` from ${new Date(positions.fetched_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}` : ''}.`
+    : null);
+
+  const emptyGridMessage = isDefaultView(gridView) ? undefined : gridView.held ? (
+    <span data-testid="held-empty">
+      {positions.status === 'loading' ? 'Loading paper positions…'
+        : positions.status === 'unconfigured' ? 'Held positions unavailable: paper keys not installed.'
+        : positions.status === 'error' ? "Held positions unavailable: couldn't reach Alpaca."
+        : held.size === 0 ? 'No open paper positions.'
+        : 'No held positions match these filters.'}{' '}
+      <button type="button" className="text-[#26a69a] underline min-h-11 touch:px-2" onClick={() => setGridView({ ...gridView, held: false })}>
+        Show all charts
+      </button>
+    </span>
+  ) : (
+    <>
+      No charts added in this range.{' '}
+      <button type="button" className="text-[#26a69a] underline min-h-11 touch:px-2" onClick={() => setGridView({ ...gridView, added: 'all', from: '', to: '' })}>
+        Show all
+      </button>
+    </>
+  );
 
   const timeframes = [
     { label: '1D', value: '1D' },
@@ -373,20 +410,18 @@ const AppContent: React.FC = () => {
         {isDesktop && activeTab === 'charts' && activeWatchlist && (
           <GridControls {...gridControlsProps} variant="toolbar" />
         )}
+        {activeTab === 'charts' && heldNotice && (
+          <div role="status" data-testid="held-notice" className="shrink-0 px-3 py-1.5 text-[11px] bg-amber-500/10 text-amber-300 border-b border-amber-500/30">
+            {heldNotice}
+          </div>
+        )}
         <div ref={gridScrollRef} className="flex-1 overflow-y-auto scrollbar-hide flex flex-col">
           {activeTab === 'charts' && (
             activeWatchlist ? (
               <ChartGrid
                 symbols={gridSymbols}
                 timeframe={timeframe}
-                emptyMessage={isDefaultView(gridView) ? undefined : (
-                  <>
-                    No charts added in this range.{' '}
-                    <button type="button" className="text-[#26a69a] underline min-h-11 touch:px-2" onClick={() => setGridView({ ...gridView, added: 'all', from: '', to: '' })}>
-                      Show all
-                    </button>
-                  </>
-                )}
+                emptyMessage={emptyGridMessage}
               />
             ) : (
               <div className="flex-1 flex items-center justify-center text-gray-500">
@@ -424,10 +459,22 @@ const AppContent: React.FC = () => {
   );
 };
 
+const PositionsBridge: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { watchlistItems, refreshWatchlists } = useServices();
+  const symbols = useMemo(() => watchlistItems.map((i) => i.symbol), [watchlistItems]);
+  return (
+    <PositionsProvider watchlistSymbols={symbols} watchlistLoaded={watchlistItems.length > 0} refreshWatchlists={refreshWatchlists}>
+      {children}
+    </PositionsProvider>
+  );
+};
+
 export default function App() {
   return (
     <ServiceProvider>
-      <AppContent />
+      <PositionsBridge>
+        <AppContent />
+      </PositionsBridge>
     </ServiceProvider>
   );
 }

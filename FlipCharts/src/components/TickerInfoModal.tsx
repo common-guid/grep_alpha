@@ -7,6 +7,7 @@ import React from 'react';
 import { X, Info, Globe, Building2, TrendingUp, Users, Activity, BarChart3 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { CandlestickData } from '../lib/charts/IChartAdapter';
+import { HeldBadge } from './HeldBadge';
 import { useServices } from '../context/ServiceContext';
 
 interface TickerInfoModalProps {
@@ -111,6 +112,7 @@ export const TickerInfoModal: React.FC<TickerInfoModalProps> = ({ symbol, data, 
               <div className="flex items-center justify-between border-b border-[#242733] pb-3">
                 <h3 className="text-xs font-bold text-gray-300 uppercase tracking-wider">Watchlist Profile</h3>
                 <div className="flex items-center gap-2">
+                  <HeldBadge symbol={symbol} size="modal" />
                   {itemDetails.status && (
                     <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase border ${
                       itemDetails.status === 'watching'
