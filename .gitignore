@@ -43,3 +43,4 @@ test_env/
 
 # Pipeline snapshot backups (never commit)
 update_pipeline/.backups/
+.ga_state/

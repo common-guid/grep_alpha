@@ -49,7 +49,7 @@ A high-performance, hybrid trading intelligence platform and automated pipeline 
 - 📊 **Sector & Theme Momentum (Base 100)**: Calculate **Price-Weighted** and **Equal-Weighted** indices to evaluate relative sector strength over 3-month and 1-year windows.
 - ⚡ **Persistent SQLite Cache**: Daily price caching prevents redundant third-party API queries and enables instant chart rendering. Local runs use workspace-root `data.db`; Docker uses a separate cache in the `app_data` volume.
 - 🏷️ **Tag Taxonomy Filtering**: Group stocks across customizable tags (e.g., `AI_Adjacent`, `Semi-Fabless`, `Defense_Tech`, `Space`).
-- 📝 **Interactive Thesis Editor**: Manage investment theses, target entry prices, and statuses (`watching`, `core_holding`, `trimmed`) in real time.
+- 📝 **Interactive Thesis Editor**: Manage investment theses, target entry prices, and statuses (`watching`, `trimmed`, `passed`) in real time.
 - 🛠️ **Terminal-First CLI**: Manage YAML-based watchlists (`add`, `rm`, `note`, `ls`, `sync`) without leaving your shell environment.
 - 🤖 **Automated AI Update Pipeline**: Scrape YouTube market video transcripts (e.g., Investor's Business Daily / Stock Market Today), extract ticker theses via LLM subagents, and merge them into watchlists while preserving manual user notes.
 - 🐳 **Full Dockerization**: Run the unified FastAPI server and pre-compiled React SPA inside a multi-stage Docker container.
@@ -277,13 +277,17 @@ npm run dev
 - Displays both **Price-Weighted** and **Equal-Weighted** Base 100 indices to differentiate single-stock mega-cap distortions from broad sector participation.
 
 ### Live Thesis Notes & Persistence
-- Every chart card displays the associated thesis, status (`watching`, `core_holding`, `trimmed`), target entry price, and tags.
+- Every chart card displays the associated thesis, status (`watching`, `trimmed`, `passed`), target entry price, and tags.
 - Edit theses directly inside the UI; changes are saved via the backend API back to the underlying YAML files.
 
 ### Data Caching & Ingestion Strategy
 1. **Primary**: Queries the local `/api/prices` endpoint powered by SQLite (`data.db`).
 2. **On-Demand Auto-Ingestion**: If a requested ticker has no records in SQLite, the backend automatically downloads daily OHLCV bars via `yfinance` keylessly on the fly, stores them in `data.db`, and serves the chart immediately.
 3. **Full Watchlist Batch Sync**: Sync all tickers across watchlists on demand via the **Market Sync** tab in the UI or via the CLI (`watch sync`). Optional Alpaca fallback is supported if configured.
+
+#### Held Positions (Alpaca paper)
+
+The **Held** toggle (toolbar on desktop, Filter & sort in the mobile drawer; `?held=1`) shows only symbols held in the Alpaca paper account and combines with the tag, date-added and sort controls. Held cards show `qty @ avg cost · unrealized P&L %` (prefixed `SHORT` for shorts). A held symbol missing from the watchlist is added automatically with the `paper` tag. See [docs/paper-positions-api.md](docs/paper-positions-api.md).
 
 #### Canonical Data Cache
 
@@ -390,7 +394,7 @@ python3 update_watchlist.py --auto-ibd --dry-run
    - Requires institutional-grade data verification before populating the `thesis` field.
 3. **Smart Merge Engine (`scripts/merge_watchlists.py`)**:
    - 📸 **Automatic Backups**: Always copies existing YAML files to `.backups/YYYY-MM-DD_HHMMSS/` prior to modification.
-   - 🛡️ **Preserves User State**: Retains user-assigned `status` (e.g. `core_holding`), custom `target_entry` prices, and manually written theses.
+   - 🛡️ **Preserves User State**: Retains user-assigned `status` (e.g. `trimmed`), custom `target_entry` prices, and manually written theses.
    - 🏷️ **Tag Union**: Appends new tags while preserving existing user-assigned tags.
    - 🔄 **Dual Synchronization**: Simultaneously updates both [FlipCharts/watchlist.yaml](file:///home/guid/projects/grep_alpha/FlipCharts/watchlist.yaml) and [grep_alpha/watchlists/IDB_top_50.yaml](file:///home/guid/projects/grep_alpha/watchlists/IDB_top_50.yaml).
 
@@ -439,6 +443,15 @@ The FastAPI server acts as a unified API gateway for both the web app and third-
 | :--- | :--- | :--- |
 | `POST` | `/api/sync` | Trigger async background market data sync task |
 | `GET` | `/api/status` | Get DB row counts, latest cached date, and background sync state |
+
+### Paper Positions Endpoints (Alpaca paper account, read-only)
+
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/api/positions` | Open paper positions (qty, avg cost, unrealized P&L, `on_watchlist`), cached 60s; `status` ok / unconfigured / error. No side effects |
+| `POST` | `/api/positions/sync-watchlist` | Idempotently add held symbols missing from `FlipCharts/watchlist.yaml` (tag `paper`); called by Grep Alpha Trader after fills and by the app |
+
+Needs `ALPACA_PAPER_KEY_ID` / `ALPACA_PAPER_SECRET_KEY` (PK paper key) in the backend environment. Full contract and persistence rules: [docs/paper-positions-api.md](docs/paper-positions-api.md).
 
 ---
 
