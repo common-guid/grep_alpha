@@ -181,6 +181,14 @@ def store_run(conn_factory: Callable, payload: Dict[str, Any], keep: int = KEEP_
     return run_id, replaced, pruned
 
 
+def ingest(conn_factory: Callable, raw: Any, keep: int = KEEP_RUNS):
+    """Validate + store: the single path used by POST /api/screens and the drop folder.
+    Returns (payload, run_id, replaced, pruned); raises ScreenValidationError."""
+    payload = validate_payload(raw)
+    run_id, replaced, pruned = store_run(conn_factory, payload, keep)
+    return payload, run_id, replaced, pruned
+
+
 _COLS = "id, name, version, run_at, as_of, params_json, universe_json, columns_json, rows_json, row_count, source, created_at"
 
 

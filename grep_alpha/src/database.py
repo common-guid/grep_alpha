@@ -74,6 +74,22 @@ def init_db():
         cursor.execute("""
             CREATE INDEX IF NOT EXISTS idx_screen_runs_name_run ON screen_runs(name, run_at)
         """)
+        # Files ingested from the screens drop folder (grep_alpha/src/screens_drop.py).
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS screen_ingests (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                filename TEXT NOT NULL,
+                sha256 TEXT NOT NULL,
+                size INTEGER NOT NULL,
+                status TEXT NOT NULL,
+                screen TEXT,
+                run_id INTEGER,
+                errors_json TEXT NOT NULL DEFAULT '[]',
+                detail_json TEXT NOT NULL DEFAULT '{}',
+                ingested_at TEXT NOT NULL,
+                UNIQUE (filename, sha256)
+            )
+        """)
         conn.commit()
 
 from datetime import datetime, timedelta

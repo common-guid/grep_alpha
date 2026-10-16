@@ -21,6 +21,7 @@ from grep_alpha.src import database, analytics, data_fetcher
 from grep_alpha.src.paper_positions import PositionsService
 from grep_alpha.src.paper_watchlist import PaperWatchlist, default_state_dir
 from grep_alpha.src import screens as screens_mod
+from grep_alpha.src.screens_drop import DropWatcher, ENV_DIR as SCREENS_DROP_ENV, recent as screens_drop_recent
 
 from contextlib import asynccontextmanager
 
@@ -36,7 +37,10 @@ async def lifespan(app: FastAPI):
     except Exception as e:
         print(f"[paper-watchlist] startup reconcile failed: {type(e).__name__}")
     paper_watchlist.start_watcher()
+    # Screens drop folder (read-only mount): scan at startup, then every ~15s.
+    screens_drop.start()
     yield
+    screens_drop.stop()
     paper_watchlist.stop_watcher()
 
 app = FastAPI(
@@ -135,6 +139,7 @@ paper_watchlist = PaperWatchlist(
     mirror_paths=[FLIPCHARTS_DIST_WATCHLIST_PATH],
 )
 positions_service = PositionsService()
+screens_drop = DropWatcher(os.environ.get(SCREENS_DROP_ENV) or None, database.get_connection)
 
 
 def resolve_flipcharts_watchlist_path() -> Optional[str]:
@@ -778,18 +783,32 @@ async def post_screen(request: Request):
         raw = _json.loads(body)
     except ValueError:
         return _JSONResponse(status_code=400, content={"status": "error", "errors": ["body is not valid JSON"]})
+    database.init_db()
     try:
-        payload = screens_mod.validate_payload(raw)
+        # Same validation + storage path as the drop-folder ingester.
+        payload, run_id, replaced, pruned = screens_mod.ingest(database.get_connection, raw)
     except screens_mod.ScreenValidationError as e:
         return _JSONResponse(status_code=422, content={"status": "error", "errors": e.errors[:50]})
-    database.init_db()
-    run_id, replaced, pruned = screens_mod.store_run(database.get_connection, payload)
     on_list = _watchlist_symbol_set()
     off = [r["ticker"] for r in payload["rows"] if r["ticker"] not in on_list]
     return _JSONResponse(status_code=200 if replaced else 201, content={
         "status": "ok", "id": run_id, "screen": payload["screen"], "run_at": payload["run_at"],
         "as_of": payload["as_of"], "row_count": len(payload["rows"]), "replaced": replaced,
         "pruned": pruned, "off_watchlist": off})
+
+
+@app.get("/api/screens/ingest-status")
+def get_screens_ingest_status(limit: int = Query(50, ge=1, le=500)):
+    """Drop-folder ingester state and the most recent ingested/rejected files. Read-only."""
+    return {
+        "enabled": screens_drop.enabled,
+        "dir": screens_drop.directory,
+        "dir_exists": bool(screens_drop.directory and os.path.isdir(screens_drop.directory)),
+        "interval_seconds": screens_drop.interval,
+        "last_scan_at": screens_drop.last_scan_at,
+        "last_error": screens_drop.last_error,
+        "recent": _screens_read(screens_drop_recent, limit) or [],
+    }
 
 
 @app.get("/api/screens")
