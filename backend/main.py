@@ -20,6 +20,8 @@ from grep_alpha.src.yaml_manager import YAMLManager
 from grep_alpha.src import database, analytics, data_fetcher
 from grep_alpha.src.paper_positions import PositionsService
 from grep_alpha.src.paper_watchlist import PaperWatchlist, default_state_dir
+from grep_alpha.src import screens as screens_mod
+from grep_alpha.src.screens_drop import DropWatcher, ENV_DIR as SCREENS_DROP_ENV, recent as screens_drop_recent
 
 from contextlib import asynccontextmanager
 
@@ -35,7 +37,10 @@ async def lifespan(app: FastAPI):
     except Exception as e:
         print(f"[paper-watchlist] startup reconcile failed: {type(e).__name__}")
     paper_watchlist.start_watcher()
+    # Screens drop folder (read-only mount): scan at startup, then every ~15s.
+    screens_drop.start()
     yield
+    screens_drop.stop()
     paper_watchlist.stop_watcher()
 
 app = FastAPI(
@@ -134,6 +139,7 @@ paper_watchlist = PaperWatchlist(
     mirror_paths=[FLIPCHARTS_DIST_WATCHLIST_PATH],
 )
 positions_service = PositionsService()
+screens_drop = DropWatcher(os.environ.get(SCREENS_DROP_ENV) or None, database.get_connection)
 
 
 def resolve_flipcharts_watchlist_path() -> Optional[str]:
@@ -747,6 +753,91 @@ def sync_paper_positions_to_watchlist():
     held = [p["symbol"] for p in snap["positions"]]
     result = paper_watchlist.sync(held, source="api")
     return PaperSyncResponse(status="ok", held=sorted(held), fetched_at=snap.get("fetched_at"), **result)
+
+
+# --- Screens (results handed in by an external screener; the app never runs screens) ---
+# Contract: docs/screens-api.md (JSON v1). POST stores into the app DB's screen_runs
+# table and prunes to the last 30 runs per screen. GETs are read-only.
+import sqlite3 as _sqlite3
+from fastapi import Request
+from fastapi.responses import JSONResponse as _JSONResponse
+
+
+def _screens_read(fn, *args):
+    try:
+        return fn(database.get_connection, *args)
+    except _sqlite3.OperationalError as e:
+        if "no such table" in str(e):
+            return None
+        raise
+
+
+@app.post("/api/screens", status_code=201)
+async def post_screen(request: Request):
+    """Store one screen run (JSON v1). Same screen + run_at replaces that run."""
+    body = await request.body()
+    if len(body) > screens_mod.MAX_BODY_BYTES:
+        return _JSONResponse(status_code=413, content={"status": "error", "errors": [f"body > {screens_mod.MAX_BODY_BYTES} bytes"]})
+    try:
+        import json as _json
+        raw = _json.loads(body)
+    except ValueError:
+        return _JSONResponse(status_code=400, content={"status": "error", "errors": ["body is not valid JSON"]})
+    database.init_db()
+    try:
+        # Same validation + storage path as the drop-folder ingester.
+        payload, run_id, replaced, pruned = screens_mod.ingest(database.get_connection, raw)
+    except screens_mod.ScreenValidationError as e:
+        return _JSONResponse(status_code=422, content={"status": "error", "errors": e.errors[:50]})
+    on_list = _watchlist_symbol_set()
+    off = [r["ticker"] for r in payload["rows"] if r["ticker"] not in on_list]
+    return _JSONResponse(status_code=200 if replaced else 201, content={
+        "status": "ok", "id": run_id, "screen": payload["screen"], "run_at": payload["run_at"],
+        "as_of": payload["as_of"], "row_count": len(payload["rows"]), "replaced": replaced,
+        "pruned": pruned, "off_watchlist": off})
+
+
+@app.get("/api/screens/ingest-status")
+def get_screens_ingest_status(limit: int = Query(50, ge=1, le=500)):
+    """Drop-folder ingester state and the most recent ingested/rejected files. Read-only."""
+    return {
+        "enabled": screens_drop.enabled,
+        "dir": screens_drop.directory,
+        "dir_exists": bool(screens_drop.directory and os.path.isdir(screens_drop.directory)),
+        "interval_seconds": screens_drop.interval,
+        "last_scan_at": screens_drop.last_scan_at,
+        "last_error": screens_drop.last_error,
+        "recent": _screens_read(screens_drop_recent, limit) or [],
+    }
+
+
+@app.get("/api/screens")
+def get_screens():
+    """All screens with their latest run summary."""
+    return {"screens": _screens_read(screens_mod.list_screens) or []}
+
+
+def _screen_response(run):
+    if run is None:
+        raise HTTPException(status_code=404, detail="screen run not found")
+    on_list = _watchlist_symbol_set()
+    run["rows"] = [dict(r, on_watchlist=r["ticker"] in on_list) for r in run["rows"]]
+    return run
+
+
+@app.get("/api/screens/{name}/latest")
+def get_screen_latest(name: str):
+    return _screen_response(_screens_read(screens_mod.get_run, name))
+
+
+@app.get("/api/screens/{name}/runs")
+def get_screen_runs(name: str):
+    return {"screen": name, "runs": _screens_read(screens_mod.list_runs, name) or []}
+
+
+@app.get("/api/screens/{name}/{run_id}")
+def get_screen_run(name: str, run_id: int):
+    return _screen_response(_screens_read(screens_mod.get_run, name, run_id))
 
 
 # --- Static File Serving for Production React SPA ---

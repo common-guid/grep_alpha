@@ -1,0 +1,70 @@
+{
+  "screen": "lr10",
+  "version": 1,
+  "run_at": "2026-10-15T21:05:00Z",
+  "as_of": "2026-10-15",
+  "source": "grep-alpha-trader",
+  "params": {
+    "window": 10,
+    "criteria": "slope_usd_per_day > 0 (no R² cutoff)",
+    "field": "close",
+    "adjustment": "split",
+    "feed": "sip",
+    "sort": "-slope_pct_per_day"
+  },
+  "universe": {
+    "source": "research prices.db",
+    "count": 292,
+    "computed": 292,
+    "missing": []
+  },
+  "columns": [
+    {
+      "key": "slope_pct_per_day",
+      "label": "Slope %/d",
+      "fmt": "pct2"
+    },
+    {
+      "key": "r2",
+      "label": "R²",
+      "fmt": "f2"
+    },
+    {
+      "key": "slope_usd_per_day",
+      "label": "$/d",
+      "fmt": "f2"
+    }
+  ],
+  "rows": [
+    {
+      "slope_pct_per_day": 4.566,
+      "slope_usd_per_day": 0.73,
+      "r2": 0.94,
+      "window_start": "2026-10-02",
+      "window_end": "2026-10-15",
+      "last_close": 19.54,
+      "ticker": "FIGS",
+      "rank": 1
+    },
+    {
+      "slope_pct_per_day": 2.329,
+      "slope_usd_per_day": 4.871,
+      "r2": 0.77,
+      "window_start": "2026-10-02",
+      "window_end": "2026-10-15",
+      "last_close": 236.5,
+      "ticker": "MRNA",
+      "rank": 2
+    },
+    {
+      "slope_pct_per_day": 2.309,
+      "slope_usd_per_day": 0.683,
+      "r2": 0.44,
+      "window_start": "2026-10-02",
+      "window_end": "2026-10-15",
+      "last_close": 30.04,
+      "ticker": "XP",
+      "rank": 3
+    }
+  ]
+}

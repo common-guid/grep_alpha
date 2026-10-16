@@ -10,6 +10,9 @@ services:
       - app_data:/app/data
       - ./grep_alpha/watchlists:/app/grep_alpha/watchlists
       - ./FlipCharts/watchlist.yaml:/app/FlipCharts/watchlist.yaml
+      # Screens drop folder (Syncthing receive-only on the host), read-only in the container.
+      # Set GA_SCREENS_HOST_DIR to the accepted Syncthing folder path; unset -> empty ./screens_drop.
+      - ${GA_SCREENS_HOST_DIR:-./screens_drop}:/app/screens_drop:ro
     environment:
       - DATA_PROVIDER=yfinance
       - DB_PATH=/app/data/data.db
@@ -19,6 +22,7 @@ services:
       # Alpaca PAPER account, read-only positions (GET /api/positions). Set in the host env or .env.
       - ALPACA_PAPER_KEY_ID=${ALPACA_PAPER_KEY_ID:-}
       - ALPACA_PAPER_SECRET_KEY=${ALPACA_PAPER_SECRET_KEY:-}
+      - GA_SCREENS_DROP_DIR=/app/screens_drop
     restart: unless-stopped
 
 volumes:

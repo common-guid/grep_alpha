@@ -16,6 +16,7 @@ import { addedLabel, IMPORT_DATE } from '../lib/utils/chartFilters';
 import { todayIso } from '../lib/utils/watchlistParser';
 import { TickerInfoModal } from './TickerInfoModal';
 import { HeldBadge } from './HeldBadge';
+import { ScreenBadge, OffWatchlistBadge } from './ScreenBadge';
 import { NotesModal } from './NotesModal';
 import { ExpandedChartModal } from './ExpandedChartModal';
 import { notifyViewportChartPainted } from '../lib/viewportChartsGate';
@@ -141,6 +142,8 @@ export const ChartCard: React.FC<ChartCardProps> = ({ symbol, timeframe }) => {
                     </span>
                 )}
                 <HeldBadge symbol={symbol} />
+                <ScreenBadge symbol={symbol} />
+                {!itemDetails && watchlistItems.length > 0 && <OffWatchlistBadge />}
                 {staleness.isStale && (
                     <span 
                         className="px-1.5 py-0.2 text-[8px] font-bold rounded bg-amber-500/15 text-amber-400 border border-amber-500/30 flex items-center gap-1 shrink-0 cursor-help"
