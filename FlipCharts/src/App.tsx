@@ -19,6 +19,8 @@ import {
 import { todayIso } from './lib/utils/watchlistParser';
 import { PositionsProvider, usePositions } from './context/PositionsContext';
 import { filterByHeld } from './lib/utils/positions';
+import { ScreenProvider, useScreens } from './context/ScreenContext';
+import { filterByScreen, isScreenStale, lastTradingDay } from './lib/utils/screens';
 import { Settings, Layers, TrendingUp, BarChart2, Tag, Zap, Menu, PanelLeftClose, PanelLeftOpen, SlidersHorizontal } from 'lucide-react';
 import { cn } from './lib/utils';
 import { useMediaQuery } from './lib/useMediaQuery';
@@ -38,10 +40,13 @@ function loadInitialView(): GridView {
   return resolveView(new URLSearchParams(window.location.search), stored);
 }
 
+type GridRow = { symbol: string; added?: string; date?: string; rank?: number; metric?: number | null };
+
 const AppContent: React.FC = () => {
   const { watchlists, refreshWatchlists, watchlistItems } = useServices();
   const { snapshot: positions, held } = usePositions();
   const [gridView, setGridView] = useState<GridView>(loadInitialView);
+  const screens = useScreens(gridView.screen);
   const gridScrollRef = useRef<HTMLDivElement>(null);
   const [activeTab, setActiveTab] = useState<ActiveTab>('charts');
   const [activeWatchlistId, setActiveWatchlistId] = useState<string>('');
@@ -120,7 +125,7 @@ const AppContent: React.FC = () => {
     if (isDefaultView(gridView)) return activeWatchlist.symbols;
     const rows = activeWatchlist.symbols.map((symbol) => {
       const it = itemsBySymbol.get(symbol.toUpperCase());
-      return { symbol, added: it?.added, date: it?.date } as { symbol: string; added?: string; date?: string };
+      return { symbol, added: it?.added, date: it?.date } as GridRow;
     });
     let filtered = filterByAdded(rows, gridView, todayIso(), latestAddedDate);
     if (gridView.held) {
@@ -128,8 +133,19 @@ const AppContent: React.FC = () => {
       const extra = activeWatchlist.id === 'all' && gridView.added === 'all';
       filtered = filterByHeld(filtered, held, extra, (symbol) => ({ symbol }));
     }
+    if (gridView.screen) {
+      // Off-watchlist screen hits only on "All Symbols" with no date/held narrowing; never auto-added.
+      const extra = activeWatchlist.id === 'all' && gridView.added === 'all' && !gridView.held;
+      filtered = filterByScreen(filtered, screens.rows, extra, (symbol) => ({ symbol }));
+      const metricKey = gridView.sort.startsWith('sc:') ? gridView.sort.slice(3) : null;
+      filtered = filtered.map((r) => {
+        const row = screens.rows.get(r.symbol.toUpperCase());
+        const mv = metricKey ? row?.[metricKey] : undefined;
+        return { ...r, rank: row?.rank, metric: typeof mv === 'number' ? mv : null };
+      });
+    }
     return sortItems(filtered, gridView.sort).map((r) => r.symbol);
-  }, [activeWatchlist, gridView, itemsBySymbol, latestAddedDate, held]);
+  }, [activeWatchlist, gridView, itemsBySymbol, latestAddedDate, held, screens.rows]);
 
   // After a filter/sort change, jump back to the top so the new first cards are the
   // ones in view (their IntersectionObservers fire on the layout change).
@@ -143,7 +159,16 @@ const AppContent: React.FC = () => {
     shown: gridSymbols.length,
     total: activeWatchlist?.symbols.length ?? 0,
     positions,
+    screens,
   };
+
+  const screenNotice = activeTab === 'charts' && gridView.screen ? (
+    screens.status === 'not_found' ? `Screen "${gridView.screen}" has no runs on this server.`
+      : screens.status === 'error' ? `Couldn't load screen "${gridView.screen}".`
+      : screens.run && isScreenStale(screens.run.as_of)
+      ? `Screen ${screens.run.screen} is as of ${screens.run.as_of}; the latest trading day is ${lastTradingDay()}. Results may be stale.`
+      : null
+  ) : null;
 
   const heldNotice = gridView.held && (positions.status === 'unconfigured'
     ? 'Paper keys are not installed on the backend, so held positions are unavailable.'
@@ -153,7 +178,18 @@ const AppContent: React.FC = () => {
     ? `Couldn't reach Alpaca: showing last known positions${positions.fetched_at ? ` from ${new Date(positions.fetched_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}` : ''}.`
     : null);
 
-  const emptyGridMessage = isDefaultView(gridView) ? undefined : gridView.held ? (
+  const emptyGridMessage = isDefaultView(gridView) ? undefined : gridView.screen && (screens.status !== 'ok' || !gridView.held) ? (
+    <span data-testid="screen-empty">
+      {screens.status === 'loading' ? 'Loading screen…'
+        : screens.status === 'not_found' ? `No runs for screen "${gridView.screen}".`
+        : screens.status === 'error' ? `Couldn't load screen "${gridView.screen}".`
+        : screens.rows.size === 0 ? `Screen ${gridView.screen} returned no hits.`
+        : 'No screen hits match these filters.'}{' '}
+      <button type="button" className="text-[#26a69a] underline min-h-11 touch:px-2" onClick={() => setGridView({ ...gridView, screen: '', sort: gridView.sort === 'screen_rank' || gridView.sort.startsWith('sc:') ? 'default' : gridView.sort })}>
+        Clear screen
+      </button>
+    </span>
+  ) : gridView.held ? (
     <span data-testid="held-empty">
       {positions.status === 'loading' ? 'Loading paper positions…'
         : positions.status === 'unconfigured' ? 'Held positions unavailable: paper keys not installed.'
@@ -212,6 +248,7 @@ const AppContent: React.FC = () => {
   );
 
   return (
+    <ScreenProvider value={screens}>
     <div className="flex h-screen w-screen bg-[#0b0e14] text-white overflow-hidden font-sans">
       {isDrawerOpen && (
         <div
@@ -410,6 +447,11 @@ const AppContent: React.FC = () => {
         {isDesktop && activeTab === 'charts' && activeWatchlist && (
           <GridControls {...gridControlsProps} variant="toolbar" />
         )}
+        {screenNotice && (
+          <div role="status" data-testid="screen-notice" className="shrink-0 px-3 py-1.5 text-[11px] bg-amber-500/10 text-amber-300 border-b border-amber-500/30">
+            {screenNotice}
+          </div>
+        )}
         {activeTab === 'charts' && heldNotice && (
           <div role="status" data-testid="held-notice" className="shrink-0 px-3 py-1.5 text-[11px] bg-amber-500/10 text-amber-300 border-b border-amber-500/30">
             {heldNotice}
@@ -456,6 +498,7 @@ const AppContent: React.FC = () => {
 
       <SettingsModal isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />
     </div>
+    </ScreenProvider>
   );
 };
 
