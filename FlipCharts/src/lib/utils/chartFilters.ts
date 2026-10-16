@@ -130,7 +130,8 @@ export function sortItems<T extends DatedSymbol>(items: T[], sort: SortKey): T[]
           if (av !== null && bv === null) return -1;
           if (av === null && bv !== null) return 1;
           if (av !== null && bv !== null && av !== bv) return bv - av;
-          return a.idx - b.idx;
+          // Ties: better screen rank first, then original order.
+          return (a.item.rank ?? Infinity) - (b.item.rank ?? Infinity) || a.idx - b.idx;
         });
       }
   }

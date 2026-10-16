@@ -53,6 +53,8 @@ test('screen sorts: rank and column metric', () => {
   ];
   assert.deepEqual(sortItems(items, 'screen_rank').map((i) => i.symbol), ['B', 'C', 'A', 'D']);
   assert.deepEqual(sortItems(items, 'sc:r2').map((i) => i.symbol), ['C', 'A', 'B', 'D']);
+  const ties = [{ symbol: 'X', rank: 5, metric: 1 }, { symbol: 'Y', rank: 2, metric: 1 }];
+  assert.deepEqual(sortItems(ties, 'sc:r2').map((i) => i.symbol), ['Y', 'X'], 'ties broken by rank');
 });
 
 test('screen in URL and localStorage', () => {
