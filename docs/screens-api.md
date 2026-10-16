@@ -21,6 +21,44 @@ The GETs are read-only.
 
 The 201/200 response is `{"status":"ok","id","screen","run_at","as_of","row_count","replaced","pruned","off_watchlist":[...]}`.
 
+## Drop-folder delivery (how prod receives screens)
+The screener's box can't reach prod, so payloads travel over **Syncthing**.
+
+```
+box: /home/box/grep_alpha_screens   (folder id ga-screens, send-only)
+  └─ Syncthing ─▶ squawk: <accepted path> (receive-only)
+                     └─ docker bind mount :ro ─▶ container /app/screens_drop (GA_SCREENS_DROP_DIR)
+```
+
+**What the backend does with the folder:**
+- It scans `*.json` at startup and every ~15s.
+- It ignores Syncthing and other temp files: `.syncthing.*`, `~syncthing~*`, dotfiles, `~*`, `*.tmp`, `*.part`, `*.partial`.
+- Each new file goes through **the same validation and storage as `POST /api/screens`**.
+- Each `(filename, sha256)` is recorded in the `screen_ingests` table and processed **once**. A file whose content changes is processed again.
+- An invalid file is logged and recorded as `rejected` with its errors, and isn't retried until its content changes.
+- **The app never writes, renames or deletes anything in the drop folder.** It's mounted read-only.
+- Status: `GET /api/screens/ingest-status?limit=50` returns `{enabled, dir, dir_exists, interval_seconds, last_scan_at, last_error, recent:[{filename, sha256, status: ingested|rejected, screen, run_id, errors, run_at, as_of, row_count, replaced, pruned, processed_at}]}`.
+
+### Producer rules (Grep Alpha Trader)
+1. **Folder:** `/home/box/grep_alpha_screens`, flat. No subfolders; they aren't scanned.
+2. **Name:** `<screen>_<run_at UTC compact>.json`, e.g. `lr10_20261015T210500Z.json`. Use one file per run and never reuse a name for a different run.
+3. **Atomic write:** write to a temp name in the same folder, then rename to the final `.json` name. Temp names starting with `.` or ending in `.tmp` are ignored, e.g. `.lr10_20261015T210500Z.json.tmp`. That way Syncthing never syncs a half-written file.
+   ```bash
+   python tools/screen_csv_to_v1.py lr10.csv --screen lr10 ... --check > /home/box/grep_alpha_screens/.lr10_20261015T210500Z.json.tmp \
+     && mv /home/box/grep_alpha_screens/.lr10_20261015T210500Z.json.tmp /home/box/grep_alpha_screens/lr10_20261015T210500Z.json
+   ```
+4. **`run_at` inside the file must match the name.** Re-delivering the same `run_at`, even under a different file name, replaces that run; it never duplicates it.
+5. **Keep files in place.** Deleting them is harmless to the app (runs are already stored), but keeping them gives an audit trail. Prune old files on the box if you like. The app keeps the last 30 runs per screen regardless.
+6. **Checking a delivery:** ask the operator to check `GET /api/screens/ingest-status`, or validate locally first with `--check`.
+
+### Operator rollout
+1. On squawk, accept the `ga-screens` share from the box as **Receive Only**, at a path you choose, e.g. `/srv/grep_alpha/screens_drop`.
+2. In the prod environment that docker compose reads (shell env or the `.env` next to `docker-compose.yml`), set `GA_SCREENS_HOST_DIR=/srv/grep_alpha/screens_drop`. Unset, it falls back to an empty `./screens_drop`.
+3. Run `docker compose up -d --build`.
+4. Check `curl -s http://<host>:3000/api/screens/ingest-status`: `enabled: true`, `dir_exists: true`. Once a file has synced, a `recent` entry should show `status: ingested`.
+
+The files must be readable by the container user (root by default). Syncthing's default file permissions (0644) are fine.
+
 ## Payload v1
 | Field | Type | Rules |
 |---|---|---|
