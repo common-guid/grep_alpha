@@ -20,6 +20,7 @@ from grep_alpha.src.yaml_manager import YAMLManager
 from grep_alpha.src import database, analytics, data_fetcher
 from grep_alpha.src.paper_positions import PositionsService
 from grep_alpha.src.paper_watchlist import PaperWatchlist, default_state_dir
+from grep_alpha.src import screens as screens_mod
 
 from contextlib import asynccontextmanager
 
@@ -747,6 +748,77 @@ def sync_paper_positions_to_watchlist():
     held = [p["symbol"] for p in snap["positions"]]
     result = paper_watchlist.sync(held, source="api")
     return PaperSyncResponse(status="ok", held=sorted(held), fetched_at=snap.get("fetched_at"), **result)
+
+
+# --- Screens (results handed in by an external screener; the app never runs screens) ---
+# Contract: docs/screens-api.md (JSON v1). POST stores into the app DB's screen_runs
+# table and prunes to the last 30 runs per screen. GETs are read-only.
+import sqlite3 as _sqlite3
+from fastapi import Request
+from fastapi.responses import JSONResponse as _JSONResponse
+
+
+def _screens_read(fn, *args):
+    try:
+        return fn(database.get_connection, *args)
+    except _sqlite3.OperationalError as e:
+        if "no such table" in str(e):
+            return None
+        raise
+
+
+@app.post("/api/screens", status_code=201)
+async def post_screen(request: Request):
+    """Store one screen run (JSON v1). Same screen + run_at replaces that run."""
+    body = await request.body()
+    if len(body) > screens_mod.MAX_BODY_BYTES:
+        return _JSONResponse(status_code=413, content={"status": "error", "errors": [f"body > {screens_mod.MAX_BODY_BYTES} bytes"]})
+    try:
+        import json as _json
+        raw = _json.loads(body)
+    except ValueError:
+        return _JSONResponse(status_code=400, content={"status": "error", "errors": ["body is not valid JSON"]})
+    try:
+        payload = screens_mod.validate_payload(raw)
+    except screens_mod.ScreenValidationError as e:
+        return _JSONResponse(status_code=422, content={"status": "error", "errors": e.errors[:50]})
+    database.init_db()
+    run_id, replaced, pruned = screens_mod.store_run(database.get_connection, payload)
+    on_list = _watchlist_symbol_set()
+    off = [r["ticker"] for r in payload["rows"] if r["ticker"] not in on_list]
+    return _JSONResponse(status_code=200 if replaced else 201, content={
+        "status": "ok", "id": run_id, "screen": payload["screen"], "run_at": payload["run_at"],
+        "as_of": payload["as_of"], "row_count": len(payload["rows"]), "replaced": replaced,
+        "pruned": pruned, "off_watchlist": off})
+
+
+@app.get("/api/screens")
+def get_screens():
+    """All screens with their latest run summary."""
+    return {"screens": _screens_read(screens_mod.list_screens) or []}
+
+
+def _screen_response(run):
+    if run is None:
+        raise HTTPException(status_code=404, detail="screen run not found")
+    on_list = _watchlist_symbol_set()
+    run["rows"] = [dict(r, on_watchlist=r["ticker"] in on_list) for r in run["rows"]]
+    return run
+
+
+@app.get("/api/screens/{name}/latest")
+def get_screen_latest(name: str):
+    return _screen_response(_screens_read(screens_mod.get_run, name))
+
+
+@app.get("/api/screens/{name}/runs")
+def get_screen_runs(name: str):
+    return {"screen": name, "runs": _screens_read(screens_mod.list_runs, name) or []}
+
+
+@app.get("/api/screens/{name}/{run_id}")
+def get_screen_run(name: str, run_id: int):
+    return _screen_response(_screens_read(screens_mod.get_run, name, run_id))
 
 
 # --- Static File Serving for Production React SPA ---

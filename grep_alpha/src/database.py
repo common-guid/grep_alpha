@@ -53,6 +53,27 @@ def init_db():
         cursor.execute("""
             CREATE INDEX IF NOT EXISTS idx_drawings_symbol ON chart_drawings(symbol)
         """)
+        # Screen results handed in by an external screener (grep_alpha/src/screens.py).
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS screen_runs (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT NOT NULL,
+                version INTEGER NOT NULL DEFAULT 1,
+                run_at TEXT NOT NULL,
+                as_of TEXT NOT NULL,
+                params_json TEXT NOT NULL DEFAULT '{}',
+                universe_json TEXT NOT NULL DEFAULT '{}',
+                columns_json TEXT NOT NULL,
+                rows_json TEXT NOT NULL,
+                row_count INTEGER NOT NULL,
+                source TEXT NOT NULL DEFAULT '',
+                created_at TEXT NOT NULL,
+                UNIQUE (name, run_at)
+            )
+        """)
+        cursor.execute("""
+            CREATE INDEX IF NOT EXISTS idx_screen_runs_name_run ON screen_runs(name, run_at)
+        """)
         conn.commit()
 
 from datetime import datetime, timedelta
