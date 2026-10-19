@@ -1,5 +1,5 @@
 name: ibd top 50
-updated: '2026-10-12'
+updated: '2026-10-19'
 tickers:
 - symbol: CAVA
   status: watching
@@ -182,8 +182,8 @@ tickers:
   target_entry: null
   thesis: 2026-09-03:Showed strong action and was a missed opportunity on June 5th,
     but was extended by the time the market recovered from a clobbering.
-  tags: E-commerce, ETF
-  date: '2026-09-03'
+  tags: E-commerce, ETF, Hospitality
+  date: '2026-10-19'
 - symbol: CIBR
   status: watching
   target_entry: null
@@ -250,8 +250,8 @@ tickers:
     2026-10-05:One of the leaders breaking out early in the year. Showing high relative
     strength, part of a handful of names trying to lead. Building right side of bases,
     showing accumulation.'
-  tags: ETF, Software, Manufacturing, Hardware, Big_Tech
-  date: '2026-10-05'
+  tags: ETF, Software, Manufacturing, Hardware, Big_Tech, AI_Adjacent, Blue_Chip
+  date: '2026-10-19'
 - symbol: EAT
   status: watching
   target_entry: null
@@ -440,8 +440,8 @@ tickers:
   thesis: 2026-09-03:Despite strong potential and a compelling story, the stock has
     been difficult to trade with tight stops. Not considered a direct AI play, but
     AI is used in the medical space.
-  tags: Healthcare
-  date: '2026-09-03'
+  tags: Healthcare, Pharma, Bio, Blue_Chip
+  date: '2026-10-19'
 - symbol: LQDA
   status: watching
   target_entry: null
@@ -461,8 +461,8 @@ tickers:
     Meta could do ''neat stuff.'' Pausing after a strong run, making it potentially
     more comfortable to buy. Revenue growth solid, but earnings growth might be flat/decline
     due to tax/spending.'
-  tags: Software, ETF, Big_Tech, Entertainment, AI_Adjacent
-  date: '2026-10-05'
+  tags: Software, ETF, Big_Tech, Entertainment, AI_Adjacent, Blue_Chip
+  date: '2026-10-19'
 - symbol: MGN
   status: watching
   target_entry: null
@@ -665,8 +665,8 @@ tickers:
   status: watching
   target_entry: null
   thesis: 2026-09-03:Part of the Magnificent 7, but currently not looking strong.
-  tags: Software, Transportation
-  date: '2026-09-03'
+  tags: Software, Transportation, Manufacturing, AI_Adjacent, Blue_Chip
+  date: '2026-10-19'
 - symbol: TSM
   status: watching
   target_entry: null
@@ -872,8 +872,8 @@ tickers:
   status: watching
   target_entry: null
   thesis: 2026-09-03:Strong services revenue
-  tags: Software, Manufacturing, Big_Tech, Hardware, Blue_Chip
-  date: '2026-10-12'
+  tags: Software, Manufacturing, Big_Tech, Hardware, Blue_Chip, E-commerce
+  date: '2026-10-19'
 - symbol: BE
   status: watching
   target_entry: null
@@ -917,8 +917,8 @@ tickers:
     750 funds got into AMD in Q2, suggesting institutional belief in positive future.
     Strong earnings, in AI inference space. Character change in late August/September
     with tight ranges, held up well during tech correction (27% vs 50%+ for others).
-  tags: Semi-Fabless, AI_Adjacent, Big_Tech
-  date: '2026-10-05'
+  tags: Semi-Fabless, AI_Adjacent, Big_Tech, Hardware
+  date: '2026-10-19'
 - symbol: AMGN
   status: watching
   target_entry: null
@@ -1246,3 +1246,66 @@ tickers:
   thesis: ''
   tags: Hardware, Software
   date: '2026-10-12'
+- symbol: DIS
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Entertainment, Hospitality, Blue_Chip
+  date: '2026-10-19'
+  added: '2026-10-19'
+- symbol: FIGS
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: E-commerce, Manufacturing
+  date: '2026-10-19'
+  added: '2026-10-19'
+- symbol: GILD
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Bio, Pharma
+  date: '2026-10-19'
+  added: '2026-10-19'
+- symbol: KSS
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: E-commerce, Manufacturing
+  date: '2026-10-19'
+  added: '2026-10-19'
+- symbol: PAYC
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Software, Cloud, Fintech
+  date: '2026-10-19'
+  added: '2026-10-19'
+- symbol: SAP
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Software, Cloud, Big_Tech, Blue_Chip
+  date: '2026-10-19'
+  added: '2026-10-19'
+- symbol: THC
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Healthcare, Financial_Services
+  date: '2026-10-19'
+  added: '2026-10-19'
+- symbol: URBN
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: E-commerce, Manufacturing
+  date: '2026-10-19'
+  added: '2026-10-19'
+- symbol: VSCO
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: E-commerce, Manufacturing
+  date: '2026-10-19'
+  added: '2026-10-19'
