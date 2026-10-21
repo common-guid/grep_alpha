@@ -5,7 +5,7 @@
   tags: Network, Fiber_optics
   added: '2026-07-23'
 - symbol: AAPL
-  status: core_holding
+  status: watching
   target_entry: 170
   thesis: 2026-09-03:Consistent cash flow generator. Massive share buybacks and premium
   tags: Big_Tech, Software, AI_Adjacent, Hardware, Blue_Chip, E-commerce
@@ -344,7 +344,7 @@
   date: '2026-10-05'
   added: '2026-07-23'
 - symbol: GOOGL
-  status: core_holding
+  status: watching
   target_entry: 135
   thesis: 2026-09-03:Undisputed leader in search, digital advertising, and cutting-edge
   tags: Big_Tech, Software, AI_Adjacent, Entertainment
@@ -538,7 +538,7 @@
   tags: Financial_Services, Metals
   added: '2026-07-23'
 - symbol: MSFT
-  status: core_holding
+  status: watching
   target_entry: null
   thesis: '2026-09-03:Dominant enterprise SaaS, cloud infrastructure (Azure), and
     leader

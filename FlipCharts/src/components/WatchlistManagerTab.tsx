@@ -221,9 +221,7 @@ export const WatchlistManagerTab: React.FC<WatchlistManagerTabProps> = ({
                 <td className="py-3 px-4">
                   <span
                     className={`px-2 py-0.5 text-[9px] font-bold uppercase rounded border ${
-                      t.status === 'core_holding'
-                        ? 'bg-[#26a69a]/10 text-[#26a69a] border-[#26a69a]/30'
-                        : t.status === 'watching'
+                      t.status === 'watching'
                         ? 'bg-blue-500/10 text-blue-400 border-blue-500/30'
                         : 'bg-yellow-500/10 text-yellow-400 border-yellow-500/30'
                     }`}
@@ -329,7 +327,6 @@ export const WatchlistManagerTab: React.FC<WatchlistManagerTabProps> = ({
                     className="w-full bg-[#1c202d] border border-[#242733] text-white rounded px-3 py-2 focus:border-[#26a69a] focus:outline-none"
                   >
                     <option value="watching">watching</option>
-                    <option value="core_holding">core_holding</option>
                     <option value="passed">passed</option>
                   </select>
                 </div>
@@ -411,7 +408,6 @@ export const WatchlistManagerTab: React.FC<WatchlistManagerTabProps> = ({
                     className="w-full bg-[#1c202d] border border-[#242733] text-white rounded px-3 py-2 focus:border-[#26a69a] focus:outline-none"
                   >
                     <option value="watching">watching</option>
-                    <option value="core_holding">core_holding</option>
                     <option value="passed">passed</option>
                   </select>
                 </div>

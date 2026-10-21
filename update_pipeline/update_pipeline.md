@@ -71,7 +71,7 @@ gantt
 * **Tasks:**
   - Build automatic backup handler saving existing files to `.backups/YYYY-MM-DD_HHMMSS/`.
   - Implement deep merge logic for [FlipCharts/watchlist.yaml](file:///home/guid/projects/grep_alpha/FlipCharts/watchlist.yaml):
-    * Preserve existing ticker `status` (e.g. `core_holding`), custom `target_entry`, and custom `thesis`.
+    * Preserve existing ticker `status` (e.g. `trimmed`), custom `target_entry`, and custom `thesis`.
   - Implement merge logic for [grep_alpha/watchlists/IDB_top_50.yaml](file:///home/guid/projects/grep_alpha/watchlists/IDB_top_50.yaml).
   - Update top-level `updated: "YYYY-MM-DD"` date stamp.
 * **Verification Command:**

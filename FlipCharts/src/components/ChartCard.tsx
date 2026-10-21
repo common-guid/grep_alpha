@@ -15,6 +15,7 @@ import { checkStaleness } from '../lib/utils/staleness';
 import { addedLabel, IMPORT_DATE } from '../lib/utils/chartFilters';
 import { todayIso } from '../lib/utils/watchlistParser';
 import { TickerInfoModal } from './TickerInfoModal';
+import { HeldBadge } from './HeldBadge';
 import { NotesModal } from './NotesModal';
 import { ExpandedChartModal } from './ExpandedChartModal';
 import { notifyViewportChartPainted } from '../lib/viewportChartsGate';
@@ -114,9 +115,7 @@ export const ChartCard: React.FC<ChartCardProps> = ({ symbol, timeframe }) => {
                 {itemDetails?.status && (
                     <span className={cn(
                         "px-1 py-0.2 text-[8px] font-bold uppercase rounded border tracking-wider shrink-0",
-                        itemDetails.status === 'core_holding' 
-                          ? "bg-[#26a69a]/10 text-[#26a69a] border-[#26a69a]/30"
-                          : itemDetails.status === 'watching'
+                        itemDetails.status === 'watching'
                           ? "bg-blue-500/10 text-blue-400 border-blue-500/30"
                           : "bg-yellow-500/10 text-yellow-400 border-yellow-500/30"
                     )}>
@@ -141,6 +140,7 @@ export const ChartCard: React.FC<ChartCardProps> = ({ symbol, timeframe }) => {
                         {addedLabel(itemDetails.added, todayIso())}
                     </span>
                 )}
+                <HeldBadge symbol={symbol} />
                 {staleness.isStale && (
                     <span 
                         className="px-1.5 py-0.2 text-[8px] font-bold rounded bg-amber-500/15 text-amber-400 border border-amber-500/30 flex items-center gap-1 shrink-0 cursor-help"

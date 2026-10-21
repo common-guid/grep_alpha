@@ -4,7 +4,7 @@ import asyncio
 from typing import List, Optional, Dict, Any
 from fastapi import FastAPI, HTTPException, Query, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 import pandas as pd
 from datetime import datetime, timedelta
 
@@ -18,13 +18,25 @@ if GREP_ALPHA_DIR not in sys.path:
 
 from grep_alpha.src.yaml_manager import YAMLManager
 from grep_alpha.src import database, analytics, data_fetcher
+from grep_alpha.src.paper_positions import PositionsService
+from grep_alpha.src.paper_watchlist import PaperWatchlist, default_state_dir
 
 from contextlib import asynccontextmanager
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     database.init_db()
+    # Re-merge prod-only paper auto-adds that a deploy/refresh may have overwritten,
+    # then keep watching the YAML for further overwrites.
+    try:
+        restored = paper_watchlist.reconcile()
+        if restored:
+            print(f"[paper-watchlist] restored on startup: {', '.join(restored)}")
+    except Exception as e:
+        print(f"[paper-watchlist] startup reconcile failed: {type(e).__name__}")
+    paper_watchlist.start_watcher()
     yield
+    paper_watchlist.stop_watcher()
 
 app = FastAPI(
     title="Unified Watchlist Monitor & Charting API",
@@ -49,6 +61,17 @@ yaml_manager = YAMLManager(watchlists_dir=WATCHLISTS_DIR)
 
 # --- Data Transfer Objects (Pydantic Models) ---
 
+# Legacy status removed 2026-10: `core_holding` is no longer a status (real holdings come
+# from the Alpaca paper account). Old clients sending it get `watching`.
+LEGACY_STATUS_MAP = {"core_holding": "watching"}
+
+
+def _normalize_status(v: Optional[str]) -> Optional[str]:
+    if v is None:
+        return v
+    return LEGACY_STATUS_MAP.get(v.strip().lower(), v)
+
+
 class TickerCreate(BaseModel):
     symbol: str = Field(..., json_schema_extra={"example": "AAPL"})
     thesis: Optional[str] = Field("", json_schema_extra={"example": "Breaking out of consolidation base"})
@@ -56,11 +79,21 @@ class TickerCreate(BaseModel):
     target_entry: Optional[float] = Field(None, json_schema_extra={"example": 185.50})
     tags: Optional[List[str]] = Field(default_factory=list, json_schema_extra={"example": ["Big_Tech", "AI"]})
 
+    @field_validator("status")
+    @classmethod
+    def _legacy_status(cls, v: Optional[str]) -> Optional[str]:
+        return _normalize_status(v)
+
 class TickerUpdate(BaseModel):
     thesis: Optional[str] = None
     status: Optional[str] = None
     target_entry: Optional[float] = None
     tags: Optional[List[str]] = None
+
+    @field_validator("status")
+    @classmethod
+    def _legacy_status(cls, v: Optional[str]) -> Optional[str]:
+        return _normalize_status(v)
 
 class SyncStatusResponse(BaseModel):
     is_running: bool
@@ -93,6 +126,14 @@ sync_state = {
 FLIPCHARTS_WATCHLIST_PATH = os.path.join(WORKSPACE_ROOT, "FlipCharts", "watchlist.yaml")
 FLIPCHARTS_DIST_WATCHLIST_PATH = os.path.join(WORKSPACE_ROOT, "FlipCharts", "dist", "watchlist.yaml")
 BACKUPS_DIR = os.path.join(WORKSPACE_ROOT, "update_pipeline", ".backups")
+
+paper_watchlist = PaperWatchlist(
+    yaml_path=FLIPCHARTS_WATCHLIST_PATH,
+    state_dir=default_state_dir(WORKSPACE_ROOT),
+    backups_dir=BACKUPS_DIR,
+    mirror_paths=[FLIPCHARTS_DIST_WATCHLIST_PATH],
+)
+positions_service = PositionsService()
 
 
 def resolve_flipcharts_watchlist_path() -> Optional[str]:
@@ -141,6 +182,11 @@ def save_master_watchlist(payload: WatchlistSavePayload):
             except Exception:
                 pass
 
+        # A Manager save rewrites the whole file from the browser's copy. Honor deliberate
+        # removals of auto-added paper symbols that are no longer held; anything still
+        # recorded is re-merged right after the write.
+        paper_watchlist.forget_removed(payload.yaml, positions_service.held_symbols())
+
         with open(target_path, "w", encoding="utf-8") as f:
             f.write(payload.yaml)
 
@@ -152,7 +198,8 @@ def save_master_watchlist(payload: WatchlistSavePayload):
             except Exception:
                 pass
 
-        return {"status": "success", "message": "Watchlist saved successfully"}
+        restored = paper_watchlist.reconcile()
+        return {"status": "success", "message": "Watchlist saved successfully", "restored": restored}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -652,6 +699,54 @@ def get_live_watchlist_yaml():
         raise HTTPException(status_code=404, detail="watchlist.yaml not found")
     with open(path, "r", encoding="utf-8") as f:
         return PlainTextResponse(f.read(), media_type="text/yaml")
+
+
+# --- Alpaca PAPER positions (read-only) ---
+# GET only. No side effects: it never writes the watchlist. Auto-adding held symbols
+# that are missing from the watchlist is a separate, explicit POST (see below).
+def _watchlist_symbol_set() -> set:
+    return {str(i.get("symbol", "")).upper() for i in get_flipcharts_watchlist_items() if isinstance(i, dict)}
+
+
+@app.get("/api/positions")
+def get_paper_positions():
+    """Open positions in the Alpaca paper account, cached ~60s. status: ok | unconfigured | error."""
+    snap = positions_service.get()
+    on_list = _watchlist_symbol_set()
+    snap["positions"] = [dict(p, on_watchlist=p["symbol"] in on_list) for p in snap.get("positions", [])]
+    return snap
+
+
+class PaperSyncResponse(BaseModel):
+    status: str
+    added: List[str] = []
+    already_on_watchlist: List[str] = []
+    restored: List[str] = []
+    held: List[str] = []
+    fetched_at: Optional[str] = None
+    error: Optional[str] = None
+
+
+@app.post("/api/positions/sync-watchlist", response_model=PaperSyncResponse)
+def sync_paper_positions_to_watchlist():
+    """Add every symbol held in the paper account that is missing from the watchlist.
+
+    Idempotent and safe to call repeatedly: existing entries are never modified and
+    nothing is removed when a position closes. Re-reads positions (bypassing a cache
+    older than 5s) so a fill that just happened is seen. Returns 503 when positions
+    are unavailable (keys missing, Alpaca down, or only a stale snapshot exists).
+    """
+    from fastapi.responses import JSONResponse
+    positions_service.refresh_if_older_than(5.0)
+    snap = positions_service.get()
+    if snap["status"] != "ok" or snap.get("stale"):
+        body = PaperSyncResponse(status="unavailable" if snap["status"] == "ok" else snap["status"],
+                                 error=snap.get("error") or "positions are stale",
+                                 fetched_at=snap.get("fetched_at"))
+        return JSONResponse(status_code=503, content=body.model_dump())
+    held = [p["symbol"] for p in snap["positions"]]
+    result = paper_watchlist.sync(held, source="api")
+    return PaperSyncResponse(status="ok", held=sorted(held), fetched_at=snap.get("fetched_at"), **result)
 
 
 # --- Static File Serving for Production React SPA ---

@@ -4,11 +4,12 @@
  */
 
 import React from 'react';
-import { CalendarDays, ArrowUpDown, X } from 'lucide-react';
+import { CalendarDays, ArrowUpDown, X, Briefcase } from 'lucide-react';
 import { cn } from '../lib/utils';
 import {
   ADDED_FILTERS, SORT_KEYS, DEFAULT_VIEW, GridView, AddedFilter, SortKey, isDefaultView,
 } from '../lib/utils/chartFilters';
+import type { PositionsSnapshot } from '../lib/utils/positions';
 
 interface GridControlsProps {
   view: GridView;
@@ -17,16 +18,17 @@ interface GridControlsProps {
   total: number;
   /** 'toolbar' = compact desktop strip above the grid; 'drawer' = 44px mobile drawer section. */
   variant: 'toolbar' | 'drawer';
+  positions: PositionsSnapshot;
 }
 
 /** Short summary for the mobile header chip, e.g. "30d · Newest". */
 export function viewSummary(view: GridView): string {
   const f = ADDED_FILTERS.find((x) => x.value === view.added)?.short ?? 'All';
   const s = SORT_KEYS.find((x) => x.value === view.sort)?.short ?? 'Default';
-  return `${f} · ${s}`;
+  return `${view.held ? 'Held · ' : ''}${f} · ${s}`;
 }
 
-export const GridControls: React.FC<GridControlsProps> = ({ view, onChange, shown, total, variant }) => {
+export const GridControls: React.FC<GridControlsProps> = ({ view, onChange, shown, total, variant, positions }) => {
   const drawer = variant === 'drawer';
   const set = (patch: Partial<GridView>) => onChange({ ...view, ...patch });
   const selectCls = cn(
@@ -78,6 +80,37 @@ export const GridControls: React.FC<GridControlsProps> = ({ view, onChange, show
     </div>
   );
 
+  const unavailable = positions.status === 'unconfigured';
+  const heldCount = positions.status === 'ok' ? positions.positions.length : null;
+  const heldTitle = unavailable
+    ? 'Paper keys not installed on the backend'
+    : positions.status === 'error'
+    ? "Couldn't reach Alpaca"
+    : 'Show only symbols held in the Alpaca paper account';
+  const heldToggle = (
+    <button
+      type="button"
+      role="switch"
+      aria-checked={view.held}
+      aria-label="Held positions only"
+      data-testid={`held-toggle-${variant}`}
+      disabled={unavailable && !view.held}
+      title={heldTitle}
+      onClick={() => set({ held: !view.held })}
+      className={cn(
+        'flex items-center justify-center gap-1.5 rounded border font-bold transition-colors disabled:opacity-40 disabled:cursor-not-allowed',
+        drawer ? 'w-full h-11 px-3 text-sm' : 'h-7 px-2 text-[11px]',
+        view.held
+          ? 'bg-[#26a69a]/20 border-[#26a69a]/60 text-[#26a69a]'
+          : 'bg-[#131722] border-[#2a2e39] text-gray-300 hover:text-white'
+      )}
+    >
+      <Briefcase size={drawer ? 16 : 12} />
+      Held{heldCount !== null ? ` (${heldCount})` : ''}
+      {positions.stale && <span className="text-amber-400" aria-label="stale">•</span>}
+    </button>
+  );
+
   const sort = (
     <label className={labelCls}>
       {!drawer && <ArrowUpDown size={12} />}
@@ -117,6 +150,7 @@ export const GridControls: React.FC<GridControlsProps> = ({ view, onChange, show
   if (drawer) {
     return (
       <div className="px-4 space-y-3" data-testid="grid-controls-drawer">
+        {heldToggle}
         {added}
         {range}
         {sort}
@@ -133,6 +167,7 @@ export const GridControls: React.FC<GridControlsProps> = ({ view, onChange, show
       className="flex items-center gap-4 flex-wrap px-3 py-1 border-b border-[#242733] bg-[#131722] shrink-0"
       data-testid="grid-controls-toolbar"
     >
+      {heldToggle}
       {added}
       {range}
       {sort}
