@@ -201,3 +201,43 @@ def test_alpaca_fetch_skips_non_finite_ohlc(monkeypatch):
         "aapl", date(2026, 10, 16), date(2026, 10, 21), api=_FakeAlpaca(df))
     assert [r[0] for r in out] == ["2026-10-16", "2026-10-21"]
     assert all(r[1] == "AAPL" for r in out)
+
+
+def _volume_frame(cols, bad):
+    """Three finite-OHLC bars; the middle one has a bad volume.
+
+    The volume column is object dtype so a None stays None (a float column
+    would coerce it to NaN)."""
+    idx = pd.to_datetime(["2026-10-16", "2026-10-20", "2026-10-21"])
+    return pd.DataFrame({
+        cols[0]: [100.0, 101.0, 102.0],
+        cols[1]: [101.0, 102.0, 103.0],
+        cols[2]: [99.0, 100.0, 101.0],
+        cols[3]: [100.5, 101.5, 102.5],
+        cols[4]: pd.Series([1_000_000, bad, 1_100_000], index=idx, dtype=object),
+    }, index=idx)
+
+
+VOLUME_BAD = [NAN, None, INF, -INF]
+
+
+@pytest.mark.parametrize("bad", VOLUME_BAD, ids=["nan", "none", "inf", "-inf"])
+def test_yfinance_fetch_skips_non_finite_volume(monkeypatch, bad):
+    df = _volume_frame(["Open", "High", "Low", "Close", "Volume"], bad)
+    monkeypatch.setattr(data_fetcher, "yf", _FakeYf(df))
+    out = data_fetcher.fetch_ticker_data_yfinance("AAPL", date(2026, 10, 16), date(2026, 10, 21))
+    assert [r[0] for r in out] == ["2026-10-16", "2026-10-21"]
+    assert [r[6] for r in out] == [1_000_000, 1_100_000]
+    assert all(isinstance(r[6], int) for r in out)
+
+
+@pytest.mark.parametrize("bad", VOLUME_BAD, ids=["nan", "none", "inf", "-inf"])
+def test_alpaca_fetch_skips_non_finite_volume(monkeypatch, bad):
+    df = _volume_frame(["open", "high", "low", "close", "volume"], bad)
+    if data_fetcher.TimeFrame is None:
+        monkeypatch.setattr(data_fetcher, "TimeFrame", type("TF", (), {"Day": "1Day"}))
+    out = data_fetcher.fetch_ticker_data_alpaca(
+        "aapl", date(2026, 10, 16), date(2026, 10, 21), api=_FakeAlpaca(df))
+    assert [r[0] for r in out] == ["2026-10-16", "2026-10-21"]
+    assert [r[6] for r in out] == [1_000_000, 1_100_000]
+    assert all(isinstance(r[6], int) for r in out)
