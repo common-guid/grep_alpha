@@ -1,3 +1,4 @@
+import math
 import os
 import sys
 import time
@@ -73,6 +74,20 @@ def get_unique_tickers() -> Set[str]:
     return all_tickers
 
 
+def _finite_ohlc(o, h, l, c) -> Optional[tuple]:
+    """Return (open, high, low, close) as floats, or None if any is missing or
+    non-finite. A provider bar with empty OHLC (e.g. an incomplete session)
+    must not be stored: float('nan') lands in SQLite as NULL and later breaks
+    /api/prices JSON encoding."""
+    try:
+        vals = tuple(float(x) for x in (o, h, l, c))
+    except (TypeError, ValueError):
+        return None
+    if not all(math.isfinite(x) for x in vals):
+        return None
+    return vals
+
+
 def fetch_ticker_data_yfinance(ticker: str, start_date, end_date) -> List[tuple]:
     """Fetch daily OHLCV bars using yfinance (no API key required, auto-adjusted)."""
     if yf is None:
@@ -98,13 +113,14 @@ def fetch_ticker_data_yfinance(ticker: str, start_date, end_date) -> List[tuple]
     db_data = []
     for timestamp, row in df.iterrows():
         date_str = timestamp.date().isoformat()
+        ohlc = _finite_ohlc(row['Open'], row['High'], row['Low'], row['Close'])
+        if ohlc is None:
+            print(f"[DATA] Skipping {clean_sym} {date_str}: non-finite OHLC from yfinance")
+            continue
         db_data.append((
             date_str,
             clean_sym,
-            float(row['Open']),
-            float(row['High']),
-            float(row['Low']),
-            float(row['Close']),
+            *ohlc,
             int(row['Volume'])
         ))
     return db_data
@@ -130,13 +146,14 @@ def fetch_ticker_data_alpaca(ticker: str, start_date, end_date, api=None) -> Lis
     db_data = []
     for timestamp, row in bars.iterrows():
         date_str = timestamp.date().isoformat()
+        ohlc = _finite_ohlc(row['open'], row['high'], row['low'], row['close'])
+        if ohlc is None:
+            print(f"[DATA] Skipping {ticker.upper()} {date_str}: non-finite OHLC from Alpaca")
+            continue
         db_data.append((
             date_str,
             ticker.upper(),
-            float(row['open']),
-            float(row['high']),
-            float(row['low']),
-            float(row['close']),
+            *ohlc,
             int(row['volume'])
         ))
     return db_data

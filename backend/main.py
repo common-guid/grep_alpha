@@ -1,6 +1,7 @@
 import os
 import sys
 import asyncio
+import math
 from typing import List, Optional, Dict, Any
 from fastapi import FastAPI, HTTPException, Query, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
@@ -384,8 +385,18 @@ def get_prices(
 
 
 def _nn(x):
-    """Convert NaN to None; otherwise float."""
-    return None if x != x else float(x)
+    """Convert None, NaN, +inf and -inf to None; otherwise float.
+
+    Starlette's JSONResponse encodes with allow_nan=False, so a single
+    non-finite float anywhere in the payload turns the response into a 500.
+    """
+    if x is None:
+        return None
+    try:
+        f = float(x)
+    except (TypeError, ValueError):
+        return None
+    return f if math.isfinite(f) else None
 
 
 def _price_records(vdf: pd.DataFrame):
@@ -411,19 +422,29 @@ def _price_records(vdf: pd.DataFrame):
     for d, t, o, h, l, c, v, e, s50, s200, a in zip(
         dates, ts, opens, highs, lows, closes, volumes, ema10s, sma50s, sma200s, atr14s
     ):
-        result.append({
+        fo, fh, fl, fc = _nn(o), _nn(h), _nn(l), _nn(c)
+        if fo is None or fh is None or fl is None or fc is None:
+            # Incomplete bar (e.g. SQL NULL OHLC -> NaN). Drop it rather than
+            # emit NaN/Infinity, which fails the whole JSON response.
+            continue
+        rec = {
             "time": d,
             "timestamp": int(t),
-            "open": float(o),
-            "high": float(h),
-            "low": float(l),
-            "close": float(c),
-            "volume": int(v),
+            "open": fo,
+            "high": fh,
+            "low": fl,
+            "close": fc,
             "ema10": _nn(e),
             "sma50": _nn(s50),
             "sma200": _nn(s200),
             "atr14": _nn(a),
-        })
+        }
+        fv = _nn(v)
+        if fv is not None:
+            # Missing volume is omitted, not null: the chart adapter filters
+            # volume bars on `!== undefined`.
+            rec["volume"] = int(fv)
+        result.append(rec)
     return result
 
 
