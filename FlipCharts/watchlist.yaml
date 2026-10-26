@@ -28,7 +28,8 @@
   status: watching
   target_entry: null
   thesis: 2026-09-03:Bullish sentiment; highlighted as a key ticker in focus during
-  tags: Semi-IDM
+  tags: Semi-IDM, Hardware
+  date: '2026-10-26'
   added: '2026-07-23'
 - symbol: AERG
   status: watching
@@ -918,7 +919,8 @@
   status: watching
   target_entry: null
   thesis: ''
-  tags: Transportation
+  tags: Transportation, Manufacturing
+  date: '2026-10-26'
   added: '2026-07-28'
 - symbol: CVX
   status: watching
@@ -1039,9 +1041,11 @@
     Excitement around ''Muse'' (AI product) which is useful to customers, suggesting
     Meta could do ''neat stuff.'' Pausing after a strong run, making it potentially
     more comfortable to buy. Revenue growth solid, but earnings growth might be flat/decline
-    due to tax/spending.'
+    due to tax/spending.
+
+    2026-10-26:Bull case for $1,000 valuation driven by Muse AI.'
   tags: Big_Tech, Entertainment, AI_Adjacent, Blue_Chip
-  date: '2026-10-19'
+  date: '2026-10-26'
   added: '2026-07-28'
 - symbol: MXL
   status: watching
@@ -1198,6 +1202,7 @@
   target_entry: null
   thesis: 2026-09-03:Stock of the day with a high handle and a double bottom breakout
   tags: Big_Tech, E-commerce, Cloud, AI_Adjacent
+  date: '2026-10-26'
   added: '2026-08-12'
 - symbol: APP
   status: watching
@@ -1253,7 +1258,8 @@
   status: watching
   target_entry: null
   thesis: 2026-09-03:A Dow component experiencing weakness, down 3% today, likely
-  tags: Software, Cloud, Big_Tech
+  tags: Software, Cloud, Big_Tech, AI_Adjacent
+  date: '2026-10-26'
   added: '2026-08-12'
 - symbol: CRWE
   status: watching
@@ -2001,3 +2007,38 @@
   tags: E-commerce, Manufacturing
   date: '2026-10-19'
   added: '2026-10-19'
+- symbol: GWRE
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Software, Cloud, Fintech
+  date: '2026-10-26'
+  added: '2026-10-26'
+- symbol: KNSA
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Pharma, Bio
+  date: '2026-10-26'
+  added: '2026-10-26'
+- symbol: LIND
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Hospitality, Entertainment
+  date: '2026-10-26'
+  added: '2026-10-26'
+- symbol: NDAQ
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Financial_Services, Fintech
+  date: '2026-10-26'
+  added: '2026-10-26'
+- symbol: QLYS
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Cybersecurity, Software, Cloud
+  date: '2026-10-26'
+  added: '2026-10-26'

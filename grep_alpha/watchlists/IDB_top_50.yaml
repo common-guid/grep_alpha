@@ -1,5 +1,5 @@
 name: ibd top 50
-updated: '2026-10-19'
+updated: '2026-10-26'
 tickers:
 - symbol: CAVA
   status: watching
@@ -123,8 +123,8 @@ tickers:
   thesis: 2026-09-03:Stock of the day with a high handle and a double bottom breakout
     on earnings, showing triple-digit growth. Setting up a potential new entry or
     add-on, despite a long-term sideways to slightly lower RS line.
-  tags: E-commerce, Software
-  date: '2026-09-03'
+  tags: E-commerce, Software, Big_Tech, Cloud, AI_Adjacent
+  date: '2026-10-26'
 - symbol: APP
   status: watching
   target_entry: null
@@ -215,8 +215,8 @@ tickers:
   target_entry: null
   thesis: 2026-09-03:A Dow component experiencing weakness, down 3% today, likely
     due to profit-taking after multiple up days.
-  tags: Software
-  date: '2026-09-03'
+  tags: Software, Cloud, AI_Adjacent
+  date: '2026-10-26'
 - symbol: CRWE
   status: watching
   target_entry: null
@@ -460,9 +460,11 @@ tickers:
     Excitement around ''Muse'' (AI product) which is useful to customers, suggesting
     Meta could do ''neat stuff.'' Pausing after a strong run, making it potentially
     more comfortable to buy. Revenue growth solid, but earnings growth might be flat/decline
-    due to tax/spending.'
+    due to tax/spending.
+
+    2026-10-26:Bull case for $1,000 valuation driven by Muse AI.'
   tags: Software, ETF, Big_Tech, Entertainment, AI_Adjacent, Blue_Chip
-  date: '2026-10-19'
+  date: '2026-10-26'
 - symbol: MGN
   status: watching
   target_entry: null
@@ -1309,3 +1311,52 @@ tickers:
   tags: E-commerce, Manufacturing
   date: '2026-10-19'
   added: '2026-10-19'
+- symbol: ADI
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Semi-IDM, Hardware
+  date: '2026-10-26'
+  added: '2026-10-26'
+- symbol: CSX
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Transportation, Manufacturing
+  date: '2026-10-26'
+  added: '2026-10-26'
+- symbol: GWRE
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Software, Cloud, Fintech
+  date: '2026-10-26'
+  added: '2026-10-26'
+- symbol: KNSA
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Pharma, Bio
+  date: '2026-10-26'
+  added: '2026-10-26'
+- symbol: LIND
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Hospitality, Entertainment
+  date: '2026-10-26'
+  added: '2026-10-26'
+- symbol: NDAQ
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Financial_Services, Fintech
+  date: '2026-10-26'
+  added: '2026-10-26'
+- symbol: QLYS
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Cybersecurity, Software, Cloud
+  date: '2026-10-26'
+  added: '2026-10-26'
