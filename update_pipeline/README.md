@@ -33,7 +33,7 @@ flowchart TD
 * **AI Extraction & Tag Mapping:** Uses Gemini 2.5 Flash / Antigravity Agent to extract tickers, assign at least 2 relevant sector tags cross-referenced against `available-tags.md`, and formulate data-driven theses.
 * **Smart Non-Destructive Merging:**
   - Creates automatic timestamped backups before making changes.
-  - Preserves user-assigned ticker `status` (e.g. `core_holding`, `watching`).
+  - Preserves user-assigned ticker `status` (e.g. `watching`, `trimmed`).
   - Preserves user-customized `target_entry` price points.
   - Retains existing custom theses while appending new tags.
 

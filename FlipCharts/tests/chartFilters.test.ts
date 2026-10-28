@@ -67,3 +67,14 @@ test('URL wins over stored; invalid values ignored; round trip', () => {
   assert.deepEqual(resolveView(new URLSearchParams(p.toString()), null), view);
   assert.equal(writeViewParams(new URLSearchParams(), DEFAULT_VIEW).toString(), '');
 });
+
+test('held flag: URL + storage round-trip, default view', () => {
+  const view = v({ held: true, sort: 'ticker' });
+  const p = writeViewParams(new URLSearchParams(), view);
+  assert.equal(p.get('held'), '1');
+  assert.deepEqual(resolveView(new URLSearchParams(p.toString()), null), view);
+  assert.deepEqual(resolveView(new URLSearchParams(''), JSON.parse(JSON.stringify(view))), view, 'localStorage JSON boolean');
+  assert.deepEqual(resolveView(new URLSearchParams('held=1'), { added: '30d' }), v({ held: true }), 'URL wins');
+  assert.equal(resolveView(new URLSearchParams('held=yes'), null).held, false);
+  assert.equal(writeViewParams(new URLSearchParams('held=1'), DEFAULT_VIEW).toString(), '');
+});

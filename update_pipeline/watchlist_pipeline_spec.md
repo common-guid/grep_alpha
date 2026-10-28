@@ -6,7 +6,7 @@ The goal of this system is to replace a manual 4-step workflow (watching weekly 
 The pipeline will automatically:
 1. Retrieve YouTube video transcripts from Investor's Business Daily / Stock Market Today channel for a given week or set of URLs.
 2. Process video transcripts using an Antigravity Agent with strict prompt constraints, extracting ticker symbols, investment theses, and industry tags mapped against [available-tags.md](file:///home/guid/projects/watchlist_monitor/available-tags.md).
-3. Safely merge extracted ticker data into the two target application watchlist stores ([FlipCharts/watchlist.yaml](file:///home/guid/projects/watchlist_monitor/FlipCharts/watchlist.yaml) and [grep_alpha/watchlists/IDB_top_50.yaml](file:///home/guid/projects/watchlist_monitor/grep_alpha/watchlists/IDB_top_50.yaml)) without clobbering existing statuses (`core_holding`, `watching`), target entry prices, or manually written theses.
+3. Safely merge extracted ticker data into the two target application watchlist stores ([FlipCharts/watchlist.yaml](file:///home/guid/projects/watchlist_monitor/FlipCharts/watchlist.yaml) and [grep_alpha/watchlists/IDB_top_50.yaml](file:///home/guid/projects/watchlist_monitor/grep_alpha/watchlists/IDB_top_50.yaml)) without clobbering existing statuses (`watching`, `trimmed`), target entry prices, or manually written theses.
 
 ---
 
@@ -84,7 +84,7 @@ flowchart TD
 * **Conflict & Merge Policy:**
   1. **Backup Generation:** Always copy existing target YAML files to `.backups/YYYY-MM-DD_HHMMSS/` prior to modification.
   2. **Existing Tickers:**
-     - Retain `status` (e.g. `core_holding`), custom `target_entry` prices, and non-empty custom `thesis`.
+     - Retain `status` (e.g. `trimmed`), custom `target_entry` prices, and non-empty custom `thesis`.
      - Update or merge missing `tags`.
   3. **New Tickers:**
      - Append entry with default `status: watching` and `target_entry: null`.

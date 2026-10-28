@@ -16,6 +16,9 @@ services:
       - APCA_API_KEY_ID=${APCA_API_KEY_ID:-}
       - APCA_API_SECRET_KEY=${APCA_API_SECRET_KEY:-}
       - APCA_API_BASE_URL=${APCA_API_BASE_URL:-https://paper-api.alpaca.markets}
+      # Alpaca PAPER account, read-only positions (GET /api/positions). Set in the host env or .env.
+      - ALPACA_PAPER_KEY_ID=${ALPACA_PAPER_KEY_ID:-}
+      - ALPACA_PAPER_SECRET_KEY=${ALPACA_PAPER_SECRET_KEY:-}
     restart: unless-stopped
 
 volumes:
