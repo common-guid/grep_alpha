@@ -453,6 +453,19 @@ The FastAPI server acts as a unified API gateway for both the web app and third-
 
 Needs `ALPACA_PAPER_KEY_ID` / `ALPACA_PAPER_SECRET_KEY` (PK paper key) in the backend environment. Full contract and persistence rules: [docs/paper-positions-api.md](docs/paper-positions-api.md).
 
+### Screens Endpoints (results from an external screener)
+
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `POST` | `/api/screens` | Store a JSON v1 screen run (validated; last 30 runs kept per screen) |
+| `GET` | `/api/screens` | Screens with their latest run summary |
+| `GET` | `/api/screens/{name}/latest` · `/{name}/runs` · `/{name}/{id}` | Read runs (rows include `on_watchlist`) |
+| `GET` | `/api/screens/ingest-status` | Drop-folder ingester state and recent ingested/rejected files |
+
+Screens also arrive via a read-only **drop folder** (`GA_SCREENS_DROP_DIR`, Syncthing receive-only on prod), scanned every ~15s with the same validation as the POST.
+
+The Flip-Charts **Screen** picker (`?screen=<name>`) filters the grid to a screen's hits with rank/metric sorts and badges. Contract and CSV converter: [docs/screens-api.md](docs/screens-api.md).
+
 ---
 
 ## 🐳 Docker Deployment

@@ -4,12 +4,14 @@
  */
 
 import React from 'react';
-import { CalendarDays, ArrowUpDown, X, Briefcase } from 'lucide-react';
+import { CalendarDays, ArrowUpDown, X, Briefcase, ListFilter, AlertTriangle } from 'lucide-react';
 import { cn } from '../lib/utils';
 import {
   ADDED_FILTERS, SORT_KEYS, DEFAULT_VIEW, GridView, AddedFilter, SortKey, isDefaultView,
 } from '../lib/utils/chartFilters';
 import type { PositionsSnapshot } from '../lib/utils/positions';
+import type { ActiveScreen } from '../context/ScreenContext';
+import { isScreenStale, shortDate } from '../lib/utils/screens';
 
 interface GridControlsProps {
   view: GridView;
@@ -19,16 +21,21 @@ interface GridControlsProps {
   /** 'toolbar' = compact desktop strip above the grid; 'drawer' = 44px mobile drawer section. */
   variant: 'toolbar' | 'drawer';
   positions: PositionsSnapshot;
+  screens: ActiveScreen;
 }
+
+const isScreenSort = (s: string) => s === 'screen_rank' || s.startsWith('sc:');
 
 /** Short summary for the mobile header chip, e.g. "30d · Newest". */
 export function viewSummary(view: GridView): string {
   const f = ADDED_FILTERS.find((x) => x.value === view.added)?.short ?? 'All';
   const s = SORT_KEYS.find((x) => x.value === view.sort)?.short ?? 'Default';
-  return `${view.held ? 'Held · ' : ''}${f} · ${s}`;
+  const sc = view.screen ? `${view.screen} · ` : '';
+  const srt = view.sort === 'screen_rank' ? 'Rank' : view.sort.startsWith('sc:') ? view.sort.slice(3) : s;
+  return `${view.held ? 'Held · ' : ''}${sc}${f} · ${srt}`;
 }
 
-export const GridControls: React.FC<GridControlsProps> = ({ view, onChange, shown, total, variant, positions }) => {
+export const GridControls: React.FC<GridControlsProps> = ({ view, onChange, shown, total, variant, positions, screens }) => {
   const drawer = variant === 'drawer';
   const set = (patch: Partial<GridView>) => onChange({ ...view, ...patch });
   const selectCls = cn(
@@ -111,6 +118,53 @@ export const GridControls: React.FC<GridControlsProps> = ({ view, onChange, show
     </button>
   );
 
+  const known = screens.list.some((x) => x.screen === view.screen);
+  const screenPicker = (
+    <label className={labelCls}>
+      {!drawer && <ListFilter size={12} />}
+      Screen
+      <select
+        aria-label="Filter by screen"
+        data-testid={`screen-picker-${variant}`}
+        className={cn(selectCls, drawer && 'mt-1', 'normal-case tracking-normal font-normal', !drawer && 'max-w-[190px]')}
+        value={view.screen}
+        onChange={(e) => {
+          const screen = e.target.value;
+          let sort = view.sort;
+          if (!screen && isScreenSort(sort)) sort = 'default';
+          if (screen && sort === 'default') sort = 'screen_rank';
+          if (screen && sort.startsWith('sc:')) sort = 'screen_rank';
+          onChange({ ...view, screen, sort });
+        }}
+      >
+        <option value="">None</option>
+        {screens.list.map((x) => (
+          <option key={x.screen} value={x.screen}>
+            {x.screen} · {shortDate(x.latest.as_of)} · {x.latest.row_count}
+          </option>
+        ))}
+        {view.screen && !known && <option value={view.screen}>{view.screen} (not found)</option>}
+      </select>
+    </label>
+  );
+
+  const run = screens.run;
+  const stale = !!run && isScreenStale(run.as_of);
+  const screenChip = view.screen && run && (
+    <span
+      data-testid={`screen-chip-${variant}`}
+      title={`Screen ${run.screen}: ${run.row_count} hits, as of ${run.as_of}, run ${run.run_at}${stale ? ' (stale)' : ''}`}
+      className={cn(
+        'inline-flex items-center gap-1 rounded border font-mono whitespace-nowrap',
+        drawer ? 'h-11 px-3 text-xs' : 'h-6 px-1.5 text-[10px]',
+        stale ? 'border-amber-500/50 text-amber-300 bg-amber-500/10' : 'border-violet-500/40 text-violet-300 bg-violet-500/10'
+      )}
+    >
+      {stale && <AlertTriangle size={11} />}
+      {run.screen} · {shortDate(run.as_of)} · {run.row_count}
+    </span>
+  );
+
   const sort = (
     <label className={labelCls}>
       {!drawer && <ArrowUpDown size={12} />}
@@ -123,6 +177,13 @@ export const GridControls: React.FC<GridControlsProps> = ({ view, onChange, show
         onChange={(e) => set({ sort: e.target.value as SortKey })}
       >
         {SORT_KEYS.map((s) => <option key={s.value} value={s.value}>{s.label}</option>)}
+        {view.screen && <option value="screen_rank">Screen rank</option>}
+        {view.screen && run?.columns.filter((c) => c.fmt !== 'text').map((c) => (
+          <option key={c.key} value={`sc:${c.key}`}>Screen: {c.label} (high–low)</option>
+        ))}
+        {view.screen && view.sort.startsWith('sc:') && !run?.columns.some((c) => `sc:${c.key}` === view.sort) && (
+          <option value={view.sort}>Screen: {view.sort.slice(3)}</option>
+        )}
       </select>
     </label>
   );
@@ -151,6 +212,8 @@ export const GridControls: React.FC<GridControlsProps> = ({ view, onChange, show
     return (
       <div className="px-4 space-y-3" data-testid="grid-controls-drawer">
         {heldToggle}
+        {screenPicker}
+        {screenChip}
         {added}
         {range}
         {sort}
@@ -168,6 +231,8 @@ export const GridControls: React.FC<GridControlsProps> = ({ view, onChange, show
       data-testid="grid-controls-toolbar"
     >
       {heldToggle}
+      {screenPicker}
+      {screenChip}
       {added}
       {range}
       {sort}

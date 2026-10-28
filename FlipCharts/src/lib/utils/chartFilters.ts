@@ -10,7 +10,9 @@
 export const IMPORT_DATE = '2026-07-23';
 
 export type AddedFilter = 'all' | '7d' | '30d' | '90d' | 'month' | 'refresh' | 'custom';
-export type SortKey = 'default' | 'added_desc' | 'added_asc' | 'ticker' | 'updated';
+export type BaseSortKey = 'default' | 'added_desc' | 'added_asc' | 'ticker' | 'updated';
+/** `screen_rank` and `sc:<column key>` only make sense while a screen is active. */
+export type SortKey = BaseSortKey | 'screen_rank' | `sc:${string}`;
 
 export interface GridView {
   added: AddedFilter;
@@ -20,9 +22,11 @@ export interface GridView {
   to: string;
   /** Only symbols held in the Alpaca paper account (combines with the other filters). */
   held: boolean;
+  /** Active screen name ('' = none); shows only that screen's latest hits. */
+  screen: string;
 }
 
-export const DEFAULT_VIEW: GridView = { added: 'all', sort: 'default', from: '', to: '', held: false };
+export const DEFAULT_VIEW: GridView = { added: 'all', sort: 'default', from: '', to: '', held: false, screen: '' };
 
 export const ADDED_FILTERS: { value: AddedFilter; label: string; short: string }[] = [
   { value: 'all', label: 'All', short: 'All' },
@@ -34,7 +38,7 @@ export const ADDED_FILTERS: { value: AddedFilter; label: string; short: string }
   { value: 'custom', label: 'Custom range', short: 'Range' },
 ];
 
-export const SORT_KEYS: { value: SortKey; label: string; short: string }[] = [
+export const SORT_KEYS: { value: BaseSortKey; label: string; short: string }[] = [
   { value: 'default', label: 'Default', short: 'Default' },
   { value: 'added_desc', label: 'Added: newest', short: 'Newest' },
   { value: 'added_asc', label: 'Added: oldest', short: 'Oldest' },
@@ -46,6 +50,10 @@ export interface DatedSymbol {
   symbol: string;
   added?: string;
   date?: string;
+  /** Screen rank (1 = best) while a screen is active. */
+  rank?: number;
+  /** Value of the screen column chosen by an `sc:<key>` sort. */
+  metric?: number | null;
 }
 
 const ISO = /^\d{4}-\d{2}-\d{2}$/;
@@ -110,6 +118,22 @@ export function sortItems<T extends DatedSymbol>(items: T[], sort: SortKey): T[]
     case 'added_asc': indexed.sort(byDate('added', 1)); break;
     case 'updated': indexed.sort(byDate('date', -1)); break;
     case 'ticker': indexed.sort((a, b) => a.item.symbol.localeCompare(b.item.symbol) || a.idx - b.idx); break;
+    case 'screen_rank':
+      indexed.sort((a, b) => (a.item.rank ?? Infinity) - (b.item.rank ?? Infinity) || a.idx - b.idx);
+      break;
+    default:
+      if (sort.startsWith('sc:')) {
+        // Screen metric, high to low; missing values last.
+        const v = (x: { item: T }) => (typeof x.item.metric === 'number' && Number.isFinite(x.item.metric) ? x.item.metric : null);
+        indexed.sort((a, b) => {
+          const av = v(a); const bv = v(b);
+          if (av !== null && bv === null) return -1;
+          if (av === null && bv !== null) return 1;
+          if (av !== null && bv !== null && av !== bv) return bv - av;
+          // Ties: better screen rank first, then original order.
+          return (a.item.rank ?? Infinity) - (b.item.rank ?? Infinity) || a.idx - b.idx;
+        });
+      }
   }
   return indexed.map((x) => x.item);
 }
@@ -136,7 +160,11 @@ export function parseView(src: URLSearchParams | Record<string, unknown> | null 
   const added = get('added');
   if (added && FILTER_SET.has(added as AddedFilter)) out.added = added as AddedFilter;
   const sort = get('sort');
-  if (sort && SORT_SET.has(sort as SortKey)) out.sort = sort as SortKey;
+  if (sort && (SORT_SET.has(sort as BaseSortKey) || sort === 'screen_rank' || /^sc:[a-z_][a-z0-9_]{0,39}$/.test(sort))) {
+    out.sort = sort as SortKey;
+  }
+  const screen = get('screen');
+  if (screen !== undefined && (screen === '' || /^[a-z0-9][a-z0-9_.-]{0,63}$/.test(screen))) out.screen = screen;
   const from = get('from');
   if (from && ISO.test(from)) out.from = from;
   const to = get('to');
@@ -156,10 +184,11 @@ export function resolveView(url: URLSearchParams, stored: Record<string, unknown
 
 /** Write the view into `params` (non-default parts only); returns the same object. */
 export function writeViewParams(params: URLSearchParams, view: GridView): URLSearchParams {
-  for (const k of ['added', 'sort', 'from', 'to', 'held']) params.delete(k);
+  for (const k of ['added', 'sort', 'from', 'to', 'held', 'screen']) params.delete(k);
   if (view.added !== 'all') params.set('added', view.added);
   if (view.sort !== 'default') params.set('sort', view.sort);
   if (view.held) params.set('held', '1');
+  if (view.screen) params.set('screen', view.screen);
   if (view.added === 'custom') {
     if (view.from) params.set('from', view.from);
     if (view.to) params.set('to', view.to);
@@ -168,5 +197,5 @@ export function writeViewParams(params: URLSearchParams, view: GridView): URLSea
 }
 
 export function isDefaultView(v: GridView): boolean {
-  return v.added === 'all' && v.sort === 'default' && !v.held;
+  return v.added === 'all' && v.sort === 'default' && !v.held && !v.screen;
 }
