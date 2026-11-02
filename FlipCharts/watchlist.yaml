@@ -663,7 +663,8 @@
   status: watching
   target_entry: null
   thesis: 2026-09-03:Regeneron's Dupixent is a generational asset in immunology with
-  tags: Bio
+  tags: Bio, Pharma
+  date: '2026-11-02'
   added: '2026-07-23'
 - symbol: RKLB
   status: watching
@@ -944,7 +945,8 @@
   status: watching
   target_entry: null
   thesis: 2026-09-03:Brinker International is in new high territory, up 4.5% with
-  tags: Hospitality, E-commerce
+  tags: Hospitality, E-commerce, Blue_Chip
+  date: '2026-11-02'
   added: '2026-07-28'
 - symbol: FTNT
   status: watching
@@ -1623,6 +1625,7 @@
   target_entry: null
   thesis: ''
   tags: Software, AI_Adjacent
+  date: '2026-11-02'
   added: '2026-09-01'
 - symbol: SNOW
   status: watching
@@ -1990,8 +1993,8 @@
   status: watching
   target_entry: null
   thesis: ''
-  tags: Healthcare, Financial_Services
-  date: '2026-10-19'
+  tags: Healthcare, Financial_Services, Blue_Chip
+  date: '2026-11-02'
   added: '2026-10-19'
 - symbol: URBN
   status: watching
@@ -2042,3 +2045,45 @@
   tags: Cybersecurity, Software, Cloud
   date: '2026-10-26'
   added: '2026-10-26'
+- symbol: CBOE
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Financial_Services, Blue_Chip
+  date: '2026-11-02'
+  added: '2026-11-02'
+- symbol: DLTR
+  status: watching
+  target_entry: null
+  thesis: 2026-11-02:Discount retail chain.
+  tags: Unknown_Sector, Blue_Chip
+  date: '2026-11-02'
+  added: '2026-11-02'
+- symbol: EBAY
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: E-commerce, Big_Tech
+  date: '2026-11-02'
+  added: '2026-11-02'
+- symbol: IOVA
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Bio, Pharma
+  date: '2026-11-02'
+  added: '2026-11-02'
+- symbol: MEDP
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Bio, Healthcare
+  date: '2026-11-02'
+  added: '2026-11-02'
+- symbol: NUE
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Metals, Manufacturing
+  date: '2026-11-02'
+  added: '2026-11-02'

@@ -1,5 +1,5 @@
 name: ibd top 50
-updated: '2026-10-26'
+updated: '2026-11-02'
 tickers:
 - symbol: CAVA
   status: watching
@@ -258,8 +258,8 @@ tickers:
   thesis: 2026-09-03:Breaking out of a double bottom with strong relative strength
     and at new highs, despite slowed growth. Revamped Chili's led to enormous same-store
     sales growth previously.
-  tags: E-commerce, ETF
-  date: '2026-09-03'
+  tags: E-commerce, ETF, Hospitality, Blue_Chip
+  date: '2026-11-02'
 - symbol: FCX
   status: watching
   target_entry: null
@@ -667,8 +667,8 @@ tickers:
   status: watching
   target_entry: null
   thesis: 2026-09-03:Part of the Magnificent 7, but currently not looking strong.
-  tags: Software, Transportation, Manufacturing, AI_Adjacent, Blue_Chip
-  date: '2026-10-19'
+  tags: Software, Transportation, Manufacturing, AI_Adjacent, Blue_Chip, Big_Tech
+  date: '2026-11-02'
 - symbol: TSM
   status: watching
   target_entry: null
@@ -1294,8 +1294,8 @@ tickers:
   status: watching
   target_entry: null
   thesis: ''
-  tags: Healthcare, Financial_Services
-  date: '2026-10-19'
+  tags: Healthcare, Financial_Services, Blue_Chip
+  date: '2026-11-02'
   added: '2026-10-19'
 - symbol: URBN
   status: watching
@@ -1360,3 +1360,52 @@ tickers:
   tags: Cybersecurity, Software, Cloud
   date: '2026-10-26'
   added: '2026-10-26'
+- symbol: CBOE
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Financial_Services, Blue_Chip
+  date: '2026-11-02'
+  added: '2026-11-02'
+- symbol: DLTR
+  status: watching
+  target_entry: null
+  thesis: 2026-11-02:Discount retail chain.
+  tags: Unknown_Sector, Blue_Chip
+  date: '2026-11-02'
+  added: '2026-11-02'
+- symbol: EBAY
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: E-commerce, Big_Tech
+  date: '2026-11-02'
+  added: '2026-11-02'
+- symbol: IOVA
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Bio, Pharma
+  date: '2026-11-02'
+  added: '2026-11-02'
+- symbol: MEDP
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Bio, Healthcare
+  date: '2026-11-02'
+  added: '2026-11-02'
+- symbol: NUE
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Metals, Manufacturing
+  date: '2026-11-02'
+  added: '2026-11-02'
+- symbol: REGN
+  status: watching
+  target_entry: null
+  thesis: ''
+  tags: Bio, Pharma
+  date: '2026-11-02'
+  added: '2026-11-02'
