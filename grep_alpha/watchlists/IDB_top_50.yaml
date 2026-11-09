@@ -1,5 +1,5 @@
 name: ibd top 50
-updated: '2026-11-02'
+updated: '2026-11-09'
 tickers:
 - symbol: CAVA
   status: watching
@@ -481,9 +481,11 @@ tickers:
     2026-10-05:Doing well, especially after taking some time off. Come back with software
     strength. Co-pilot initiatives received positive market reaction. Solid growth,
     picking up on earnings, revenue growth in high teens. Right around being actionable,
-    potentially clearing 519.57.'
+    potentially clearing 519.57.
+
+    2026-11-09:Strong cloud growth reported in latest earnings.'
   tags: Software, Big_Tech, AI_Adjacent, Cloud
-  date: '2026-10-05'
+  date: '2026-11-09'
 - symbol: MU
   status: watching
   target_entry: null
@@ -873,9 +875,11 @@ tickers:
 - symbol: AAPL
   status: watching
   target_entry: null
-  thesis: 2026-09-03:Strong services revenue
+  thesis: '2026-09-03:Strong services revenue
+
+    2026-11-09:Dummy thesis for Apple based on recent product announcements.'
   tags: Software, Manufacturing, Big_Tech, Hardware, Blue_Chip, E-commerce
-  date: '2026-10-19'
+  date: '2026-11-09'
 - symbol: BE
   status: watching
   target_entry: null
