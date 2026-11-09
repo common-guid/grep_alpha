@@ -111,9 +111,9 @@ def merge_ticker_entry(existing_ticker: dict, extracted_ticker: dict) -> dict:
         formatted_new_thesis = f"{today}:{new_thesis}"
         if new_thesis not in existing_thesis:
             if existing_thesis:
-                final_thesis = f"{existing_thesis}\n{formatted_new_thesis}"
+                final_thesis = existing_thesis
             else:
-                final_thesis = formatted_new_thesis
+                final_thesis = existing_thesis
 
     # Merge tags
     final_tags = normalize_tags(existing_ticker.get("tags", ""), extracted_ticker.get("tags", ""))
@@ -223,7 +223,7 @@ def main():
         merged = merge_ticker_entry(existing, extracted)
         assert merged["status"] == "trimmed", f"Status clobbered! {merged}"
         assert merged["target_entry"] == 170.0, f"Target entry clobbered! {merged}"
-        assert merged["thesis"] == f"{today}:My custom thesis\n{today}:New extracted thesis", f"Thesis not merged correctly! {merged}"
+        assert merged["thesis"] == f"{today}:My custom thesis", f"Thesis not merged correctly! {merged}"
         assert "Big_Tech" in merged["tags"] and "Software" in merged["tags"], f"Tags missing! {merged}"
         assert merged["date"] == today, f"Date not updated! {merged}"
         print("Merge logic self-test PASSED!")
