@@ -483,7 +483,7 @@ tickers:
     picking up on earnings, revenue growth in high teens. Right around being actionable,
     potentially clearing 519.57.
 
-    2026-11-09:Strong cloud growth reported in latest earnings.'
+    2026-11-09:2026-11-09:Azure growth stabilizing.'
   tags: Software, Big_Tech, AI_Adjacent, Cloud
   date: '2026-11-09'
 - symbol: MU
@@ -521,9 +521,11 @@ tickers:
 
     2026-10-05:Improved and at new highs, not alone in its strength. Valuation is
     high, passed $1 trillion and now over $5 trillion and climbing. Important part
-    of the AI and technology trade.'
+    of the AI and technology trade.
+
+    2026-11-09:2026-11-09:Continued AI data center demand outstripping supply.'
   tags: Software, Semi-IDM, Semi-Fabless, AI_Adjacent, Big_Tech
-  date: '2026-10-05'
+  date: '2026-11-09'
 - symbol: NVT
   status: watching
   target_entry: null
@@ -877,7 +879,7 @@ tickers:
   target_entry: null
   thesis: '2026-09-03:Strong services revenue
 
-    2026-11-09:Dummy thesis for Apple based on recent product announcements.'
+    2026-11-09:2026-11-09:Strong services growth reported.'
   tags: Software, Manufacturing, Big_Tech, Hardware, Blue_Chip, E-commerce
   date: '2026-11-09'
 - symbol: BE
@@ -1413,3 +1415,19 @@ tickers:
   tags: Bio, Pharma
   date: '2026-11-02'
   added: '2026-11-02'
+- symbol: LULU
+  status: watching
+  target_entry: null
+  thesis: 2026-11-09:2026-11-09:Strong holiday sales guidance indicating resilient
+    consumer demand.
+  tags: Retail
+  date: '2026-11-09'
+  added: '2026-11-09'
+- symbol: UBER
+  status: watching
+  target_entry: null
+  thesis: 2026-11-09:2026-11-09:Profitability inflection point reached with expanding
+    margins in mobility segment.
+  tags: Services
+  date: '2026-11-09'
+  added: '2026-11-09'
